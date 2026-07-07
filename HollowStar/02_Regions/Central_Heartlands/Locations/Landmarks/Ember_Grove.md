@@ -1,79 +1,88 @@
 # Ember Grove
 
-**Location:** Near [[Emberford|Emberford]], Central Heartlands  
-**Type:** Ancient forest, sacred site  
-**Protected by:** Path of Spirits druids, local community reverence
+**Location:** One mile north of [[02_Regions/Central_Heartlands/Locations/Towns/Emberford|Emberford]], Central Heartlands  
+**Type:** Ancient forest, sacred site (~500 acres)  
+**Protected by:** Path of Spirits druids; local community reverence  
+**Guardian:** [[Thorn Oakwise]] (human, mid-fifties)
+
+**Run-time reference:** Sensory detail, grove community, Gold Month specifics — `gm_sessions_site/emberford.html` (Grove tab)
 
 ---
 
 ## OVERVIEW
 
-Ember Grove is ancient forest that survived when surrounding lands were cleared for agriculture centuries ago. Local legend says forest fire stopped at grove's edge—trees protected by spirits.
+Ember Grove survived when surrounding lands were cleared for agriculture centuries ago. Local legend says a forest fire stopped at the grove's edge — trees untouched, flames dying at the boundary. The name Emberford remembers this.
 
-**Size:** ~500 acres of old growth forest. Small by Verdant Crescent standards, but ancient and unique for Central Heartlands.
+**Size:** ~500 acres of old-growth oak, ash, and beech. Some specimens 800+ years old — predating human settlement in the region. Small by Verdant Crescent standards; unique for the Central Heartlands.
 
-**Trees:** Oak, ash, beech, some specimens 800+ years old. These trees predate human settlement in region.
+**Character:** Autumn colors persist year-round in local perception. Gold Month brings harvest-season smell, turned earth, amber-filtered light under canopy. The spirit web is tangible to sensitive visitors — old, present, not threatening but watchful.
 
 ---
 
 ## THE PROTECTION
 
-**Druid presence:** Small community (4-6 druids) of Path of Spirits followers living in grove, maintaining sacred site, preventing logging.
+**Druid community:** 4–6 Path of Spirits practitioners. Thorn Oakwise is guardian — chosen after two years of observation; lives year-round in a low structure of living wood and stone in the northern quarter.
 
-**Current Guardian:** **Thorn Oakwise** (human, 52, male) - chosen by previous guardian, lives year-round in grove, communicates with Emberford regarding protection.
+**Local respect:** Emberford residents mostly honor protected status. Legends of spirit curses discourage violations. Economic pressure from Lumencrest timber buyers is the current test.
 
-**Local respect:** Emberford residents mostly respect grove's protected status. Legends of spirits cursing those who harm trees discourages violations.
-
-**Economic tension:** Some residents want to log grove (valuable old-growth timber). Druids threaten consequences. So far, protection holds.
+**Economic tension:** Significant money offered for logging rights near the eastern boundary. Druids warn of spiritual retribution (crops fail, sickness, hostile forest). Nobody has tested whether spirits enforce protection.
 
 ---
 
-## THE SACRED NATURE
+## GROVE COMMUNITY
 
-**Why protected:** Druids believe grove is spiritually significant—ancient spirits dwell here, trees are conscious, place is sacred.
+| Person | Role |
+|--------|------|
+| **Thorn Oakwise** | Guardian; training Greer; sent her to Lumencrest (Gold Month 700 AR) |
+| **Greer's family** | Faun family from Rivermark; 25 years in grove; parents still resident |
+| **Aldric** | Human practitioner, 40s; seasonal ceremonies for Emberford; social face of grove |
+| **Wren** | Young Faun, early 20s; beginning druidic study; remarkable with birds; alarmed by crow behavior |
 
-**Ceremonies:** Seasonal rituals held in grove. Local Path of Spirits followers participate. Outsiders rarely invited.
+---
 
-**The heart stone:** Ancient standing stone in grove center, carved with symbols nobody can read. Druids call it "heart"—focal point for grove's spiritual power.
+## THE HEART STONE
 
-**Strange occurrences:** Animals behave oddly here. Compasses spin. Some people report feeling watched. Trees seem to move when not observed. Whether supernatural or psychological, effect is real.
+Ancient standing stone at grove center — shoulder height, carvings in no known script. Patterns almost resolve into meaning at the edge of perception.
+
+**Current state (700 AR):**
+- **Warm** to the touch for two years (Thorn studying without rushing to conclusions)
+- **Pulsed three times** this moon cycle — faint orange glow visible from road at night; duration increasing slightly
+- Connected to threshold/spirit-layer activity; resonance with approaching Hollostar phenomena (GM: Dreamer threshold — see `07_Campaign/GM_Only/The_Truth`)
+
+Greer has felt spirit-web "watchful quiet" for eight years — direction of concern points west, toward Lumencrest.
+
+---
+
+## THE BOUNDARY
+
+No fence or sign — but crossing is felt. Air temperature shifts slightly; animals stop and watch. **Eastern boundary** has felt different for two months: less holding breath, more turning to look east. Thorn spends more mornings at the eastern edge.
+
+**Spirit boundary:** Thorn's council statement — Vael offer's eastern edge borders this line. Survey claims mapped boundary per druidic description; GM truth: Unseen Guild probing proximity.
 
 ---
 
 ## THE FIRE LEGEND
 
-**The story:** Centuries ago, massive forest fire swept region. Destroyed everything in its path. When it reached Ember Grove, fire stopped—trees untouched, flames died at boundary.
-
-**Evidence:** Geological studies show fire scar surrounding grove but not within it. Something protected this area.
-
-**Explanations:**
-- Spiritual: Forest spirits quenched flames
-- Natural: Ground water, soil composition, wind patterns created natural firebreak
-- Historical: Someone fought fire successfully, story embellished over time
-
-**Druids' view:** Protection was spiritual. Forest earned name Ember Grove. Spirits proved their power. Respect them or face consequences.
+Massive regional fire centuries ago; grove untouched. Explanations range from spirits to natural firebreak to embellished historical firefighting. Druids hold spiritual interpretation.
 
 ---
 
-## CURRENT THREAT
+## GOLD MONTH (700 AR)
 
-Lumencrest's timber pressure extends to grove. Significant money offered for logging rights. Some Emberford residents tempted.
-
-**Druid warning:** Violate grove, face consequences. Not physical violence—spiritual retribution. Crops will fail, sickness will spread, forest will turn hostile.
-
-**Belief question:** Do people believe druid threats? Some do. Some don't. Nobody has tested whether spirits actually enforce protection.
-
-**The tension:** Economic desperation vs. spiritual fear. How much must people suffer before they risk angering spirits?
+- Harvest Acknowledgment ceremony three weeks prior — attendance slightly down
+- Crows louder than usual — six or seven where two would be normal (Wren tracking)
+- Shard fragment contamination affecting eastern wildlife (GM: Guild transport route)
+- Council meeting Session 1: Thorn opposed Vael offer framing
 
 ---
 
 ## ADVENTURE HOOKS
 
-- Hired to survey grove for logging (druids oppose violently)
-- Hired by druids to prevent logging operation
-- Investigation: Are druid threats real? What actually happens if grove is violated?
-- Missing person: Someone entered grove, never returned. Search mission.
-- Artifact: Ancient standing stone may hold valuable magical properties. Someone wants it.
+- Investigate eastern boundary changes and wildlife confusion
+- Protect or survey boundary against logging encroachment
+- Missing person in deep grove
+- Heart Stone pulse events — pattern and meaning
+- Mediate between Thorns activity and grove guardians' nonviolent stance
 
 ---
 

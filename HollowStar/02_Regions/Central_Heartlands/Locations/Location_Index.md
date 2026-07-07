@@ -23,7 +23,7 @@ Index of cities, towns, landmarks, and dungeons in the Central Heartlands.
 | [[02_Regions/Central_Heartlands/Locations/Towns/Rivercross]] | ~6,500 | River trade hub; shipbuilding |
 | [[02_Regions/Central_Heartlands/Locations/Towns/Thornkeep]] | ~7,000 | Lumber town; forest gate |
 | [[02_Regions/Central_Heartlands/Locations/Towns/Coppertown]] | ~5,000 | Mining town; smelting; labor tensions |
-| [[02_Regions/Central_Heartlands/Locations/Towns/Emberford]] | ~4,500 | Ember Grove access; carving center; spiritual site |
+| [[02_Regions/Central_Heartlands/Locations/Towns/Emberford]] | ~4,000 | Ember Grove; House Vael timber politics (Session 1) |
 
 ---
 
@@ -32,7 +32,7 @@ Index of cities, towns, landmarks, and dungeons in the Central Heartlands.
 | Location | Notes |
 |----------|-------|
 | [[02_Regions/Central_Heartlands/Locations/Landmarks/Thornwood]] | Northern dense forest |
-| [[02_Regions/Central_Heartlands/Locations/Landmarks/Ember_Grove]] | Southern forest; autumn colors year-round |
+| [[02_Regions/Central_Heartlands/Locations/Landmarks/Ember_Grove]] | Ancient grove; Heart Stone; Thorn Oakwise |
 | *[Add more as developed]* | |
 
 ---
