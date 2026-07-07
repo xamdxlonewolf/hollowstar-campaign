@@ -5,6 +5,7 @@ System-facing guidance, prep scaffolding, and practical campaign operation notes
 ## GM Toolkit
 - [[08_GM_Notes/Daggerheart Integration|Daggerheart Integration]]
 - [[08_GM_Notes/Session Prep|Session Prep]]
+- [[08_GM_Notes/Sessions/README|Session Notes]] — per-session prep, play record, and handoff to gm_sessions_site
 
 ## Usage Notes
 - Keep this folder player-safe only when explicitly intended.
