@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emberford & Ember Grove — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.location-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;margin-right:4px;margin-bottom:4px;}
+.loc-town{background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);}
+.loc-grove{background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);}
+.loc-inn{background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);}
+.room-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.room-name{font-size:13px;font-weight:700;color:var(--accent-gold-light);margin-bottom:2px;}
+.room-price{font-size:12px;color:var(--accent-gold);float:right;font-weight:700;}
+.room-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-top:4px;}
+.menu-section{margin-bottom:16px;}
+.menu-section-title{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.building-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.building-name{font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:1px;}
+.building-type{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.building-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.6;}
+.building-card .npc-voice{margin-top:7px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="emberford.html" class="active">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Location Reference</div>
+  <h1>Emberford & Ember Grove</h1>
+  <p class="subtitle">Everything your players can see, ask about, buy, eat, drink, or discover. Use this as a living reference during play.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('town',this)">Town</button>
+    <button class="nav-tab" onclick="filterSections('inn',this)">The Inn</button>
+    <button class="nav-tab" onclick="filterSections('shops',this)">Shops & People</button>
+    <button class="nav-tab" onclick="filterSections('grove',this)">The Grove</button>
+    <button class="nav-tab" onclick="filterSections('gossip',this)">Gossip</button>
+  </div>
+
+  <!-- ══ ARRIVING IN EMBERFORD ══ -->
+  <div class="section" data-cat="town">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">🏘️</div>
+      <div style="flex:1;"><div class="section-label">Arriving in Emberford</div><div class="section-sub">What to say · First impressions · Town layout</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this when players first see Emberford from the road</div>
+        <p>"The road crests a gentle rise and Emberford opens up below you — a proper town, not a village, though it still has the feel of a place that grew up from one. A stone bridge carries the road over the Emberfork river, wide and brown this time of year, running fast from last week's rains. The town clusters on both banks. The older half sits on the east side — a dozen timber-frame buildings, the council hall, the square. The newer half crept across the river over the last generation, following the lumber trade. You can see the mill from here, its waterwheel turning slowly. Smoke from cookfires. Smell of bread and river mud and horses. A normal Gold Month morning."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Town facts — for if players ask</div>
+        <ul>
+          <li><strong>Population:</strong> Roughly 4,000 — mostly human, significant Faun presence near the grove, a handful of Drakona families running the smithy and the mill.</li>
+          <li><strong>Economy:</strong> River crossing (trade toll), timber processing, farming. The mill provides a third of the town's income. Lumber buyers from Lumencrest visit seasonally — Gold Month especially.</li>
+          <li><strong>Governance:</strong> Elder council of seven. Marta Dawnbrook chairs. Decisions are slow and argued about for months. Most residents consider this appropriate.</li>
+          <li><strong>The ford itself:</strong> Shallow stone crossing just upstream of the bridge, used by farmers with carts. Free to use. The bridge costs 2 copper per cart, 1 copper per horse, foot traffic free. Elder Marta's family built the bridge three generations ago. This is mentioned more than it should be.</li>
+          <li><strong>Six-Fold Faith:</strong> The Hearthkeeper temple on the east square is the main place of worship. Small but well-kept. The priest is a human man named Aldous Penn, 50s, broad hands, says very little and means all of it.</li>
+        </ul>
+      </div>
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this when players cross the bridge into town</div>
+        <p>"The bridge stones are worn smooth — thousands of boots, hundreds of cart wheels. On the far side, the east square opens up. The council hall on the left, the Hearthkeeper temple on the right, and between them The Emberflow Arms, the town's inn and tavern. A board outside has the rates chalked up. There's a dog sleeping in the inn doorway. It opens one eye when you approach, decides you're not interesting, and goes back to sleep."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Town layout — what's where</div>
+        <ul>
+          <li><strong>East Square:</strong> Council hall, Hearthkeeper temple, The Emberflow Arms (inn/tavern), Mira's General Goods. The social and civic heart of town.</li>
+          <li><strong>East Bank (older):</strong> Older homes, the healer's cottage (Edda Marsh), Copperpin Tailor, the Stoneback Smithy.</li>
+          <li><strong>The Bridge:</strong> Stone, three arches, 60 feet across. Guard post on the west end — one bored town watchman, Gorran, who checks carts for stolen timber.</li>
+          <li><strong>West Bank (newer):</strong> The mill, lumber yard, newer housing, the tradesman's warehouse where Lumencrest buyers stay when the inn is full.</li>
+          <li><strong>Grove Road:</strong> Leaves the east square heading north. One mile to the grove's edge. Greer knows every stone of it.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ THE INN ══ -->
+  <div class="section" data-cat="inn">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">🍺</div>
+      <div style="flex:1;"><div class="section-label">The Emberflow Arms</div><div class="section-sub">Rooms · Food & Drink · Staff · Atmosphere</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">Inn & Tavern</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: Describing the inn interior when they enter</div>
+        <p>"Inside the Emberflow Arms it's low-ceilinged and warm, with the particular smell of a tavern room that has been serving people for eighty years — woodsmoke, old beer, and something savory from the kitchen. The bar runs along the back wall. A rack of local clay mugs. Three tables occupied for morning, men with work-hardened hands wrapped around something hot. Behind the bar, a woman in her forties is restocking shelves without looking up. She says, without turning around: 'Sitting or staying?'"</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Bess Hollowell</div>
+        <div class="npc-role">Innkeeper · Human · 47 · She/her · Third generation owner</div>
+        <div class="npc-voice">🎭 Voice: Efficient, direct. Warm once she's decided you're all right. Not warm before that. Answers questions in the fewest words that get the job done. Has a very good memory for who paid and who didn't.</div>
+        <p>Bess inherited the inn from her mother who inherited it from her grandmother. She's never left Emberford for more than a week, has no desire to, and thinks travelers who romanticize the road are people who've never had to sleep in a ditch. She reads people extremely well. She knows about most of what happens in Emberford before anyone tells her, because people talk in taverns.</p>
+        <p style="margin-top:6px;">She already has an opinion about Caelen Vael. He was polite, tipped well, and she doesn't trust him. She won't say why — just that he smelled like someone getting paid to be nice. She'll share this if someone buys her a drink and asks the right question.</p>
+        <div class="npc-secret">GM only: Bess has been quietly hosting Green Covenant-adjacent travelers for fifteen years — giving them rooms, not asking questions, taking payment in coin with no names recorded. She is not a member. She grew up watching her father deal with Lumencrest timber buyers and she made a choice about which side of that she wanted to be on.</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="menu-section">
+        <div class="menu-section-title">Rooms — What's Available</div>
+        <div class="room-card">
+          <span class="room-price">4 silver / night</span>
+          <div class="room-name">The River Room</div>
+          <div class="room-desc">The best room. Second floor, window faces the river. Actual feather bed. Small writing desk. Candle included. Caelen Vael had this room. Bess changed the sheets twice.</div>
+        </div>
+        <div class="room-card">
+          <span class="room-price">2 silver / night</span>
+          <div class="room-name">Standard Double (×2)</div>
+          <div class="room-desc">Comfortable. Straw mattress stuffed fresh last spring, wool blankets. Shared water basin in the hall. South-facing, gets afternoon sun. Fits two people who know each other or don't mind knowing each other by morning.</div>
+        </div>
+        <div class="room-card">
+          <span class="room-price">1 silver / night</span>
+          <div class="room-name">The Back Room</div>
+          <div class="room-desc">Small. No window. Closer to the kitchen, which means warmth but also noise starting before dawn. Perfectly fine. Bess keeps it for people who ask about the cheapest option without looking embarrassed about asking.</div>
+        </div>
+        <div class="room-card">
+          <span class="room-price">4 copper / night</span>
+          <div class="room-name">Common Floor</div>
+          <div class="room-desc">Blanket and a spot on the common room floor after the tavern closes. Bess provides a rolled mat. Five people maximum. Currently: a traveling merchant named Ola who snores heroically.</div>
+        </div>
+        <div class="room-card">
+          <span class="room-price">3 silver / week</span>
+          <div class="room-name">Stable Bunk</div>
+          <div class="room-desc">For those with horses. A sleeping platform above the horses' stalls. Warm, private in its way, smells like hay and horses. Includes horse boarding.</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="menu-section">
+        <div class="menu-section-title">Food — Morning & Midday</div>
+        <table class="price-table">
+          <tr><th>Item</th><th>Description</th><th>Price</th></tr>
+          <tr><td>The Grove Breakfast</td><td>Oat porridge with dried golden plum, a heel of dark bread, soft-boiled egg, small pot of herb butter</td><td>4 copper</td></tr>
+          <tr><td>Traveler's Board</td><td>Cold salt pork, pickled river-root, hard cheese, two slices of rye. Comes wrapped to take on the road.</td><td>3 copper</td></tr>
+          <tr><td>Hot Bread & Dripping</td><td>Half loaf from Mira's bakery next door, served with rendered fat and cracked salt</td><td>1 copper</td></tr>
+          <tr><td>River Fish Plate</td><td>Two pan-fried Emberfork trout with fried onions and roast parsnip. Midday only.</td><td>6 copper</td></tr>
+          <tr><td>Bess's Stew</td><td>Rotating — today is pork and root vegetable with caraway. Served with bread. Always available.</td><td>4 copper</td></tr>
+        </table>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">Food — Evening</div>
+        <table class="price-table">
+          <tr><th>Item</th><th>Description</th><th>Price</th></tr>
+          <tr><td>Roast River Hen</td><td>Half a spiced river bird, roasted with grove-herbs (rosemary, wild thyme, the local stuff Greer would recognize). Served with root mash.</td><td>9 copper</td></tr>
+          <tr><td>The Druid's Plate</td><td>Roasted root vegetables, mushroom-barley cake, pickled green onion, small pot of grove-herb sauce. Named after the druids, who requested vegetarian options years ago.</td><td>6 copper</td></tr>
+          <tr><td>Salt Pork Supper</td><td>Thick-cut salt pork, braised cabbage, soft bread. Working person's dinner. Filling.</td><td>5 copper</td></tr>
+          <tr><td>Cheese Board</td><td>Three local cheeses (hard yellow, soft white, smoky), dried plum, crackers. Good for sharing.</td><td>7 copper</td></tr>
+        </table>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">Drinks</div>
+        <table class="price-table">
+          <tr><th>Item</th><th>Notes</th><th>Price</th></tr>
+          <tr><td>Emberfork Ale</td><td>The local brew. Dark amber, slightly bitter, made from river barley. Strong enough. The town drinks nothing else.</td><td>2 copper / mug</td></tr>
+          <tr><td>Pale Road Ale</td><td>Lighter, from a Coppertown brewery. For travelers who find Emberfork Ale "a bit much." Bess says this with a look.</td><td>2 copper / mug</td></tr>
+          <tr><td>Grove Wine</td><td>Elderflower and berry, made by the druids seasonally. Sweet, low-alcohol, a little strange. Thorn doesn't drink it. Nobody's sure why.</td><td>4 copper / cup</td></tr>
+          <tr><td>Hearthkeeper Mead</td><td>Produced by the temple. Honey-heavy, spiced with cinnamon and clove. Served warm in autumn.</td><td>5 copper / cup</td></tr>
+          <tr><td>River Root Tea</td><td>Herbal, local. Earthy, slightly sweet. What Bess drinks. Non-alcoholic.</td><td>1 copper / pot</td></tr>
+          <tr><td>Hot Cider</td><td>Pressed apple from the farms east of town. Spiced. Seasonal — only available Gold Month through Snow Month.</td><td>2 copper / cup</td></tr>
+          <tr><td>Strong Water</td><td>Clear spirit distilled at the mill. Very strong. Not for the road. Bess will tell you this.</td><td>5 copper / measure</td></tr>
+        </table>
+      </div>
+
+      <div class="gm-note">
+        <div class="tag">Tip: What Bess gives for free</div>
+        <p>Guests who are staying get a pot of river-root tea with their room. Bess also puts a small bowl of pickled river-root on any table with people who look road-weary, without being asked. She won't mention it. It's just there.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SHOPS & NPCs ══ -->
+  <div class="section" data-cat="shops">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">🏪</div>
+      <div style="flex:1;"><div class="section-label">Shops, Services & Notable People</div><div class="section-sub">What's for sale · Who runs what · What they know</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="building-card">
+        <div class="building-name">Mira's General Goods</div>
+        <div class="building-type">General Store · East Square · Open dawn to dusk</div>
+        <p>A wide-fronted shop that smells of dried herbs, leather, and lamp oil. Everything a traveler needs — rope, rations, candles, basic tools, and a surprising selection of preserved foods. Mira also bakes the bread that Bess sells at the inn.</p>
+        <div class="npc-voice">🎭 Owner: Mira Ashford, human woman, 55, iron-grey braid, permanent flour dusting on her hands. Cheerful, efficient, and quietly the most important person in Emberford because she controls what people can buy. Knows everyone's shopping habits and therefore their life situations.</div>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Torch (×5)</td><td>5 copper</td></tr>
+          <tr><td>Rope, 50ft hemp</td><td>8 copper</td></tr>
+          <tr><td>Trail rations (3 days)</td><td>6 copper</td></tr>
+          <tr><td>Candles (×10)</td><td>4 copper</td></tr>
+          <tr><td>Tinderbox</td><td>7 copper</td></tr>
+          <tr><td>Lantern (oil not included)</td><td>4 silver</td></tr>
+          <tr><td>Flask oil</td><td>3 copper</td></tr>
+          <tr><td>Sewing kit</td><td>3 copper</td></tr>
+          <tr><td>Blank journal</td><td>8 copper</td></tr>
+          <tr><td>Ink & quill</td><td>5 copper</td></tr>
+          <tr><td>Grove-herb bundle (healer use)</td><td>6 copper</td></tr>
+          <tr><td>Waterproof cloak</td><td>12 silver</td></tr>
+          <tr><td>Heavy wool blanket</td><td>4 silver</td></tr>
+        </table>
+        <p style="margin-top:8px;font-style:italic;color:var(--text-muted);font-size:12px;">Mira doesn't haggle. "The price is the price" is her only negotiating position. She says it pleasantly. She means it absolutely.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Stoneback Smithy</div>
+        <div class="building-type">Blacksmith · East Bank · Hearable from the square</div>
+        <p>Run by the Stoneback family — a Drakona father, Harn, and his human wife Dena, who does the business side. Harn speaks little and works constantly. The clang from the smithy starts before dawn. They do weapons, tools, horseshoes, and repairs. Good work, priced fairly.</p>
+        <div class="npc-voice">🎭 Harn Stoneback: Drakona male, 60s, burns in his scales from forty years of forge work. Communicates almost entirely through looking at what you've brought him and nodding or shaking his head. Dena, his wife, translates his assessments into prices with a smile that suggests she has been doing this for a very long time.</div>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Dagger</td><td>8 silver</td></tr>
+          <tr><td>Short sword</td><td>18 silver</td></tr>
+          <tr><td>Hand axe</td><td>10 silver</td></tr>
+          <tr><td>Weapon repair (minor)</td><td>2 silver</td></tr>
+          <tr><td>Weapon repair (major)</td><td>6 silver</td></tr>
+          <tr><td>Horseshoe set (×4)</td><td>3 silver</td></tr>
+          <tr><td>Iron pot</td><td>5 silver</td></tr>
+          <tr><td>Custom ironwork</td><td>By discussion with Dena</td></tr>
+        </table>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Copperpin Tailor & Leatherworks</div>
+        <div class="building-type">Clothing & Leather · East Bank alley · By appointment preferred</div>
+        <p>Run by Theo Copperpin, a slight, precise human man in his 40s who is by far the best-dressed person in Emberford and quietly resentful that his talents are wasted on travel coats and boot repairs. He can do leather armor modifications, quality clothing, and boots. His prices reflect his opinion of his own abilities.</p>
+        <div class="npc-voice">🎭 Theo Copperpin: Precise, slightly theatrical, genuinely gifted. Will compliment your taste if you let him make something from scratch, and critique every choice if you bring him something to repair. Knows everything about every visitor who needed new clothes — which means he knew immediately that Caelen Vael's traveling clothes were Lumencrest-made, recent, and expensive.</div>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Boot repair</td><td>3 silver</td></tr>
+          <tr><td>New boots (standard)</td><td>12 silver</td></tr>
+          <tr><td>Leather armor (basic)</td><td>2 gold</td></tr>
+          <tr><td>Leather armor repair</td><td>5 silver</td></tr>
+          <tr><td>Travel cloak (Theo's work)</td><td>15 silver</td></tr>
+          <tr><td>Fine outfit</td><td>2–4 gold depending on material</td></tr>
+        </table>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Edda Marsh — Healer's Cottage</div>
+        <div class="building-type">Healer & Herbalist · East Bank, north end · Green door</div>
+        <p>Edda is the closest thing Emberford has to a doctor. She uses a combination of practical medicine and Path of Spirits-adjacent herbalism — she's not a practitioner herself but she's worked with the grove druids long enough to use their methods. Greer knows her well.</p>
+        <div class="npc-voice">🎭 Edda Marsh: Human woman, late 60s, moves slowly and sees everything. Doesn't charge people who can't pay, charges people who can pay a little more. The town knows this and doesn't complain. She smells of camphor and dried chamomile. She will give you her honest medical opinion whether you want it or not.</div>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Service / Item</th><th>Price</th></tr>
+          <tr><td>Wound treatment & bandaging</td><td>3 silver (or trade)</td></tr>
+          <tr><td>Fever herbs (3-day course)</td><td>4 silver</td></tr>
+          <tr><td>Pain salve</td><td>5 silver</td></tr>
+          <tr><td>Healing poultice</td><td>6 silver</td></tr>
+          <tr><td>Poison assessment & treatment</td><td>8 silver (if she can)</td></tr>
+          <tr><td>Grove-herb tincture (restorative)</td><td>7 silver</td></tr>
+        </table>
+        <p style="margin-top:8px;font-size:12px;color:var(--text-muted);font-style:italic;">Edda will also give advice for free to anyone who sits down and describes their problem honestly. She treats sitting down and talking as part of the medicine.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Emberfork Mill</div>
+        <div class="building-type">Lumber Mill · West Bank · Industrial · Generates income & political friction</div>
+        <p>The mill processes timber from the managed woodlands west of town. Operated by the Crane family — three brothers who inherited it and agree on almost nothing except that the mill should keep running. The eldest, Fen Crane, is the one at the Lumencrest buyers' meetings. He was very interested in the Vael offer and said so at the council. He's not evil. He's financially pressured and thinks the Grove druids are overreacting.</p>
+        <div class="npc-voice">🎭 Fen Crane: Human male, 50, big hands, permanently behind on his accounts. Genuinely decent to his workers. Genuinely wrong about what the Vael offer means. Will argue about it if you give him the chance. He has a point about the town's finances. He is missing the larger picture.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ GOSSIP ══ -->
+  <div class="section" data-cat="gossip">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">💬</div>
+      <div style="flex:1;"><div class="section-label">Town Gossip & Overheard Talk</div><div class="section-sub">What people are saying · Some true, some not · Sources listed</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-note">
+        <div class="tag">How to use this</div>
+        <p>Roll or choose a piece of gossip to drop into any tavern scene, shop visit, or conversation with a townsfolk. The "Truth" line is for you only — don't share it unless the players investigate.</p>
+      </div>
+
+      <div class="gossip-card"><div class="gossip-source">Bess, inn</div><div class="gossip-text">"That Lumencrest boy who was here — polite as you like, but I've seen polite before. Asked me what the grove druids were like. Specific questions. Like he was checking something off a list." <div class="gossip-truth">True. Caelen was briefed to assess local druid resistance before making the lumber offer.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Mira, shop</div><div class="gossip-text">"They say the Heart Stone's been glowing again at night. Third time this moon. Old Benn Thatch swears he saw it from the road at midnight, warm orange like a coal. Not that he should've been on the road at midnight." <div class="gossip-truth">Partially true. The Stone does pulse occasionally. Benn was definitely on the road at midnight — he was meeting someone.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">At the bar, farmer</div><div class="gossip-text">"Greenwatch sent a runner three days ago — something happened on the western forest road. Three men from a logging crew came back without their equipment. Wouldn't say what happened. Just said they weren't going back." <div class="gossip-truth">True. A Thorns cell discouraged a surveying crew from mapping an approach route near the grove's western boundary. Nobody was hurt. It was intended as a warning.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Theo, tailor</div><div class="gossip-text">"I've made riding clothes for Lumencrest buyers before. That young man's jacket was different — had the Vael seal worked into the lining, not just pinned on. Family crest, not house colors. That's not a business representative. That's family."<div class="gossip-truth">True and perceptive. Theo has noticed what others missed.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Gorran, bridge guard</div><div class="gossip-text">"You hear about Timberfall? Used to have three inns — now they've got one. And that one's half empty. Mill closed two seasons after they sold the logging rights. Funny how that works."<div class="gossip-truth">True. Timberfall is the cautionary tale everyone references but nobody officially connects to the current Vael offer.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Fen Crane, mill</div><div class="gossip-text">"The druids say no to everything. Always have. But the bridge needs repairing, the south road is half-mud, and the Accord subsidy hasn't come through in fourteen months. Someone's going to have to make a hard choice eventually."<div class="gossip-truth">Also true. The economic pressure Fen describes is real. He's being used, but he's not wrong about the pressure.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Edda, healer</div><div class="gossip-text">"Something's been wrong with the animals near the eastern woods. Brought me three birds this week — not sick exactly, more like confused. Flying in circles, bumping into things. Deer haven't come to the north pasture in two weeks. I told Thorn. He said he knew."<div class="gossip-truth">True. Shard fragment contamination from the Unseen Guild's transport route is affecting local wildlife.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Bess, late evening</div><div class="gossip-text">"There was a woman through here last month. Quiet type. Paid in new coin. Didn't eat with the common room, had her meals sent up. Left before dawn. She had the look of someone doing a job, not traveling."<div class="gossip-truth">This was a Thorns courier. Bess doesn't know what she was carrying. She has a guess and will share it with the right person after one drink.</div></div></div>
+
+    </div>
+  </div>
+
+  <!-- ══ EMBER GROVE ══ -->
+  <div class="section" data-cat="grove">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">🌲</div>
+      <div style="flex:1;"><div class="section-label">Ember Grove — The Forest</div><div class="section-sub">What it looks and feels like · The Heart Stone · Grove community</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this when players first approach the grove's edge</div>
+        <p>"A mile north of Emberford the road simply stops being a road — it becomes a path, then a suggestion, then something you feel underfoot rather than see. The trees begin gradually: younger oaks and ash at the edge, getting older and larger as you go further in, until you're standing next to something that was a sapling when the Accord was young. The canopy is high enough that there's real sky between you and the leaves, but it still feels enclosed — not claustrophobic, more like being inside something that chose to have you here. The light changes. Out on the road it's ordinary Gold Month morning light. In here it's amber-filtered and slow, the kind that makes you want to lower your voice without knowing why."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Grove sensory details — pick and use as needed</div>
+        <ul>
+          <li><strong>Sound:</strong> Crows are the dominant bird — louder than they should be this week. Under that: the particular deep quiet of old forest, the kind where you can hear your own heartbeat. No wind at ground level even when the canopy moves.</li>
+          <li><strong>Smell:</strong> Turned earth, fallen leaves beginning to decay, the sharp sweetness of late autumn. Something faintly mineral near the Heart Stone — like warm stone after rain.</li>
+          <li><strong>Feel:</strong> The spirit web is tangible here to anyone sensitive (Greer immediately, Lurielle with a Knowledge roll DIF 12). It has the texture of something old that has been in one place for a very long time. Not threatening. Very present.</li>
+          <li><strong>The boundary:</strong> There's no fence, no marker, no sign. But you know when you've crossed it. The air changes temperature slightly. Animals that were moving stop and watch. Greer has crossed this boundary ten thousand times and still feels it every time.</li>
+        </ul>
+      </div>
+
+      <div class="gm-say">
+        <div class="tag">GM: Describing the Heart Stone</div>
+        <p>"The Heart Stone stands at the grove's center — a standing stone, roughly shoulder height, covered in carvings that no scholar has ever successfully read. They're not letters in any known language. They're something else — patterns that almost resolve into meaning if you don't look directly at them. The stone is warm. Not hot — warm, like it's been sitting in sunlight, except it's standing in deep shade. If you put your hand on it, you can feel a very faint vibration. Deep. Like a heartbeat at a distance."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Grove community — who lives here</div>
+        <ul>
+          <li><strong>Thorn Oakwise</strong> — Guardian. His shelter is a low structure of living wood and stone in the grove's northern quarter. He has lived in it for thirty years. It looks like it grew there.</li>
+          <li><strong>Greer's family home</strong> — The family that came from Rivermark twenty-five years ago. Simple, permanent, part of the grove's daily rhythm. Greer's parents are there; let Tara define the specifics.</li>
+          <li><strong>Wren</strong> — A young Faun, early twenties, just beginning serious druidic study. Nervous around new people. Has a remarkable ability with birds. Has been tracking the crow behavior for weeks and is quietly alarmed. She'll talk to Greer about it if asked.</li>
+          <li><strong>Aldric</strong> — Human man, 40s, a practitioner rather than a guardian. Runs the grove's seasonal ceremonies for Emberford residents. Friendly, social, the face of the grove for most townspeople. He doesn't have Thorn's depth but he has warmth Thorn lacks.</li>
+        </ul>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">What the grove is like in Gold Month specifically</div>
+        <ul>
+          <li>The seasonal ceremony was three weeks ago — the Harvest Acknowledgment, where Emberford farmers bring first-press cider and dried grain to the grove's edge. The druids return a small bundle of blessed herbs for each family. It's been happening for eighty years. Attendance is down slightly this year. Greer noticed.</li>
+          <li>The eastern boundary has felt different for two months. Greer can't describe it precisely — less like the forest holding its breath and more like the forest has turned slightly to look at something in that direction. Thorn has been spending more time at the eastern edge in the mornings.</li>
+          <li>The Heart Stone has pulsed three times in the past moon cycle — each time at night, visible from the road as a faint orange glow. The duration gets slightly longer each time. Thorn is not alarmed in a way he shares. He is studying this the way he studies everything: without rushing.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

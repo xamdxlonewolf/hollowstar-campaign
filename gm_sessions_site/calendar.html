@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Calendar — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.cal-layout{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start;}
+@media(max-width:700px){.cal-layout{grid-template-columns:1fr;}}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.cal-title{font-family:var(--font-body);font-size:20px;color:var(--accent-gold-light);}
+.cal-subtitle{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.cal-nav{display:flex;gap:8px;align-items:center;}
+.cal-btn{background:var(--bg-secondary);border:1px solid var(--border);color:var(--text-secondary);padding:5px 12px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;font-family:var(--font-ui);transition:all 0.15s;}
+.cal-btn:hover{border-color:var(--accent-gold);color:var(--accent-gold);}
+.cal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px;}
+.cal-week-header{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:4px;}
+.cal-wday{font-size:10px;font-weight:700;color:var(--text-muted);text-align:center;text-transform:uppercase;letter-spacing:0.05em;padding:3px;}
+.cal-day{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px;min-height:58px;cursor:pointer;transition:all 0.15s;position:relative;}
+.cal-day:hover{border-color:var(--accent-gold);background:rgba(201,168,76,0.04);}
+.cal-day.today{border-color:var(--accent-gold);background:var(--accent-gold-dim);}
+.cal-day.selected{border-color:var(--info);background:var(--info-bg);}
+.cal-day.has-session{border-color:var(--purple);background:var(--purple-bg);}
+.cal-day.has-note::after{content:'';position:absolute;bottom:4px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--hope);}
+.cal-day-num{font-size:12px;font-weight:700;color:var(--text-secondary);}
+.cal-day.today .cal-day-num{color:var(--accent-gold-light);}
+.cal-day-content{font-size:10px;color:var(--text-muted);margin-top:2px;line-height:1.3;}
+.cal-day-session{font-size:10px;color:var(--purple-text);font-weight:600;margin-top:2px;}
+.side-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;}
+.side-title{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+.day-info{margin-bottom:14px;}
+.day-info-date{font-family:var(--font-body);font-size:16px;color:var(--accent-gold-light);margin-bottom:2px;}
+.day-info-spirit{font-size:12px;color:var(--hope-text);margin-bottom:8px;}
+textarea.day-note{width:100%;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-ui);font-size:12.5px;padding:8px;resize:vertical;min-height:80px;line-height:1.5;}
+textarea.day-note:focus{outline:none;border-color:var(--accent-gold);}
+.session-input{display:flex;gap:6px;margin-top:8px;}
+.session-input input{flex:1;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-ui);font-size:12px;padding:5px 8px;}
+.session-input input:focus{outline:none;border-color:var(--purple);}
+.session-input input::placeholder{color:var(--text-muted);}
+.small-btn{background:var(--bg-secondary);border:1px solid var(--border-med);color:var(--text-secondary);padding:5px 10px;border-radius:var(--radius-sm);cursor:pointer;font-size:11px;font-family:var(--font-ui);transition:all 0.15s;}
+.small-btn:hover{border-color:var(--accent-gold);color:var(--accent-gold);}
+.small-btn.danger:hover{border-color:var(--fear);color:var(--fear-text);}
+.sessions-list{margin-top:14px;border-top:1px solid var(--border);padding-top:12px;}
+.session-item{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.session-dot{width:8px;height:8px;border-radius:50%;background:var(--purple);flex-shrink:0;}
+.session-item-text{font-size:12.5px;color:var(--text-primary);flex:1;}
+.session-item-date{font-size:11px;color:var(--text-muted);}
+.month-legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.legend-item{font-size:11px;display:flex;align-items:center;gap:4px;color:var(--text-muted);}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
+.cal-tabs{display:flex;gap:6px;margin-bottom:16px;}
+.cal-tab{font-size:11px;padding:4px 12px;border-radius:99px;border:1px solid var(--border-med);background:transparent;color:var(--text-muted);cursor:pointer;font-family:var(--font-ui);transition:all 0.15s;}
+.cal-tab.active{background:var(--accent-gold-dim);border-color:var(--accent-gold);color:var(--accent-gold-light);}
+.ref-panel{display:none;}
+.ref-panel.visible{display:block;}
+.cal-panel{display:block;}
+.cal-panel.hidden{display:none;}
+.month-info-box{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 12px;margin-bottom:8px;}
+.month-info-name{font-size:13px;font-weight:700;color:var(--accent-gold-light);margin-bottom:2px;}
+.month-info-spirit{font-size:11px;color:var(--hope-text);margin-bottom:3px;}
+.month-info-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;}
+.festival-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;background:rgba(201,168,76,0.15);color:var(--accent-gold);border:1px solid rgba(201,168,76,0.3);margin-top:4px;}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html" class="active">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Campaign Calendar</div>
+  <h1>Accord Reckoning — 700 AR</h1>
+  <p class="subtitle">Track campaign time, session dates, and in-world events. Uses both the Accord Reckoning and Spirit Moons systems.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="cal-tabs">
+    <button class="cal-tab active" onclick="showPanel('calendar',this)">📅 Calendar</button>
+    <button class="cal-tab" onclick="showPanel('months',this)">📖 Month Reference</button>
+    <button class="cal-tab" onclick="showPanel('systems',this)">🌙 Calendar Systems</button>
+  </div>
+
+  <!-- ══ CALENDAR PANEL ══ -->
+  <div id="panel-calendar" class="cal-panel">
+    <div class="cal-layout">
+      <div>
+        <div class="cal-header">
+          <div>
+            <div class="cal-title" id="cal-month-name">Goldmonth, 700 AR</div>
+            <div class="cal-subtitle" id="cal-spirit-month">Spirit Moon: Harvest Plenty</div>
+          </div>
+          <div class="cal-nav">
+            <button class="cal-btn" onclick="changeMonth(-1)">← Prev</button>
+            <button class="cal-btn" onclick="goToday()">Today</button>
+            <button class="cal-btn" onclick="changeMonth(1)">Next →</button>
+          </div>
+        </div>
+        <div class="month-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-gold);"></div> Current day</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--purple);"></div> Session</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--info);"></div> Selected</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--hope);"></div> Has note</div>
+        </div>
+        <div class="cal-week-header">
+          <div class="cal-wday">Day 1</div>
+          <div class="cal-wday">Day 2</div>
+          <div class="cal-wday">Day 3</div>
+          <div class="cal-wday">Day 4</div>
+          <div class="cal-wday">Day 5</div>
+          <div class="cal-wday">Day 6</div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+
+      <div class="side-panel">
+        <div class="day-info" id="day-info">
+          <div class="side-title">Selected Day</div>
+          <div class="day-info-date" id="selected-date">Click a day</div>
+          <div class="day-info-spirit" id="selected-spirit"></div>
+        </div>
+
+        <div class="side-title">Day Note</div>
+        <textarea class="day-note" id="day-note-input" placeholder="Notes for this day..." oninput="saveNote()"></textarea>
+
+        <div style="margin-top:10px;">
+          <div class="side-title">Mark as Session</div>
+          <div class="session-input">
+            <input type="text" id="session-label" placeholder="e.g. Session 1">
+            <button class="small-btn" onclick="markSession()">Mark</button>
+          </div>
+        </div>
+
+        <div class="sessions-list" id="sessions-list">
+          <div class="side-title">Sessions</div>
+          <div id="sessions-content" style="font-size:12px;color:var(--text-muted);">No sessions marked yet.</div>
+        </div>
+
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+          <button class="small-btn danger" onclick="clearAllData()" style="font-size:11px;">Clear all data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MONTHS PANEL ══ -->
+  <div id="panel-months" class="ref-panel">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
+      <div class="month-info-box"><div class="month-info-name">1. Firstmonth</div><div class="month-info-spirit">Spirit Moon: Deep Cold</div><div class="month-info-desc">Coldest month. Winter proper. Short days, heavy snow in the north. Lumencrest brownouts are worst this month — the Lumen Network strains under heating demand.</div></div>
+      <div class="month-info-box"><div class="month-info-name">2. Thawmonth</div><div class="month-info-spirit">Spirit Moon: Stirring Below</div><div class="month-info-desc">Late winter. Ice begins melting. The Emberfork runs high and dangerous. Travel between cities resumes after the winter slowdown. <span class="festival-badge">Midwinter's Rest between 1 & 2</span></div></div>
+      <div class="month-info-box"><div class="month-info-name">3. Seedmonth</div><div class="month-info-spirit">Spirit Moon: Thaw Water</div><div class="month-info-desc">Early spring. Planting begins in the Central Heartlands. Path of Spirits communities hold planting ceremonies. The Green Covenant's most active recruiting season.</div></div>
+      <div class="month-info-box"><div class="month-info-name">4. Bloommonth</div><div class="month-info-spirit">Spirit Moon: First Green</div><div class="month-info-desc">Spring proper. Flowers and growth. The Accord quarterly meeting falls in Bloommonth. Trade routes fully open. <span class="festival-badge">Spring's Awakening between 3 & 4</span></div></div>
+      <div class="month-info-box"><div class="month-info-name">5. Greenmonth</div><div class="month-info-spirit">Spirit Moon: Birdsong</div><div class="month-info-desc">Late spring. Abundant growth. The best month for travel. Most diplomatic missions depart in Greenmonth to arrive before summer heat.</div></div>
+      <div class="month-info-box"><div class="month-info-name">6. Sunpeak</div><div class="month-info-spirit">Spirit Moon: Long Light</div><div class="month-info-desc">Early summer. Longest days. Lumencrest's festivals — the city celebrates the Lumen Network in Sunpeak with public light displays. The approaching star is most visible on clear Sunpeak nights. <span class="festival-badge">Summer's Height between 6 & 7</span></div></div>
+      <div class="month-info-box"><div class="month-info-name">7. Harvestmonth</div><div class="month-info-spirit">Spirit Moon: Young Growth</div><div class="month-info-desc">Mid-summer. Early harvests in southern regions. The Accord food reserve coordination is supposed to happen here. Currently a source of open suspicion between cities.</div></div>
+      <div class="month-info-box"><div class="month-info-name">8. Heatmonth</div><div class="month-info-spirit">Spirit Moon: High Sun</div><div class="month-info-desc">Hottest period. Cross-basin travel is restricted midday. The Endless Eye's market shifts to dawn-and-dusk schedule. Frostwell refugee movement slows — too hot in the lowlands.</div></div>
+      <div class="month-info-box" style="border-color:rgba(201,168,76,0.4);"><div class="month-info-name" style="color:var(--accent-gold);">9. Goldmonth ← NOW</div><div class="month-info-spirit">Spirit Moon: Harvest Plenty</div><div class="month-info-desc">Early autumn. Main harvest season. The Emberfork ford at its lowest — safe for wagons. Lumencrest timber buyers travel this month. Politically convenient time for the Vael visit. Campaign starts: <strong>Gold Month 8, 700 AR.</strong> <span class="festival-badge">Harvest's End between 9 & 10</span></div></div>
+      <div class="month-info-box"><div class="month-info-name">10. Fallmonth</div><div class="month-info-spirit">Spirit Moon: Leaf Fall</div><div class="month-info-desc">Autumn proper. Leaves falling. The Ember Grove is at its most dramatic — amber and gold. Festival of the Hearthkeeper in most Central Heartlands towns.</div></div>
+      <div class="month-info-box"><div class="month-info-name">11. Darkmonth</div><div class="month-info-spirit">Spirit Moon: Dark Gathering</div><div class="month-info-desc">Late autumn. Days shortening fast. The veil between the spirit world and the mortal realm is considered thinnest this month by Path of Spirits practitioners. Ceremonies for the dead.</div></div>
+      <div class="month-info-box"><div class="month-info-name">12. Frostmonth</div><div class="month-info-spirit">Spirit Moon: Spirit Watch</div><div class="month-info-desc">Early winter. First snows. The Spirit Watch month is when practitioners believe ancestor spirits are most reachable. The Green Covenant holds its internal planning for the coming year. <span class="festival-badge">Year's Turn between 12 & 1</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ SYSTEMS PANEL ══ -->
+  <div id="panel-systems" class="ref-panel">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <div class="ref-box">
+          <div class="ref-title">Accord Reckoning (AR)</div>
+          <p><strong>Origin:</strong> Standardized ~400 years ago when the Heartland Accord formed. Year Zero = the fall of the third Hollostar and creation of the Endless Eye (700 years ago). Current year: <strong>700 AR.</strong></p>
+          <p style="margin-top:6px;"><strong>Structure:</strong> 12 months of 30 days each = 360 days, plus 5–6 festival days between certain months. 365 days total (366 every 4th year).</p>
+          <p style="margin-top:6px;"><strong>Writing dates:</strong> Formal — "8th of Goldmonth, 700 AR." Informal — "8/9/700." Very informal — "Gold Month 700."</p>
+          <p style="margin-top:6px;"><strong>Used by:</strong> Everyone for trade, governance, official records, and daily life across all five Accord cities and their territories.</p>
+        </div>
+        <div class="ref-box">
+          <div class="ref-title">Festival Days (outside the regular calendar)</div>
+          <ul>
+            <li><strong>Midwinter's Rest</strong> — between Firstmonth and Thawmonth. 1 day. Rest, family, no commerce.</li>
+            <li><strong>Spring's Awakening</strong> — between Seedmonth and Bloommonth. 1 day. Planting ceremonies.</li>
+            <li><strong>Summer's Height</strong> — between Sunpeak and Harvestmonth. 1 day. Lumencrest's big celebration.</li>
+            <li><strong>Harvest's End</strong> — between Goldmonth and Fallmonth. 1 day. Giving thanks for harvest.</li>
+            <li><strong>Year's Turn</strong> — between Frostmonth and Firstmonth. 1–2 days. New year, resolutions, promises.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="ref-box">
+          <div class="ref-title">Spirit Moons (Path of Spirits / Green Covenant)</div>
+          <p><strong>Origin:</strong> Ancient — predates any known civilization, possibly 10,000+ years old. Used by Path of Spirits followers and Green Covenant for spiritual observance.</p>
+          <p style="margin-top:6px;"><strong>Structure:</strong> 13 lunar months of 28 days each = 364 days, plus 1–2 intercalary days. Years are not numbered sequentially — time is cyclical.</p>
+          <p style="margin-top:6px;"><strong>Dating style:</strong> "This is the third spring since the great fire." "Born in Deep Cold during the year of the white deer." Practitioners convert to AR for external communication.</p>
+          <p style="margin-top:6px;"><strong>Current moon:</strong> Harvest Plenty (corresponds to Goldmonth).</p>
+          <p style="margin-top:6px;"><strong>Used by:</strong> Greer uses both. Thorn uses Spirit Moons internally, converts to AR for Emberford dealings. The Green Covenant uses both — AR for diplomacy, Spirit Moons for all internal ceremony.</p>
+        </div>
+        <div class="ref-box">
+          <div class="ref-title">Other Calendar Systems (brief)</div>
+          <ul>
+            <li><strong>Lumencrest Era (LE):</strong> ~1,200 LE. Used internally by Lumencrest scholars and old families. Official docs use AR.</li>
+            <li><strong>Katari Oral Calendar:</strong> No written form. Lives in memory and recitation. Tracks lineages and historical events through generational chains. Remarkably precise.</li>
+            <li><strong>Somnarch Star Calendar:</strong> Tracks Hollostar falls and cosmic cycles. Four known falls — fifth predicted within 2–5 years.</li>
+            <li><strong>Dwarven Deep Reckoning (DR):</strong> From mythical "First Delving." Used internally only. No surface dwellers know the current DR year.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const MONTHS = ["Firstmonth","Thawmonth","Seedmonth","Bloommonth","Greenmonth","Sunpeak","Harvestmonth","Heatmonth","Goldmonth","Fallmonth","Darkmonth","Frostmonth"];
+const SPIRIT = ["Deep Cold","Stirring Below","Thaw Water","First Green","Birdsong","Young Growth","Long Light","Fruit Swell","Harvest Plenty","Leaf Fall","Dark Gathering","Spirit Watch"];
+const FESTIVALS = {
+  "1-30":"Midwinter's Rest","3-30":"Spring's Awakening",
+  "6-30":"Summer's Height","9-30":"Harvest's End","12-30":"Year's Turn"
+};
+
+let state = {
+  year: 700, month: 8, // 0-indexed, so 8 = Goldmonth (9th month)
+  selectedDay: null,
+  today: {year:700, month:8, day:8},
+  notes: {}, sessions: {}
+};
+
+function loadData(){
+  try{
+    const s = localStorage.getItem('hollowstar-cal');
+    if(s){ const d=JSON.parse(s); state.notes=d.notes||{}; state.sessions=d.sessions||{}; }
+  }catch(e){}
+}
+function saveData(){
+  try{ localStorage.setItem('hollowstar-cal', JSON.stringify({notes:state.notes,sessions:state.sessions})); }catch(e){}
+}
+
+function dateKey(y,m,d){ return `${y}-${m+1}-${d}`; }
+
+function renderCalendar(){
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML='';
+  document.getElementById('cal-month-name').textContent = `${MONTHS[state.month]}, ${state.year} AR`;
+  document.getElementById('cal-spirit-month').textContent = `Spirit Moon: ${SPIRIT[state.month]}`;
+
+  for(let day=1;day<=30;day++){
+    const key = dateKey(state.year,state.month,day);
+    const isToday = state.today.year===state.year && state.today.month===state.month && state.today.day===day;
+    const isSelected = state.selectedDay && state.selectedDay.y===state.year && state.selectedDay.m===state.month && state.selectedDay.d===day;
+    const hasSession = !!state.sessions[key];
+    const hasNote = !!(state.notes[key] && state.notes[key].trim());
+
+    const festKey = `${state.month+1}-${day}`;
+    const festLabel = FESTIVALS[festKey];
+
+    const el = document.createElement('div');
+    el.className = 'cal-day' + (isToday?' today':'') + (isSelected?' selected':'') + (hasSession?' has-session':'') + (hasNote?' has-note':'');
+    el.innerHTML = `<div class="cal-day-num">${day}</div>`;
+    if(hasSession) el.innerHTML += `<div class="cal-day-session">${state.sessions[key]}</div>`;
+    else if(festLabel) el.innerHTML += `<div class="cal-day-content">${festLabel}</div>`;
+    el.onclick = () => selectDay(state.year, state.month, day);
+    grid.appendChild(el);
+  }
+}
+
+function selectDay(y,m,d){
+  state.selectedDay={y,m,d};
+  const key = dateKey(y,m,d);
+  const festKey=`${m+1}-${d}`;
+  const fest = FESTIVALS[festKey];
+  document.getElementById('selected-date').textContent = `${d} ${MONTHS[m]}, ${y} AR`;
+  document.getElementById('selected-spirit').textContent = `Spirit Moon: ${SPIRIT[m]}${fest?' · '+fest:''}`;
+  document.getElementById('day-note-input').value = state.notes[key]||'';
+  document.getElementById('session-label').value = state.sessions[key]||'';
+  renderCalendar();
+}
+
+function saveNote(){
+  if(!state.selectedDay)return;
+  const key = dateKey(state.selectedDay.y,state.selectedDay.m,state.selectedDay.d);
+  state.notes[key] = document.getElementById('day-note-input').value;
+  saveData(); renderCalendar();
+}
+
+function markSession(){
+  if(!state.selectedDay)return;
+  const key = dateKey(state.selectedDay.y,state.selectedDay.m,state.selectedDay.d);
+  const label = document.getElementById('session-label').value.trim();
+  if(label) state.sessions[key]=label;
+  else delete state.sessions[key];
+  saveData(); renderCalendar(); renderSessions();
+}
+
+function renderSessions(){
+  const c = document.getElementById('sessions-content');
+  const keys = Object.keys(state.sessions);
+  if(!keys.length){c.innerHTML='<span style="color:var(--text-muted);font-size:12px;">No sessions marked yet.</span>';return;}
+  keys.sort();
+  c.innerHTML = keys.map(k=>{
+    const parts = k.split('-');
+    const y=parts[0],m=parseInt(parts[1])-1,d=parts[2];
+    return `<div class="session-item"><div class="session-dot"></div><div class="session-item-text">${state.sessions[k]}</div><div class="session-item-date">${d} ${MONTHS[m]}</div></div>`;
+  }).join('');
+}
+
+function changeMonth(delta){
+  state.month += delta;
+  if(state.month>11){state.month=0;state.year++;}
+  if(state.month<0){state.month=11;state.year--;}
+  renderCalendar();
+}
+function goToday(){ state.month=state.today.month; state.year=state.today.year; renderCalendar(); }
+
+function clearAllData(){
+  if(confirm('Clear all calendar notes and sessions?')){
+    state.notes={}; state.sessions={}; saveData(); renderCalendar(); renderSessions();
+  }
+}
+
+function showPanel(name, btn){
+  document.querySelectorAll('.cal-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-calendar').className = name==='calendar'?'cal-panel':'cal-panel hidden';
+  document.getElementById('panel-months').className = name==='months'?'ref-panel visible':'ref-panel';
+  document.getElementById('panel-systems').className = name==='systems'?'ref-panel visible':'ref-panel';
+}
+
+loadData();
+renderCalendar();
+renderSessions();
+// Pre-mark session 1
+const s1key = dateKey(700,8,8);
+if(!state.sessions[s1key]){ state.sessions[s1key]='Session 1'; saveData(); renderCalendar(); renderSessions(); }
+</script>
+</body>
+</html>

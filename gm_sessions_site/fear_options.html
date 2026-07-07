@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fear Spend Options — Session 1 · HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── FEAR PAGE SPECIFIC ── */
+.fear-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.fear-nav-btn{font-size:11px;padding:4px 12px;border-radius:99px;border:1px solid rgba(184,84,80,0.3);background:var(--fear-bg);color:var(--fear-text);cursor:pointer;font-family:var(--font-ui);transition:all 0.15s;text-decoration:none;display:inline-block;}
+.fear-nav-btn:hover{background:rgba(184,84,80,0.25);border-color:var(--fear);}
+
+.fear-card{background:var(--bg-card);border:2px solid rgba(184,84,80,0.4);border-radius:var(--radius-lg);padding:0;margin-bottom:2.5rem;scroll-margin-top:70px;}
+.fear-card-header{background:rgba(184,84,80,0.12);border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:14px 20px;border-bottom:1px solid rgba(184,84,80,0.3);}
+.fear-card-scene{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
+.fear-card-title{font-family:var(--font-body);font-size:18px;color:var(--text-primary);font-weight:normal;}
+.fear-card-cost{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.4);margin-top:6px;}
+.fear-card-body{padding:18px 20px;}
+
+.trigger-box{background:rgba(184,84,80,0.07);border-left:3px solid var(--fear);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;margin-bottom:14px;}
+.trigger-box .tag{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.trigger-box p{font-size:13.5px;color:var(--text-primary);line-height:1.75;font-style:italic;}
+
+.say-box{background:var(--info-bg);border-left:3px solid var(--info);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;margin-bottom:14px;}
+.say-box .tag{font-size:10px;font-weight:700;color:var(--info-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.say-box p{font-size:13.5px;color:var(--text-primary);line-height:1.75;font-style:italic;}
+
+.roll-box{background:var(--purple-bg);border:1px solid rgba(138,96,200,0.3);border-radius:var(--radius-md);padding:13px 15px;margin-bottom:14px;}
+.roll-box .tag{font-size:10px;font-weight:700;color:var(--purple-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:9px;}
+.roll-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+.roll-chip{font-size:12px;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid var(--border-med);color:var(--text-secondary);}
+.roll-chip strong{color:var(--text-primary);}
+.roll-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+.ro{border-radius:var(--radius-sm);padding:10px 12px;border:1px solid transparent;}
+.ro-fail{background:var(--fear-bg);border-color:rgba(184,84,80,0.3);}
+.ro-partial{background:var(--warn-bg);border-color:rgba(201,125,42,0.3);}
+.ro-success{background:var(--hope-bg);border-color:rgba(74,158,110,0.3);}
+.ro-label{font-size:11px;font-weight:700;margin-bottom:4px;}
+.ro-fail .ro-label{color:var(--fear-text);}
+.ro-partial .ro-label{color:var(--warn-text);}
+.ro-success .ro-label{color:var(--hope-text);}
+.ro p{font-size:12px;color:var(--text-secondary);line-height:1.5;}
+
+.consequence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.cq{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;}
+.cq-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;}
+.cq-now{color:var(--fear-text);}
+.cq-soon{color:var(--warn-text);}
+.cq-later{color:var(--info-text);}
+.cq p{font-size:12px;color:var(--text-secondary);line-height:1.55;}
+
+.gm-only-box{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-md);padding:11px 14px;margin-bottom:14px;}
+.gm-only-box .tag{font-size:10px;font-weight:700;color:var(--accent-gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.gm-only-box p,.gm-only-box li{font-size:13px;color:var(--text-primary);line-height:1.7;}
+.gm-only-box ul{padding-left:1.1rem;}
+.gm-only-box strong{color:var(--accent-gold-light);}
+
+.return-bar{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 14px;margin-top:14px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-muted);}
+.return-bar a{color:var(--accent-gold);text-decoration:none;font-weight:600;}
+.return-bar a:hover{color:var(--accent-gold-light);}
+
+.scene-divider{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin:2rem 0 1rem;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+
+@media(max-width:600px){.roll-outcomes,.consequence-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Session 1 — Fear Spend Reference</div>
+  <h1>Fear Options — Full Expansions</h1>
+  <p class="subtitle">Click any fear spend from Session 1 to land here. Each entry has what to say, any rolls, narrative outcomes, and short/medium/long consequences. When done, return to Session 1.</p>
+</header>
+
+<div class="page-body">
+
+  <!-- QUICK NAV -->
+  <div class="fear-nav">
+    <a href="#fs-a1-crows" class="fear-nav-btn">🐦 Crows Scatter</a>
+    <a href="#fs-a1-heartstone" class="fear-nav-btn">🪨 Heart Stone Pulses</a>
+    <a href="#fs-a1-lurielle" class="fear-nav-btn">✨ Lurielle Flickers</a>
+    <a href="#fs-c2-thorn" class="fear-nav-btn">🌿 Thorn Says No</a>
+    <a href="#fs-c2-council" class="fear-nav-btn">🏛️ Council Member Relaxes</a>
+    <a href="#fs-c4-caelen-name" class="fear-nav-btn">👤 Caelen Names Thorn</a>
+    <a href="#fs-c4-third-member" class="fear-nav-btn">🗳️ Third Member Favours</a>
+    <a href="#fs-pp-guard" class="fear-nav-btn">🛡️ Guard Drifts</a>
+    <a href="#fs-pp-greer" class="fear-nav-btn">❓ Council Asks Greer</a>
+    <a href="#fs-pp-exit" class="fear-nav-btn">👁️ Caelen's Exit Look</a>
+    <a href="#fs-rt-scout" class="fear-nav-btn">🏹 Fourth Scout</a>
+    <a href="#fs-rt-satchel" class="fear-nav-btn">🎒 Lurielle's Satchel</a>
+    <a href="#fs-rt-runner" class="fear-nav-btn">🏃 Runner Bolts</a>
+    <a href="#fs-rt-style" class="fear-nav-btn">⚔️ Fighting Style</a>
+    <a href="#fs-sb-pulse" class="fear-nav-btn">💥 Shard Pulse</a>
+    <a href="#fs-sb-lurielle" class="fear-nav-btn">🧬 Bear Targets Lurielle</a>
+    <a href="#fs-sb-fragment" class="fear-nav-btn">🔷 Second Fragment</a>
+    <a href="#fs-sb-greer" class="fear-nav-btn">🐻 Bear Strikes Greer</a>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ACT 1 — EMBER GROVE
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🌲 Act 1 — Ember Grove at Dawn</div>
+
+  <!-- FS-A1-1 -->
+  <div class="fear-card" id="fs-a1-crows">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 1 — Opening Scene</div>
+      <div class="fear-card-title">The Crows All Scatter at Once</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Use this while players are doing their morning routines, before the council meeting. Best triggered during Greer's scene — it's her grove, she reads animals, she will notice this immediately.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Read this aloud</div><p>"Between one breath and the next, the crows are gone. All of them. Not startled into flight — just gone, like something turned off a switch. The canopy where they were is empty and the silence they left behind has a specific quality. Greer — you've never heard the grove go this quiet this fast. Not from a predator. Not from anything you can name."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>A shard fragment — being transported through the grove's eastern boundary by an Unseen Guild courier — crossed the spirit web threshold briefly. The animals felt it before the web could register it. By the time anyone investigates, the courier is gone. <strong>This is foreshadowing the shard bear encounter on the road</strong>, and a hint that shard material is moving through the region systematically, not accidentally.</p>
+      <p style="margin-top:6px;">Thorn feels it too. He looks at the eastern treeline for exactly three seconds, then looks at Greer, then looks away. He will say nothing about this unless directly asked, and even then: <em>"Something crossed. It's gone now."</em></p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Tension. Greer is unsettled before the council meeting. The grove feels like it's holding its breath. Good mood-setter for a difficult morning.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If they take the grove path and encounter the shard bear, Greer may connect this moment to that one. Let her make the link herself — don't point it out.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Seeds the Unseen Guild's shard transport routes as a thread. In Lumencrest, when they eventually learn about the Guild's supply chain, Greer may remember this morning.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#act1">Return to Act 1</a> — continue with character intros or Thorn's summons to the meeting.</div>
+    </div>
+  </div>
+
+  <!-- FS-A1-2 -->
+  <div class="fear-card" id="fs-a1-heartstone">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 1 — Opening Scene</div>
+      <div class="fear-card-title">The Heart Stone Pulses Once</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Best used during Greer's morning offering at the Heart Stone. Can also work if Lurielle is near it taking notes. Not both in the same scene — pick one.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Greer version</div><p>"The stone is warm the way it always is — and then it isn't. For two seconds it's hot enough to hurt, pressing back against your hand like a heartbeat from something very far below. Then it settles. Back to warm. Back to quiet. You've touched this stone ten thousand times. It has never done that."</p></div>
+      <div class="say-box"><div class="tag">GM Say — Lurielle version (alternative)</div><p>"Your quill stops moving. Something changed — in the air, in your skin, in the faint bioluminescence in your forearm that you've mostly learned to ignore. The Stone's warmth spiked and receded in the time it took to notice. Thorn, across the clearing, looks at it for a long moment. He does not look surprised."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>The Heart Stone is connected to the Dreamer's dreaming mind — it is a threshold point, a thin place where the Spirit Realm and Mortal Realm almost touch. The approaching Hollostar, visible in daylight, is close enough now that its resonance is reaching existing threshold points. The Stone isn't reacting to a local event. It's reacting to something cosmic that's getting closer.</p>
+      <p style="margin-top:6px;"><strong>Thorn knows this, roughly.</strong> He's been feeling the Stone's changes for eight years. The pulse today is the most dramatic one yet. He will tell Greer, if asked directly after the council meeting: <em>"It's been listening to something for years. Today it heard a response."</em> That's as specific as he'll get.</p>
+      <p style="margin-top:6px;"><strong>Lurielle's reaction</strong> is the more scientifically interesting one — her Hollowstar-adjacent heritage means she doesn't just feel the pulse, she briefly resonates with it. If she makes a Knowledge roll DIF 13, she can note in her journal that the frequency of the pulse matched something she read in a pre-classification research paper at the Endless Eye. She doesn't know what that means yet.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Thorn walks toward Emberford slightly earlier than planned. Something has shifted in his assessment of the morning's urgency.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If Lurielle made the Knowledge roll, she has a notation in her journal that will become significant when she reaches Lumencrest's archives.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>This is the first tangible evidence that the Endless Eye's decline, the approaching star, and the grove's spiritual changes are connected. Tier 1 secret groundwork — see The Truth document.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#act1">Return to Act 1</a> — Thorn's transition to the council meeting follows naturally here.</div>
+    </div>
+  </div>
+
+  <!-- FS-A1-3 -->
+  <div class="fear-card" id="fs-a1-lurielle">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 1 — Opening Scene</div>
+      <div class="fear-card-title">Lurielle's Bioluminescence Flickers Involuntarily</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>While Lurielle is near the Heart Stone taking notes. Works best as a standalone moment — use this OR the Heart Stone pulse above, not both in the same scene. This version is more personal and slightly embarrassing for Lurielle.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Lurielle — your arm. The bioluminescence under your skin that you've spent most of your life learning to control flickers once, blue-white, visible even in morning light. Then gone. You clap your hand over it, but it's too late — Greer saw it, if Greer was watching. You don't know why it happened. You make a note in your journal: <em>'proximity to Stone threshold — involuntary resonance — query: frequency match with pre-reclassification data?'</em> Then you close the journal quickly."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Lurielle's Faerie-Ribbet hybrid heritage means she carries traces of Hollostar resonance in her biology — the Endless Eye's influence is literally in her genetics, passed down from 700 years of her ancestors living near an active core. The Heart Stone is a different thought, a different frequency, but close enough to trigger a response. She's not in danger. She is, however, a living Hollostar-resonance sensor, which will become increasingly relevant.</p>
+      <p style="margin-top:6px;"><strong>If Greer noticed:</strong> She can ask. Lurielle will deflect the first time. On a Presence DIF 12 or genuine warmth from Greer, Lurielle will admit: <em>"It's happened before. Near large concentrations of shard material. Never near something like this. I don't have a good explanation."</em></p>
+      <p style="margin-top:6px;"><strong>Thorn, if he saw it:</strong> He walks over, looks at her arm for a moment, and says: <em>"The stone noticed you."</em> Then he walks away. This will bother Lurielle for the rest of the session.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Lurielle is slightly rattled and slightly embarrassed. Greer and Lurielle have an unexpected connection moment if Greer asks about it.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>On the grove path, when the shard bear's fragment glows blue-white, Lurielle will recognize the frequency. This gives her the Knowledge roll connection ahead of time.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Lurielle is a living resonance instrument. The party will eventually realize this is useful. So will people who shouldn't know about it.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#act1">Return to Act 1</a> — continue with Basil's intro or Thorn's summons.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       COUNCIL MEETING — BEAT 2
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🏛️ Council Meeting — Beat 2: Caelen Dismisses the Rumors</div>
+
+  <!-- FS-C2-1 -->
+  <div class="fear-card" id="fs-c2-thorn">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Beat 2</div>
+      <div class="fear-card-title">Thorn Says "No"</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>After Caelen dismisses the Green Covenant rumors as "fringe agitation." Thorn has been sitting silently. He doesn't raise his hand. He just speaks.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Thorn's delivery</div><p>"Thorn doesn't move. Doesn't lean forward. He says one word into the pause after Caelen finishes: 'No.' Then he goes quiet. Caelen looks at him. Thorn doesn't look back. The room waits for more. Nothing comes."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What Thorn means and what Caelen does</div>
+      <p>Thorn is not disputing Caelen's assessment of threat level. He is disputing the underlying premise — that the Green Covenant's actions are "fringe" rather than a legitimate response to legitimate provocation. In his understanding, the Thorns are wrong in method and right in cause. He won't explain this in the council hall.</p>
+      <p style="margin-top:6px;"><strong>Caelen's response</strong> reveals something: he looks at Thorn for exactly one second, then smiles slightly and says: <em>"I appreciate the guardian's perspective. The Lumencrest Council remains confident in its intelligence assessment."</em> He has been briefed on Thorn. He was ready for this. That readiness is itself information.</p>
+      <p style="margin-top:6px;"><strong>Marta's reaction:</strong> She writes something down. If players observe this, a Instinct DIF 12 tells them she's writing the word "No" with a question mark next to it. She trusts Thorn's read of situations more than she trusts Lumencrest's intelligence briefings.</p></div>
+      <div class="roll-box"><div class="tag">Optional Roll — If a player wants to read the room after Thorn speaks</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Instinct</div><div class="roll-chip"><strong>DIF:</strong> 12</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>The room feels tense but they can't read why. The moment passes.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>They notice Caelen was ready for Thorn specifically. Something about how quickly he moved on.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>They see Marta's note AND they notice that one council member — Fen Crane's ally — didn't look at Thorn at all after he spoke. Deliberate avoidance.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>The room is slightly uncomfortable. Caelen reasserts control quickly — too quickly. The meeting moves on but the moment sits.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>After the meeting, if Greer speaks to Thorn, she can ask what he meant. His answer: <em>"The attacks happened. The reports are accurate. He knows they're accurate."</em></p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Caelen was briefed on Thorn by name. House Vael has intel on Ember Grove specifically. This becomes relevant when players investigate Vael's operations in Lumencrest.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — proceed to Beat 3: the lumber offer.</div>
+    </div>
+  </div>
+
+  <!-- FS-C2-2 -->
+  <div class="fear-card" id="fs-c2-council">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Beat 2</div>
+      <div class="fear-card-title">A Council Member Visibly Relaxes</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>After Caelen's dismissal of the Covenant rumors lands well — particularly if Thorn's "No" doesn't get traction or is smoothly moved past. One of Fen Crane's economic allies physically relaxes in their chair.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Down the table from you, one of the council members — a man in his forties, someone you've seen at the mill — lets out a breath he's been holding. His shoulders drop about an inch. He picks up his water cup. The tension he was carrying about the Covenant question just... left. Caelen's answer was the answer he needed to hear."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Who this is and what it means</div>
+      <p>This is Aldric Shorn, a council member whose family owns the supply contracts for the western logging crews. If the Covenant rumors had escalated into a real concern, his contracts would be suspended. Caelen's dismissal protects his income. He is not corrupt — he's economically self-interested, which is different. He will vote for the lumber offer.</p>
+      <p style="margin-top:6px;"><strong>Why this is a Fear spend:</strong> Greer reads the room and realizes the economic vote for the offer is stronger than she thought. Before this moment, she might have assumed the Covenant rumors would give people pause. After this moment, she understands: the economic case is winning the room regardless of the safety concerns. The offer has more support than Marta is showing.</p></div>
+      <div class="roll-box"><div class="tag">Optional Roll — Greer reads the room</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Instinct or Presence</div><div class="roll-chip"><strong>DIF:</strong> 11</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>She sees the relaxation but doesn't read its significance. Just someone calming down.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>She reads it correctly but can't tell if it's one person or several who feel the same way.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Full read: three people in this room are already yes votes. Marta is the only holdout with real authority. The week's consideration is a courtesy, not a genuine deliberation.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Greer understands the political reality is worse than it looked. This makes her intervention in Beat 6 feel more urgent.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If Greer speaks to Marta after the meeting, Marta will confirm: "The vote, if we took it today, would pass." She's buying time, not holding the line.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>When the party returns from Lumencrest with evidence of what the lumber is for, Aldric Shorn is one of the first people Greer will need to convince. He's not evil. He'll listen to evidence.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — proceed to Beat 3: the lumber offer.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       COUNCIL MEETING — BEAT 4
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🏛️ Council Meeting — Beat 4: After Thorn Speaks</div>
+
+  <!-- FS-C4-1 -->
+  <div class="fear-card" id="fs-c4-caelen-name">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Beat 4</div>
+      <div class="fear-card-title">Caelen Addresses Thorn by Name</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>After Thorn's one-sentence statement — "The eastern edge borders the grove's spirit boundary. This isn't a timber question." — instead of pivoting to Marta, Caelen addresses Thorn directly by name.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Caelen's line, delivered pleasantly</div><p>"Caelen turns to face Thorn directly. He smiles — not unkindly. 'Guardian Oakwise, I believe you'll find our survey documentation satisfies the concerns your tradition would raise. We've taken considerable care to map the boundary as described by your community. I'd be happy to share the survey with you personally before the week is out.' He holds the smile. He was ready for Thorn specifically. That readiness is visible to anyone paying attention."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Why this is significant</div>
+      <p>Caelen was briefed on Thorn Oakwise before coming to Emberford. House Vael's intelligence on the grove is specific enough to include the guardian by name, his likely objection, and a prepared response. This means Vael has been watching Ember Grove specifically — it's not a routine lumber acquisition. The grove's spirit boundary is relevant to their actual goals, not just inconvenient to work around.</p>
+      <p style="margin-top:6px;"><strong>Thorn's reaction:</strong> He looks at Caelen for a long moment. Then he says: <em>"The survey was prepared by your surveyors."</em> And goes back to silence. He means: the survey was designed to find what House Vael needed it to find. Caelen knows Thorn means this. He smiles anyway.</p>
+      <p style="margin-top:6px;"><strong>What players should catch:</strong> Caelen knows Thorn's name. He knows the specific tradition-based objection Thorn would raise. He has a prepared counter. This level of prep is disproportionate to a routine timber deal.</p></div>
+      <div class="roll-box"><div class="tag">Optional Roll — Noticing the prep level</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Knowledge or Instinct</div><div class="roll-chip"><strong>DIF:</strong> 13</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Just reads as a polite, prepared negotiator. Nothing unusual.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>He was definitely briefed. On Thorn specifically. That's unusual for a timber negotiation.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>The prep level is wrong for the stated purpose. Someone researched Thorn Oakwise and the Ember Grove's spirit boundary in detail. This deal was designed around the grove's specific vulnerabilities, not despite them.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Thorn's authority in the room shifts slightly. Caelen has treated him as an anticipated obstacle, which is both a compliment and a diminishment.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>After the meeting, Thorn says to Greer: <em>"He knew my name before I spoke. Ask why when you get there."</em></p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>In Lumencrest, finding House Vael's Ember Grove file — which exists — will reveal that the spirit boundary is specifically what the Unseen Guild wants to test proximity to, not timber yield.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — proceed to Beat 5: player questions window.</div>
+    </div>
+  </div>
+
+  <!-- FS-C4-2 -->
+  <div class="fear-card" id="fs-c4-third-member">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Beat 4</div>
+      <div class="fear-card-title">A Third Council Member Speaks in Favour</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>After Thorn speaks and Caelen responds. The economic momentum of the room becomes visible — a third council member volunteers support unprompted.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"A woman at the far end of the table — a textile merchant you recognize, one of the bridge fund contributors — leans forward. 'I think we should acknowledge that eighteen gold per acre is a real number. It's not symbolic. That's the south road repaired. That's the bridge. I understand the guardian's concern but I'd like to hear what the survey actually shows before we let spiritual questions close an economic door.' She looks at Marta. Marta nods once, neutrally. She's heard this argument before."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Who this is and the dynamic it creates</div>
+      <p>This is Sera Millbrook, 50s, textiles. Not corrupt — genuinely calculating economic benefit for the town. She represents the faction that will accept the offer if nothing more compelling than "spirit concerns" is offered. She's not dismissing Thorn; she's saying the financial case is stronger than the spiritual case in the current room.</p>
+      <p style="margin-top:6px;"><strong>The dynamic this creates:</strong> Marta is now managing three visible yes-votes (Fen Crane, Aldric Shorn if you used that fear spend, and now Sera Millbrook) against Thorn's quiet no and whatever the players might say. She knows this. The "one week to consider" offer is a genuine attempt to buy time for a better argument to emerge — not indecision, pragmatism.</p>
+      <p style="margin-top:6px;"><strong>If Greer speaks now (Beat 6):</strong> She's speaking into an uphill room. Marta will listen carefully. The economic faction will be respectful but unconvinced unless Greer says something they haven't heard before — naming Goldwood specifically, or describing what the spirit boundary actually protects and why losing it matters practically as well as spiritually.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>The room's lean is now unmistakable. Greer has a harder argument to make. Basil notes the economic appetite and files it — this town can be moved by money, which is relevant to his own read of the situation.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Marta pulls Greer aside after the meeting and says: <em>"I need something I can bring to Sera and Aldric. Spirit arguments don't land with them. If you find something specific in Lumencrest, send word before the week is out."</em></p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Sera Millbrook becomes a useful contact — she's persuadable by evidence, not ideology. If the party returns with the Vael/Guild correspondence, she's the first economic-faction member who will flip.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — proceed to Beat 5: player questions window.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       COUNCIL — PICKPOCKET WINDOW
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🏛️ Council Meeting — Pickpocket Window & Exit</div>
+
+  <!-- FS-PP-1 -->
+  <div class="fear-card" id="fs-pp-guard">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Pickpocket Window</div>
+      <div class="fear-card-title">Caelen's Guard Drifts Closer to the Satchel</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>As people begin to stand and mill after the meeting closes. Use this right before Basil might act — it creates a decision point between rolling at disadvantage now or waiting for a cleaner window that might not come.</p></div>
+      <div class="say-box"><div class="tag">GM Say — To the whole table, casually</div><p>"As people start rising and moving around, Caelen's guard — who's been standing near the door, easy to not think about — takes two steps toward the side table where the satchel is. Not alert, not aggressive. Just... repositioning. Like muscle memory."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Mechanic and decision point</div>
+      <p><strong>If Basil acts now with the guard nearby:</strong> Finesse DIF 14 at <strong>disadvantage</strong> (roll an extra Fear die, keep the highest two dice total). The guard isn't watching Basil — but peripheral awareness is closer than Basil would like.</p>
+      <p style="margin-top:6px;"><strong>If Basil waits:</strong> Caelen finishes with Fen Crane and retrieves the satchel himself in roughly 60 seconds. The window closes. No pickpocket opportunity without a significant distraction first.</p>
+      <p style="margin-top:6px;"><strong>Creating a distraction:</strong> Any party member can attempt to draw the guard's attention (Presence DIF 12 to get him to look away for 10 seconds — enough for a clean attempt at normal DIF 14).</p></div>
+      <div class="roll-box"><div class="tag">The Full Pickpocket Decision Tree</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Act now (guard close):</strong> Finesse DIF 14, disadvantage</div></div>
+        <div class="roll-row"><div class="roll-chip"><strong>Distract guard first:</strong> Presence DIF 12, then Finesse DIF 14 normal</div></div>
+        <div class="roll-row"><div class="roll-chip"><strong>Wait it out:</strong> Window closes. No attempt possible.</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure (any path)</div><p>Guard notices. Steps between Basil and bag. No scene. No accusation. Just a flat look and a quiet positioning. Caelen sees none of this — Basil escapes without escalation, but empty-handed.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Gets the letter. Caelen pats his bag a minute later and frowns. He doesn't make a scene — he's calculating. He'll be more careful and more observant of Basil going forward.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Full Success</div><p>Clean lift. Full intelligence — letter and schedule card. Caelen notices nothing.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Basil has to decide immediately. The pressure of the decision is the point — make it feel urgent.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>On the road, if Basil failed, Caelen's guard is slightly more watchful than he should be for a routine departure. Could matter on the road route.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>A full success here means Basil has the Radiant Core courier timing before arriving in Lumencrest. He doesn't need to surveil from scratch. This is a significant head start.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — resolve the pickpocket and move to the exit.</div>
+    </div>
+  </div>
+
+  <!-- FS-PP-2 -->
+  <div class="fear-card" id="fs-pp-greer">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Questions Window</div>
+      <div class="fear-card-title">A Council Member Asks Greer Directly</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>During the player questions window (Beat 5), before or after other questions. A council member — ideally one who genuinely doesn't know — turns to Greer and asks her directly. Caelen is watching her answer with careful attention.</p></div>
+      <div class="say-box"><div class="tag">GM Say — The council member's question</div><p>"One of the elders — not Marta, someone more junior, someone who's lived in Emberford their whole life and genuinely doesn't know — turns to you, Greer. 'You're the druid. From the grove. Do you think the grove is in danger from this proposal?' The room goes quiet. Caelen's expression hasn't changed. But he's listening."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What Caelen is doing and why this matters</div>
+      <p>Caelen is doing a real-time assessment of how much local resistance he'll need to manage in Lumencrest. If Greer says the grove is in danger, he knows the Covenant will become involved and the deal will get political. If Greer hedges, he knows the opposition is manageable. If Greer says nothing, he knows Thorn's "no" is the extent of the resistance.</p>
+      <p style="margin-top:6px;"><strong>Caelen's tell:</strong> Whatever Greer says, Caelen writes a single word on a small card in front of him. Players can't read it. He pockets it at the end of the meeting. If Basil successfully pickpocketed the satchel, that card will be inside it — one word. The word is: either <em>"manageable"</em>, <em>"escalate"</em>, or <em>"withdraw"</em> depending on what Greer says.</p>
+      <p style="margin-top:6px;"><strong>This is Tara's moment</strong> — let her answer fully in character before continuing. Whatever she says is real. The council hears it. Marta writes it down. Caelen files it.</p></div>
+      <div class="roll-box"><div class="tag">Optional Roll — If Greer wants to make a formal argument (Presence DIF 13)</div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>The argument lands as spiritual rather than practical. The economic faction nods politely and doesn't shift.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Marta looks moved. One economic-faction member looks uncertain. Not enough to change a vote today — but a seed.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Greer names something specific — Goldwood, the spirit boundary's practical function, a concrete precedent — that Marta can use. Marta writes something longer this time. The week's consideration just became real deliberation rather than courtesy.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Greer is on record. Whatever she said, Caelen heard it and assessed it. So did the room.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If the pickpocket succeeded, the card in the satchel tells Basil how Caelen assessed the local opposition — which tells him how much heat is coming when the party reaches Lumencrest.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Greer's council statement is on record in Emberford. When she returns, people will remember what she said. If she was right, her authority in the community grows significantly.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — proceed to Beat 7: council defers and meeting closes.</div>
+    </div>
+  </div>
+
+  <!-- FS-PP-3 -->
+  <div class="fear-card" id="fs-pp-exit">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Council Meeting — Exit</div>
+      <div class="fear-card-title">Caelen's Exit Look at Basil</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>As Caelen leaves the council hall. Use this regardless of whether the pickpocket succeeded or failed — it works either way. Best delivered as the last beat of the council meeting before people disperse.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Caelen is at the door. His guard is half a step ahead of him. And then he stops — just for a moment — and looks directly at Basil. No expression. No accusation. Just a look, the kind that says something has been noticed without specifying what. Then he's gone. His footsteps don't change pace. He didn't slow down for it. It lasted less than a second."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What Caelen noticed and what he'll do</div>
+      <p><strong>If the pickpocket succeeded:</strong> Caelen felt nothing. But his guard, who was watching the room professionally, noticed Basil's positioning was slightly wrong for a casual observer. He's reported it to Caelen in a whisper on the way out. Caelen noticed Basil already — the look is his way of acknowledging that he's filed this, nothing more. He won't act on it in Emberford.</p>
+      <p style="margin-top:6px;"><strong>If the pickpocket failed:</strong> Same scenario, but the guard reported the approach more clearly. Caelen suspects a lift attempt. He'll check his bag before leaving town. When he finds the letter missing — if it's missing — he'll send word to Lumencrest before arriving himself.</p>
+      <p style="margin-top:6px;"><strong>If the pickpocket didn't happen at all:</strong> Caelen simply noticed Basil as "the one who wasn't from here and wasn't affiliated with the grove." He's a rogue-shaped person in a room full of farmers and druids. Caelen is noting him for the same reason he notes everything — professional habit.</p>
+      <p style="margin-top:6px;"><strong>In Lumencrest:</strong> Caelen will mention Basil's name to a contact if questioned about Ember Grove. Not as a threat — as information. He doesn't know Basil's family name. He knows a face. Whether that matters depends on how visible Basil is in Lumencrest.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Basil has been clocked. The party knows it. Creates useful tension before the road.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If they take the road route and Caelen is on it, he will not interact with them — but his guard will watch the party's direction when the roads diverge.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Caelen is going to Lumencrest. If Basil operates openly there, there's a chance Caelen puts the face to the name. Depends on how careful Basil is and how much heat gets generated.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#council">Return to Council Meeting</a> — meeting disperses, move to Act 3 planning.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ROAD THUGS
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🛤️ Travel A — Road Encounter: Hired Thugs</div>
+
+  <!-- FS-RT-1 -->
+  <div class="fear-card" id="fs-rt-scout">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Road Encounter — Hired Thugs</div>
+      <div class="fear-card-title">A Fourth Scout Steps from the Hedgerow</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Mid-combat, when the three scouts are engaged and the party looks like they have it under control. The fourth was waiting — crossbow ready, positioned behind a hedgerow to the party's flank.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"From the hedgerow to your left — movement. A fourth figure steps out, and unlike the others he hasn't been running. He's been waiting. The crossbow in his hands is loaded and leveled. 'That's enough of that,' he says, like someone who's said it before."</p></div>
+      <div class="stat-block" style="margin:12px 0;background:var(--fear-bg);border:1px solid rgba(184,84,80,0.3);border-radius:var(--radius-md);padding:12px 14px;">
+        <div style="font-family:var(--font-body);font-size:15px;color:var(--fear-text);margin-bottom:4px;">Fourth Scout — Crossbow</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Was waiting · First shot at advantage · Will retreat if the three go down</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <div class="roll-chip"><strong>HP:</strong> 10</div>
+          <div class="roll-chip"><strong>DIF:</strong> 12</div>
+          <div class="roll-chip"><strong>Crossbow:</strong> 1d10+1 (first shot advantage)</div>
+          <div class="roll-chip"><strong>Reload:</strong> Can't fire consecutive rounds without moving</div>
+        </div>
+        <p style="font-size:12px;color:var(--text-secondary);margin-top:6px;"><strong>Tactic:</strong> He fires once, then uses his position to threaten rather than actually fire again — he doesn't want to reload in the open. If the three main scouts go down, he backs into the hedgerow and disappears. He's the most dangerous and also the most cowardly.</p>
+      </div>
+      <div class="gm-only-box"><div class="tag">GM Info — Who he is and what it means</div>
+      <p>He's the senior of the four — the others were muscle he hired locally. He's the one with Guild connections. If he escapes, he will report the party's composition, abilities, and direction to his Coppertown contact. If he's captured, he knows only that he picks up work from a contact at the Coppertown waystation who pays in clean coin and asks no questions. He cannot lead them to the Guild. He can confirm it exists.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>The fight gets harder and more interesting. A ranged threat forces different tactics.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If he escapes, the runner and the fourth scout both report — the Guild gets a cleaner picture of the party.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Captured: one piece of Guild intelligence acquired. Escaped: Guild awareness of the party accelerates by 1 stage.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Road Encounter</a> — continue combat.</div>
+    </div>
+  </div>
+
+  <!-- FS-RT-2 -->
+  <div class="fear-card" id="fs-rt-satchel">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Road Encounter — Hired Thugs</div>
+      <div class="fear-card-title">One Scout Grabs Lurielle's Satchel</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When one of the scouts realizes they're losing the fight. Instead of pressing the attack, he makes a grab for the most obvious valuables — Lurielle's research satchel is visible and within reach.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The scout nearest Lurielle doesn't attack. He grabs — one hand closing around the strap of her satchel, pulling hard, and he's already backing toward the tree line with it. He doesn't care about the fight anymore. He's going to run."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's in the satchel and why it matters</div>
+      <p>Lurielle's road journal and research notes — including her notation about the Heart Stone resonance (if that Fear spend was used), her records from the Endless Eye, and critically: her memory of which documents were reclassified before she left. This is not replaceable. If the satchel is lost, she loses her primary research thread going into Lumencrest. She can reconstruct some of it from memory, but not all.</p>
+      <p style="margin-top:6px;"><strong>Mechanical choice:</strong> The party has to split attention between the ongoing fight and stopping the grab. Whoever pursues the scout must leave the main combat — meaning one fewer fighter for at least one round. This costs a Fear spend to create but creates genuine consequence drama.</p></div>
+      <div class="roll-box"><div class="tag">Chasing the Scout — Agility DIF 12</div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>He's faster. He hits the tree line and disappears with the satchel. Lurielle loses her notes. The fight continues without that player until they return.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Catch him at the tree line. The satchel is recovered, but the pursuer took some hits getting there — take 1d6 damage from running through rough terrain, or they're separated from the group briefly.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Run him down cleanly. Satchel recovered. He surrenders rather than fight — he's not paid enough for this.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Split attention, genuine stakes, great dramatic moment.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If the satchel is lost, Lurielle's first days in Lumencrest involve trying to reconstruct from memory what the pre-reclassification documents contained. She can — but it takes time and she's less certain.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>If captured: this scout has Guild-adjacent knowledge. If the satchel was taken and recovered from him, he's now seen her reclassification notation. Does he even know what he was looking at? Probably not. But someone further up the chain might.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Road Encounter</a> — resolve and continue.</div>
+    </div>
+  </div>
+
+  <!-- FS-RT-3 -->
+  <div class="fear-card" id="fs-rt-runner">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Road Encounter — Hired Thugs</div>
+      <div class="fear-card-title">The Runner Bolts for the Tree Line</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When one of the three main scouts goes down. The third — the one who's been hanging back, the one who never committed — makes his decision and runs. He's fast. He planned for this.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The moment the second scout hits the ground, the third one — the one who's been watching more than fighting — turns and runs. Not panicked. Deliberate. He's already calculated the angle to the tree line and he's moving at a pace that says this was always the plan."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Who he is and what he carries</div>
+      <p>This is the Guild contact's eye — the one whose job was never to fight but to observe and report. He has a description of the party, their apparent capabilities, and the direction they came from. If he reaches Coppertown, the Guild's Lumencrest operation will have a preliminary report on "a party of three — rogue type, wizard (bioluminescent — unusual), druid — heading toward Lumencrest from the Emberford direction" within three days.</p>
+      <p style="margin-top:6px;"><strong>What this means in Lumencrest:</strong> The Guild's awareness of the party advances from zero to "known but unidentified." They'll be watched but not targeted — yet. If the party makes additional noise in the city (high visibility heist, confronting Guild operations, touching the Shard Division), the Guild will escalate from watching to acting faster than they would with no prior awareness.</p></div>
+      <div class="roll-box"><div class="tag">Pursuit Roll — Agility DIF 13</div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>He's gone. Reaches the trees. The report reaches Coppertown. Guild clock advances.</div></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Catch him but it costs — take 1d6 damage, or something gets left behind in the chase. He's captured but someone saw the party chasing him from the road.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Clean catch before the tree line. No report. Guild awareness stays at zero entering Lumencrest.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Urgent decision — pursue and split from the main fight, or let him go and finish the fight clean.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If he escapes, note it in your GM notes. The Guild clock for party awareness advances 1 stage.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>In Lumencrest, if the runner escaped, the party may notice they're being watched in ways that feel too coordinated to be coincidence. This is why.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Road Encounter</a> — resolve and continue.</div>
+    </div>
+  </div>
+
+  <!-- FS-RT-4 -->
+  <div class="fear-card" id="fs-rt-style">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Road Encounter — Hired Thugs</div>
+      <div class="fear-card-title">One Scout Recognizes Basil's Fighting Style</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When Basil does something particularly competent in the fight — a clean disarm, a precise hit, a feint that reads as trained. One of the scouts notices before he goes down.</p></div>
+      <div class="say-box"><div class="tag">GM Say — The scout's line, slightly surprised</div><p>"The scout you're fighting takes a step back. He's still in the fight but something shifted in his face. 'You fight like someone who was taught to fight.' He says it like a fact, not an insult. 'Not self-taught. Taught.' He's looking at your hands, not your eyes."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What he's noticing and why it matters</div>
+      <p>The scout has enough experience to recognize trained technique versus street-learned fighting. He can't identify the specific school or family — he just knows it's formal. If he survives the fight and escapes, he adds "formally trained fighter, rogue-style, likely institutional background" to his report.</p>
+      <p style="margin-top:6px;"><strong>The slow burn:</strong> This doesn't matter now. It matters when a Guild operative in Lumencrest gets a description that says "formally trained rogue, heading from Emberford direction" and cross-references it against known families with formal training traditions. The Silverhands are in that list. This is how Basil starts getting connected to his family name without anyone knowing it yet.</p>
+      <p style="margin-top:6px;"><strong>Basil's player:</strong> This is a great moment for Basil to decide how to respond. Does he play it down? Does he say something? His reaction tells the scout — and the table — something about how Basil carries his identity. Note whatever he does.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>A character moment for Basil. No mechanical effect yet.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If the scout escapes, this detail goes in the report. If captured, he'll mention it if questioned and not threatened.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>In Lumencrest, if the Guild starts looking for the party, "formally trained rogue from the Emberford direction" narrows their search significantly. This is how Basil's family connection eventually surfaces through the wrong channel.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Road Encounter</a> — continue or conclude the fight.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SHARD BEAR
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🌲 Travel B — Grove Encounter: Shard-Infected Bear</div>
+
+  <!-- FS-SB-1 -->
+  <div class="fear-card" id="fs-sb-pulse">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Grove Encounter — Shard Bear</div>
+      <div class="fear-card-title">Shard Pulse Triggers</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>During combat, when the bear takes significant damage or when Greer attempts a taming roll and partially succeeds or fails. The pulse is involuntary — the bear cannot control it and is harmed by it too.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Read slowly</div><p>"The bear shudders — not from the hit, from something inside it. The fragment lodged under the skin of its left shoulder glows blue-white for two seconds, intense enough to read by. Then the pulse comes. Not sound — pressure. A sphere of force, ten feet in every direction, pushing outward from the bear's body. The bear makes a sound you've never heard a bear make. It hurts it too."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Mechanical and narrative details</div>
+      <p><strong>Damage:</strong> 1d10 force damage to anyone within 10 feet. No roll to avoid — it's instantaneous. Players can spend 1 Hope after the damage lands to halve it (representing instinctive bracing).</p>
+      <p style="margin-top:6px;"><strong>The bear takes damage too:</strong> 1d6 to the bear. This matters narratively — the bear is not a monster using a weapon. It is suffering a weapon. Describe its distress clearly.</p>
+      <p style="margin-top:6px;"><strong>Lurielle's moment:</strong> Knowledge DIF 13. On success: the blue-white frequency matches something she recorded near the Heart Stone this morning (if that fear spend was used) AND something from a pre-reclassification document at the Endless Eye. The connection is real. She doesn't know what it means yet. She knows it's a pattern.</p>
+      <p style="margin-top:6px;"><strong>The glow as a tell:</strong> The fragment's location is now visible — left shoulder, under the skin, about the size of a large coin. If the bear is killed mercifully, this fragment can be recovered. It is warm. It pulses very faintly even removed from the body.</p></div>
+      <div class="roll-box"><div class="tag">Lurielle's Knowledge Roll — DIF 13</div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>She notes the color but can't place it specifically. She has a feeling of recognition she can't source.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>The frequency matches something she's read about. She can't retrieve the specific document — it was one of the reclassified ones.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>She places it: Endless Eye shard material, pre-classification frequency signature. This fragment came from the Endless Eye region or shares its origin. Someone is transporting Endless Eye shards through forest routes. She writes this down immediately after the fight.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Significant AoE damage. Changes the tactical picture. The bear's suffering becomes more visible and more distressing — it's not attacking out of aggression, it's trapped.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>The recovered fragment (if the bear is killed) becomes a physical piece of evidence. Lurielle can study it at rest. It pulses once every hour.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>The fragment's origin — Endless Eye-adjacent shard material in a Central Heartlands forest — is a supply chain clue that connects the Unseen Guild's Shard Division (operating in Lumencrest) to a sourcing route that runs through the Starfall Basin. This is a Tier 3 secret (3G from Secrets & Revelations). The fragment is physical evidence.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Grove Encounter</a> — continue the fight or taming attempt.</div>
+    </div>
+  </div>
+
+  <!-- FS-SB-2 -->
+  <div class="fear-card" id="fs-sb-lurielle">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Grove Encounter — Shard Bear</div>
+      <div class="fear-card-title">The Bear Targets Lurielle Specifically</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>After the first pulse or during the second round. The bear's fragment is resonating with Lurielle's Hollowstar-adjacent biology. It cannot help turning toward her. Her bioluminescence is flickering again.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The bear's head swings toward Lurielle. Not because she's the closest or the most threatening. Because something in the fragment is pulling toward something in her. Your arm, Lurielle — the bioluminescence. It's flickering again, the same blue-white as the fragment. The bear isn't hunting you. It's being drawn to you. That's different, and it might not feel different in the moment."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's happening and how to play it</div>
+      <p>The shard fragment in the bear is resonating with Lurielle's biological Hollowstar inheritance. The bear has no hostility toward her specifically — the fragment does. The distinction is important and Greer, with her Path of Spirits training, will feel this: the bear's spirit is not oriented toward Lurielle. The fragment is. They are not the same thing.</p>
+      <p style="margin-top:6px;"><strong>Mechanically:</strong> The bear attacks Lurielle this round regardless of other positioning. Its next attack is against her specifically. She cannot gain the benefit of flanking bonuses or positioning unless someone interposes themselves.</p>
+      <p style="margin-top:6px;"><strong>The emotional beat:</strong> Lurielle's flickering bioluminescence is visible to everyone. She is responding to the fragment involuntarily. She is as trapped in this resonance as the bear is. This is a moment of genuine vulnerability for a character who is often composed.</p>
+      <p style="margin-top:6px;"><strong>If Greer is attempting to tame:</strong> The bear being drawn to Lurielle actually helps — it's momentarily focused and not thrashing. Greer gets advantage on her Instinct taming roll this round.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Lurielle is the target. Someone needs to help. The party has to make a real choice about positioning.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>After the fight, Greer and Lurielle have a specific conversation to have if they want to. Greer felt that the fragment was pulling toward Lurielle, not the bear attacking her. That's meaningful.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Lurielle is a living Hollostar resonance instrument. Shard material responds to her. This is useful. It is also dangerous — in Lumencrest, where the Shard Division is actively working with fragments, her presence near their operations will not be invisible.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Grove Encounter</a> — continue combat or taming.</div>
+    </div>
+  </div>
+
+  <!-- FS-SB-3 -->
+  <div class="fear-card" id="fs-sb-fragment">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Grove Encounter — Shard Bear</div>
+      <div class="fear-card-title">A Second Fragment on the Ground</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>At any point during the fight — the pulse's force, the bear's thrashing, or simply bad luck dislodges a fragment from somewhere nearby. It wasn't in the bear. It was cached nearby. Someone left it here.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Something rolls out from under the root of a large oak to your right — dislodged by the bear's movement, or the pulse's force, or just gravity finally working. It's the size of a large egg. Blue-white, faintly glowing. Warm from here. It wasn't inside the bear. It was hidden here. Someone put it here and intended to come back for it."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What this means</div>
+      <p>This is a fragment cache point — one of several along a shard transport route that runs through the forest between the Starfall Basin (Endless Eye region) and Lumencrest. The Unseen Guild's supply chain for the Shard Division uses forest paths specifically because they avoid gate inspection. A courier dropped this cache and hasn't returned yet.</p>
+      <p style="margin-top:6px;"><strong>The fragment itself:</strong> Same frequency as the bear's fragment. Same origin signature if Lurielle examines it. It is also slightly larger — roughly twice the size. More powerful. More dangerous with prolonged exposure. After 30 minutes of contact, anyone carrying it will begin to notice unusually vivid imagery when they close their eyes. Not threatening. Noticeable.</p>
+      <p style="margin-top:6px;"><strong>The cache marker:</strong> If players examine the root carefully (Instinct DIF 12), they find a small mark carved into the bark — three dots in a triangle. Guild logistics marking. Not the eye-with-no-pupil that appears on documents — that's for correspondence. This is a supply chain marker used by couriers who don't need to know what they're carrying, just where to leave it.</p>
+      <p style="margin-top:6px;"><strong>If they take it:</strong> They're carrying Guild property. The courier who was supposed to retrieve this will find it missing and report it. This accelerates Guild awareness of unusual activity on this route by several weeks.</p></div>
+      <div class="roll-box"><div class="tag">Examining the Cache Marker — Instinct or Knowledge DIF 12</div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>They see the mark but can't read it. Just a carving.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>They recognize it as a logistics marker of some kind. Not natural. Deliberate. Someone is using this forest as a supply route.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Basil (or Lurielle with her Endless Eye merchant background) recognizes the three-dot pattern as a waypoint marker used in organized smuggling networks. This isn't opportunistic. This is infrastructure.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Physical evidence of a supply chain. A decision: take it, leave it, or mark it and follow the route later.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>The plateau view of Lumencrest lands differently if they're carrying a shard fragment that's making their visual cortex interesting. Lurielle sees the flickering lights and also — just for a second — something else, below the lights. She won't be able to describe it yet.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>The three-dot marker is the first piece of Guild logistics intelligence the party has acquired. In Lumencrest, if they find the same marker again — near a warehouse, a gate entrance, a cable car station — they'll know they're looking at the same network.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Grove Encounter</a> — conclude the fight and aftermath.</div>
+    </div>
+  </div>
+
+  <!-- FS-SB-4 -->
+  <div class="fear-card" id="fs-sb-greer">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Grove Encounter — Shard Bear</div>
+      <div class="fear-card-title">The Bear Strikes Greer Mid-Taming</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>During Greer's taming attempt — specifically when she partially succeeds or in the round immediately after a failed taming roll. The bear stills briefly, then the fragment pulses internally (no outward glow — just a tremor) and it lashes out at whatever is closest.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The bear stills — you almost have it, you can feel the spirit beneath the transformation straining toward you — and then something inside it shudders. Not the fragment glowing. Something smaller. And its arm comes around faster than it should be able to move and catches you across the side, armor and all."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Why this happens and how to frame it</div>
+      <p><strong>Mechanically:</strong> Claw attack, 2d6+2 damage. Roll Greer's armor dice as normal. This hit should sting — use this at a moment when Greer is already damaged if possible, to maximize dramatic weight.</p>
+      <p style="margin-top:6px;"><strong>Narratively:</strong> This should feel sad, not punishing. The bear didn't choose to hit her. The fragment did, in a sense — it rejected her approach at the last moment. The spirit of the bear and the corrupted fragment are in conflict inside the creature. This is the core tragedy of the encounter: the bear is fighting against itself, and Greer is caught in that war.</p>
+      <p style="margin-top:6px;"><strong>Path of Spirits framing:</strong> In the Path of Spirits, a healer who is struck by the thing they are trying to heal is not a failure. It is the price of reaching something wounded. Thorn would not consider this a mistake. He would consider it evidence that Greer is the right person to have tried.</p>
+      <p style="margin-top:6px;"><strong>After this hit:</strong> Greer can choose to withdraw from the taming attempt (safe) or try again from a position of genuine risk. The taming DIF stays the same, but the emotional stakes are now much higher. If she succeeds after being hit, the moment lands harder.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Real damage. Emotional weight. Greer's choice to continue or stop becomes the scene's defining moment.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If Greer successfully tames or mercifully kills the bear after being struck, the forest's response (if you use it) will feel earned rather than automatic.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>This moment is part of who Greer is in this campaign. Players will remember it. Reference it when the Shard Division's work becomes clear — Greer has felt what this does to a living spirit. She's one of the few people who actually understands what the experiments cost.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session1.html#travel">Return to Grove Encounter</a> — resolve the taming or conclude the fight.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
+

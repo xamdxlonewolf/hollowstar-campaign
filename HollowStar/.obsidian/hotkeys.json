@@ -1,0 +1,11 @@
+{
+  "bulk-exporter:bulk-export": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "E"
+    }
+  ]
+}

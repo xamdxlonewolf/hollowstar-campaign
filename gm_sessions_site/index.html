@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HollowStar GM Toolkit</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:2rem;}
+.hub-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;text-decoration:none;display:block;transition:all 0.2s;position:relative;overflow:hidden;}
+.hub-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.2s;}
+.hub-card:hover{border-color:var(--border-med);transform:translateY(-2px);}
+.hub-card:hover::before{opacity:1;}
+.hub-card.session::before{background:var(--accent-gold);}
+.hub-card.location::before{background:var(--hope);}
+.hub-card.calendar::before{background:var(--info);}
+.hub-card.notes::before{background:var(--purple);}
+.hub-card .card-icon{font-size:28px;margin-bottom:12px;}
+.hub-card .card-title{font-family:var(--font-body);font-size:17px;color:var(--accent-gold-light);margin-bottom:5px;}
+.hub-card.location .card-title{color:var(--hope-text);}
+.hub-card.calendar .card-title{color:var(--info-text);}
+.hub-card.notes .card-title{color:var(--purple-text);}
+.hub-card .card-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6;}
+.hub-card .card-tags{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
+.hub-card .card-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text-muted);}
+.hub-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;margin-top:10px;}
+.hub-status.ready{color:var(--hope-text);}
+.hub-status.soon{color:var(--warn-text);}
+.campaign-banner{background:linear-gradient(120deg,rgba(201,168,76,0.08),rgba(74,127,181,0.06));border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+.banner-item{font-size:12.5px;color:var(--text-secondary);}
+.banner-item strong{color:var(--accent-gold-light);}
+.banner-item span{display:block;font-size:11px;color:var(--text-muted);margin-top:1px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html" class="active">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">GM Toolkit — HollowStar Campaign</div>
+  <h1>The World Awaits</h1>
+  <p class="subtitle">Everything you need to run the campaign, organized and linked. Open a page, run the session. All files work offline — save this folder anywhere.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="campaign-banner">
+    <div class="banner-item"><strong>Campaign</strong><span>HollowStar — Lumencrest Arc</span></div>
+    <div class="banner-item"><strong>System</strong><span>Daggerheart</span></div>
+    <div class="banner-item"><strong>Current Session</strong><span>Session 1 — Ember Grove</span></div>
+    <div class="banner-item"><strong>In-World Date</strong><span>Gold Month, 700 AR — see Calendar</span></div>
+    <div class="banner-item"><strong>Party</strong><span>Greer · Lurielle · Basil</span></div>
+  </div>
+
+  <div class="hub-grid">
+
+    <a href="session1.html" class="hub-card session">
+      <div class="card-icon">📖</div>
+      <div class="card-title">Session 1 — Ember Grove</div>
+      <div class="card-desc">Fully scripted council meeting with dialogue, tone cues, NPC intros. Travel encounters, Fear spends, Daggerheart combat primer, and the plateau ending.</div>
+      <div class="card-tags">
+        <span class="card-tag">~3–4 hours</span>
+        <span class="card-tag">Council Meeting</span>
+        <span class="card-tag">House Vael</span>
+        <span class="card-tag">Travel Encounter</span>
+      </div>
+      <div class="hub-status ready">● Ready to run</div>
+    </a>
+
+    <a href="emberford.html" class="hub-card location">
+      <div class="card-icon">🏘️</div>
+      <div class="card-title">Emberford & Ember Grove</div>
+      <div class="card-desc">Town layout, inn rooms & prices, food & drink menu, local gossip, shops, NPCs, and full descriptions of the grove. Everything players might ask about.</div>
+      <div class="card-tags">
+        <span class="card-tag">The Emberflow Arms</span>
+        <span class="card-tag">Shops & NPCs</span>
+        <span class="card-tag">Grove Lore</span>
+        <span class="card-tag">Calendar</span>
+      </div>
+      <div class="hub-status ready">● Ready</div>
+    </a>
+
+    <a href="calendar.html" class="hub-card calendar">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Campaign Calendar</div>
+      <div class="card-desc">Interactive Accord Reckoning calendar with Spirit Moon tracking, session date markers, day notes, and both calendar systems explained.</div>
+      <div class="card-tags">
+        <span class="card-tag">Accord Reckoning</span>
+        <span class="card-tag">Spirit Moons</span>
+        <span class="card-tag">Session Tracker</span>
+        <span class="card-tag">Day Notes</span>
+      </div>
+      <div class="hub-status ready">● Ready</div>
+    </a>
+
+    <a href="notes.html" class="hub-card notes">
+      <div class="card-icon">📝</div>
+      <div class="card-title">GM Notes</div>
+      <div class="card-desc">Persistent session notes, player decisions tracker, threads to follow up, and NPC relationship web. All saved in your browser.</div>
+      <div class="card-tags">
+        <span class="card-tag">Session Notes</span>
+        <span class="card-tag">Decisions</span>
+        <span class="card-tag">Active Threads</span>
+      </div>
+      <div class="hub-status ready">● Ready</div>
+    </a>
+
+
+    <a href="gmscreen.html" class="hub-card" style="border-color:rgba(184,84,80,0.2);">
+      <div class="card-icon">🎲</div>
+      <div class="card-title" style="color:var(--fear-text);">GM Screen</div>
+      <div class="card-desc">Full Daggerheart rules reference, live Hope/Fear token tracker, interactive countdown clocks, all roll results, conditions, and HollowStar-specific GM guidance.</div>
+      <div class="card-tags">
+        <span class="card-tag">Rules Reference</span>
+        <span class="card-tag">Token Tracker</span>
+        <span class="card-tag">Countdown Clocks</span>
+        <span class="card-tag">Hope &amp; Fear</span>
+      </div>
+      <div class="hub-status ready" style="color:var(--fear-text);">● Ready</div>
+    </a>
+
+  </div>
+
+  <div style="margin-top:2rem;padding:1rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);">
+    <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Party Quick Reference</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;">
+      <div style="font-size:12.5px;color:var(--text-secondary);"><span class="player-tag tag-druid">🌿 Greer</span> — Faun Druid · Tara's character · 60 years old · sent by Thorn to watch House Vael · Path of Spirits · Green Covenant adjacent</div>
+      <div style="font-size:12.5px;color:var(--text-secondary);"><span class="player-tag tag-wizard">✨ Lurielle</span> — Faerie/Ribbet Wizard · 16 years old · from the Endless Eye · researching Hollowstars · classified docs were reclassified before she left</div>
+      <div style="font-size:12.5px;color:var(--text-secondary);"><span class="player-tag tag-rogue">🗡️ Basil</span> — Half-Katari/Emberkin Rogue · youngest Silverhand · heisting House Vael's diplomatic pouch · "Katya is my ex" (she's actually an assassin)</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Keep nav active state correct
+document.querySelectorAll('.site-nav a').forEach(a => {
+  if(a.href === window.location.href) a.classList.add('active');
+  else a.classList.remove('active');
+});
+</script>
+</body>
+</html>

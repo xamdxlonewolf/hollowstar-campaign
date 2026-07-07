@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GM Notes — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.notes-layout{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start;}
+@media(max-width:680px){.notes-layout{grid-template-columns:1fr;}}
+
+/* sidebar */
+.notes-sidebar{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;position:sticky;top:60px;}
+.sidebar-title{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.sidebar-btn{width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:var(--radius-sm);padding:7px 10px;color:var(--text-secondary);font-size:12.5px;font-family:var(--font-ui);cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:7px;margin-bottom:3px;}
+.sidebar-btn:hover{background:var(--bg-secondary);color:var(--text-primary);}
+.sidebar-btn.active{background:var(--accent-gold-dim);border-color:rgba(201,168,76,0.3);color:var(--accent-gold-light);}
+.sidebar-divider{border:none;border-top:1px solid var(--border);margin:10px 0;}
+
+/* main content */
+.notes-main{}
+.notes-panel{display:none;}
+.notes-panel.visible{display:block;}
+
+/* session note cards */
+.session-note-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:12px;}
+.snc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+.snc-title{font-family:var(--font-body);font-size:16px;color:var(--accent-gold-light);}
+.snc-meta{font-size:11px;color:var(--text-muted);}
+.snc-textarea{width:100%;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-ui);font-size:13px;padding:10px;resize:vertical;min-height:120px;line-height:1.6;}
+.snc-textarea:focus{outline:none;border-color:var(--accent-gold);}
+.snc-textarea::placeholder{color:var(--text-muted);}
+.add-btn{display:flex;align-items:center;gap:6px;background:var(--bg-secondary);border:1px dashed var(--border-med);border-radius:var(--radius-md);padding:10px 14px;color:var(--text-muted);font-size:13px;cursor:pointer;width:100%;font-family:var(--font-ui);transition:all 0.15s;margin-top:10px;}
+.add-btn:hover{border-color:var(--accent-gold);color:var(--accent-gold);}
+.del-btn{background:transparent;border:1px solid var(--border);border-radius:var(--radius-sm);padding:3px 8px;color:var(--text-muted);font-size:11px;cursor:pointer;font-family:var(--font-ui);transition:all 0.15s;}
+.del-btn:hover{border-color:var(--fear);color:var(--fear-text);}
+
+/* thread tracker */
+.thread-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 12px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:start;}
+.thread-name-input{background:transparent;border:none;color:var(--text-primary);font-size:13px;font-family:var(--font-ui);width:100%;}
+.thread-name-input:focus{outline:none;}
+.thread-name-input::placeholder{color:var(--text-muted);}
+.thread-status{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:600;cursor:pointer;border:1px solid transparent;white-space:nowrap;}
+.ts-active{background:var(--warn-bg);color:var(--warn-text);border-color:rgba(201,125,42,0.3);}
+.ts-resolved{background:var(--hope-bg);color:var(--hope-text);border-color:rgba(74,158,110,0.3);}
+.ts-dormant{background:var(--bg-card);color:var(--text-muted);border-color:var(--border);}
+.thread-notes{grid-column:1/-1;font-size:12px;}
+.thread-note-input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font-ui);font-size:12px;padding:5px 8px;resize:none;height:50px;line-height:1.5;}
+.thread-note-input:focus{outline:none;border-color:var(--border-med);}
+.thread-note-input::placeholder{color:var(--text-muted);}
+
+/* decision log */
+.decision-item{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 12px;margin-bottom:8px;}
+.decision-header{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.decision-session{font-size:11px;padding:2px 7px;border-radius:99px;background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);font-weight:600;}
+.decision-impact{font-size:11px;padding:2px 7px;border-radius:99px;font-weight:600;}
+.impact-high{background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);}
+.impact-med{background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);}
+.impact-low{background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);}
+.decision-text{font-size:12.5px;color:var(--text-primary);line-height:1.6;}
+.decision-consequence{font-size:12px;color:var(--text-muted);font-style:italic;margin-top:4px;}
+.dec-input{width:100%;background:transparent;border:none;color:var(--text-primary);font-size:12.5px;font-family:var(--font-ui);}
+.dec-input:focus{outline:none;}
+.dec-input::placeholder{color:var(--text-muted);}
+.dec-con-input{width:100%;background:transparent;border:none;color:var(--text-muted);font-size:12px;font-family:var(--font-ui);font-style:italic;}
+.dec-con-input:focus{outline:none;}
+.dec-con-input::placeholder{color:var(--text-muted);}
+
+/* NPC relationship */
+.npc-rel-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 12px;margin-bottom:8px;}
+.npc-rel-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+.npc-rel-name{font-size:13px;font-weight:700;color:var(--accent-gold-light);}
+.npc-rel-status{font-size:11px;padding:2px 7px;border-radius:99px;font-weight:600;}
+.rel-friendly{background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);}
+.rel-neutral{background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);}
+.rel-wary{background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);}
+.rel-hostile{background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);}
+.rel-unknown{background:var(--bg-card);color:var(--text-muted);border:1px solid var(--border);}
+.npc-rel-notes{font-size:12px;color:var(--text-secondary);line-height:1.6;}
+.npc-note-input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-secondary);font-family:var(--font-ui);font-size:12px;padding:5px 8px;resize:none;height:50px;line-height:1.5;margin-top:5px;}
+.npc-note-input:focus{outline:none;border-color:var(--border-med);}
+
+/* general textarea */
+.big-textarea{width:100%;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-ui);font-size:13px;padding:12px;resize:vertical;min-height:200px;line-height:1.7;}
+.big-textarea:focus{outline:none;border-color:var(--accent-gold);}
+
+.save-indicator{font-size:11px;color:var(--hope-text);opacity:0;transition:opacity 0.3s;}
+.save-indicator.show{opacity:1;}
+
+.section-heading{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin:16px 0 10px;display:flex;align-items:center;gap:8px;}
+
+select.thread-sel{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-muted);font-size:11px;padding:2px 6px;font-family:var(--font-ui);cursor:pointer;}
+select.thread-sel:focus{outline:none;}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html" class="active">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">GM Notes</div>
+  <h1>Session Notes & Tracking</h1>
+  <p class="subtitle">Session notes, active threads, player decisions, and NPC relationships. All saved in your browser automatically.</p>
+</header>
+
+<div class="page-body">
+  <div class="notes-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <div class="notes-sidebar">
+      <div class="sidebar-title">Sections</div>
+      <button class="sidebar-btn active" onclick="showNote('sessions',this)">📖 Session Notes</button>
+      <button class="sidebar-btn" onclick="showNote('threads',this)">🧵 Active Threads</button>
+      <button class="sidebar-btn" onclick="showNote('decisions',this)">🎲 Player Decisions</button>
+      <button class="sidebar-btn" onclick="showNote('npcs',this)">👥 NPC Relationships</button>
+      <button class="sidebar-btn" onclick="showNote('misc',this)">📄 Misc Notes</button>
+      <hr class="sidebar-divider">
+      <div class="sidebar-title">Auto-saved</div>
+      <div id="save-indicator" class="save-indicator">✓ Saved</div>
+      <hr class="sidebar-divider">
+      <button class="sidebar-btn" onclick="exportNotes()" style="color:var(--info-text);">⬇ Export</button>
+      <button class="sidebar-btn" onclick="clearNotes()" style="color:var(--fear-text);">🗑 Clear All</button>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <div class="notes-main">
+
+      <!-- SESSION NOTES -->
+      <div id="panel-sessions" class="notes-panel visible">
+        <div id="session-notes-container"></div>
+        <button class="add-btn" onclick="addSession()">＋ Add Session Note</button>
+      </div>
+
+      <!-- THREADS -->
+      <div id="panel-threads" class="notes-panel">
+        <div style="margin-bottom:14px;">
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px;">Track story threads, plot hooks, and loose ends. Click the status badge to cycle through states.</div>
+        </div>
+        <div id="threads-container"></div>
+        <button class="add-btn" onclick="addThread()">＋ Add Thread</button>
+      </div>
+
+      <!-- DECISIONS -->
+      <div id="panel-decisions" class="notes-panel">
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px;">Log important player decisions and their in-world consequences. Impact: High = changes the world, Med = changes an NPC or local situation, Low = flavor.</div>
+        <div id="decisions-container"></div>
+        <button class="add-btn" onclick="addDecision()">＋ Add Decision</button>
+      </div>
+
+      <!-- NPC RELATIONSHIPS -->
+      <div id="panel-npcs" class="notes-panel">
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px;">Track how NPCs feel about the party. Click the relationship badge to cycle through states. Pre-loaded with Session 1 NPCs.</div>
+        <div id="npcs-container"></div>
+        <button class="add-btn" onclick="addNpc()">＋ Add NPC</button>
+      </div>
+
+      <!-- MISC -->
+      <div id="panel-misc" class="notes-panel">
+        <div class="session-note-card">
+          <div class="snc-header">
+            <div class="snc-title">Miscellaneous Notes</div>
+            <div class="snc-meta">Free-form scratch pad</div>
+          </div>
+          <textarea class="big-textarea" id="misc-textarea" placeholder="Anything that doesn't fit elsewhere — world-building ideas, rules reminders, player theories, things to remember for next session..." oninput="saveMisc()"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+let data = {
+  sessions: [],
+  threads: [],
+  decisions: [],
+  npcs: [],
+  misc: ''
+};
+
+function load(){
+  try{
+    const s = localStorage.getItem('hollowstar-notes');
+    if(s){ data = {...data, ...JSON.parse(s)}; }
+  }catch(e){}
+  if(!data.sessions.length) addDefaultSession();
+  if(!data.threads.length) addDefaultThreads();
+  if(!data.decisions.length) addDefaultDecisions();
+  if(!data.npcs.length) addDefaultNpcs();
+}
+
+function save(){
+  try{ localStorage.setItem('hollowstar-notes', JSON.stringify(data)); }catch(e){}
+  const ind = document.getElementById('save-indicator');
+  ind.classList.add('show');
+  setTimeout(()=>ind.classList.remove('show'), 1500);
+}
+
+// ── DEFAULTS ──
+function addDefaultSession(){
+  data.sessions.push({
+    id: Date.now(),
+    title: 'Session 1 — Ember Grove',
+    date: 'Gold Month 8, 700 AR',
+    text: ''
+  });
+}
+
+function addDefaultThreads(){
+  const threads = [
+    {id:1, name:'House Vael lumber offer', status:'active', notes:'Eastern edge only. Same pattern as Goldwood. Caelen Vael is the rep — youngest sibling, doesn\'t know what lumber is for.'},
+    {id:2, name:'Green Covenant attack rumors', status:'active', notes:'Caelen dismissed them. Thorns are real and planning something. Council of Lumens has intel but considers it acceptable collateral.'},
+    {id:3, name:'The spiritual quiet (grove)', status:'active', notes:'8 years. Heart Stone warm 2 years. Bear confirms it\'s externally caused. Shard fragments moving through forest routes.'},
+    {id:4, name:'Basil\'s heist', status:'active', notes:'Silverhand estate, Radiant Core. Sealed diplomatic pouch. Pickpocket letter (if stolen) connects Vael to Unseen Guild.'},
+    {id:5, name:'Lumencrest flickering lights', status:'active', notes:'Heart failing 2.5% per year. Monthly brownouts. Party saw flicker from plateau. Becomes real inside the city.'},
+    {id:6, name:'Guild awareness of party', status:'dormant', notes:'If road scout escaped: Guild knows about the party before they reach Lumencrest. Watch for this in Session 2.'}
+  ];
+  data.threads = threads;
+}
+
+function addDefaultDecisions(){
+  data.decisions.push({
+    id:1,
+    session:'Session 1',
+    impact:'med',
+    text:'Party decided to travel to Lumencrest together.',
+    consequence:'Basil has allies he didn\'t plan for. Lurielle and Greer may complicate the heist — or make it possible.'
+  });
+}
+
+function addDefaultNpcs(){
+  data.npcs = [
+    {id:1, name:'Thorn Oakwise', status:'friendly', notes:'Sent Greer. Trusts her completely. Won\'t say it. One word of contact if needed urgently.'},
+    {id:2, name:'Caelen Vael', status:'neutral', notes:'Doesn\'t know what the lumber is really for. May have noticed Basil during the council. Will be in Lumencrest.'},
+    {id:3, name:'Elder Marta Dawnbrook', status:'neutral', notes:'Conflicted about the offer. Wants a reason to say no. Players may be that reason. Will remember them.'},
+    {id:4, name:'Bess Hollowell', status:'neutral', notes:'Has Green Covenant-adjacent ties. Doesn\'t trust Caelen. Will share if someone buys her a drink and asks right.'},
+    {id:5, name:'Fen Crane', status:'neutral', notes:'Pro-Vael offer. Economic pressure. Not corrupt, just wrong about the big picture. Could be persuaded.'},
+    {id:6, name:'Wren (grove druid)', status:'friendly', notes:'Young Faun, tracking the crow behavior. Alarmed about eastern boundary changes. Will report to Greer.'}
+  ];
+}
+
+// ── SESSION NOTES ──
+function renderSessions(){
+  const c = document.getElementById('session-notes-container');
+  c.innerHTML = '';
+  data.sessions.forEach((s,i)=>{
+    const div = document.createElement('div');
+    div.className = 'session-note-card';
+    div.innerHTML = `
+      <div class="snc-header">
+        <div>
+          <input style="background:transparent;border:none;color:var(--accent-gold-light);font-family:var(--font-body);font-size:16px;width:280px;" value="${esc(s.title)}" oninput="updateSession(${i},'title',this.value)">
+          <input style="background:transparent;border:none;color:var(--text-muted);font-size:11px;width:200px;" value="${esc(s.date)}" oninput="updateSession(${i},'date',this.value)">
+        </div>
+        <button class="del-btn" onclick="deleteSession(${i})">Remove</button>
+      </div>
+      <textarea class="snc-textarea" placeholder="What happened this session? Key moments, player reactions, things that went well or didn't, what to prep for next time..." oninput="updateSession(${i},'text',this.value)">${esc(s.text)}</textarea>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function addSession(){
+  data.sessions.push({id:Date.now(), title:`Session ${data.sessions.length+1}`, date:'', text:''});
+  save(); renderSessions();
+}
+function deleteSession(i){ if(confirm('Delete this session note?')){ data.sessions.splice(i,1); save(); renderSessions(); } }
+function updateSession(i,field,val){ data.sessions[i][field]=val; save(); }
+
+// ── THREADS ──
+const STATUSES = ['active','resolved','dormant'];
+const STATUS_LABELS = {active:'Active',resolved:'Resolved',dormant:'Dormant'};
+const STATUS_CLASSES = {active:'ts-active',resolved:'ts-resolved',dormant:'ts-dormant'};
+
+function renderThreads(){
+  const c = document.getElementById('threads-container');
+  c.innerHTML = '';
+  data.threads.forEach((t,i)=>{
+    const div = document.createElement('div');
+    div.className = 'thread-card';
+    div.innerHTML = `
+      <input class="thread-name-input" value="${esc(t.name)}" placeholder="Thread name..." oninput="updateThread(${i},'name',this.value)">
+      <button class="thread-status ${STATUS_CLASSES[t.status]}" onclick="cycleThreadStatus(${i})">${STATUS_LABELS[t.status]}</button>
+      <button class="del-btn" onclick="deleteThread(${i})">✕</button>
+      <div class="thread-notes">
+        <textarea class="thread-note-input" placeholder="Notes on this thread..." oninput="updateThread(${i},'notes',this.value)">${esc(t.notes||'')}</textarea>
+      </div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function addThread(){ data.threads.push({id:Date.now(),name:'',status:'active',notes:''}); save(); renderThreads(); }
+function deleteThread(i){ data.threads.splice(i,1); save(); renderThreads(); }
+function updateThread(i,field,val){ data.threads[i][field]=val; save(); }
+function cycleThreadStatus(i){
+  const idx = STATUSES.indexOf(data.threads[i].status);
+  data.threads[i].status = STATUSES[(idx+1)%STATUSES.length];
+  save(); renderThreads();
+}
+
+// ── DECISIONS ──
+const IMPACTS = ['high','med','low'];
+const IMPACT_LABELS = {high:'High Impact',med:'Med Impact',low:'Low Impact'};
+const IMPACT_CLASSES = {high:'impact-high',med:'impact-med',low:'impact-low'};
+
+function renderDecisions(){
+  const c = document.getElementById('decisions-container');
+  c.innerHTML = '';
+  data.decisions.forEach((d,i)=>{
+    const div = document.createElement('div');
+    div.className = 'decision-item';
+    div.innerHTML = `
+      <div class="decision-header">
+        <input style="background:transparent;border:none;color:var(--purple-text);font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;background:var(--purple-bg);border:1px solid rgba(138,96,200,0.3);width:100px;" value="${esc(d.session)}" oninput="updateDecision(${i},'session',this.value)">
+        <button class="decision-impact ${IMPACT_CLASSES[d.impact]}" onclick="cycleImpact(${i})">${IMPACT_LABELS[d.impact]}</button>
+        <button class="del-btn" onclick="deleteDecision(${i})">✕</button>
+      </div>
+      <div class="decision-text"><input class="dec-input" value="${esc(d.text)}" placeholder="What did the players decide?" oninput="updateDecision(${i},'text',this.value)"></div>
+      <div class="decision-consequence">→ <input class="dec-con-input" value="${esc(d.consequence||'')}" placeholder="Consequence or follow-up..." oninput="updateDecision(${i},'consequence',this.value)"></div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function addDecision(){ data.decisions.push({id:Date.now(),session:`Session ${data.sessions.length}`,impact:'med',text:'',consequence:''}); save(); renderDecisions(); }
+function deleteDecision(i){ data.decisions.splice(i,1); save(); renderDecisions(); }
+function updateDecision(i,field,val){ data.decisions[i][field]=val; save(); }
+function cycleImpact(i){
+  const idx = IMPACTS.indexOf(data.decisions[i].impact);
+  data.decisions[i].impact = IMPACTS[(idx+1)%IMPACTS.length];
+  save(); renderDecisions();
+}
+
+// ── NPCS ──
+const REL_STATUSES = ['friendly','neutral','wary','hostile','unknown'];
+const REL_LABELS = {friendly:'Friendly',neutral:'Neutral',wary:'Wary',hostile:'Hostile',unknown:'Unknown'};
+const REL_CLASSES = {friendly:'rel-friendly',neutral:'rel-neutral',wary:'rel-wary',hostile:'rel-hostile',unknown:'rel-unknown'};
+
+function renderNpcs(){
+  const c = document.getElementById('npcs-container');
+  c.innerHTML = '';
+  data.npcs.forEach((n,i)=>{
+    const div = document.createElement('div');
+    div.className = 'npc-rel-card';
+    div.innerHTML = `
+      <div class="npc-rel-header">
+        <input style="background:transparent;border:none;color:var(--accent-gold-light);font-size:13px;font-weight:700;flex:1;" value="${esc(n.name)}" placeholder="NPC name..." oninput="updateNpc(${i},'name',this.value)">
+        <button class="npc-rel-status ${REL_CLASSES[n.status]}" onclick="cycleRel(${i})">${REL_LABELS[n.status]}</button>
+        <button class="del-btn" onclick="deleteNpc(${i})">✕</button>
+      </div>
+      <textarea class="npc-note-input" placeholder="Notes — what they know, what they want, how party left things..." oninput="updateNpc(${i},'notes',this.value)">${esc(n.notes||'')}</textarea>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function addNpc(){ data.npcs.push({id:Date.now(),name:'',status:'unknown',notes:''}); save(); renderNpcs(); }
+function deleteNpc(i){ data.npcs.splice(i,1); save(); renderNpcs(); }
+function updateNpc(i,field,val){ data.npcs[i][field]=val; save(); }
+function cycleRel(i){
+  const idx = REL_STATUSES.indexOf(data.npcs[i].status);
+  data.npcs[i].status = REL_STATUSES[(idx+1)%REL_STATUSES.length];
+  save(); renderNpcs();
+}
+
+// ── MISC ──
+function saveMisc(){ data.misc = document.getElementById('misc-textarea').value; save(); }
+function loadMisc(){ document.getElementById('misc-textarea').value = data.misc||''; }
+
+// ── PANEL SWITCHING ──
+function showNote(name, btn){
+  document.querySelectorAll('.sidebar-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.notes-panel').forEach(p=>p.classList.remove('visible'));
+  document.getElementById(`panel-${name}`).classList.add('visible');
+}
+
+// ── EXPORT ──
+function exportNotes(){
+  let out = `HOLLOWSTAR GM NOTES EXPORT\n${'='.repeat(40)}\n\n`;
+  out += `SESSION NOTES\n${'-'.repeat(30)}\n`;
+  data.sessions.forEach(s=>{ out += `\n${s.title} — ${s.date}\n${s.text||'(empty)'}\n`; });
+  out += `\nACTIVE THREADS\n${'-'.repeat(30)}\n`;
+  data.threads.forEach(t=>{ out += `\n[${t.status.toUpperCase()}] ${t.name}\n${t.notes||''}\n`; });
+  out += `\nPLAYER DECISIONS\n${'-'.repeat(30)}\n`;
+  data.decisions.forEach(d=>{ out += `\n${d.session} [${d.impact}] ${d.text}\n→ ${d.consequence||''}\n`; });
+  out += `\nNPC RELATIONSHIPS\n${'-'.repeat(30)}\n`;
+  data.npcs.forEach(n=>{ out += `\n${n.name} [${n.status}]\n${n.notes||''}\n`; });
+  out += `\nMISC NOTES\n${'-'.repeat(30)}\n${data.misc||'(empty)'}`;
+
+  const blob = new Blob([out],{type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hollowstar-notes.txt';
+  a.click();
+}
+
+function clearNotes(){
+  if(confirm('Clear ALL notes? This cannot be undone.')){
+    localStorage.removeItem('hollowstar-notes');
+    data={sessions:[],threads:[],decisions:[],npcs:[],misc:''};
+    load(); renderAll();
+  }
+}
+
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderAll(){
+  renderSessions(); renderThreads(); renderDecisions(); renderNpcs(); loadMisc();
+}
+
+load();
+renderAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GM Screen — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── RULE BLOCKS ── */
+.rule-block{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:13px 15px;margin-bottom:10px;}
+.rule-title{font-size:12px;font-weight:700;color:var(--accent-gold-light);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.rule-block p,.rule-block li{font-size:13px;color:var(--text-primary);line-height:1.75;}
+.rule-block ul{padding-left:1.1rem;}
+.rule-block strong{color:var(--accent-gold-light);}
+
+/* ── ROLL TABLE ── */
+.roll-table{width:100%;border-collapse:collapse;margin:8px 0;}
+.roll-table th{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);}
+.roll-table td{font-size:12.5px;color:var(--text-primary);padding:6px 10px;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.5;}
+.roll-table tr:last-child td{border-bottom:none;}
+.roll-table td:first-child{font-weight:700;color:var(--accent-gold);white-space:nowrap;}
+.roll-table tr:hover td{background:rgba(255,255,255,0.02);}
+
+/* ── TOKEN DISPLAY ── */
+.token-tracker{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.4rem;margin-bottom:14px;}
+.token-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.token-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;min-width:60px;}
+.token-label.hope{color:var(--hope-text);}
+.token-label.fear{color:var(--fear-text);}
+.token-coins{display:flex;gap:5px;flex-wrap:wrap;flex:1;}
+.token-coin{width:32px;height:32px;border-radius:50%;border:2px solid;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.15s;user-select:none;}
+.token-coin.hope-coin{border-color:var(--hope);background:transparent;color:var(--hope);}
+.token-coin.hope-coin.filled{background:var(--hope);color:#fff;}
+.token-coin.fear-coin{border-color:var(--fear);background:transparent;color:var(--fear);}
+.token-coin.fear-coin.filled{background:var(--fear);color:#fff;}
+.token-count{font-size:22px;font-weight:700;min-width:30px;text-align:center;}
+.token-count.hope{color:var(--hope-text);}
+.token-count.fear{color:var(--fear-text);}
+.token-btn{width:34px;height:34px;border-radius:50%;border:2px solid;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;font-weight:700;transition:all 0.15s;background:transparent;font-family:var(--font-ui);}
+.token-btn.hope-btn{border-color:var(--hope);color:var(--hope);}
+.token-btn.hope-btn:hover{background:var(--hope);color:#fff;}
+.token-btn.fear-btn{border-color:var(--fear);color:var(--fear);}
+.token-btn.fear-btn:hover{background:var(--fear);color:#fff;}
+
+/* ── CLOCK ── */
+.clock-row{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0;}
+.clock-item{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 12px;min-width:160px;flex:1;}
+.clock-name{font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:6px;}
+.clock-pips{display:flex;gap:4px;flex-wrap:wrap;}
+.clock-pip{width:22px;height:22px;border-radius:50%;border:2px solid var(--border-med);cursor:pointer;transition:all 0.12s;background:transparent;}
+.clock-pip.filled{background:var(--warn);border-color:var(--warn);}
+.clock-pip.filled.danger{background:var(--fear);border-color:var(--fear);}
+
+/* ── DIF DIAL ── */
+.dif-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;}
+.dif-chip{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:700;border:1px solid;cursor:default;}
+.dif-trivial{background:rgba(74,158,110,0.12);color:var(--hope-text);border-color:rgba(74,158,110,0.3);}
+.dif-easy{background:rgba(74,127,181,0.12);color:var(--info-text);border-color:rgba(74,127,181,0.3);}
+.dif-standard{background:rgba(201,125,42,0.12);color:var(--warn-text);border-color:rgba(201,125,42,0.3);}
+.dif-hard{background:rgba(184,84,80,0.12);color:var(--fear-text);border-color:rgba(184,84,80,0.3);}
+.dif-extreme{background:rgba(138,96,200,0.12);color:var(--purple-text);border-color:rgba(138,96,200,0.3);}
+
+/* ── CONDITION CARDS ── */
+.condition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:8px 0;}
+.condition-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 11px;}
+.condition-name{font-size:12px;font-weight:700;color:var(--fear-text);margin-bottom:3px;}
+.condition-effect{font-size:11.5px;color:var(--text-secondary);line-height:1.5;}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:640px){.two-col{grid-template-columns:1fr;}}
+
+/* ── CALLOUT BARS ── */
+.hope-bar{background:var(--hope-bg);border-left:3px solid var(--hope);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:10px 14px;margin-bottom:10px;}
+.hope-bar .tag{font-size:10px;font-weight:700;color:var(--hope-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;}
+.hope-bar p,.hope-bar li{font-size:13px;color:var(--text-primary);line-height:1.7;}
+.hope-bar ul{padding-left:1.1rem;}
+
+.fear-bar{background:var(--fear-bg);border-left:3px solid var(--fear);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:10px 14px;margin-bottom:10px;}
+.fear-bar .tag{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;}
+.fear-bar p,.fear-bar li{font-size:13px;color:var(--text-primary);line-height:1.7;}
+.fear-bar ul{padding-left:1.1rem;}
+
+/* ── HIGHLIGHT BOX ── */
+.hl-box{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:10px;}
+.hl-box p,.hl-box li{font-size:13px;color:var(--text-primary);line-height:1.7;}
+.hl-box ul{padding-left:1.1rem;}
+.hl-box strong{color:var(--accent-gold-light);}
+
+/* ── COMPACT TABLE ── */
+.c-table{width:100%;border-collapse:collapse;}
+.c-table td{font-size:12.5px;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;}
+.c-table td:first-child{color:var(--accent-gold);font-weight:700;white-space:nowrap;width:120px;}
+.c-table td:last-child{color:var(--text-secondary);}
+.c-table tr:last-child td{border-bottom:none;}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html" class="active">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Daggerheart Reference</div>
+  <h1>GM Screen</h1>
+  <p class="subtitle">Everything you need at the table. Rules, token tracker, clocks, conditions, action types, and HollowStar-specific guidance.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('tokens',this)">⚡ Live Tokens</button>
+    <button class="nav-tab" onclick="filterSections('core',this)">🎲 Core Rules</button>
+    <button class="nav-tab" onclick="filterSections('combat',this)">⚔️ Combat</button>
+    <button class="nav-tab" onclick="filterSections('hope',this)">✨ Hope & Fear</button>
+    <button class="nav-tab" onclick="filterSections('gm',this)">🎭 GM Tools</button>
+    <button class="nav-tab" onclick="filterSections('hollowstar',this)">⭐ HollowStar</button>
+  </div>
+
+  <!-- ══ LIVE TOKEN TRACKER ══ -->
+  <div class="section" data-cat="tokens">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">⚡</div>
+      <div style="flex:1;"><div class="section-label">Live Token Tracker</div><div class="section-sub">Keep count of Hope and Fear during play</div></div>
+      <span class="section-pill" style="background:var(--accent-gold-dim);color:var(--accent-gold);border:1px solid rgba(201,168,76,0.3);">Use at Table</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="token-tracker">
+        <div class="token-row">
+          <div class="token-label hope">Hope</div>
+          <button class="token-btn hope-btn" onclick="changeToken('hope',-1)">−</button>
+          <div class="token-count hope" id="hope-count">0</div>
+          <button class="token-btn hope-btn" onclick="changeToken('hope',1)">+</button>
+          <div style="font-size:12px;color:var(--text-muted);margin-left:8px;">Players spend · GM earns from Fear-die rolls</div>
+        </div>
+        <div class="token-row">
+          <div class="token-label fear">Fear</div>
+          <button class="token-btn fear-btn" onclick="changeToken('fear',-1)">−</button>
+          <div class="token-count fear" id="fear-count">0</div>
+          <button class="token-btn fear-btn" onclick="changeToken('fear',1)">+</button>
+          <div style="font-size:12px;color:var(--text-muted);margin-left:8px;">GM spends · Generated when Fear die is highest</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:4px;">
+          <button class="small-btn" onclick="resetTokens()">Reset all to 0</button>
+          <button class="small-btn" onclick="changeToken('fear',1);changeToken('fear',1);changeToken('fear',1);">+3 Fear (scene start)</button>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="hope-bar">
+          <div class="tag">Hope — Player Resource</div>
+          <ul>
+            <li>Gained when the <strong>Hope die</strong> rolls higher than the Fear die</li>
+            <li><strong>Spend 1 Hope</strong> → reroll one die on any roll</li>
+            <li><strong>Spend 1 Hope</strong> → add +1d6 to damage roll</li>
+            <li><strong>Spend 1 Hope</strong> → assist an ally (+1d6 to their roll)</li>
+            <li><strong>Spend 2 Hope</strong> → stabilize a downed ally (no roll)</li>
+            <li>Some class abilities also cost Hope to activate</li>
+          </ul>
+        </div>
+        <div class="fear-bar">
+          <div class="tag">Fear — GM Resource</div>
+          <ul>
+            <li>Gained when the <strong>Fear die</strong> rolls higher than the Hope die</li>
+            <li><strong>Spend 1 Fear</strong> → an enemy takes an action or attacks</li>
+            <li><strong>Spend 1 Fear</strong> → introduce an environmental complication</li>
+            <li><strong>Spend 1 Fear</strong> → a new enemy enters the scene</li>
+            <li><strong>Spend 2 Fear</strong> → trigger an enemy's special ability</li>
+            <li><strong>Spend 3 Fear</strong> → a major scene escalation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gm-note">
+        <div class="tag">The Golden Rule of Fear</div>
+        <p>Never hoard Fear. Unspent Fear does nothing. Spend it steadily — one or two per round in combat, one every few rolls in tense social scenes. The moment it sits at 5+ unused, the scene feels flat. <strong>Fear economy IS the game's heartbeat.</strong> If you're not spending it, you're not playing Daggerheart — you're just rolling dice.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CORE ROLLING ══ -->
+  <div class="section" data-cat="core">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">🎲</div>
+      <div style="flex:1;"><div class="section-label">Core Rolling Rules</div><div class="section-sub">How every roll works · Results · The dual-die system</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="hl-box">
+        <p><strong>Every roll:</strong> Player rolls <strong>Hope die (d12) + Fear die (d12) + relevant stat modifier.</strong> Compare total to the Difficulty (DIF) you set. Then check which die was higher — this generates tokens regardless of success or failure.</p>
+      </div>
+
+      <table class="roll-table">
+        <tr><th>Result</th><th>What Happens</th></tr>
+        <tr><td>Total ≥ DIF + 10</td><td><strong>Critical Success.</strong> Full success PLUS an additional benefit — extra damage, extra information, a lucky break. Describe something going brilliantly right.</td></tr>
+        <tr><td>Total ≥ DIF</td><td><strong>Success.</strong> They do what they attempted. No complications unless you want to add flavor. For attacks: roll damage.</td></tr>
+        <tr><td>DIF − 1 to DIF − 4</td><td><strong>Partial Success (Success with Cost).</strong> They succeed, but something goes wrong too — they take damage, lose position, attract attention, use a resource, or put someone at risk. The cost should feel meaningful, not trivial.</td></tr>
+        <tr><td>Total &lt; DIF − 4</td><td><strong>Failure.</strong> They don't succeed. Something bad happens. Spend Fear to make it worse, or just move the story forward with a complication.</td></tr>
+      </table>
+
+      <div class="rule-block" style="margin-top:12px;">
+        <div class="rule-title">After every roll — check the dice</div>
+        <ul>
+          <li><strong>Hope die higher?</strong> Player gains 1 Hope token. (Even on failure.)</li>
+          <li><strong>Fear die higher?</strong> You gain 1 Fear token. (Even on success.)</li>
+          <li><strong>Tied?</strong> No tokens generated for either side.</li>
+          <li>This happens on <em>every</em> roll — combat, social, exploration, everything. Tokens are always flowing.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">The Six Stats</div>
+        <table class="c-table">
+          <tr><td>Agility</td><td>Speed, reflexes, dodging, acrobatics, stealth movement</td></tr>
+          <tr><td>Strength</td><td>Raw power, forcing, lifting, direct physical contests</td></tr>
+          <tr><td>Finesse</td><td>Precision, dexterity, lockpicking, pickpocketing, fine manipulation</td></tr>
+          <tr><td>Instinct</td><td>Intuition, survival, reading animals, wilderness, gut feelings</td></tr>
+          <tr><td>Presence</td><td>Persuasion, performance, leadership, social manipulation, intimidation</td></tr>
+          <tr><td>Knowledge</td><td>Lore, arcana, history, medicine, identifying things</td></tr>
+        </table>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Setting Difficulty (DIF) — Quick Guide</div>
+        <div class="dif-row">
+          <div class="dif-chip dif-trivial">DIF 8 — Trivial</div>
+          <div class="dif-chip dif-easy">DIF 10–11 — Easy</div>
+          <div class="dif-chip dif-standard">DIF 12–14 — Standard</div>
+          <div class="dif-chip dif-hard">DIF 15–17 — Hard</div>
+          <div class="dif-chip dif-extreme">DIF 18+ — Extreme</div>
+        </div>
+        <p style="margin-top:8px;font-size:12.5px;color:var(--text-secondary);">Only call for a roll when <strong>failure is interesting</strong> and <strong>success isn't guaranteed</strong>. If they can't fail (opening a normal door) or failure is boring (rolling to light a candle), just let it happen. Save your DIFs for moments that matter.</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Advantage & Disadvantage</div>
+        <ul>
+          <li><strong>Advantage:</strong> Roll an extra Hope die, keep the highest two dice for the total.</li>
+          <li><strong>Disadvantage:</strong> Roll an extra Fear die, keep the highest two dice for the total. (So the Fear die in the pair is more likely to be highest — more Fear for you.)</li>
+          <li>Advantage and Disadvantage cancel each other out. Multiple of one don't stack beyond a single extra die.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ COMBAT ══ -->
+  <div class="section" data-cat="combat">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--fear-bg);color:var(--fear-text);">⚔️</div>
+      <div style="flex:1;"><div class="section-label">Combat Rules</div><div class="section-sub">No initiative · How enemies act · HP · Conditions · Death</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="hl-box">
+        <p><strong>Daggerheart has no initiative.</strong> Players act freely and in whatever order makes narrative sense. You spend Fear tokens to have enemies act. The rhythm is collaborative storytelling with mechanical stakes — not a turn queue.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="rule-block">
+          <div class="rule-title">Starting a Fight</div>
+          <ul>
+            <li>Describe the scene and threat clearly before dice come out.</li>
+            <li>Ask: "What do you do?" — <em>then</em> call for a stat.</li>
+            <li>Start with <strong>2–3 Fear tokens</strong> at the opening of any combat scene.</li>
+            <li>Players go first unless the ambush/surprise is total — in that case, spend 1–2 Fear immediately before players act.</li>
+          </ul>
+        </div>
+        <div class="rule-block">
+          <div class="rule-title">Enemy Actions</div>
+          <ul>
+            <li><strong>Spend 1 Fear</strong> → enemy attacks (deal damage, no roll)</li>
+            <li><strong>Spend 1 Fear</strong> → enemy moves or repositions</li>
+            <li><strong>Spend 1 Fear</strong> → environmental complication (fire spreads, door slams, reinforcements approach)</li>
+            <li><strong>Spend 2 Fear</strong> → enemy special ability activates</li>
+            <li>Describe every enemy action vividly before the damage lands.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Attacking — Player Side</div>
+        <ul>
+          <li>Player describes the attack, picks the stat (usually Agility for ranged, Strength or Finesse for melee).</li>
+          <li>Rolls Hope + Fear + stat mod vs. enemy <strong>DIF</strong>.</li>
+          <li><strong>Hit (≥ DIF):</strong> roll weapon damage dice, deal damage to enemy HP.</li>
+          <li><strong>Partial (DIF−1 to DIF−4):</strong> hit lands BUT the player takes a cost — enemy counterstrikes for half damage, player loses position, or a complication occurs. You choose the cost.</li>
+          <li><strong>Miss:</strong> no damage. Spend Fear to make something worse happen beyond just missing.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Taking Damage — Player Side</div>
+        <ul>
+          <li>When a player takes damage (from your Fear spend), they roll their <strong>Armor dice</strong> and subtract the result from the incoming damage.</li>
+          <li>Remainder reduces their <strong>Hit Points (HP)</strong>.</li>
+          <li>Players can also take <strong>Stress</strong> instead of HP damage in certain situations — this depends on their class and the nature of the threat.</li>
+          <li><strong>HP = 0:</strong> player makes a <strong>Death Move</strong> — roll Hope + Fear (no stat). High result = down but stable. Low result = things get worse (serious injury, unconscious, or worse).</li>
+          <li>A downed player can be stabilized by an ally spending 2 Hope (no roll needed).</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Conditions</div>
+        <div class="condition-grid">
+          <div class="condition-card"><div class="condition-name">Restrained</div><div class="condition-effect">Cannot move. Attacks against this character have advantage.</div></div>
+          <div class="condition-card"><div class="condition-name">Vulnerable</div><div class="condition-effect">Takes +1d6 damage from all sources while this condition lasts.</div></div>
+          <div class="condition-card"><div class="condition-name">Weakened</div><div class="condition-effect">Disadvantage on all attack rolls.</div></div>
+          <div class="condition-card"><div class="condition-name">Impaired</div><div class="condition-effect">Disadvantage on all non-attack rolls.</div></div>
+          <div class="condition-card"><div class="condition-name">Frightened</div><div class="condition-effect">Cannot move toward the source of fear. Disadvantage on all rolls while source is visible.</div></div>
+          <div class="condition-card"><div class="condition-name">Hidden</div><div class="condition-effect">Cannot be targeted directly. First attack from hiding has advantage.</div></div>
+        </div>
+        <p style="font-size:12.5px;color:var(--text-muted);margin-top:6px;">Conditions end at the start of the affected creature's next turn unless an ability specifies otherwise.</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Resting & Recovery</div>
+        <table class="c-table">
+          <tr><td>Short Rest</td><td>~10 minutes, safe location. Each player rolls their Recovery dice and regains that HP. Stress does not recover on a short rest.</td></tr>
+          <tr><td>Long Rest</td><td>Full night's sleep, safe location. Full HP and Stress recovery. Replenishes class resources. Hope and Fear reset to 0 at start of next session if resting between sessions.</td></tr>
+          <tr><td>In Combat</td><td>No resting. A player can use an action to stabilize a downed ally (Presence or Knowledge, DIF 12) or spend 2 Hope to stabilize without a roll.</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ HOPE & FEAR IN DEPTH ══ -->
+  <div class="section" data-cat="hope">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">✨</div>
+      <div style="flex:1;"><div class="section-label">Hope & Fear — Full Reference</div><div class="section-sub">When tokens generate · All spend options · Economy tips</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="rule-block">
+        <div class="rule-title">When Does Fear Generate?</div>
+        <p style="margin-bottom:8px;">Fear generates whenever the <strong>Fear die rolls higher than the Hope die</strong> on any player roll — success, partial, or failure. It is not a punishment for failure. It is a constant flow that powers the GM's side of the game.</p>
+        <p style="margin-bottom:8px;"><strong>Additionally, you start scenes with Fear:</strong></p>
+        <ul>
+          <li><strong>Low-tension scene</strong> (tavern conversation, quiet travel): start with 0–1 Fear</li>
+          <li><strong>Tense scene</strong> (council meeting, negotiation under pressure): start with 2–3 Fear</li>
+          <li><strong>Combat scene</strong>: start with 3–4 Fear</li>
+          <li><strong>Boss encounter or major confrontation</strong>: start with 5–6 Fear</li>
+        </ul>
+        <p style="margin-top:8px;">You can also award yourself Fear when <strong>story events create narrative pressure</strong> — a threat arrives, a plan goes wrong, a faction makes a move. This is not a rule, it's a tool. Use it when the scene needs energy.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="hope-bar">
+          <div class="tag">All Hope Spends</div>
+          <ul>
+            <li><strong>1 Hope:</strong> Reroll one die (Hope or Fear) on any roll</li>
+            <li><strong>1 Hope:</strong> +1d6 to a damage roll after hitting</li>
+            <li><strong>1 Hope:</strong> Assist an ally — they get +1d6 on their next roll</li>
+            <li><strong>2 Hope:</strong> Stabilize a downed ally without rolling</li>
+            <li><strong>2 Hope:</strong> Activate certain class features (varies by class)</li>
+            <li><strong>3 Hope:</strong> Turn a failure into a partial success (once per scene)</li>
+          </ul>
+        </div>
+        <div class="fear-bar">
+          <div class="tag">All Fear Spends</div>
+          <ul>
+            <li><strong>1 Fear:</strong> Enemy attacks — deal full damage, describe it</li>
+            <li><strong>1 Fear:</strong> Enemy moves, repositions, or blocks</li>
+            <li><strong>1 Fear:</strong> Environmental complication or new problem</li>
+            <li><strong>1 Fear:</strong> Reveal a hidden threat or new enemy</li>
+            <li><strong>2 Fear:</strong> Enemy uses a special ability or power</li>
+            <li><strong>2 Fear:</strong> Split the party's attention (two problems at once)</li>
+            <li><strong>3 Fear:</strong> Major scene escalation — the situation gets dramatically worse</li>
+            <li><strong>3 Fear:</strong> Advance a countdown clock by one stage</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Fear Economy — How to Think About It</div>
+        <ul>
+          <li><strong>Never let Fear sit above 6.</strong> If you have 6+ Fear and aren't spending it, you're playing scared. Unspent Fear is a missed opportunity to make the scene feel alive.</li>
+          <li><strong>Spend it narratively, not tactically.</strong> Don't spend Fear to "win." Spend it to make the story more interesting. The best Fear spends create complications the players have to respond to, not just damage.</li>
+          <li><strong>Fear doesn't mean the GM vs. players.</strong> It means the world is active. The fire is spreading. The noble is making her move. The creature heard the noise. Fear is the world pushing back.</li>
+          <li><strong>Between combats, Fear can still flow.</strong> A tense social scene, a chase, an investigation with a ticking clock — all of these can and should use Fear. Don't save it only for fights.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">HollowStar-Specific: When to Generate Fear in This Setting</div>
+        <ul>
+          <li>The Darkness manifests — power failure, shard corruption, transformed creature encountered</li>
+          <li>Political betrayal revealed or suspected</li>
+          <li>A mystery deepens without resolution — players ask a question the world can't yet answer</li>
+          <li>Reality feels unstable — something that should work doesn't (the Lumen Network flickers, a spirit doesn't respond)</li>
+          <li>A faction makes a move the players didn't expect</li>
+          <li>Someone the players trust says something that doesn't quite add up</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ GM TOOLS ══ -->
+  <div class="section" data-cat="gm">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">🎭</div>
+      <div style="flex:1;"><div class="section-label">GM Tools — Countdown Clocks, Actions & Scene Principles</div><div class="section-sub">Clocks · When to roll · Pacing · The GM's job</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="rule-block">
+        <div class="rule-title">Countdown Clocks</div>
+        <p style="margin-bottom:8px;">Countdown clocks are one of Daggerheart's most powerful GM tools. A clock is a pie-chart with 4, 6, or 8 segments. Each segment filled = one step toward the event. When all segments are filled, the thing happens.</p>
+        <ul>
+          <li><strong>Fill a clock segment</strong> when: players fail a relevant roll, time passes without action, you spend 3 Fear for a major escalation, or a faction makes a move.</li>
+          <li><strong>Clear a clock segment</strong> when: players succeed at a major relevant action, a threat is removed, or they act decisively before the clock fills.</li>
+          <li><strong>Show clocks to players</strong> when you want them to feel urgency. <strong>Hide clocks</strong> when the threat should feel like creeping dread rather than a visible timer.</li>
+        </ul>
+        <div class="clock-row" id="clock-container">
+          <!-- Clocks rendered by JS -->
+        </div>
+        <button class="add-btn" onclick="addClock()" style="margin-top:6px;">＋ Add Clock</button>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">When To Call For a Roll (The Most Important Rule)</div>
+        <p style="margin-bottom:6px;">Only ask for a roll when <strong>all three of these are true:</strong></p>
+        <ul>
+          <li>The character has a <strong>reasonable chance of success</strong> based on their abilities</li>
+          <li><strong>Failure is interesting</strong> — something changes in the story if they fail</li>
+          <li>There is <strong>meaningful cost or risk</strong> — something is at stake</li>
+        </ul>
+        <p style="margin-top:8px;font-size:12.5px;color:var(--text-secondary);">Don't roll for: opening an unlocked door, noticing something obvious, buying a common item, doing something fully within a character's expertise with no stakes. Just say yes. Save your dice for moments that matter.</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">The GM's Job — In Plain Language</div>
+        <ul>
+          <li><strong>You are not trying to beat the players.</strong> You are trying to make the world feel real, responsive, and dangerous enough that their choices feel meaningful.</li>
+          <li><strong>Ask questions.</strong> "What does Greer do as she approaches the stone?" "Basil — what does that look like from your angle?" Players describing the world makes it more real for everyone.</li>
+          <li><strong>Fail forward.</strong> A failed roll doesn't mean "nothing happens." It means "something happens that makes things more complicated." Always move the scene forward, even on failure.</li>
+          <li><strong>Let player theories become true.</strong> When players develop a theory about the world, write it down. Some of those theories — the interesting ones — should turn out to be right. It rewards engagement and makes the world feel responsive.</li>
+          <li><strong>Reward specificity.</strong> A player who describes their action vividly and creatively should get mechanical benefit — advantage, a lower DIF, or just a better outcome. Daggerheart rewards good storytelling.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Non-Combat Rolls — How They Work</div>
+        <table class="c-table">
+          <tr><td>Exploration</td><td>Instinct or Knowledge vs. DIF. Success = find the thing, notice the detail. Partial = find it with a complication or cost. Failure = miss it, or find something worse.</td></tr>
+          <tr><td>Social / Persuasion</td><td>Presence vs. DIF based on how resistant the NPC is. Success = they agree or comply. Partial = they agree but with conditions. Failure = they refuse and may become suspicious or hostile.</td></tr>
+          <tr><td>Stealth / Infiltration</td><td>Agility or Finesse vs. DIF. Partial success is especially interesting here — they almost got caught, they left a trace, someone suspects but can't prove it.</td></tr>
+          <tr><td>Investigation</td><td>Knowledge or Instinct vs. DIF. On success, give full information. On partial, give partial information with a gap or misdirection. On failure, give wrong information or nothing — but never just nothing.</td></tr>
+          <tr><td>Crafting / Preparation</td><td>Relevant stat vs. DIF. Partial success = it works but has a limitation or side effect. Great for potions, traps, and plans.</td></tr>
+        </table>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Group Rolls</div>
+        <p>When the whole party does something together (sneaking past guards, tracking through the forest, persuading a crowd): <strong>each player rolls individually.</strong> Count successes. Majority succeeds = full success. Half succeed = partial. Minority succeeds = failure with some surviving the consequence better than others. This is more interesting than having one person roll for everyone.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ HOLLOWSTAR-SPECIFIC ══ -->
+  <div class="section" data-cat="hollowstar">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">⭐</div>
+      <div style="flex:1;"><div class="section-label">HollowStar-Specific GM Guidance</div><div class="section-sub">Tone · The three mysteries · Running factions · The countdown</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="rule-block">
+        <div class="rule-title">Campaign Tone — Where This World Lives</div>
+        <table class="c-table">
+          <tr><td>Cosmic Horror</td><td>2/10. The unknown is vast and strange, not sanity-breaking. Players feel awe, not madness.</td></tr>
+          <tr><td>Political Intrigue</td><td>7/10. Factions have real competing interests. No clean answers. No pure villains.</td></tr>
+          <tr><td>Hope</td><td>5/10. Things can go badly. Player choices genuinely matter. No guarantee of winning.</td></tr>
+          <tr><td>Wonder</td><td>8/10. The world has beautiful impossible things in it. Spend time on these moments.</td></tr>
+        </table>
+        <p style="margin-top:8px;font-size:12.5px;color:var(--text-secondary);">This is not a grimdark campaign where everything fails. Nor a heroic fantasy where good wins because it's good. It's a world where capable, well-meaning people face a crisis larger than any of them — and what they do matters, but doesn't guarantee the outcome they want.</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">The Three Mysteries — Hold These Before Session 1</div>
+        <p style="margin-bottom:8px;">These have no canonical answer. You decide over the course of the campaign. <strong>You do not need answers now</strong> — but knowing which possibilities feel right helps you seed clues consistently.</p>
+        <ul>
+          <li><strong>Mystery 1 — What are the Hollowstars actually?</strong> Options: Pruning Mechanism / The Hunger / Divine Will / Response to Need (the most emotionally resonant — stars fall where the world has a need that can't be self-solved). See vault for full options.</li>
+          <li><strong>Mystery 2 — What did Thessara see at the third fall's impact site?</strong> Options: A figure made of light that looked at her / The star opened like an egg and something left / A perfect spherical void that then filled with water from nowhere.</li>
+          <li><strong>Mystery 3 — What is the Sleeper beneath the Isle of the Broken Sphere?</strong> Options: Surviving pre-Hollostar entity / Buried star fragment resonating with the approaching fourth fall / The world itself developing consciousness.</li>
+        </ul>
+        <p style="margin-top:8px;font-size:12.5px;color:var(--text-secondary);">Player theories about these that are interesting should sometimes be right. Write them down. Let the world be responsive.</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Running Factions — The Most Important Principle</div>
+        <p><strong>Every faction leader believes they are doing the right thing.</strong> Nobody is running a villain faction. The Four Houses are protecting their families. The Merchant Circle is keeping people alive in a desert. Lumencrest's Expansionists genuinely believe that seizing the Endless Eye saves more lives than it harms. Let players encounter this complexity rather than resolving it for them.</p>
+        <p style="margin-top:8px;"><strong>Factions act whether or not players engage.</strong> If the party spends three sessions in the Northern Expanse, Lumencrest's Council is still making decisions. The Green Covenant is still managing its Thorn problem. At the start of each session block, ask yourself: what has each relevant faction done since the party last touched them?</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">The Countdown — Key Principle</div>
+        <p><strong>The fourth fall is happening regardless.</strong> Players cannot stop the Hollostar. They can influence where it lands (possible but unlikely), whether communities survive it, whether factions are positioned to rebuild, and what the world looks like after. Their agency is in the aftermath, not the prevention.</p>
+        <p style="margin-top:8px;"><strong>The best ending is not "we stopped it."</strong> The best ending is "we made sure something worth rebuilding survived."</p>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Active Campaign Clocks — HollowStar</div>
+        <table class="c-table">
+          <tr><td>Heart Failure</td><td>Lumencrest's Hollostar: 2.5% power loss per year. Monthly brownouts. At 50% failure → blackouts. At 75% → city cannot sustain itself. The party has roughly 14 months of in-world time before the fourth fall — the Heart will be at ~65% by then if nothing changes.</td></tr>
+          <tr><td>Vael Lumber Deal</td><td>One week before Emberford council responds. If they accept: logging begins Frostmonth. The grove's spirit boundary is compromised within a season. Thorn's clock is short.</td></tr>
+          <tr><td>Green Covenant / Thorns</td><td>An attack is being planned — target unknown, timing Gold Month to Fallmonth. The attack Caelen dismissed is real. The party can learn the target and timing in Lumencrest if they look.</td></tr>
+          <tr><td>Guild Awareness</td><td>If the road scout escaped in Session 1, the Unseen Guild knows about the party. They will be watched in Lumencrest. This clock advances passively — the longer they're in the city, the more the Guild knows.</td></tr>
+          <tr><td>Fourth Fall Approach</td><td>The star is visible in daylight twice a year now. Somnarch astronomers say 14 months. The Hexarch sect says sooner. The Merchant Circle says the Endless Eye declining is proof the star is close.</td></tr>
+        </table>
+      </div>
+
+      <div class="rule-block">
+        <div class="rule-title">Tone Tools — When to Use Each</div>
+        <ul>
+          <li><strong>Lean into Wonder:</strong> Ancient ruins, intact Hollostar sites, the Endless Eye at depth, first time players see the approaching star visible in daylight. Spend time on these. Describe them slowly.</li>
+          <li><strong>Lean into Weight:</strong> Refugee camps, communities making impossible choices, faction leaders doing their best and not being enough. Don't rescue these with humor or convenient solutions. Let them sit.</li>
+          <li><strong>Lean into Humor:</strong> Clanks encountering biological needs they don't have. Dwarven Deep Reckoning that doesn't sync with anything. The social collision between elven timescales and human urgency.</li>
+          <li><strong>The Darkness is not a monster.</strong> It's the accumulated weight of things failing and people being frightened. Power failures, a look on someone's face when they realize they've been too slow, an animal behaving wrong. Darkness is dread, not encounter.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ QUICK REF CHEAT SHEET ══ -->
+  <div class="quick-ref">
+    <div class="quick-ref-title">⚡ At-a-Glance Cheat Sheet</div>
+    <div class="stat-grid">
+      <div class="stat-item"><strong>Every roll:</strong> Hope d12 + Fear d12 + stat mod vs. DIF</div>
+      <div class="stat-item"><strong>Hope die higher:</strong> Player gains 1 Hope token</div>
+      <div class="stat-item"><strong>Fear die higher:</strong> GM gains 1 Fear token</div>
+      <div class="stat-item"><strong>Crit success:</strong> Total ≥ DIF + 10</div>
+      <div class="stat-item"><strong>Success:</strong> Total ≥ DIF</div>
+      <div class="stat-item"><strong>Partial:</strong> DIF−1 to DIF−4 (success with cost)</div>
+      <div class="stat-item"><strong>Failure:</strong> Total &lt; DIF−4</div>
+      <div class="stat-item"><strong>DIF Standard:</strong> 12–14 · Hard: 15–17</div>
+      <div class="stat-item"><strong>Advantage:</strong> Extra Hope die, drop lowest</div>
+      <div class="stat-item"><strong>Disadvantage:</strong> Extra Fear die, drop lowest</div>
+      <div class="stat-item"><strong>Enemy attacks:</strong> Spend 1 Fear, deal damage</div>
+      <div class="stat-item"><strong>Enemy special:</strong> Spend 2 Fear</div>
+      <div class="stat-item"><strong>Major escalation:</strong> Spend 3 Fear</div>
+      <div class="stat-item"><strong>Player assist:</strong> 1 Hope → +1d6 ally roll</div>
+      <div class="stat-item"><strong>Reroll:</strong> 1 Hope → reroll one die</div>
+      <div class="stat-item"><strong>Stabilize downed ally:</strong> 2 Hope (no roll)</div>
+      <div class="stat-item"><strong>HP = 0:</strong> Death Move roll</div>
+      <div class="stat-item"><strong>Short rest:</strong> Roll recovery dice, regain HP</div>
+      <div class="stat-item"><strong>Long rest:</strong> Full HP + Stress recovery</div>
+      <div class="stat-item"><strong>Start combat:</strong> Give yourself 3–4 Fear</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── TOKEN TRACKER ──
+let tokens = {hope:0, fear:0};
+function changeToken(type, delta){
+  tokens[type] = Math.max(0, tokens[type] + delta);
+  document.getElementById(`${type}-count`).textContent = tokens[type];
+  saveTokens();
+}
+function resetTokens(){tokens={hope:0,fear:0};document.getElementById('hope-count').textContent=0;document.getElementById('fear-count').textContent=0;saveTokens();}
+function saveTokens(){try{localStorage.setItem('hs-tokens',JSON.stringify(tokens));}catch(e){}}
+function loadTokens(){try{const s=localStorage.getItem('hs-tokens');if(s){tokens=JSON.parse(s);document.getElementById('hope-count').textContent=tokens.hope;document.getElementById('fear-count').textContent=tokens.fear;}}catch(e){}}
+
+// ── COUNTDOWN CLOCKS ──
+let clocks = [];
+function loadClocks(){
+  try{
+    const s = localStorage.getItem('hs-clocks');
+    if(s) clocks = JSON.parse(s);
+  }catch(e){}
+  if(!clocks.length){
+    clocks = [
+      {id:1, name:'Heart Failure', segments:8, filled:2},
+      {id:2, name:'Vael Lumber Deal', segments:6, filled:0},
+      {id:3, name:'Thorns Attack', segments:6, filled:1},
+      {id:4, name:'Fourth Fall Approach', segments:8, filled:2}
+    ];
+  }
+}
+function saveClocks(){try{localStorage.setItem('hs-clocks',JSON.stringify(clocks));}catch(e){}}
+function renderClocks(){
+  const c = document.getElementById('clock-container');
+  c.innerHTML='';
+  clocks.forEach((cl,ci)=>{
+    const div=document.createElement('div');
+    div.className='clock-item';
+    const danger = cl.filled >= Math.floor(cl.segments * 0.75);
+    div.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <input style="background:transparent;border:none;color:var(--text-secondary);font-size:12px;font-weight:700;flex:1;" value="${cl.name}" oninput="updateClockName(${ci},this.value)">
+      <button onclick="deleteClock(${ci})" style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;padding:0 4px;">✕</button>
+    </div>
+    <div class="clock-pips">${Array.from({length:cl.segments},(_,i)=>`<div class="clock-pip${i<cl.filled?' filled'+(danger?' danger':''):''}" onclick="togglePip(${ci},${i})"></div>`).join('')}</div>
+    <div style="font-size:11px;color:var(--text-muted);margin-top:5px;">${cl.filled}/${cl.segments} — <select style="background:var(--bg-secondary);border:1px solid var(--border);color:var(--text-muted);font-size:11px;border-radius:3px;" onchange="changeClockSize(${ci},this.value)"><option value="4"${cl.segments==4?' selected':''}>4 seg</option><option value="6"${cl.segments==6?' selected':''}>6 seg</option><option value="8"${cl.segments==8?' selected':''}>8 seg</option></select></div>`;
+    c.appendChild(div);
+  });
+}
+function togglePip(ci,i){
+  if(clocks[ci].filled===i+1) clocks[ci].filled=i;
+  else clocks[ci].filled=i+1;
+  saveClocks(); renderClocks();
+}
+function addClock(){clocks.push({id:Date.now(),name:'New Clock',segments:6,filled:0});saveClocks();renderClocks();}
+function deleteClock(ci){clocks.splice(ci,1);saveClocks();renderClocks();}
+function updateClockName(ci,val){clocks[ci].name=val;saveClocks();}
+function changeClockSize(ci,val){clocks[ci].segments=parseInt(val);clocks[ci].filled=Math.min(clocks[ci].filled,clocks[ci].segments);saveClocks();renderClocks();}
+
+// ── SECTIONS ──
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+
+loadTokens();
+loadClocks();
+renderClocks();
+</script>
+</body>
+</html>

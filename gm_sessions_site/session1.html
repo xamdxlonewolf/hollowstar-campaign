@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 1 — Ember Grove · HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html" class="active">📖 Session 1</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">GM Reference & Script — Session 1</div>
+  <h1>Ember Grove — Where It Begins</h1>
+  <p class="subtitle">Gold Month, 700 AR. A lumber negotiation that smells wrong, a fully scripted council meeting, and the road to Lumencrest.</p>
+  <div class="party-chips">
+    <span class="party-chip">🌿 Greer — Faun Druid (Tara)</span>
+    <span class="party-chip">✨ Lurielle — Faerie/Ribbet Wizard</span>
+    <span class="party-chip">🗡️ Basil — Rogue</span>
+  </div>
+  <div class="session-meta">
+    <div class="meta-item">⏱ <strong>3–4 hours</strong></div>
+    <div class="meta-item">📅 <strong>Gold Month 8, 700 AR</strong></div>
+    <div class="meta-item">📍 <strong>Emberford → Road to Lumencrest</strong></div>
+  </div>
+</header>
+
+<div class="page-body">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('open',this)">Opening</button>
+    <button class="nav-tab" onclick="filterSections('council',this)">Council Meeting</button>
+    <button class="nav-tab" onclick="filterSections('npc',this)">NPCs</button>
+    <button class="nav-tab" onclick="filterSections('travel',this)">Travel</button>
+    <button class="nav-tab" onclick="filterSections('ref',this)">Reference</button>
+  </div>
+
+  <!-- ══ OVERVIEW ══ -->
+  <div class="section" data-cat="ref">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">🗺️</div>
+      <span class="section-label">Session Overview & Flow</span>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">Read First</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-badge tb-1">~40 min</div><div class="timeline-text"><strong>Act 1 — Ember Grove at Dawn.</strong> Morning routines. Introduce all three characters. Thorn summons Greer to the council. <em>Goal: ground the party before things get complicated.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-2">~60 min</div><div class="timeline-text"><strong>Act 2 — The Council Meeting.</strong> Fully scripted. House Vael lumber offer, Green Covenant rumors, pickpocket window. <em>Goal: plant every thread that pulls them to Lumencrest.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-3">~30 min</div><div class="timeline-text"><strong>Act 3 — Planning.</strong> Party digests info. Basil reveals the heist (or hints). All three realize they're going the same direction. <em>Goal: let players drive the Lumencrest decision themselves.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-4">~45 min</div><div class="timeline-text"><strong>Act 4 — The Road.</strong> One encounter — thugs (road) or shard bear (grove path). First real dice moment. <em>Goal: memorable first combat that shows the Daggerheart system.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-5">~10 min</div><div class="timeline-text"><strong>Session End — The Plateau.</strong> First view of Lumencrest at night. End on wonder and the faint flicker. <em>Goal: leave them desperate for Session 2.</em></div></div>
+      </div>
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p><strong>If you're behind:</strong> cut Act 3 planning short — Basil just announces they're all going to Lumencrest and moves on. The plateau ending is non-negotiable. That image is the session's entire emotional payoff.</p></div>
+    </div>
+  </div>
+
+  <!-- ══ ACT 1 ══ -->
+  <div class="section" id="act1" data-cat="open">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">🌲</div>
+      <div style="flex:1;"><div class="section-label">Act 1 — Ember Grove at Dawn</div><div class="section-sub">Opening scene · Character intros · Thorn sends them to the meeting</div></div>
+      <span class="section-pill" style="background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);">~40 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Opening narration</div>
+      <p>"Gold Month in the Central Heartlands. Early morning, the kind where you can still see your breath. The Ember Grove is five hundred acres of ancient oak, ash, and beech — some of these trees were old when your grandparents' grandparents were born. The air smells like turned earth and the sweet-sharp edge of autumn. The leaves are changing: amber, rust, gold. Some say the Grove holds that color year-round, even in spring. If you've lived here long enough, you believe it. The Heart Stone at the grove's center is warm to the touch — has been for two years now, though Thorn hasn't said what he thinks it means."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Ask Tara first</div><p>Before describing anything else, turn to Tara: <em>"Greer — you've been here twenty-five years. It's a normal morning before a council meeting. What does your routine look like? What do you do first when you wake up?"</em> Let her answer. Whatever she says is true. Her details become the grove's details. Don't correct or redirect — just add to it.</p></div>
+
+      <div class="ref-box"><div class="ref-title">Sensory details to layer in during Greer's scene</div>
+      <ul>
+        <li><strong>Crows:</strong> Louder than usual this week. Six or seven where there'd usually be two. Greer would notice this — it's a signal. Don't explain what it means yet.</li>
+        <li><strong>Heart Stone:</strong> Warm when she does her morning offering. Not hotter than usual. Just… warm. Present. Like it's paying attention.</li>
+        <li><strong>The spirit web:</strong> Quiet in a specific way. Not absent — watchful. Like the forest is holding its breath. She's felt this for eight years and it still sets something off in the back of her instincts.</li>
+        <li><strong>Gold Month feel:</strong> Harvest season smell. The Emberfork river is low and brown, running fast from last week's rains. Somewhere in Emberford, Bess is already baking.</li>
+      </ul></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Act 1 Opening</div>
+      <ul>
+        <li><a href="fear_options.html#fs-a1-crows"><strong>The crows all scatter at once</strong></a> — between one breath and the next, all gone. Something crossed the eastern spirit boundary. No visible threat. Just the absence where the birds were. Thorn notices from across the grove and says nothing.</li>
+        <li><a href="fear_options.html#fs-a1-heartstone"><strong>The Heart Stone pulses once</strong></a> — warm becomes briefly hot under Greer's hand, then settles. It has never done that before in her presence. Thorn looks at it for a long moment, then turns and walks toward Emberford.</li>
+        <li><a href="fear_options.html#fs-a1-lurielle"><strong>Lurielle's bioluminescence flickers involuntarily</strong></a> — she's been near the Stone taking notes. The Faerie-Ribbet heritage responds to something in its energy. She claps her hand over her arm, embarrassed. She makes a note before she covers it.</li>
+      </ul>
+      <div class="fear-note">Use one at most during Act 1. These are mood tools, not threats. Save your Fear economy for the council meeting.</div></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Introducing Lurielle</div>
+      <p>"Lurielle — you arrived at the Ember Grove about two weeks ago, after a long road from the Endless Eye through Highpass and Greenhollow. Thorn Oakwise said almost nothing when you turned up. He gave you a dry place to sleep and twelve words total, all of them precise. You've been spending your mornings sitting near the Heart Stone with your journal, trying to describe what you're feeling in academic language and finding that it keeps failing you. The trees here feel aware in a way no book prepared you for. It's morning. What are you doing right now?"</p></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Introducing Basil</div>
+      <p>"Basil — you're not a forest person. You've been here three days, which is two days longer than you planned. You told Greer and Lurielle you're passing through on the way to Lumencrest — a vague kind of truth. You've spent two mornings watching the road from Emberford and this morning a traveler mentioned that a representative from a Lumencrest noble house arrived yesterday for today's council meeting. You don't know which house yet. That information made this detour worth it. What are you doing right now?"</p></div>
+
+      <div class="tip-box"><span class="tip-icon">🌿</span><p>Give each player <strong>one small moment</strong> before Thorn appears. About 5 minutes each. No dice needed — this is pure character establishment. Then Thorn is the natural transition to the council.</p></div>
+
+      <hr class="divider">
+
+      <div class="thorn-say">
+        <div class="tag">🌿 Thorn Oakwise — Calling Greer to the Meeting</div>
+        <span class="voice-guide">Voice: Still. Not cold, not warm — present. Short sentences. Let silence sit after each one. Do not fill the pause. He never rushes and never repeats himself.</span>
+        <p>"Greer."</p>
+        <div class="note">He waits for her to turn. Not impatiently — he just waits. Then:</div>
+        <p>"The council meeting is this morning. Emberford asked for druid presence. You'll come."</p>
+        <div class="note">A pause. He glances at Basil and Lurielle without any particular expression — assessing, not dismissing. Then, as an afterthought:</div>
+        <p>"If your companions want to hear, the hall is open."</p>
+        <div class="note">He's already walking toward Emberford before the sentence is finished. He doesn't check if they follow. He assumed they would.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACT 2 — COUNCIL MEETING ══ -->
+  <div class="section" id="council" data-cat="council">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">🏛️</div>
+      <div style="flex:1;"><div class="section-label">Act 2 — The Council Meeting (Full Script)</div><div class="section-sub">Fully scripted · NPC introductions · Dialogue options · Fear windows</div></div>
+      <span class="section-pill" style="background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);">~60 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <!-- ARRIVING -->
+      <div class="gm-say"><div class="tag">GM Say — Arriving at the Council Hall</div>
+      <p>"The Emberford council hall is a long timber building on the east square — practical, not grand. You've passed it a hundred times. Inside: a horseshoe of a dozen chairs, the ceiling low enough that the room feels full even with only fifteen people in it. Morning light comes in sideways from two high windows. It smells of old wood and the particular staleness of a room used for serious conversations. Several Emberford elders are already seated. Thorn takes a chair at the far end without being invited and without ceremony — he has been attending these meetings for thirty years. And near the middle of the horseshoe, someone who wasn't here yesterday: a young man, early twenties, human, in travel clothes that fit too well to be practical. A small pin at his collar — a sigil. Two-toned. A name you might recognize or might not yet."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — What the sigil is</div><p>The Vael house sigil: a silver tower on black. Anyone who has had dealings with Lumencrest nobility or merchant politics would recognize it (Greer — Instinct DIF 12 from Covenant briefings; Lurielle — Knowledge DIF 11 from Endless Eye merchant intelligence; Basil — automatic, he came here for exactly this reason). Don't make them roll unless they specifically examine it. It's there if they look.</p></div>
+
+      <!-- ELDER MARTA INTRO -->
+      <div class="gm-say"><div class="tag">GM Say — Introducing Elder Marta Dawnbrook</div>
+      <p>"At the head of the horseshoe, Elder Marta Dawnbrook — you've all seen her around Emberford. Sixty-something, iron-grey hair pulled back, the kind of face that has made ten thousand practical decisions and shows it. She's reviewing notes on a piece of paper and doesn't look up immediately when you come in. When she does, she nods at Thorn and finds seats with her eyes for the newcomers. Not welcoming exactly — acknowledging. There's a difference."</p></div>
+
+      <!-- BEAT 1 — OPENING -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 1: Routine Business —</div>
+
+      <div class="npc-say"><div class="tag">Elder Marta Dawnbrook — Opening the meeting</div>
+      <p>"Right. Let's get through this. We have the bridge repair estimate — again — which I'll summarize as 'more than we have and less than we need.' The ford toll has been up four percent since Bloommonth which helps. Harvest reports from the east farms are in — Aldric?"</p>
+      <div class="note">An older man at the far end — Aldric from the Grove, the community-facing druid — gives a short positive summary. Good yield. Grove herbs doing well. The mood in the room is routine, slightly tired. This is a town that has had these meetings for forty years.</div></div>
+
+      <div class="npc-say"><div class="tag">Elder Marta — raising the Green Covenant rumors</div>
+      <p>"Before we get to the main business — Bren, you had something."</p>
+      <div class="note">A farmer at the back, Bren Ashfield — weathered, 50s, the kind of man who doesn't speak at councils unless something is bothering him enough that he can't sleep — stands up.</div></div>
+
+      <div class="npc-say"><div class="tag">Bren Ashfield — the worried farmer</div>
+      <p>"Three men from the western logging crew came back last week without their equipment. Wouldn't say what happened. Just said they weren't going back. And I heard from my cousin in Greenwatch that there was a fire at a surveying camp two weeks ago on the Coppertown road — equipment, not people, but. There's talk of Green Covenant involvement. I want to know if the council knows anything."</p>
+      <div class="note">He sits down. The room is a little quieter. Elder Marta looks around the table. Several people look at Thorn. Thorn doesn't react.</div></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Player moment before Caelen speaks</div><p>This is the first player window. Greer may react to the Green Covenant mention — she has complicated feelings about the Thorns and will know these incidents are likely real. Lurielle may be noting everything. Basil is watching Caelen, who has not reacted yet. Give them 30 seconds of table reaction before Caelen speaks. Don't rush past this moment.</p></div>
+
+      <!-- BEAT 2 — CAELEN DISMISSES COVENANT -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 2: Caelen Dismisses the Rumors —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Introducing Caelen Vael (first impression)</div>
+      <p>"The young man in the good travel clothes leans forward slightly. Up close he's carefully put-together — not just the clothes, the posture, the way he holds his hands still on the table. He's been taught to present well, and he does. He has his father's cheekbones and none of his father's authority, though he's working on it. He speaks before being invited to, but not rudely — as if it's simply natural that he would speak next."</p></div>
+
+      <div class="npc-say"><div class="tag">Caelen Vael — dismissing the Covenant rumors</div>
+      <p>"If I may — these incidents come up every season near active logging operations. Fringe elements make noise. The Council of Lumens tracks Green Covenant activity closely and has seen no evidence of coordinated action in this region. If there were a real and present threat, I assure you I would not be here negotiating. I would be home."</p>
+      <div class="note">Polite smile. Certain without being aggressive about it. He has said some version of this before — it sounds prepared.</div></div>
+
+      <div class="npc-say"><div class="tag">Elder Marta — moving things along</div>
+      <p>"Noted. We'll take the precaution of informing the watchmen on the Coppertown road. Master Vael — shall we move to your proposal."</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — Caelen Dismisses the Rumors</div>
+      <ul>
+        <li><a href="fear_options.html#fs-c2-thorn"><strong>Thorn speaks — one word:</strong></a> "No." Then silence. Caelen looks at him. Thorn doesn't explain. The room gets slightly uncomfortable. Marta moves on before it has to be addressed.</li>
+        <li><a href="fear_options.html#fs-c2-council"><strong>A second council member visibly relaxes</strong></a> after Caelen's dismissal — one of Fen Crane's allies. Greer reads the room and realizes the vote on the lumber offer is closer than she thought. This is not good news.</li>
+      </ul></div>
+
+      <!-- BEAT 3 — THE LUMBER OFFER -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 3: The Lumber Offer —</div>
+
+      <div class="npc-say"><div class="tag">Caelen Vael — presenting the offer (stand up, pull out document)</div>
+      <p>"House Vael is seeking a timber rights agreement for the eastern managed woodland — not the grove, I want to be precise about that — the designated logging land adjacent to your eastern boundary. Fifty acres per year, managed rotation, reforestation clause included."</p>
+      <div class="note">He places a sealed document on the table in front of Marta. It's well-produced — heavy paper, wax seal, everything formal.</div>
+      <p>"The price offered is eighteen gold per acre annually. That's — I believe — significantly above the current regional rate. We would begin operations after Frostmonth, which gives your council time to review the terms. Eastern edge only. This is House Vael's final offer."</p>
+      <div class="note">That last sentence — "final offer" — lands with a small but deliberate weight. He knew it would. He's been told to say it exactly like that.</div></div>
+
+      <div class="gm-note"><div class="tag">GM Info — The number is real</div><p>18 gold per acre per year is genuinely generous — the going rate in the region is 10–12 gold. This is Emberford's bridge repair, plus the south road, plus a year of buffer. Marta knows it. Fen Crane definitely knows it. This is why it's dangerous.</p></div>
+
+      <div class="npc-say"><div class="tag">Fen Crane — the mill owner, supporting the offer (from his seat)</div>
+      <p>"That kind of money solves the bridge problem without the Accord subsidy we've been waiting on for fourteen months. I'm just saying it out loud."</p>
+      <div class="note">Nobody tells him to be quiet. A few people nod slightly. The economic reality of Emberford is in this room.</div></div>
+
+      <!-- BEAT 4 — THORN SPEAKS -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 4: Thorn Speaks —</div>
+
+      <div class="thorn-say">
+        <div class="tag">🌿 Thorn Oakwise — his one contribution to the meeting</div>
+        <span class="voice-guide">Voice: Quieter than usual. He doesn't lean forward. He speaks like he's reporting a fact that everyone in the room would already know if they were paying attention.</span>
+        <p>"The eastern edge borders the grove's spirit boundary."</p>
+        <div class="note">A pause long enough to feel deliberate.</div>
+        <p>"This isn't a timber question."</p>
+        <div class="note">He says nothing else. He doesn't look at Caelen. He looks at Marta. Then he looks at Greer. Then he looks at the table. The sentence is complete. He's done.</div>
+      </div>
+
+      <div class="npc-say"><div class="tag">Caelen Vael — responding to Thorn, perfectly smooth</div>
+      <p>"I have great respect for the grove's cultural significance to this community. The eastern boundary clause is specifically designed to avoid any encroachment on protected land. Our surveyors have mapped the spirit boundary as described by your druidic community and the designated area falls outside it entirely."</p>
+      <div class="note">He's prepared for Thorn. He knows exactly who Thorn is. That "your druidic community" has a slight quality — not dismissive, but categorizing. Filing. It's subtle and probably only Greer catches it.</div></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — After Thorn Speaks</div>
+      <ul>
+        <li><a href="fear_options.html#fs-c4-caelen-name"><strong>Caelen addresses Thorn by name</strong></a> — "Guardian Oakwise, I believe you'll find the survey satisfies your concerns." Thorn looks at him for a long moment. It's the first time Caelen has looked slightly less certain. He was briefed on Thorn specifically. That briefing is visible.</li>
+        <li><a href="fear_options.html#fs-c4-third-member"><strong>A third council member speaks up in favor</strong></a> — not just Fen Crane now. The room's lean is visible. Marta is controlling her expression carefully. Greer reads this as worse than she expected.</li>
+      </ul></div>
+
+      <!-- BEAT 5 — PLAYER QUESTIONS WINDOW -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 5: Questions — Player Window —</div>
+
+      <div class="gm-note"><div class="tag">GM Info — Player question window (important)</div><p>After Thorn speaks and Caelen responds, Elder Marta opens the floor briefly: <em>"The council will consider questions from those present before we move to deliberation."</em> This is the players' formal chance to speak. They are guests, not members — they can ask questions, not vote. Let them use this. Each character has things to probe.</p></div>
+
+      <div class="ref-box"><div class="ref-title">Questions players might ask — Caelen's scripted responses</div>
+
+        <div class="npc-say" style="margin-bottom:8px;"><div class="tag">If asked: "What does Lumencrest need the lumber for?"</div>
+        <p>"Infrastructure. The city is always growing — new residential districts, public works, the Accord infrastructure committee has several projects pending. Timber is a constant requirement."</p>
+        <div class="note">Vague. True as far as it goes. Changes subject if pushed further. He genuinely doesn't know about the ships.</div></div>
+
+        <div class="npc-say" style="margin-bottom:8px;"><div class="tag">If asked: "What happened at Timberfall?"</div>
+        <p>"Timberfall is a different situation entirely. Different agreements, different oversight, different time period. I'd encourage the council not to draw comparisons that aren't supported by the specifics."</p>
+        <div class="note">A tell. He's been briefed to deflect this exact comparison. The smoothness of the deflection is itself information.</div></div>
+
+        <div class="npc-say" style="margin-bottom:8px;"><div class="tag">If asked: "Why the eastern edge specifically?"</div>
+        <p>"Our surveyors identified it as the highest yield area in the designated zone that could be managed sustainably within a reforestation rotation. It's a practical decision, not a symbolic one."</p>
+        <div class="note">This is a lie of omission. The eastern edge is higher yield AND it's the closest approach to the grove's spirit boundary — the Unseen Guild wants to test how close they can get.</div></div>
+
+        <div class="npc-say" style="margin-bottom:8px;"><div class="tag">If asked: "Why is this a 'final offer' at the first meeting?"</div>
+        <p>"House Vael has been in discussion with Emberford through intermediaries for several months. This is not a first meeting — this is the formal conclusion of that process. The terms are generous and the timeline is fair. We have other options if this community isn't interested."</p>
+        <div class="note">That last sentence is mild pressure. He says it pleasantly. It lands anyway.</div></div>
+
+        <div class="npc-say" style="margin-bottom:8px;"><div class="tag">If asked about the Green Covenant (again, directly)</div>
+        <p>"I've addressed this. The Council of Lumens monitors Green Covenant activity. There is no credible threat in this region."</p>
+        <div class="note">Shorter this time. Slightly less patient. He doesn't like this topic.</div></div>
+
+      </div>
+
+      <!-- BEAT 6 — GREER SPEAKS -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 6: Greer's Moment —</div>
+
+      <div class="gm-note"><div class="tag">GM Info — Prompt Greer specifically</div><p>After the question window, look directly at Tara: <em>"Greer — you've watched this exact conversation happen before, in a different town, fifteen years before Goldwood fell. Thorn is looking at you. Does Greer say anything?"</em> Give her space to respond. Whatever she says, Marta listens. Marta is looking for a reason to say no that the economic faction will accept. Greer may be that reason — or may plant that seed for later.</p></div>
+
+      <div class="ref-box"><div class="ref-title">Possible Greer moves and how the room reacts</div>
+      <ul>
+        <li><strong>She names Goldwood directly:</strong> Caelen deflects smoothly. But two council members who've never heard the specifics are now thinking about it. Marta writes something down.</li>
+        <li><strong>She describes what the spirit boundary actually means:</strong> This is the most credible thing she can say in this room — she's the druid, this is her expertise. Even Fen Crane goes quiet. Caelen pivots to "our surveys respected the boundary," which sounds thinner now.</li>
+        <li><strong>She asks to see the survey:</strong> Caelen offers to provide it within the week. This is a delay tactic. The offer expires in a week. He knows she knows this.</li>
+        <li><strong>She says nothing:</strong> Also valid. Thorn nods once, almost imperceptibly, as if that was the correct choice and he's confirming it. There are battles not fought in the council hall.</li>
+      </ul></div>
+
+      <!-- BEAT 7 — DEFERRAL AND CLOSE -->
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Meeting Beat 7: Council Defers —</div>
+
+      <div class="npc-say"><div class="tag">Elder Marta Dawnbrook — closing the meeting</div>
+      <p>"The council will take the proposal under consideration. One week, as offered, to review the documentation. Master Vael, we'll send word to your accommodation by the end of Goldmonth."</p>
+      <div class="note">A pause. She looks at Caelen with the expression of someone who has spent forty years reading rooms.</div>
+      <p>"We appreciate House Vael's interest in Emberford's development. We take our obligations to all our neighbors seriously — including the grove."</p>
+      <div class="note">That last sentence is for Thorn. He doesn't acknowledge it but he heard it. Marta is telling him she hasn't decided yet, but she hasn't forgotten what Goldwood was either. The meeting is over. People begin to stand.</div></div>
+
+      <!-- PICKPOCKET WINDOW -->
+      <hr class="divider">
+      <div class="danger-note"><div class="tag">⚠️ The Pickpocket Window — Right Now</div>
+      <p>As people stand and mill, Caelen moves to retrieve his traveling satchel from the small side table where he left it. He sets it down to shake Fen Crane's hand — Fen approached him immediately, wanting to talk privately. The satchel is unattended for roughly 30 seconds. Basil will see this. Finesse vs. DIF 14.</p></div>
+
+      <div class="outcome-grid">
+        <div class="outcome-card outcome-fail"><div class="oc-label">Failure</div><div class="oc-desc">Caelen's guard — who was standing near the door, easy to overlook — steps in front of Basil. Not aggressive. Just present. "Help you with something?" No letter. But now Caelen knows someone tried.</div></div>
+        <div class="outcome-card outcome-partial"><div class="oc-label">Partial</div><div class="oc-desc">Gets the letter. Caelen pats his bag a minute later and frowns slightly. He doesn't make a scene. He thinks about it on the road. He'll be more careful — and more suspicious of the party.</div></div>
+        <div class="outcome-card outcome-success"><div class="oc-label">Full Success</div><div class="oc-desc">Clean lift. The letter AND a folded schedule card. Caelen notices nothing. Basil has the heist timing and the Guild evidence. Everything he came for.</div></div>
+      </div>
+
+      <div class="ref-box"><div class="ref-title">What's in the letter (full success only — read to Basil's player privately)</div>
+      <p>Two items. First: a fragment of correspondence on Vael house paper referencing lumber shipments routed to Verdean shipyards — ships for <em>"refugee transit operations, Phase 2."</em> Signed with the Vael seal and a second mark: <strong>an eye with no pupil.</strong> <span class="lore-pill">🔍 Unseen Guild</span></p>
+      <p style="margin-top:8px;">Second: a small folded schedule card — Caelen's personal itinerary for Lumencrest. The relevant entry reads: <em>"RC handoff — Goldmonth 14, mid-afternoon. Courtyard entrance. Confirm with V."</em> RC = Radiant Core. This is a courier handoff appointment — the moment Caelen transfers the House Vael diplomatic pouch to a contact inside the Core. It names neither the contact nor the pouch's contents, but it gives Basil exactly what he needs: <strong>a date, a district, and a window.</strong> The heist is not a chaotic grab — it's a precision intercept of the pouch during or just after that handoff, in plain sight, no noise. This is the kind of job Sage could never pull off. That's the point.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Council Meeting (use 1–2 total)</div>
+      <ul>
+        <li><a href="fear_options.html#fs-pp-guard"><strong>Before the pickpocket moment:</strong></a> Caelen's guard drifts slightly closer to the satchel, as if on instinct. Basil must roll at disadvantage OR wait and risk the window closing as Caelen retrieves the bag.</li>
+        <li><a href="fear_options.html#fs-pp-greer"><strong>During the questions window:</strong></a> A council member asks Greer directly whether she thinks the grove is threatened — and Caelen is watching her answer with very careful attention. He's assessing how much local resistance he'll need to manage back in Lumencrest.</li>
+        <li><a href="fear_options.html#fs-pp-exit"><strong>Caelen's exit:</strong></a> As he leaves, he pauses at the door and looks directly at Basil for just a moment — no expression, just a look. Then he's gone. He noticed something. Maybe just Basil's posture. Maybe something else.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ NPCS ══ -->
+  <div class="section" data-cat="npc">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">👤</div>
+      <div style="flex:1;"><div class="section-label">NPCs — Full Profiles</div><div class="section-sub">Thorn · Caelen · Marta · full voice and secret notes</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">Reference</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="npc-card">
+        <div class="npc-name">Thorn Oakwise</div>
+        <div class="npc-role">Guardian of Ember Grove · Human · Mid-fifties · He/him</div>
+        <div class="npc-voice">🎭 Deliver every line as if it has been considered for a long time before being spoken. Short. Definitive. He never hedges or qualifies. Long silences are part of his communication — do not fill them. Think: someone so completely present that small talk would feel like an insult to the moment.</div>
+        <p>Thorn has lived in the Ember Grove for decades. He was chosen by the previous guardian after two years of observation. He still applies that same unhurried attention to everything and everyone. He began Greer's formal druidic training after another long period of watching — not because he doubted her, but because certainty was the only basis he works from. He does not do things quickly.</p>
+        <p style="margin-top:6px;">He is not warm in a social sense. He is <em>present</em> — fully there in every conversation, which can feel like warmth if you're used to people being elsewhere in their heads. The Grove is his community. The trees are his constituency. He sent Greer to Lumencrest because he cannot go himself and because she is ready, though he will not say this until pressed, and even then only once.</p>
+        <div class="npc-secret">GM only: Thorn lost an earlier grove — before he came to Ember Grove — to logging thirty years ago. He understands the anger that creates Thorns members. He is choosing something harder than that anger. He has not spoken of this to anyone at Ember Grove and will not.</div>
+      </div>
+
+      <div class="thorn-say">
+        <div class="tag">🌿 Thorn — After the meeting, alone with Greer</div>
+        <span class="voice-guide">Quieter than usual. Standing at the grove's edge, not looking at her. Like he's telling her something the trees already know.</span>
+        <p>"The eastern edge offer. Timberfall heard the same terms, fifteen years before Goldwood fell. The price kept going up. The protections kept getting renegotiated."</p>
+        <div class="note">He looks at her.</div>
+        <p>"Watch the people around the Vael name. Not what they want from the grove. Where what they take goes next."</p>
+        <div class="note">Done. He turns back to the grove. The conversation is over.</div>
+      </div>
+
+      <div class="thorn-say">
+        <div class="tag">🌿 Thorn — If asked "Why aren't you going to Lumencrest?"</div>
+        <span class="voice-guide">The closest he gets to something like regret. Still flat delivery. This one costs him something small.</span>
+        <p>"The grove needs a guardian. I'm the guardian."</p>
+        <div class="note">Long pause. Then:</div>
+        <p>"You've been ready for longer than you think, Greer."</p>
+        <div class="note">That's the most he will say about this. Do not make him say more. The silence after it is the point.</div>
+      </div>
+
+      <div class="thorn-say">
+        <div class="tag">🌿 Thorn — If asked about the Heart Stone</div>
+        <span class="voice-guide">Still thinking. This is the one topic where he pauses longer than usual.</span>
+        <p>"It's been warm for two years. Something in the spirit layer is paying attention to this place."</p>
+        <div class="note">If pushed for more:</div>
+        <p>"When I know what, I'll tell you."</p>
+        <div class="note">He means this completely literally. He is not withholding. He genuinely isn't done thinking yet.</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="npc-card">
+        <div class="npc-name">Caelen Vael</div>
+        <div class="npc-role">Youngest Vael sibling · House Representative · Human · Early 20s · He/him</div>
+        <div class="npc-voice">🎭 Polished but not cruel. He's been trained to be the pleasant face in rooms. Reasonable tone, slight smile that never fully reaches his eyes when he's managing a situation. He agrees to disagree without ever seeming cornered. When caught off-guard, the pleasantness slips for just a second — and he notices that you noticed, and recovers.</div>
+        <p>The one who gets sent on errands. Capable enough to represent House Vael without being trusted with decisions that actually matter. He knows this about his position and he's not bitter about it yet. He was told the terms, told not to accept less, and handed a bag with a letter he hasn't read carefully enough to understand.</p>
+        <div class="npc-secret">GM only: He doesn't know what the lumber is really for. He doesn't know about the ships or the refugees. He was handed a proposal and a letter to deliver to a Lumencrest contact. If the party ever confronted him with the full truth of what he's facilitating, his reaction would be genuine shock — and then a very rapid calculation about what it means for his family and himself.</div>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Elder Marta Dawnbrook</div>
+        <div class="npc-role">Emberford Council Head · Human · Early 60s · She/her</div>
+        <div class="npc-voice">🎭 Practical. Has made ten thousand hard decisions and looks it. Doesn't waste words. Genuinely conflicted about the Vael offer and will show it to anyone who engages her honestly after the meeting — she doesn't pretend otherwise to people she respects.</div>
+        <p>Not corrupt. She knows the Vael offer is the kind of money that solves real problems for real people in this town. She also knows what happened to Timberfall. She is hoping someone gives her a reason to say no that the economic faction will accept. The players, if they engage her after the meeting, may be that reason.</p>
+        <p style="margin-top:6px;"><em>If approached after the meeting, privately:</em> "The bridge needs fixing. The south road is half mud. I know what happened to Timberfall. I also know what happens to a town that can't maintain its infrastructure. Someone has to live in both of those realities at once and right now that's me."</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACT 3 ══ -->
+  <div class="section" data-cat="open">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--teal-bg);color:var(--teal-text);">🎯</div>
+      <div style="flex:1;"><div class="section-label">Act 3 — After the Meeting</div><div class="section-sub">Party converges · Route decision · Basil reveals the heist frame</div></div>
+      <span class="section-pill" style="background:var(--teal-bg);color:var(--teal-text);border:1px solid rgba(58,152,152,0.3);">~30 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="gm-say"><div class="tag">GM Say — After the meeting disperses</div>
+      <p>"The council hall empties. Thorn is already gone — you saw him leave during Marta's closing words, moving toward the grove without ceremony. Caelen Vael and his guard are at the tavern across the square having a meal before heading east. You three are standing in the late morning sun with the same information in different shapes. What do you do?"</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Let them come to it</div><p>Don't push them toward Lumencrest. Each character already has a reason. Let them talk. If they stall: Lurielle raises the Endless Eye archive connection — she's been planning this trip anyway. If still stalled: Basil mentions he has a job in Lumencrest and could use capable company. The party doesn't need full mutual trust. They just need to be going the same direction.</p></div>
+
+      <div class="ref-box"><div class="ref-title">Each character's reason — fully visible now</div>
+      <ul>
+        <li><span class="player-tag tag-druid">🌿 Greer</span> — <strong>Thorn sent her.</strong> The Vael offer is Goldwood again. The spiritual quiet has a source and it's west, toward the city with the failing lights.</li>
+        <li><span class="player-tag tag-wizard">✨ Lurielle</span> — <strong>The archives.</strong> She came from the Endless Eye for Lumencrest's academic records. The classified documents. Today just added political urgency to a trip already planned.</li>
+        <li><span class="player-tag tag-rogue">🗡️ Basil</span> — <strong>The heist.</strong> He was always going. The Vael name appearing here in this context confirms what he's stealing matters. Two capable companions are better than one rogue on an unfamiliar road.</li>
+      </ul></div>
+
+      <div class="ref-box"><div class="ref-title">The route choice</div>
+      <div class="path-grid">
+        <div class="path-card path-road">
+          <div class="path-label">🛤️ Road Route</div>
+          <p>Faster. Main trade road west through Coppertown. About 2 days. Caelen Vael is on this road. More people — more eyes. More potential trouble.</p>
+          <div class="path-tag">Encounter: Hired Thugs</div>
+        </div>
+        <div class="path-card path-grove">
+          <div class="path-label">🌲 Grove Route</div>
+          <p>Slower, quieter. Cuts through the spirit territory's edge and northern forest paths. Half a day longer. Almost no other travelers. Better for avoiding Caelen.</p>
+          <div class="path-tag">Encounter: Shard-Infected Bear</div>
+        </div>
+      </div></div>
+
+    </div>
+  </div>
+
+  <!-- ══ COMBAT PRIMER ══ -->
+  <div class="section" id="travel" data-cat="travel">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">⚔️</div>
+      <div style="flex:1;"><div class="section-label">Daggerheart Combat — First Session Reference</div><div class="section-sub">Read before either encounter · Core loop · Pacing notes</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">GM Primer</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="combat-primer">
+        <div class="combat-primer-title">⚔️ The Core Loop</div>
+        <div class="cp-flow">
+          <span class="cp-step">Players act first</span><span class="cp-arrow">→</span>
+          <span class="cp-step">Hope die + Fear die + stat</span><span class="cp-arrow">→</span>
+          <span class="cp-step">Check which die won</span><span class="cp-arrow">→</span>
+          <span class="cp-step">Spend Fear for enemy actions</span><span class="cp-arrow">→</span>
+          <span class="cp-step">Repeat</span>
+        </div>
+        <div class="cp-grid">
+          <div class="cp-item"><div class="cp-label">No Turn Order</div><p>No initiative. Players act, then you spend Fear to have enemies act. It's a rhythm, not a queue. Anyone acts when it makes narrative sense.</p></div>
+          <div class="cp-item"><div class="cp-label">Two Dice Always</div><p>Every roll: <strong>Hope die + Fear die + stat mod.</strong> Even on success, check which die was higher. Hope higher → player gains Hope. Fear higher → you gain Fear.</p></div>
+          <div class="cp-item"><div class="cp-label">Attack vs. DIF</div><p>Players roll to hit. Total ≥ enemy <strong>DIF</strong> = hit, roll damage. Weak enemies: <strong>12–13.</strong> Tough: <strong>14–16.</strong> Boss: <strong>17+.</strong></p></div>
+          <div class="cp-item"><div class="cp-label">Enemy Actions</div><p>Spend a Fear token → enemy acts. Announce it, describe it, deal damage. No roll for enemies — their attacks land unless a player does something active.</p></div>
+          <div class="cp-item"><div class="cp-label">Taking Damage</div><p>Player rolls Armor dice, subtracts from damage. Remainder hits HP. HP = 0 → Death Move roll. Fail = down, not dead.</p></div>
+          <div class="cp-item"><div class="cp-label">Hope Spends</div><p>Players spend Hope to: <strong>reroll one die, add +1d6 damage, or assist an ally (+1d6 to their roll for 1 Hope).</strong> Encourage assists — they create the best moments.</p></div>
+        </div>
+      </div>
+      <div class="ref-box"><div class="ref-title">First-session GM notes</div>
+      <ul>
+        <li><strong>Describe before rolling.</strong> Always ask "what are you doing?" first. Description shapes the stat — flanking = Finesse, direct charge = Strength, reading the enemy = Instinct.</li>
+        <li><strong>Make enemy actions feel like story.</strong> Not "8 damage." Say: "the scout's elbow catches you across the jaw — 8 damage, and you're pushed back toward the hedgerow."</li>
+        <li><strong>Use partial successes.</strong> A 7–11 range is a hit with a complication. The spell lands but Lurielle is off-balance. The stab works but Basil is now visible. These create the best moments.</li>
+        <li><strong>Spend Fear steadily.</strong> Hoarding it makes fights flat. Spend it for enemy actions, environmental escalations, and complicating moments. Your Fear economy IS the fight's heartbeat.</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- ══ ROAD ENCOUNTER ══ -->
+  <div class="section" data-cat="travel">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--fear-bg);color:var(--fear-text);">🛤️</div>
+      <div style="flex:1;"><div class="section-label">Road Route — Hired Thugs</div><div class="section-sub">Social or combat · Quick · Seeds Guild awareness of the party</div></div>
+      <span class="section-pill" style="background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);">Travel A</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="gm-say"><div class="tag">GM Say — Setting the encounter</div>
+      <p>"Early afternoon, a few hours out of Emberford. The road runs through mixed farmland and scattered copse. Three travelers are sitting on a fallen log ahead — big, unhurried, watching you come down the road in a way that has the specific quality of people who've decided something about you before you arrive. One stands up. 'Nice road,' he says. 'Toll's two silver each to use it.'"</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — What's happening</div><p>Guild-adjacent scouts testing the road for easy marks, loosely watching traffic near Caelen Vael. Not very dangerous. Will back down at real resistance. If they survive and get back to their Coppertown contact, they'll report "a rogue, a wizard, and a druid." This is how the Guild becomes aware of the party for Session 2.</p></div>
+
+      <div class="stat-block">
+        <div class="stat-block-name">Road Scouts (×3)</div>
+        <div class="stat-block-sub">Opportunistic · Will retreat if 2 go down · One is always the runner</div>
+        <div class="stat-row">
+          <div class="stat-chip"><strong>HP:</strong> 14 each</div>
+          <div class="stat-chip"><strong>Armor:</strong> 1d6</div>
+          <div class="stat-chip"><strong>DIF:</strong> 12</div>
+          <div class="stat-chip"><strong>Attack:</strong> 1d8+1</div>
+          <div class="stat-chip"><strong>Fear value:</strong> 1 each</div>
+        </div>
+        <p><strong>Retreat trigger:</strong> Two of three down, OR any single visually dramatic action (Lurielle's bioluminescence flaring, Greer shifting, Basil producing a Silverhand seal as a bluff).</p>
+        <p><strong>Social option:</strong> Presence vs. DIF 13. Success: they let the party pass. Partial: coin from two of them. Failure: annoyed, attack with +1d4 to first attack rolls.</p>
+      </div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Road Thugs</div>
+      <ul>
+        <li><a href="fear_options.html#fs-rt-scout"><strong>Fourth scout from the hedgerow</strong></a> — crossbow, 10 HP, DIF 12. Was waiting the whole time.</li>
+        <li><a href="fear_options.html#fs-rt-satchel"><strong>One grabs Lurielle's satchel</strong></a> — her research notes and road journal. Retreat toward tree line. Split attention or lose the bag.</li>
+        <li><a href="fear_options.html#fs-rt-runner"><strong>The runner bolts early</strong></a> — heading for the tree line. Agility DIF 13 to catch. If he gets away clean, the Guild knows about the party before they reach Lumencrest.</li>
+        <li><a href="fear_options.html#fs-rt-style"><strong>One recognizes Basil's fighting style</strong></a> — "You fight like someone who was taught to." A slow-burn complication. Note it.</li>
+      </ul>
+      <div class="fear-note">This fight should be 2–3 rounds. Quick and confident. Show the system, don't drain resources.</div></div>
+
+    </div>
+  </div>
+
+  <!-- ══ GROVE ENCOUNTER ══ -->
+  <div class="section" data-cat="travel">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">🐻</div>
+      <div style="flex:1;"><div class="section-label">Grove Route — Shard-Infected Bear</div><div class="section-sub">Harder · Emotionally weighted · Greer's defining moment</div></div>
+      <span class="section-pill" style="background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);">Travel B</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="gm-say"><div class="tag">GM Say — First warning</div>
+      <p>"Two hours into the forest path and the birds go quiet. Not gradually — all at once, between one step and the next. The silence has a texture to it. Greer, you've felt this kind of silence before. This isn't the watchful quiet of the grove's spirits. This is something else. Something wrong."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — For Greer only, whisper or pass a note</div><p>"The spirit web is fraying here. Not absent — fraying, like threads pulled too tight. There's an animal nearby carrying something in its body that isn't supposed to be there. Fused to its flesh. Its spirit is screaming. In the Path of Spirits, this is a messenger in suffering — not a monster, a message. Something has changed in this territory. You want to understand it before you fight it."</p></div>
+
+      <div class="stat-block">
+        <div class="stat-block-name">Shard-Infected Black Bear</div>
+        <div class="stat-block-sub">Transformed · Spirit in agony · Not evil · Cannot be fully tamed</div>
+        <div class="stat-row">
+          <div class="stat-chip"><strong>HP:</strong> 32</div>
+          <div class="stat-chip"><strong>Armor:</strong> 1d8</div>
+          <div class="stat-chip"><strong>DIF:</strong> 14</div>
+          <div class="stat-chip"><strong>Claw:</strong> 2d6+2</div>
+          <div class="stat-chip"><strong>Shard Pulse:</strong> 1d10 force, 10ft</div>
+          <div class="stat-chip"><strong>Fear value:</strong> 2</div>
+        </div>
+        <p><strong>Tame attempt (Greer):</strong> Instinct DIF 16 — shard interference makes it harder. <em>Success:</em> she reaches the bear's spirit. It stills. She can release it mercifully — Path of Spirits mercy kill earns +1 Hope. <em>Partial:</em> Bear pauses one round then the shard pulses. <em>Fail:</em> Bear rage-spikes, +2 to all attacks this round.</p>
+        <p><strong>Shard Pulse:</strong> Triggered on a Fear spend. Involuntary. The bear is also hurt by it. It glows briefly — <strong>blue-white.</strong> Lurielle rolls Knowledge DIF 13 to identify: Endless Eye-origin shard material. Her classified documents, manifesting in a bear on a forest path.</p>
+      </div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Shard Bear</div>
+      <ul>
+        <li><a href="fear_options.html#fs-sb-pulse"><strong>Shard Pulse triggers</strong></a> — 1d10 force to anyone in 10ft. The fragment glows. Lurielle's Knowledge roll window.</li>
+        <li><a href="fear_options.html#fs-sb-lurielle"><strong>Bear targets Lurielle specifically</strong></a> — her Hollowstar-adjacent heritage is resonating with the fragment. Her bioluminescence flickers involuntarily. The bear cannot help what it's doing.</li>
+        <li><a href="fear_options.html#fs-sb-fragment"><strong>A second fragment on the ground</strong></a> — dislodged from nearby, not from the bear. Someone transported shard material through here recently. Still warm. Still glowing.</li>
+        <li><a href="fear_options.html#fs-sb-greer"><strong>Bear strikes Greer mid-taming</strong></a> — she's open. Claw attack, armor doesn't fully mitigate. This one hurts.</li>
+      </ul>
+      <div class="fear-note">This fight is harder and sadder than the thugs. Pace Fear to match HP. If they're struggling, ease off and let Greer's tame succeed. The bear dying well matters more than difficulty.</div></div>
+
+      <div class="tip-box"><span class="tip-icon">🐻</span><p>After the bear ends — give them a quiet moment. If Greer does the Path of Spirits acknowledgment, describe the forest shifting slightly, like the watching-quiet became something closer to gratitude. Don't over-explain. Just note it and move on.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ SESSION END ══ -->
+  <div class="section" data-cat="open">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">🌆</div>
+      <div style="flex:1;"><div class="section-label">Session End — The Plateau</div><div class="section-sub">First view of Lumencrest · End on wonder · Do not over-explain</div></div>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">~10 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Read this slowly. Pause on the ellipses.</div>
+      <p>"Late evening. The road crests a ridge — and the view opens up. You've been in forest and farmland for hours. And now, spread below you, is Lumencrest. Eighty thousand people. The largest city on the continent. And it glows. Not from torches or hearthfires — from the Lumen Network, the cable system that runs off the Hollostar buried beneath the Vault District at the city's heart. From here, at night, it looks like someone dropped a handful of stars and they just... stayed. Warm amber and white light threading through every district. Cable cars moving between towers like slow fireflies. And if you look closely — if you know what to look for — some of the lights in the outer districts flicker. Not constantly. Just occasionally. Just enough to notice, if you're paying attention."</p></div>
+
+      <div class="handout"><div class="handout-title">What each character feels — say these one at a time</div>
+      <p>Greer: The spiritual quiet you've felt for eight years is coming from that glow. Something enormous is paying attention, and it lives under that city. — Lurielle: Every reclassified document, every strange thing you watched happen to the Endless Eye's light, is connected to that city. The answer is down there. — Basil: Somewhere in those lights is the Silverhand estate, and a sealed diplomatic pouch that will prove you are the best person in your family for the job that actually matters.</p></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Final line. Stop here. Don't add anything.</div>
+      <p>"You stand there for a moment longer than you need to. Then someone takes the first step down the hill. We'll pick up here next session."</p></div>
+
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p>Do not explain the flickering. Do not name what they should feel. <strong>Let the image do it.</strong> Wonder mixed with something that isn't quite foreboding. That's the tone the whole campaign lives in. End the session the moment you finish the last line.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ QUICK REF ══ -->
+  <div class="quick-ref">
+    <div class="quick-ref-title">⚡ GM Cheat Sheet</div>
+    <div class="stat-grid">
+      <div class="stat-item"><strong>Date:</strong> Gold Month 8, 700 AR</div>
+      <div class="stat-item"><strong>Heart Stone:</strong> Warm 2 years. Pulsed 3× this moon.</div>
+      <div class="stat-item"><strong>Caelen Vael:</strong> Youngest sibling. Doesn't know what lumber is for.</div>
+      <div class="stat-item"><strong>Pickpocket DIF:</strong> 14 Finesse. Guard near satchel = disadvantage.</div>
+      <div class="stat-item"><strong>Letter contents:</strong> Vael + Verdean + Unseen Guild eye sigil.</div>
+      <div class="stat-item"><strong>Thugs DIF:</strong> 12 · 14 HP · retreat at 2 down</div>
+      <div class="stat-item"><strong>Bear DIF:</strong> 14 · 32 HP · Tame DIF 16 Instinct</div>
+      <div class="stat-item"><strong>Bear pulse:</strong> 1d10 force 10ft on Fear spend</div>
+      <div class="stat-item"><strong>Bear fragment:</strong> Endless Eye origin · Knowledge DIF 13</div>
+      <div class="stat-item"><strong>Daggerheart roll:</strong> Hope d12 + Fear d12 + stat</div>
+      <div class="stat-item"><strong>Enemy attacks:</strong> Spend Fear token → deal damage</div>
+      <div class="stat-item"><strong>Assist:</strong> 1 Hope → +1d6 to ally roll</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "selected": 0,
+  "preview": "0",
+  "items": [
+    {
+      "name": "export set",
+      "outputFolder": "output",
+      "exportQuery": "blog",
+      "emptyTargetFolder": false,
+      "emptyTargetFolderIgnore": "",
+      "isPublishedField": "",
+      "assetPath": "assets",
+      "outputFormat": "${blog}/${slug}",
+      "lastExport": {},
+      "shell": "",
+      "headerFieldsToShow": [],
+      "groupOpenMap": {},
+      "absoluteAssets": false,
+      "preserveWikiLinks": true,
+      "normalizeSpacesInLinks": false,
+      "keepLinksNotFound": false,
+      "keepLinksPrivate": false,
+      "keepOriginalAttachmentFileNames": false,
+      "keepWikiLinksAsIs": false
+    },
+    {
+      "name": "export set Copy",
+      "outputFolder": "output",
+      "exportQuery": "blog",
+      "emptyTargetFolder": false,
+      "emptyTargetFolderIgnore": "",
+      "isPublishedField": "",
+      "assetPath": "assets",
+      "outputFormat": "${blog}/${slug}",
+      "lastExport": {},
+      "shell": "",
+      "headerFieldsToShow": [],
+      "groupOpenMap": {},
+      "absoluteAssets": false,
+      "preserveWikiLinks": true,
+      "normalizeSpacesInLinks": false,
+      "keepLinksNotFound": false,
+      "keepLinksPrivate": false,
+      "keepOriginalAttachmentFileNames": false,
+      "keepWikiLinksAsIs": false
+    }
+  ]
+}
