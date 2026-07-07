@@ -93,6 +93,222 @@
 
 ---
 
+## EMBERFORD & EMBER GROVE
+
+*A river town of four thousand with a five-hundred-acre sacred forest at its northern edge. Session 1 (Gold Month 8, 700 AR) made this place the campaign's starting pressure point — House Vael's timber offer, Thorn's warning, and the party's road to Lumencrest. NPCs here reveal what happens when Accord economics meet Path of Spirits protection.*
+
+→ Run-time detail (menus, gossip, prices): `gm_sessions_site/emberford.html`  
+→ Session beats: [[08_GM_Notes/Sessions/Session_01_Ember_Grove|Session 1 Notes]]
+
+---
+
+### Thorn Oakwise
+**Role:** Guardian of Ember Grove · Path of Spirits druid  
+**Ancestry/Age:** Human, mid-fifties · He/him  
+**Location:** Ember Grove year-round; council meetings in Emberford
+
+**Appearance:** Moves like someone who has been still for so long that motion is deliberate. Doesn't lean forward when he speaks.
+
+**Personality:** Not warm in a social sense — *present*. Short sentences. Long silences are communication. Never hedges. Certainty is the only basis he works from.
+
+**Goals:** Protect the grove's spirit boundary; train Greer; understand Heart Stone changes without rushing to conclusions
+
+**Secret:** Lost an earlier grove to logging thirty years ago. Understands Thorns anger but chooses a harder path. Has not spoken of this at Ember Grove.
+
+**Voice:** Deliver every line as if considered for a long time. Do not fill silences.
+
+**Quote:** *"The eastern edge borders the grove's spirit boundary. This isn't a timber question."*
+
+**Hook:** Sent Greer to Lumencrest — watch Vael operations, find where timber profits go beyond the grove
+
+---
+
+### Caelen Vael
+**Role:** Youngest Vael sibling · House Vael representative to Emberford council  
+**Ancestry/Age:** Human, early 20s · He/him  
+**Location:** Traveling; Session 1 at Emberflow Arms (River Room), then road to Lumencrest
+
+**Appearance:** Travel clothes too well-fitted to be practical. Vael sigil pin — silver tower on black. Father's cheekbones, none of father's authority.
+
+**Personality:** Polished pleasant face. Reasonable tone, slight smile that doesn't reach eyes when managing. Recovers fast when caught off-guard.
+
+**Goals:** Deliver lumber offer on House terms; hand off diplomatic materials in Lumencrest (Gold Month 14 RC handoff)
+
+**Secret:** Doesn't know lumber funds Verdean refugee ships or Unseen Guild operations. Genuine shock if confronted with full truth — then rapid self-preservation calculation.
+
+**What he reveals:** House Vael briefs representatives on local druid resistance by name. "Final offer" language is scripted.
+
+**Quote:** *"House Vael has been in discussion with Emberford through intermediaries for several months. This is the formal conclusion."*
+
+**Hook:** Pickpocket window at council; schedule card reveals heist timing. See [[02_Regions/Central_Heartlands/Locations/Cities/Lumencrest/House_Vael_And_The_Unseen_Guild|House Vael & Unseen Guild]] (GM)
+
+---
+
+### Elder Marta Dawnbrook
+**Role:** Emberford Council head  
+**Ancestry/Age:** Human, early 60s · She/her  
+**Location:** Council hall, east square
+
+**Appearance:** Iron-grey hair pulled back. Face of ten thousand practical decisions.
+
+**Personality:** Doesn't waste words. Genuinely conflicted about Vael offer — will show it to people she respects after the meeting.
+
+**Goals:** Fix bridge and south road without repeating Timberfall; find reason to reject offer that economic faction will accept
+
+**Secret:** None corrupt — she lives in both economic reality and Timberfall memory simultaneously.
+
+**Quote:** *"The bridge needs fixing. The south road is half mud. I know what happened to Timberfall. I also know what happens to a town that can't maintain its infrastructure."*
+
+**Hook:** Players who engage honestly after council may become her reason to say no
+
+---
+
+### Bess Hollowell
+**Role:** Innkeeper, The Emberflow Arms  
+**Ancestry/Age:** Human, 47 · She/her · Third-generation owner
+
+**Appearance:** Forties, restocking shelves without looking up. Very good memory for who paid.
+
+**Personality:** Efficient, direct. Warm once she's decided you're all right. Answers in fewest words that work.
+
+**Goals:** Run the inn; know what happens in Emberford before anyone tells her
+
+**Secret:** Quietly hosts Green Covenant-adjacent travelers fifteen years — rooms, no names, coin only. Not a member; choice made watching her father deal with Lumencrest timber buyers.
+
+**Voice:** "Sitting or staying?" — without turning around.
+
+**Quote:** *(On Caelen Vael)* "Polite. Tipped well. Smelled like someone getting paid to be nice."
+
+**Hook:** Shares opinion after a drink and the right question; free tea for staying guests
+
+---
+
+### Fen Crane
+**Role:** Mill owner, Emberfork Mill · eldest Crane brother  
+**Ancestry/Age:** Human, 50 · He/him
+
+**Appearance:** Big hands. Permanently behind on accounts.
+
+**Personality:** Decent to workers. Genuinely wrong about what Vael offer means. Will argue if given chance — and has a point about town finances.
+
+**Goals:** Keep mill running; solve bridge/infrastructure via Vael money
+
+**Secret:** Financially pressured enough to be useful to House Vael without understanding supply chain.
+
+**Quote:** *"That kind of money solves the bridge problem without the Accord subsidy we've been waiting on for fourteen months."*
+
+**Hook:** Economic argument personified — not evil, missing larger picture
+
+---
+
+### Bren Ashfield
+**Role:** Farmer · council voice on Green Covenant incidents  
+**Ancestry/Age:** Human, 50s · He/him
+
+**Personality:** Speaks at council only when bothered enough to lose sleep.
+
+**Goals:** Protect community from logging violence and mysterious crew disappearances
+
+**Hook:** Raised Coppertown road fire and western logging crew equipment loss at Session 1 council
+
+---
+
+### Aldric
+**Role:** Grove practitioner · community-facing druid  
+**Ancestry/Age:** Human, 40s · He/him
+
+**Personality:** Friendly, social — warmth Thorn lacks. Runs seasonal ceremonies for Emberford residents.
+
+**Goals:** Bridge town and grove without Thorn's depth becoming public friction
+
+**Hook:** Harvest reports at council; positive yield, grove herbs doing well
+
+---
+
+### Wren
+**Role:** Young druid in training  
+**Ancestry/Age:** Faun, early 20s
+
+**Personality:** Nervous around new people. Remarkable with birds.
+
+**Goals:** Understand crow behavior anomaly — quietly alarmed for weeks
+
+**Hook:** Will discuss crows with Greer; tracks eastern boundary oddities
+
+---
+
+### Mira Ashford
+**Role:** General goods & bakery · east square  
+**Ancestry/Age:** Human, 55 · She/her
+
+**Appearance:** Iron-grey braid, permanent flour on hands.
+
+**Personality:** Cheerful, efficient. Quietly most important person in town — knows everyone's shopping habits and therefore life situations.
+
+**Goals:** "The price is the price" — no haggling, pleasantly absolute
+
+**Hook:** Supplies travelers; knows local gossip; bakes bread for Bess's inn
+
+---
+
+### Harn & Dena Stoneback
+**Role:** Blacksmiths, Stoneback Smithy  
+**Ancestry/Age:** Harn — Drakona male, 60s; Dena — human, his wife
+
+**Personality:** Harn communicates by nodding at work and shaking head. Dena translates into prices with long-practiced smile.
+
+**Goals:** Fair-priced weapons, tools, horseshoes, repairs
+
+**Hook:** Clang starts before dawn; hearable from east square
+
+---
+
+### Theo Copperpin
+**Role:** Tailor & leatherworks · east bank alley  
+**Ancestry/Age:** Human, 40s · He/him
+
+**Personality:** Precise, slightly theatrical, genuinely gifted. Critiques repair jobs; compliments taste on custom work.
+
+**Goals:** Boots and cloaks worthy of his opinion of himself
+
+**Secret:** Knew immediately Caelen's clothes were recent expensive Lumencrest work with Vael seal in lining — family, not mere house colors.
+
+**Hook:** Knows everything about visitors who needed new clothes
+
+---
+
+### Edda Marsh
+**Role:** Healer & herbalist · east bank  
+**Ancestry/Age:** Human, late 60s · She/her
+
+**Personality:** Moves slowly, sees everything. Doesn't charge those who can't pay. Honest medical opinions whether wanted or not.
+
+**Goals:** Treat town and grove-adjacent community; sliding scale justice
+
+**Secret:** Reports confused birds and absent deer near eastern woods — shard contamination (GM). Told Thorn; he already knew.
+
+**Hook:** Greer knows her well; advice free if you sit and describe honestly
+
+---
+
+### Aldous Penn
+**Role:** Hearthkeeper priest · Six-Fold Faith temple  
+**Ancestry/Age:** Human, 50s · He/him
+
+**Personality:** Broad hands. Says very little. Means all of it.
+
+**Location:** East square temple — small but well-kept
+
+---
+
+### Gorran
+**Role:** Bridge watchman · west end guard post  
+**Knows:** Timberfall cautionary tale; checks carts for stolen timber
+
+**Hook:** Gossip source on regional decline stories
+
+---
+
 ## KINGSREST
 
 *A city of 30,000 people who have chosen, deliberately and consciously, to be the opposite of Lumencrest. Where Lumencrest innovates and fails, Kingsrest preserves and endures. This is their story about themselves. Walking its white limestone streets, you feel the particular quiet of a city that believes tradition is protection — and is beginning to wonder if it's wrong.*

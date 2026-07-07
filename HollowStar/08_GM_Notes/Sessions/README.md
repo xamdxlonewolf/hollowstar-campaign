@@ -12,7 +12,7 @@ Prep notes for each played session. These are the **source documents** for build
 ## Naming
 
 ```
-Session_01_Ember_Grove.md
+Session_01_Ember_Grove.md   ← Session 1 (synced from gm_sessions_site)
 Session_02_Lumencrest_Arrival.md
 ```
 

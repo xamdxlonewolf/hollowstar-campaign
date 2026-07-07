@@ -34,6 +34,8 @@ She is the most dangerous person in Lumencrest. Not because she is cruel (though
 
 She could also be wrong. The experiments have a significant mortality rate. The transformation is not fully controllable. Several subjects who survived are being "contained" rather than utilized because their transformation produced something unpredictable. She is aware of all of this and has concluded that the data she's accumulating is worth the cost, and that the deaths are an inevitable research cost rather than a moral problem. She has been telling herself this for two years and she has not yet found a reason to stop.
 
+**Caelen Vael** (early 20s) — youngest sibling; sent on House errands (Emberford timber offer, Gold Month 700 AR). Polished representative, not trusted with decisions that matter. Briefed on local druid resistance including Thorn Oakwise by name. Carries correspondence he hasn't read carefully enough to understand (Verdean ships, Unseen Guild sigil). Does not know lumber's true purpose. See [[09_NPCs/Central_Heartlands/NPCs#Caelen Vael|Caelen Vael]] and [[08_GM_Notes/Sessions/Session_01_Ember_Grove|Session 1]].
+
 ---
 
 ### House Vael's Lumencrest Operations — Active Threads

@@ -6,6 +6,7 @@ System-facing guidance, prep scaffolding, and practical campaign operation notes
 - [[08_GM_Notes/Daggerheart Integration|Daggerheart Integration]]
 - [[08_GM_Notes/Session Prep|Session Prep]]
 - [[08_GM_Notes/Sessions/README|Session Notes]] — per-session prep, play record, and handoff to gm_sessions_site
+- [[08_GM_Notes/Sessions/Session_01_Ember_Grove|Session 1 — Ember Grove]] (played / synced)
 
 ## Usage Notes
 - Keep this folder player-safe only when explicitly intended.
