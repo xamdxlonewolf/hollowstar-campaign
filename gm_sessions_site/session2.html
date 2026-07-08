@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 2 — Lumencrest Arrival · HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html" class="active">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">GM Reference & Script — Session 2</div>
+  <h1>Lumencrest — First Night in the City</h1>
+  <p class="subtitle">Gold Month, 700 AR. From the plateau into Pauper's Gate, through electric light and the hum, to dawn and a protest gathering again.</p>
+  <div class="party-chips">
+    <span class="party-chip">🌿 Greer — Faun Druid (Tara)</span>
+    <span class="party-chip">✨ Lurielle — Faerie/Ribbet Wizard</span>
+    <span class="party-chip">🗡️ Basil — Rogue</span>
+  </div>
+  <div class="session-meta">
+    <div class="meta-item">⏱ <strong>3–4 hours</strong></div>
+    <div class="meta-item">📅 <strong>Gold Month 8, Day 1–2 · 700 AR</strong></div>
+    <div class="meta-item">📍 <strong>Pauper's Gate → Lamplight Ward → Shadowside border</strong></div>
+  </div>
+</header>
+
+<div class="page-body">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('open',this)">Opening</button>
+    <button class="nav-tab" onclick="filterSections('city',this)">City</button>
+    <button class="nav-tab" onclick="filterSections('spotlight',this)">Spotlights</button>
+    <button class="nav-tab" onclick="filterSections('ref',this)">Reference</button>
+  </div>
+
+  <!-- ══ BRANCH TRACKER ══ -->
+  <div class="section" data-cat="ref">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">🔀</div>
+      <span class="section-label">Session 1 Branch Tracker — Check Before You Start</span>
+      <span class="section-pill" style="background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);">Read First</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="gm-note"><div class="tag">GM Info — Mark what happened in Session 1</div><p>These branches change texture in Lumencrest — not hard gates. Check the boxes that apply before the gate scene. If you're unsure, ask the table.</p></div>
+      <div class="ref-box"><div class="ref-title">🛤️ Road Route — Guild Scout</div>
+      <ul>
+        <li><strong>Road not taken</strong> — Party used the grove path (shard bear). Guild has <em>no</em> preliminary report on the party entering the city. Baseline awareness.</li>
+        <li><strong>Runner escaped</strong> — Guild clock +1. Within three days, coordinated watching in Lamplight Ward and near Pauper's Gate. Basil may feel observed. Use <a href="fear_options_session2.html#fs-s2-a3-basil-watched">Basil is being watched</a> earlier if you like.</li>
+        <li><strong>Runner caught / fight ended clean</strong> — No Guild report. Party is unknown entering Lumencrest.</li>
+        <li><strong>Fourth scout escaped</strong> — Same as runner escaped, but the report includes more detail (fighting styles, Lurielle's bioluminescence noted).</li>
+      </ul></div>
+      <div class="ref-box"><div class="ref-title">🗡️ Council Pickpocket — Basil</div>
+      <ul>
+        <li><strong>Full success</strong> — Basil has the Vael letter (Guild eye sigil + Verdean connection) AND schedule card: <em>"RC handoff — Goldmonth 14, mid-afternoon. Courtyard entrance. Confirm with V."</em> He has date, district, window. Caelen unaware.</li>
+        <li><strong>Partial success</strong> — Letter taken. Caelen noticed the bag was opened. He'll be careful in Lumencrest and may send word ahead. Guard more watchful.</li>
+        <li><strong>Failed attempt</strong> — Guard blocked it. Caelen knows someone tried. No letter. His exit look at Basil was pointed.</li>
+        <li><strong>Didn't attempt</strong> — Basil has only public council knowledge. Heist timing must be gathered in-city.</li>
+      </ul></div>
+      <div class="ref-box"><div class="ref-title">👤 Caelen Vael — Awareness</div>
+      <ul>
+        <li><strong>Caelen on the road route</strong> — If party also took the road, they may have passed him. He does not interact unless forced. His guard notes their direction at the Lumencrest fork.</li>
+        <li><strong>Caelen's exit look</strong> — He clocked Basil as "not from here." In Lumencrest, if Basil operates visibly, Caelen may connect face to activity (not family name yet).</li>
+        <li><strong>Greer's council statement</strong> — Whatever Tara said is on record. Caelen's one-word assessment card (<em>manageable / escalate / withdraw</em>) is in the satchel if pickpocket succeeded.</li>
+        <li><strong>Shard fragment carried</strong> — If grove path + fragment taken: Lurielle's resonance is louder near Network nodes. Greer feels the spirit layer here is thin and crowded.</li>
+      </ul></div>
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p><strong>Default if you're fuzzy:</strong> road fight happened, runner escaped, pickpocket partial success, Caelen noticed something. That's a good middle tension — not punishing, not free.</p></div>
+    </div>
+  </div>
+
+  <!-- ══ OVERVIEW ══ -->
+  <div class="section" data-cat="ref">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">🗺️</div>
+      <span class="section-label">Session Overview & Flow</span>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">Read First</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-badge tb-1">~30 min</div><div class="timeline-text"><strong>Act 1 — Gate Entry & Sensory Overload.</strong> Down from the plateau. Pauper's Gate at night. First electric light, first hum, first Clank. <em>Goal: overwhelm them pleasantly, then let them breathe.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-2">~40 min</div><div class="timeline-text"><strong>Act 2 — Lodging.</strong> Accord Arms (Lamplight) OR Traveller's Mark (Copper Gate). Check-in, common room, first city conversations. <em>Goal: give them a home base and passive intelligence.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-3">~45 min</div><div class="timeline-text"><strong>Act 3 — Cable Car Orientation.</strong> North Expanse Station → Central Hub → Merchant Square loop. Geography from above. <em>Goal: they can navigate without a map.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-4">~50 min</div><div class="timeline-text"><strong>Act 4 — PC Spotlights.</strong> Greer (spirit layer), Lurielle (hum/resonance), Basil (being watched). Optional Dark Lantern beat with Solt. <em>Goal: one strong moment per character.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-5">~25 min</div><div class="timeline-text"><strong>Act 5 — Night City Texture.</strong> Chalk remnants, refugees, Night Market edges, brownout flicker. <em>Goal: texture without plot dump.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-5">~15 min</div><div class="timeline-text"><strong>Session End — Dawn Day 2.</strong> Protest reforming at the Lamplight / Shadowside border. Larger than yesterday. <em>Goal: Session 3 starts with pressure already building.</em></div></div>
+      </div>
+      <div class="ref-box"><div class="ref-title">Location detail</div>
+      <p>Full district reference, inns, gossip, and NPC index: <a href="lumencrest.html"><strong>lumencrest.html</strong></a>. This session script is the runnable table flow; the location page is player-askable depth.</p></div>
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p><strong>If you're behind:</strong> cut the cable car to one leg (North Station → Central Hub only). Keep lodging and the dawn protest ending — that's Session 3's runway.</p></div>
+    </div>
+  </div>
+
+  <!-- ══ ACT 1 — GATE ══ -->
+  <div class="section" id="act1" data-cat="open">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">🚪</div>
+      <div style="flex:1;"><div class="section-label">Act 1 — Pauper's Gate & First Steps Inside</div><div class="section-sub">Continues from Session 1 plateau · Sensory overload · Gate questions</div></div>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">~30 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Picking up from the plateau</div>
+      <p>"You stood on the ridge long enough. The city below didn't stop glowing while you watched. Someone took the first step down the hill — and then the road became real: packed earth giving way to cobble, the smell of coal smoke arriving before the walls do, and that sound you've been hearing as a suggestion becoming a constant low chord under everything. Late evening. Gold Month. Day One of being in Lumencrest, even though you haven't crossed the gate yet."</p></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Approaching Pauper's Gate</div>
+      <p>"The northern wall is old stone rebuilt three times — iron reinforcement, electric lamps on the gatehouse that make the entryway bright as midday regardless of the hour. A queue moves faster than you'd expect. City watch, not Vault Guard. They look tired and efficient. Above the gate, a cable runs south toward the city center, and something in a wooden box glides along it while passengers inside look out the windows like this is ordinary. It is the middle of the night. It does not look like the middle of the night."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Gate process</div>
+      <p>No papers required. Watch asks: where from, where staying, business in the city. Answers recorded, rarely followed up. <strong>Registry check is real</strong> — wanted individuals need a plan. Clanks directed aside for implant scan (FLAGGED = very bad; FREE/SERVING/none = waved through). Military-scale weapons noted; personal arms ignored.</p></div>
+
+      <div class="npc-say"><div class="tag">City Watch Officer — Standard gate questions</div>
+      <p>"Names. Where you're from. Where you're staying tonight. What's your business."</p>
+      <div class="note">Tone: managing flow, not investigating. Honest, vague, and creative answers all pass. Only active warrants or obvious trouble stops the line.</div></div>
+
+      <div class="gm-say"><div class="tag">GM Say — First step inside (read slowly)</div>
+      <p>"You walk through the gate and the sound changes. The hum gets louder — not much, but noticeably. And then the street opens in front of you and you stop walking because there's nowhere to put your eyes."</p>
+      <p style="margin-top:10px;">"The street is lit. Not by torches — glass globes on iron posts every twenty feet, steady white-gold light with no flicker. You've never seen light that doesn't move. Above you, the cable and its car. The road is wide enough for six carts and it is full — every ancestry you've heard of and a few you haven't. Coal-smoke west, bread south, something sharp and metallic you can't place. The crowd, the cable mechanism, distant machinery — and underneath all of it, constant and low, the hum."</p>
+      <p style="margin-top:10px;">"On the left, immediately inside the gate: a taproom that's been here three hundred years, door open, yellow light spilling out. Old Pen's, or something like it — the first building travelers have passed for generations. A Clank walks past you in a plain grey robe, joints catching the lamplight wrong. Nobody looks twice."</p></div>
+
+      <div class="ref-box"><div class="ref-title">Sensory layers to add during the gate scene</div>
+      <ul>
+        <li><strong>The hum:</strong> In the walls, the street underfoot, any metal fixture. Not unpleasant. Always there. Greer may recognize it as spiritual density made mechanical.</li>
+        <li><strong>Frostwell refugees:</strong> A handful sitting near the interior wall — quiet, belongings in cloth bundles, the look of people who don't know where they're going next.</li>
+        <li><strong>Gate vendors:</strong> Just inside, prices bad, targeting disoriented travelers. Halfling Quarter market is forty minutes' walk.</li>
+        <li><strong>North Expanse Station:</strong> Cable terminus visible overhead — your orientation ride starts here later.</li>
+        <li><strong>Chalk remnants:</strong> If they walk south toward Lamplight tonight, faded writing at the Ward/Shadowside border: <em>WE PAID FOR THIS LIGHT.</em> City workers cleaning it tomorrow morning.</li>
+      </ul></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Gate Entry</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a1-gate"><strong>The gate registry flags a name</strong></a> — not necessarily theirs. A refugee ahead of them pulled aside. The line slows. Everyone feels the machinery of the city deciding who is a problem.</li>
+        <li><a href="fear_options_session2.html#fs-s2-a1-hum"><strong>The hum spikes once</strong></a> — every Network-connected fixture flickers in sync for two seconds, then steadies. Locals don't react. Newcomers do.</li>
+        <li><a href="fear_options_session2.html#fs-s2-a1-clank"><strong>A Clank stops and looks at Lurielle</strong></a> — implant scan complete, FREE status, but it holds her gaze a beat too long. Then continues. She felt something read her.</li>
+      </ul>
+      <div class="fear-note">Act 1 is mood, not combat. One Fear spend maximum unless the table is comfortable and you're pacing toward lodging.</div></div>
+
+      <div class="tip-box"><span class="tip-icon">🌆</span><p>Let them stand in the gate street for a full minute of real time. Answer questions with sensory detail, not lore lectures. <strong>The city is the NPC tonight.</strong></p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACT 2 — LODGING ══ -->
+  <div class="section" id="act2" data-cat="city">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">🛏️</div>
+      <div style="flex:1;"><div class="section-label">Act 2 — Finding a Bed</div><div class="section-sub">Accord Arms OR Traveller's Mark · Check-in · Common room intelligence</div></div>
+      <span class="section-pill" style="background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);">~40 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-note"><div class="tag">GM Info — Let them choose</div><p>Both inns are good choices with different texture. Don't steer unless someone is broke — Traveller's Mark is 1 gold/night; Accord Arms is 2–5 gold. Walking time from Pauper's Gate: Accord Arms ~25 min south through lit streets; Traveller's Mark ~35 min to Copper Gate (polished welcome zone).</p></div>
+
+      <div class="path-grid">
+        <div class="path-card path-grove">
+          <div class="path-label">🏨 Accord Arms — Lamplight Ward</div>
+          <p><strong>Merchant Square, north side.</strong> The Ward's best-regarded inn. Clean, electric-lit, professional staff. Common room runs late — food until 4am. <strong>2 gold</strong> basic room, <strong>5 gold</strong> private with hot water.</p>
+          <p style="margin-top:8px;"><strong>Why pick it:</strong> Best passive intelligence in the city. Guild members, Council clerks, visiting merchants. Greer hears Accord politics; Lurielle overhears archive talk; Basil watches who pays for whose drinks.</p>
+          <div class="path-tag">Proprietor: Marten Halwick</div>
+        </div>
+        <div class="path-card path-road">
+          <div class="path-label">🏨 Traveller's Mark — Copper Gate</div>
+          <p><strong>South gate welcome zone.</strong> Twenty rooms, clean, professional. <strong>1 gold</strong> per night. Less glamorous than the Accord, more anonymous.</p>
+          <p style="margin-top:8px;"><strong>Why pick it:</strong> Basil's preference for low profile. Henris Callow assesses newcomers in one conversation — won't report complications to watch, will quietly orient useful people. Good if the party wants distance from political noise.</p>
+          <div class="path-tag">Proprietor: Henris Callow</div>
+        </div>
+      </div>
+
+      <div class="gm-say"><div class="tag">GM Say — Accord Arms arrival</div>
+      <p>"Merchant Square at night is still busy — the fountain's water sound mixing with cart wheels and conversation that drops quieter when someone says 'Council.' The Accord Arms sits on the square's north side: four stories, every window lit, the kind of building that looks like it has never had a bad night. Inside: a common room that smells like good food and expensive soap. A desk. A man in his fifties who looks like he's seen every kind of arrival and still finds yours mildly interesting."</p></div>
+
+      <div class="npc-say"><div class="tag">Marten Halwick — Accord Arms proprietor</div>
+      <p>"Rooms are available. Two gold for shared bath down the hall, five for private. Kitchen's open. Common room's open all night — I'd recommend the lamb if they haven't sold out."</p>
+      <div class="note">He doesn't ask unnecessary questions. He records names. He will not discuss other guests. If Basil asks about 'important visitors this week,' Presence DIF 12 gets: <em>"House colors in the Core always, this time of year. Vael pin in the common room yesterday — young man, traveling light."</em> Only if pickpocket failed or Caelen already passed through.</div></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Traveller's Mark arrival</div>
+      <p>"Copper Gate feels like a city designed to greet you — currency exchange booths, a Welcome Gate information desk, four inns in a cluster. The Traveller's Mark is the respectable one: not grand, not shabby, the kind of place that understands its job is to make strangers functional by morning. Henris Callow meets you at the desk himself. He looks at the three of you the way a man looks at a puzzle he's solved before."</p></div>
+
+      <div class="npc-say"><div class="tag">Henris Callow — Traveller's Mark proprietor</div>
+      <p>"One gold each. Breakfast included — porridge, bread, nothing to write home about. If you need the Ward proper, walk north twenty minutes or take the cable from South Gate Station — two copper, saves you getting lost."</p>
+      <div class="note">If anyone seems nervous about the city: he slides a folded ward map across the desk. Free. <em>"Merchant Square if you need anything real. Shadowside if you need anything else. Don't confuse the two on your first night."</em></div></div>
+
+      <div class="ref-box"><div class="ref-title">Common room gossip — pick 2–3, don't deliver all</div>
+      <ul>
+        <li><strong>Brownouts:</strong> Three in the past month. Official story: maintenance. Unofficial: the Network is strained.</li>
+        <li><strong>Council gridlock:</strong> Illuminists vs Conservators vs Expansionists. Nothing big gets decided.</li>
+        <li><strong>Manufactories anger:</strong> Power rationing hit the factory floor hardest. The word <em>strike</em> is being used carefully.</li>
+        <li><strong>Yesterday's protest:</strong> Lamplight / Shadowside border. Power rationing. Watch present. Tense but controlled. <em>"They'll be back."</em></li>
+        <li><strong>Clanks:</strong> Political issue now, not just moral. Ironwright Collective on the grievance list.</li>
+      </ul></div>
+
+      <div class="tip-box"><span class="tip-icon">🍺</span><p>Common room is <strong>passive intelligence</strong> — 15 minutes of eavesdropping while they eat. No rolls required unless they push for specific names. End Act 2 when they're fed, housed, and oriented to their base.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACT 3 — CABLE CAR ══ -->
+  <div class="section" id="act3" data-cat="city">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">🚡</div>
+      <div style="flex:1;"><div class="section-label">Act 3 — Cable Car Orientation Ride</div><div class="section-sub">North Expanse Station → Central Hub → Merchant Square · Geography lesson</div></div>
+      <span class="section-pill" style="background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);">~45 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — North Expanse Station</div>
+      <p>"The station is a covered platform raised about eight feet off the street, reached by a short staircase. You pay the attendant — two copper marks per person, regardless of distance — and wait with a dozen other people until the car arrives. It slides in from above: dark wood and glass, fifteen feet long, hanging from the cable on a mechanism you don't fully understand. The door opens. People get out. You get in."</p></div>
+
+      <div class="gm-say"><div class="tag">GM Say — In the car (read as you 'travel')</div>
+      <p>"Inside it smells like warm metal and other people. Worn leather seats. Clean windows. The attendant closes the door, speaks two words into a speaking tube, and the car begins to move — smoothly, no lurch, a steady pull until you're above the rooftops at a fast walking pace."</p>
+      <p style="margin-top:10px;">"Below you: the city resolving into districts. The dome of the Accord Chamber — lit from within, visible for miles. The Vault District's wall, and brightness above it that doesn't match anything else. Manufactories smoke to the north-west. Halfling Quarter's lower rooflines. The hum is sharper up here — you can see the mechanism in the ceiling turning against the cable."</p>
+      <p style="margin-top:10px;">"Nobody in the car is impressed. One woman is asleep. A dwarf reads. A Clank stares out the window. This is how they commute."</p></div>
+
+      <div class="ref-box"><div class="ref-title">What to point out from the car — Central Hub approach</div>
+      <ul>
+        <li><strong>Radiant Core:</strong> Never dims. Densest Network web. Political and financial center.</li>
+        <li><strong>Vault District wall:</strong> Everyone has a relationship with it they don't examine. The glow above it is different — closer to the Heart.</li>
+        <li><strong>Academic Quarter:</strong> East line visible — Scholar's Gate Station, spires, lit windows at all hours.</li>
+        <li><strong>Shadowside edge:</strong> Lamps become less frequent south-west. The city goes dark by degrees.</li>
+        <li><strong>Four lines from Central Hub:</strong> North, East, South, West — the city's skeleton. 2 copper any distance. Every 15–20 min peak, 30–40 min late night.</li>
+      </ul></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Suggested loop</div>
+      <p><strong>Leg 1:</strong> North Expanse Station → Central Hub (see the Core, Vault, scale). <strong>Leg 2:</strong> South Line → Merchant Square Station (walk to inn or note landmark). Optional <strong>Leg 3:</strong> West to Halfling Quarter if they want food — adds 20 min. Each leg costs 2 copper/person and is a scene, not a montage.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Cable Car</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a2-cable"><strong>The car shudders mid-line</strong></a> — harmonic wrong for three seconds. Attendant calm: <em>"Tension adjustment. Happens."</em> Passengers who've ridden for years exchange a look they don't explain.</li>
+        <li><a href="fear_options_session2.html#fs-s2-a2-brownout"><strong>Brownout flicker — eastern Ward section</strong></a> — from the car you watch a block of streetlamps die and return. Not the Core. Not Shadowside. Lamplight's eastern edge. Someone swears quietly.</li>
+      </ul></div>
+
+      <div class="handout"><div class="handout-title">Player takeaway — after the ride</div>
+      <p>You can get almost anywhere worth going for two copper and patience. The Core is the center. The Vault wall is the thing under the city. Your inn is on the South line. Pauper's Gate is North. When you're lost, find a cable and read the station name.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACT 4 — SPOTLIGHTS ══ -->
+  <div class="section" id="act4" data-cat="spotlight">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">✨</div>
+      <div style="flex:1;"><div class="section-label">Act 4 — PC Spotlights</div><div class="section-sub">Greer · Lurielle · Basil · Optional Solt at the Dark Lantern</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">~50 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-note"><div class="tag">GM Info — Pacing spotlights</div><p>Give each player <strong>one dedicated scene</strong> (~10–15 min). They can overlap in location but the emotional focus should be singular. Night texture (Act 5) can weave around these. Optional: if the party goes to Shadowside, run the Solt beat as connective tissue.</p></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Greer — The Spirit Layer Under the Lights —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Greer's moment (ask Tara first)</div>
+      <p>"Greer — you've felt the spiritual quiet for eight years. You came here because Thorn sent you and because you suspected the source was west. You're in the city now. The glow is everywhere. The hum is in the stone. What does the spirit layer feel like here — under the electric light, under eighty thousand people? What do you do with that feeling?"</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — What's true underneath</div>
+      <p>The spirit layer in Lumencrest is <strong>thin and crowded</strong> — compressed by Network density and the Heart below. Not absent. Not hostile. Overwhelmed. The grove's watchful quiet was a single clear voice; this is a room where everyone is talking at once and something very large is sleeping under the floor. Greer's Path of Spirits training lets her sense that the sleeping thing is not evil — it is dreaming, and the Network is its breath.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — Greer</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a3-greer-spirits"><strong>Something in the layer recognizes her</strong></a> — a flicker of attention from below the Vault wall direction. Not the Heart itself. Something that remembers forests. Gone in a breath.</li>
+      </ul></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Lurielle — The Hum as Frequency —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Lurielle's moment</div>
+      <p>"Lurielle — you spent two weeks at the Ember Grove trying to describe threshold phenomena in academic language and failing. You are now standing inside the largest concentration of Hollostar-derived infrastructure on the continent. The hum is not background noise. It's a frequency. Your arm hasn't flickered since the gate, but the resonance is there — a pressure behind your ribs like the Heart Stone pulse remembered. What are you trying to measure right now, and what tool do you wish you had?"</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Knowledge hooks</div>
+      <p>Knowledge DIF 12: the hum's harmonic structure has overlap with pre-reclassification Endless Eye data — not identical to the Heart Stone, but same family. Knowledge DIF 14: the Network isn't just distributing power; it's distributing <em>something else</em> in trace amounts — the metallic warmth in the air. She can't prove it tonight. She can note it.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — Lurielle</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a3-lurielle-hum"><strong>The hum matches her pulse for one beat</strong></a> — bioluminescence flares blue-white at wrist and collarbone. A Clank on the street stops. Then the moment passes.</li>
+      </ul></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Basil — Eyes in a City of Eyes —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Basil's moment</div>
+      <p>"Basil — you came for a pouch in the Radiant Core and a proof that you're the right kind of dangerous for your family. The city is full of people who look professionally. Caelen's face is somewhere in that crowd even if he's not in the room. The Guild doesn't know your name yet — probably. What are you watching for, and what mistake would cost you the job before it starts?"</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Watched or not</div>
+      <p>If Session 1 runner escaped: a man reading a newspaper outside the Accord Arms has been there since they checked in. If pickpocket partial/fail: a Copper Gate regular at the Traveller's Mark asked Henris too many questions about 'the three from the north road.' Not confrontation — assessment. Basil Instinct DIF 12 to notice; DIF 14 to lose the tail for the night.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — Basil</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a3-basil-watched"><strong>Someone matches his pace for three blocks</strong></a> — not close enough to be obvious. Professional. Stops when he stops. Doesn't follow into the inn.</li>
+      </ul></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Optional — Solt at the Dark Lantern —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Entering Shadowside</div>
+      <p>"South and down, the lamps thin out. The amber gives way to oil and coal-brazier light, then to real dark between islands of warmth. The Dark Lantern's sign is a lantern painted black — easy to miss if you don't know. Inside: low ceiling, mismatched tables, a bar of solid old timber, and a Ribbet behind it who's been here thirty years and treats the city watch like weather."</p></div>
+
+      <div class="npc-say"><div class="tag">Solt — First contact</div>
+      <p>"Drinks are on the board. Food if the kitchen's awake. You want privacy, the back's five copper each and I don't hear what I don't hear."</p>
+      <div class="note">Voice: flat, unhurried, every sentence costs him something he'll never explain. He assesses newcomers in one exchange. He does not answer direct questions about specific people.</div></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — Solt</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a4-solt"><strong>Solt pours without being asked</strong></a> — pushes one cup to Greer, one to Lurielle, nothing to Basil. <em>"On the house. You look like you're listening to something. Don't let it listen back."</em> He moves on.</li>
+        <li><a href="fear_options_session2.html#fs-s2-a4-refugee"><strong>A Frostwell woman at the bar</strong></a> — asks, too quietly, if anyone knows work in the Manufactories. Solt's expression doesn't change. The room pretends not to hear. A test of who the party is.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACT 5 — NIGHT TEXTURE ══ -->
+  <div class="section" id="act5" data-cat="city">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--teal-bg);color:var(--teal-text);">🌃</div>
+      <div style="flex:1;"><div class="section-label">Act 5 — Night City Texture</div><div class="section-sub">Chalk · refugees · Night Market edges · don't explain — let them see</div></div>
+      <span class="section-pill" style="background:var(--teal-bg);color:var(--teal-text);border:1px solid rgba(58,152,152,0.3);">~25 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="gm-say"><div class="tag">GM Say — Walking the border after midnight</div>
+      <p>"The Lamplight Ward / Shadowside border is a line you feel more than see — the lamps stop being reliable, the cobble changes character, the smell of coal gives way to something sharper. On the Ward side, city workers have been scrubbing chalk from the wall. You can still read it if you know where to look: WE PAID FOR THIS LIGHT. On the Shadowside side, someone has already written the next line, smaller: WHO PAID FOR YOURS."</p></div>
+
+      <div class="ref-box"><div class="ref-title">Texture beats — sprinkle, don't dump</div>
+      <ul>
+        <li><strong>Night Market (southern stretch):</strong> Smaller than usual. Three substance vendors absent. Nervous chemistry. Mama Voss's cart still excellent if they're hungry.</li>
+        <li><strong>Frostwell refugees at Pauper's Gate:</strong> More arrived since evening. Quiet. A child asleep sitting up. Someone sharing bread without ceremony.</li>
+        <li><strong>Clank on indenture:</strong> Grey robe, implant visible at temple, moving with purpose. A Lamplight resident crosses the street to avoid walking beside it. Greer sees both the person and the reaction.</li>
+        <li><strong>Evening Broadsheet boy:</strong> Shouting half-sold headlines about brownout 'maintenance.' Academic Quarter types roll their eyes.</li>
+      </ul></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Night Texture</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a5-chalk"><strong>Fresh chalk under the old message</strong></a> — a symbol Greer recognizes from Covenant briefing sketches. Not a threat. A mark. Someone scouting Network infrastructure asked the wrong questions in the right district.</li>
+      </ul>
+      <div class="fear-note">Use sparingly. Act 5 is observation. Fear here escalates unease, not action.</div></div>
+
+      <div class="tip-box"><span class="tip-icon">🌙</span><p>Let the party split chores if they want — one shops, one journals, one scouts the Core approach from a distance. Reconvene at the inn or on the border walk toward dawn.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ SESSION END ══ -->
+  <div class="section" id="act-end" data-cat="open">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--fear-bg);color:var(--fear-text);">🌅</div>
+      <div style="flex:1;"><div class="section-label">Session End — Dawn Day 2, Protest Reforming</div><div class="section-sub">Lamplight / Shadowside border · Session 3 runway · Stop on the image</div></div>
+      <span class="section-pill" style="background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);">~15 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Dawn (read slowly)</div>
+      <p>"Gold Month, Day Two. Dawn in Lumencrest is not quiet — the city wakes early because the Manufactories wake early. But the light changes: electric amber fading where the Network dims for day-cycle, coal smoke sharpening, bread ovens winning the smell war."</p>
+      <p style="margin-top:10px;">"You're back at the border — maybe you never left. The chalk is mostly gone on the Ward side. On the Shadowside side, the new line is still there. And so are people. More than yesterday. A line of bodies along the border road, signs about rationing, about the eastern Ward, about light you paid for that someone else decided you don't need. City watch along the edge — present, not aggressive. Organizers with clipboards. Someone leading a call-and-response you can't quite hear yet."</p>
+      <p style="margin-top:10px;">"Yesterday this was tense but controlled. Today it feels larger. Organized. Like someone counted who came and decided more should."</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear — Session End</div>
+      <ul>
+        <li><a href="fear_options_session2.html#fs-s2-a5-dawn-protest"><strong>A speaker names the Vault District</strong></a> — not a riot. A name spoken aloud in public for the first time many here have heard it used that way. The watch captain's jaw tightens. The crowd cheers and doesn't know what it's cheering for yet.</li>
+      </ul></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Final line. Stop here.</div>
+      <p>"The sun finishes coming up. The protest doesn't stop. You have a whole day in front of you — and something in the city feels like it's counting down. We'll pick up here next session."</p></div>
+
+      <div class="handout"><div class="handout-title">What each character feels at dawn</div>
+      <p>Greer: The spirit layer isn't quieter in daylight — it's more honest. Something under the Vault is still dreaming, and the crowd's anger is walking above it like a second weather. — Lurielle: The hum didn't stop when the lamps dimmed. It changed key. She has three pages of notes and no category for them yet. — Basil: Mid-afternoon on Day 2 is a blank space on someone's schedule. Goldmonth 14 is still twelve days away. Today is for learning who watches whom.</p></div>
+
+      <div class="danger-note"><div class="tag">GM Info — Session 3 setup</div>
+      <p><strong>Day 2 mid-afternoon:</strong> protest still going, distribution hub explosion three blocks away, eastern Ward brownout, panic. This session deliberately ends <em>before</em> the blast. Players should know the protest exists and is growing — not that it's a target.</p></div>
+
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p>End on the protest sound — voices, not violence. Wonder from Session 1 has curdled into urgency. That's the campaign tone.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ QUICK REF ══ -->
+  <div class="quick-ref">
+    <div class="quick-ref-title">⚡ GM Cheat Sheet — Session 2</div>
+    <div class="stat-grid">
+      <div class="stat-item"><strong>Date:</strong> Gold Month 8, Day 1 night → Day 2 dawn</div>
+      <div class="stat-item"><strong>Entry:</strong> Pauper's Gate (north) · watch asks 4 questions</div>
+      <div class="stat-item"><strong>Cable fare:</strong> 2 copper/person any distance</div>
+      <div class="stat-item"><strong>Accord Arms:</strong> 2–5 gold · Marten Halwick · Merchant Square</div>
+      <div class="stat-item"><strong>Traveller's Mark:</strong> 1 gold · Henris Callow · Copper Gate</div>
+      <div class="stat-item"><strong>Chalk:</strong> WE PAID FOR THIS LIGHT (fading)</div>
+      <div class="stat-item"><strong>Day 2 dawn:</strong> Protest reforming · larger · organized</div>
+      <div class="stat-item"><strong>Session 3:</strong> Day 2 afternoon · hub explosion</div>
+      <div class="stat-item"><strong>RC handoff:</strong> Goldmonth 14 · Radiant Core courtyard</div>
+      <div class="stat-item"><strong>Greer sense:</strong> Spirit layer thin, crowded, dreaming below</div>
+      <div class="stat-item"><strong>Lurielle DIF:</strong> Knowledge 12 hum family · 14 trace resonance</div>
+      <div class="stat-item"><strong>Basil tail:</strong> Instinct 12 notice · 14 lose for night</div>
+      <div class="stat-item"><strong>Location page:</strong> lumencrest.html</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lamplight Ward — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.room-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.room-name{font-size:13px;font-weight:700;color:var(--accent-gold-light);margin-bottom:2px;}
+.room-price{font-size:12px;color:var(--accent-gold);float:right;font-weight:700;}
+.room-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-top:4px;}
+.menu-section{margin-bottom:16px;}
+.menu-section-title{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.building-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.building-name{font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:1px;}
+.building-type{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.building-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.6;}
+.building-card .npc-voice{margin-top:7px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html" class="active">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Lumencrest — Lamplight Ward</div>
+  <h1>Lamplight Ward</h1>
+  <p class="subtitle">The prosperous middle class — and where the cracks show first. Party's likely home district. <a href="lumencrest.html" style="color:var(--accent-gold);">← City hub</a> · <a href="lumencrest-shadowside.html" style="color:var(--accent-gold);">Shadowside →</a></p>
+</header>
+
+<div class="page-body">
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('district',this)">District</button>
+    <button class="nav-tab" onclick="filterSections('inn',this)">Inns &amp; Taverns</button>
+    <button class="nav-tab" onclick="filterSections('food',this)">Food &amp; Vendors</button>
+    <button class="nav-tab" onclick="filterSections('npcs',this)">NPCs</button>
+    <button class="nav-tab" onclick="filterSections('gossip',this)">Gossip</button>
+  </div>
+
+  <!-- ══ DISTRICT ══ -->
+  <div class="section" data-cat="district">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">💡</div>
+      <div style="flex:1;"><div class="section-label">Running Lamplight Ward</div><div class="section-sub">Look · reality · day/night · Copper Gate</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: First walk through Merchant Square</div>
+        <p>"You hear the fountain before you see it — electric, always on, the sound of water over crowd noise. Merchant Square opens ahead: a plaza built for a thousand people, usually at half that. The electric fountain at the center never turns off; the city would no more shut it down than the cable car. Four-story stone buildings, window boxes maintained with competitive pride. Amber lamps every twenty feet — except on the eastern stretch, where three in a row have been dark for a week and nobody's fixed them yet. Overhead, the cable car line runs the district's spine. It looks like a wealthy city at the height of its confidence. Look closer and the FOR LEASE sign on the east-side supply shop has been there two months."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">District facts</div>
+        <ul>
+          <li><strong>Population:</strong> ~20,000 · East-center · Three cable car stops</li>
+          <li><strong>Power:</strong> Reliable historically — eastern lamps failing, repair queue backed up</li>
+          <li><strong>Character:</strong> Commercial and social center for everyone who isn't rich or poor</li>
+          <li><strong>Day:</strong> Purposeful — work, shopping, Guild business</li>
+          <li><strong>Night:</strong> Entertainment Quarter peaks ~3am. Night Pharmacy never closes. Brownouts at 2am hit a crowd, not empty streets.</li>
+          <li><strong>Politics:</strong> Illuminist demographic base — slowly revising faith in the technical solution</li>
+        </ul>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Key areas</div>
+        <ul>
+          <li><strong>Merchant Square</strong> — Fountain, Guildhall Quarter south, street food north edge dawn–midnight</li>
+          <li><strong>Guildhall Quarter</strong> — Merchant Guild hall (largest), Craft Guild, Artificers' Guild (electric sign)</li>
+          <li><strong>Entertainment Quarter</strong> — Theatre, Copperstring, Volta's, Night Pharmacy — east of cable line</li>
+          <li><strong>Eastwick</strong> — Residential east of Square, river side. Wren House, Lida's Bake, Eastwick Cooperative</li>
+          <li><strong>Copper Gate</strong> — South gate welcome zone. Four inns, exchange booths, Welcome Gate tours</li>
+          <li><strong>Wire Road</strong> — Halvern &amp; Stoke smiths, three blocks east of Square</li>
+        </ul>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Merchant Guild Money Exchange</div>
+        <div class="building-type">Merchant Square · Fair rates · Licensed</div>
+        <p>Two booths on the Square. The ones Tomm and Henris Callow send you to. Contrast with Copper Gate premium booths that prey on first-timers.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ INNS & TAVERNS ══ -->
+  <div class="section" data-cat="inn">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">🛏️</div>
+      <div style="flex:1;"><div class="section-label">Accord Arms · Traveller's Mark · Long Table</div><div class="section-sub">Rooms · menus · common room intelligence</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <!-- ACCORD ARMS -->
+      <div class="gm-say">
+        <div class="tag">GM: Entering the Accord Arms</div>
+        <p>"North side of Merchant Square, facing the fountain. The best-positioned inn in the Ward — four floors, professional staff who have seen everything a major city's best inn sees and respond with equable competence. The common room runs until 4am. Guild members, visiting merchants, Council clerks on the city's account, Academic Quarter researchers who prefer noise to quiet — they all pass through. The conversations at the common tables are less guarded than they should be."</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Accord Arms</div>
+        <div class="building-type">Inn &amp; Tavern · Merchant Square north · 24h common room</div>
+        <p>Forty rooms. Best beds in the Ward — real mattresses, laundered linens, scheduled maintenance. Premium rooms have private bathrooms and hot water (worth it after travel or time underground). Passive intelligence-gathering hub. Staff know who's staying; won't say.</p>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">Accord Arms — Rooms</div>
+        <div class="room-card"><span class="room-price">2 gold / night</span><div class="room-name">Basic Rooms (×12)</div><div class="room-desc">Reliable, professional standard. Real beds, clean linens.</div></div>
+        <div class="room-card"><span class="room-price">3 gold / night</span><div class="room-name">Standard Rooms (×20)</div><div class="room-desc">Comfortable. Ward's workhorse accommodation for visiting merchants.</div></div>
+        <div class="room-card"><span class="room-price">5 gold / night</span><div class="room-name">Premium Rooms (×8)</div><div class="room-desc">Private bath, hot water. Best in the Ward without Radiant Core prices.</div></div>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">Accord Arms — Common Room Food (24h)</div>
+        <table class="price-table">
+          <tr><th>Item</th><th>Notes</th><th>Price</th></tr>
+          <tr><td>Roasted meat plate</td><td>Halfling Quarter bread arrives each morning</td><td>6–8 copper</td></tr>
+          <tr><td>Grain &amp; vegetable dish</td><td>Consistently good, not exciting</td><td>5 copper</td></tr>
+          <tr><td>Ward ale</td><td>Copperkettle Amber available some nights</td><td>3 copper / mug</td></tr>
+          <tr><td>Wine (short list)</td><td>Green Hearth cooperative contact</td><td>6 copper / cup</td></tr>
+        </table>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Joss Aldeth</div>
+        <div class="npc-role">Proprietor, Accord Arms · Human · 51 · He/him · Lives third floor</div>
+        <div class="npc-voice">🎭 Voice: Professionally warm with an authentic core. Present without intrusive. Genuinely interested in where guests are from. Makes conversation feel personal, not procedural. Remembers who paid and who didn't across twenty years.</div>
+        <p>Third-generation innkeeping family — grandmother opened Wren House in Eastwick; Joss runs the Accord Arms at Merchant Square. Knows the Ward's commercial and political anxiety through common room talk. Has twenty years of guest impressions filtered through instinct.</p>
+        <div class="npc-secret">GM only: Knows specific Council members whose private behavior during stays contradicts public positions. Won't share without significant reason. Has helped guests disappear when staying visible would bring harm — will consider again for the right situation.</div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- TRAVELLER'S MARK -->
+      <div class="building-card">
+        <div class="building-name">Traveller's Mark Inn</div>
+        <div class="building-type">Copper Gate · Most reputable of four gate inns · 20 rooms</div>
+        <p>Clean, professional, 1 gold mark per night. Clientele is entirely arriving strangers — Henris has fifteen years assessing what people need within two minutes and providing it without making the assessment visible.</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Henris Callow</div>
+        <div class="npc-role">Proprietor, Traveller's Mark · Human · 52 · Copper Gate</div>
+        <div class="npc-voice">🎭 Voice: Immediately reassuring — unthreatening, professionally welcoming, competent without showiness. Warm conviction that new arrivals deserve honest information. Tells you which exchange to avoid and which guide to trust within the first conversation.</div>
+        <p>Fifteen years of south-gate traffic — who arrives, from where, apparent vs. actual purpose. Accurate picture of unusual traffic that often predates official awareness. Does not report complicated guests to watch; quietly ensures they know Ward geography.</p>
+        <div class="npc-secret">GM only: Noticed increased Frostwell-region arrivals three weeks before the Council acknowledged it. Has a private list of "arrivals whose story doesn't match their luggage" he doesn't share with anyone yet.</div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- LONG TABLE -->
+      <div class="gm-say">
+        <div class="tag">GM: The Long Table at dinner</div>
+        <p>"A street off Merchant Square's east side. Through the front window: one long communal table seating thirty. Dinner only — breakfast and lunch run in private booths. Tonight the slow-roasted meat has been cooking since midday. Council clerks, Guild merchants, Craft Guild seniors, and a visiting professor share a table they didn't choose to share. Within one evening you'll hear the Guild's brownout position, what the Council said last week that wasn't in the official summary, and the social dynamics of who trusts whom."</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Long Table</div>
+        <div class="building-type">Political tavern · Off Merchant Square east · Communal dinner</div>
+        <p>Ward's professional class eating together by design. Best Halfling Quarter ales in the Ward. Copperkettle Amber on tap. Hop gin available. Wine via Green Hearth contact.</p>
+      </div>
+
+      <table class="price-table">
+        <tr><th>Service</th><th>Notes</th><th>Price</th></tr>
+        <tr><td>Communal dinner</td><td>Slow-roasted meat (changes daily), bread, grain side</td><td>6–8 copper</td></tr>
+        <tr><td>Breakfast / lunch booth</td><td>Porridge, eggs, cold prep, morning bread delivery</td><td>2–4 copper</td></tr>
+        <tr><td>Copperkettle Amber</td><td>Best Ward ale selection outside dedicated ale house</td><td>3 copper / mug</td></tr>
+      </table>
+
+      <div class="npc-card">
+        <div class="npc-name">Senna Mourne</div>
+        <div class="npc-role">Proprietor, Long Table · Human · 43 · Lives above</div>
+        <div class="npc-voice">🎭 Voice: Thoughtful, fair, always slightly in motion. Dry specific humor when conversation gets interesting. Believes the professional class benefits from eating together — fifteen years of proof at the long table.</div>
+        <p>Not an information broker — a person who synthesized fifteen years of Ward professional dinner conversation into an accurate picture of what the middle layer thinks, fears, and will do. Available through genuine conversation.</p>
+        <div class="npc-secret">GM only: Has heard Aldous Wren's private opinion about city trajectory — hasn't repeated it. Knows Brinne Halloway's Cooperative is stockpiling; approves quietly.</div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- WELCOME GATE / TOMM -->
+      <div class="building-card">
+        <div class="building-name">Welcome Gate — Information &amp; Tour Services</div>
+        <div class="building-type">Copper Gate · Licensed · Variable guide quality</div>
+        <p>2 silver — guided introduction to public geography. 5 silver — full day. Three guides genuinely knowledgeable, two adequate, one actively misleading about exchange referrals. Ask for Tomm.</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Tomm</div>
+        <div class="npc-role">Senior guide, Welcome Gate · Half-elf · 29 · Copper Gate most days</div>
+        <div class="npc-voice">🎭 Voice: Direct about what his service can and can't offer. First ten minutes: which establishments to trust, including warning that Welcome Gate's own exchange referral has a kickback. Practical footwear, practical clothing. Annotated district map in small handwriting — substantially more accurate than official.</div>
+        <p>Years walking every district at street level. Knows informal routes, unofficial access points, which establishments are what they appear to be. Best first contact for players who need city knowledge without faction embedding.</p>
+        <div class="npc-secret">GM only: Has walked the tunnel mouths near North Factory Hub twice — won't advertise this. Noticed Green Covenant-adjacent traveler at Pauper's Gate three days ago; hasn't mentioned to employers because it's not tour business.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ FOOD ══ -->
+  <div class="section" data-cat="food">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">🍽️</div>
+      <div style="flex:1;"><div class="section-label">Food Vendors &amp; Eateries</div><div class="section-sub">Merchant Square market · Lida's Bake · Halfling Imports</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="ref-box">
+        <div class="ref-title">Merchant Square street food — north edge, dawn to midnight</div>
+        <p>Forty-odd vendors on a good day. Licensed stands have permanent fixtures; unlicensed tolerated at edges because the market is better with them.</p>
+      </div>
+
+      <table class="price-table">
+        <tr><th>Vendor</th><th>Item</th><th>Price</th></tr>
+        <tr><td>Osso's Meat Skewers (dwarf, 22 years same corner)</td><td>Pork &amp; vegetable skewers — queue always moves</td><td>2 copper each</td></tr>
+        <tr><td>The Grain Table (Halfling Quarter suppliers)</td><td>Grain prep with fresh herbs, preserved protein</td><td>3 copper / serving</td></tr>
+        <tr><td>Lira's Sweet Things</td><td>Small confections from cart — regulars time errands around her arrival</td><td>1 copper most items</td></tr>
+      </table>
+
+      <div class="building-card">
+        <div class="building-name">Lida's Bake</div>
+        <div class="building-type">Eastwick · Open 3am–mid-afternoon · Best coffee in the Ward</div>
+        <p>Twenty-three-year sourdough culture — the bread Lumencrest tastes like. Strongest coffee in the Ward and a roll just out of the oven at 4am. Knows the neighborhood at the hour when everything else is closed.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Pot of coffee + warm roll</td><td>3 copper</td></tr>
+          <tr><td>Loaf / rolls (varies)</td><td>2–4 copper</td></tr>
+        </table>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Lida Birch</div>
+        <div class="npc-role">Proprietor, Lida's Bake · Human · 55 · Eastwick</div>
+        <div class="npc-voice">🎭 Voice: Unhurried, flour-dusted, permanently awake in the way of 3am workers. Warm without judgment. One of the Ward's best listeners — 4am brings honest talk from people starting or ending their day.</div>
+        <p>Twenty-three years of Ward nighttime texture — who moves when, what sounds different. Informal regular contact with Brinne Halloway when Cooperative meetings run long and end at Lida's.</p>
+        <div class="npc-secret">GM only: Noticed eastern lamp crew hasn't come through Eastwick in ten days — repair queue worse than public notices say. Told Brinne; hasn't told customers.</div>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Halfling Imports Restaurant</div>
+        <div class="building-type">Ward–Quarter border · Quarter kitchen, Ward foot traffic</div>
+        <p>Best food at best price in the Ward. Quarter residents staff the kitchen. Quarter ales on tap — fresher than any Ward distributor. Daily special from Quarter morning market. Room always full.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Main dishes (stews, roasts, grain, pastries)</td><td>3–7 copper</td></tr>
+          <tr><td>Quarter ale</td><td>3 copper / mug</td></tr>
+        </table>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Night Pharmacy — front counter</div>
+        <div class="building-type">Entertainment Quarter · Blue lamp · 24 hours · Never closes</div>
+        <p>Licensed apothecary and pharmaceutical gray market. Standard pain, fever, infection, sleep, morning-after, wound supplies, contraception. Back counter: Fade, Velvetongue, extended preparations — established customers, correct approach. See Tessiel Wane.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Standard pharmaceutical prep</td><td>2–8 copper</td></tr>
+          <tr><td>Wound kit / suture supplies</td><td>4–12 copper</td></tr>
+          <tr><td>Contraception</td><td>3 copper · no questions</td></tr>
+        </table>
+      </div>
+
+      <div class="handout" style="margin-top:12px;">
+        <div class="handout-title">Halfling Quarter mention — Pipwick's Rooms</div>
+        <p>Not in Lamplight Ward but one cable stop south: <strong>Bessa Pipwick</strong> runs seven rooms above a bakery on Common Green's south side. 7 silver/night, exceptional breakfast included. Treats every guest as an expected cousin. The warmest lodging in the city if the party wants community over polish.</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Bessa Pipwick</div>
+        <div class="npc-role">Proprietor, Pipwick's Rooms · Halfling · 62 · Halfling Quarter (brief)</div>
+        <div class="npc-voice">🎭 Voice: Round, warm, perpetual motion between bakery and rooms. Flour-marked hands. Genuine welcome and simultaneous accurate read of people — warmth is real, naivety is not.</div>
+        <p>Thirty years of guests, Common Green social texture, community mood at everyday level. Endorsement travels through Quarter naturally. Distinct from Bessa Kettlemarch at Copper Kettle — both Halfling, both Bessa, fifteen years of visitor confusion.</p>
+        <div class="npc-secret">GM only: Two current guests are Frostwell families referred quietly by Salvation Hearth priests. She's housing them at reduced rate without announcing it.</div>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Tessiel Wane</div>
+        <div class="npc-role">Proprietor, Night Pharmacy · Gnome · appears 60s · Entertainment Quarter</div>
+        <div class="npc-voice">🎭 Voice: Economical speech — efficiency not unfriendliness. Charges real prices so people ask real questions. Not warm but fair; respects honest approach. Magnifying lenses on a cord — up for close work, down on forehead otherwise.</div>
+        <p>Forty years tracking what moves through Lumencrest chemically. Noticed Hollostar Dust quality change six months before price spike. Three theories on supply disruption — one correct, none shared. Hasn't left the building more than a few hours at a stretch in four years.</p>
+        <div class="npc-secret">GM only: Trades information for information, not money. Most valuable player intel: Shard Division operations, Dust tunnel route, arcane activators, Vault Guard enforcement strategy. Watch tolerates back counter because she's genuinely useful to them at 2am.</div>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Brinne Halloway</div>
+        <div class="npc-role">Chair, Eastwick Cooperative · Human · 46 · Eastwick meeting hall</div>
+        <div class="npc-voice">🎭 Voice: Quietly fierce. Doesn't make speeches — organizes. Always carrying something. Practical colors, slightly worn. Direct about what the Cooperative needs; not interested in crisis talk without action.</div>
+        <p>Fifty-year mutual aid org expanding into emergency stockpile — food, medical, candles, lamp oil. Most accurate residential emergency preparedness picture in the city. In contact with Halfling Quarter network; aware of Tommas Wickham, hasn't met.</p>
+        <div class="npc-secret">GM only: Has been in contact with Genna Cradle twice in past month. Cooperative larder locked — contents represent significant collective investment. Less optimistic about Ward trajectory than most residents.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ MORE LOCATIONS (district tab overlap) ══ -->
+  <div class="section" data-cat="district">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">🏛️</div>
+      <div style="flex:1;"><div class="section-label">Other Notable Locations</div><div class="section-sub">Guildhall · Entertainment · Eastwick · Wire Road</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="building-card">
+        <div class="building-name">Merchant Guild Hall</div>
+        <div class="building-type">Guildhall Quarter · Four stories · Chair: Aldous Wren</div>
+        <p>Licenses merchants, mediates disputes, Council influence. Public rooms open for commercial business. Upper floor requires membership or escort — door assessor Merric (human, 30s, impeccably dressed).</p>
+      </div>
+      <div class="building-card">
+        <div class="building-name">Artificers' Guild Shop</div>
+        <div class="building-type">Guildhall · Electric cycling sign · Certified equipment only</div>
+        <p>Adventuring gear at 110–120% base for Guild seal. Network-interface devices — only legitimate source for some. Custom orders 3–10 days.</p>
+      </div>
+      <div class="building-card">
+        <div class="building-name">Lamplight Theatre</div>
+        <div class="building-type">Entertainment Quarter · Electric marquee · 400 seats</div>
+        <p>Back gallery 3 copper · mid 8 copper · front 2 silver · private boxes 1 gold. Candlelight brownout performance three months ago — best reviews in a decade.</p>
+      </div>
+      <div class="building-card">
+        <div class="building-name">Volta's</div>
+        <div class="building-type">Entertainment Quarter east · Dance hall · Artificers' Guild lighting</div>
+        <p>Main floor 10pm–4am. Entry 1 silver standard, 2 silver programmed nights. Back rooms (Silver Thread licensed) through stylized V door beside bar.</p>
+      </div>
+      <div class="building-card">
+        <div class="building-name">Eastwick Cooperative meeting hall</div>
+        <div class="building-type">Eastwick · Ground floor of residential building</div>
+        <p>Members: anyone within four blocks who registers. Meetings twice monthly. Basement larder always locked. Brinne Halloway, chair.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ GOSSIP ══ -->
+  <div class="section" data-cat="gossip">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">💬</div>
+      <div style="flex:1;"><div class="section-label">Lamplight Ward Gossip</div><div class="section-sub">Long Table · Square · Eastwick · 4am at Lida's</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gossip-card"><div class="gossip-source">Long Table</div><div class="gossip-text">"Wren went to the Council twice this month. Came back with the same face both times — the one that means they heard him and did nothing." <div class="gossip-truth">True. Aldous Wren, Merchant Guild Chair. Guild transaction volume declining two years running.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Accord Arms common room</div><div class="gossip-text">"Visiting merchant from Coppertown says Lumencrest goods are 'unreliable delivery' now. She said it like an apology, which is worse." <div class="gossip-truth">True. External commercial reputation worse than Council public position.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Lida's, 4am</div><div class="gossip-text">"The lamp repair crew used to come through Eastwick every week. Haven't seen them in ten days. Brinne's people are buying candles in bulk." <div class="gossip-truth">True. Eastwick Cooperative stockpiling. Brinne and Lida both know.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Grain Table vendor</div><div class="gossip-text">"Quarter suppliers say Manufactories slowdown means less coin in the Ward by next season. They're not panicking. Halflings don't panic about food. They plan." <div class="gossip-truth">True. Supply chain disruption reaching Ward pricing within months.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Copperstring regular</div><div class="gossip-text">"Theatre director's planning something for next season that the Board hasn't approved. Willa Casp came in after midnight talking to herself about 'what we owe the audience.'" <div class="gossip-truth">True. Candlelight production crystallized Willa's ambitions — next season programming will be different.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Welcome Gate queue</div><div class="gossip-text">"If you want the real city, Tomm's your guide. If you want to be fleeced, take the other one — the one with the nice boots." <div class="gossip-truth">True. One guide actively misleading about exchange referrals. Tomm costs himself referral fees for honesty.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Night Pharmacy, 2am</div><div class="gossip-text">"Fade's getting harder to source clean. Academic Quarter kids are cutting it with something. Tessiel's seen three bad reactions this week." <div class="gossip-truth">True. Tessiel tracking supply disruption before official bodies. Quality change predates public crisis.</div></div></div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumencrest — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.location-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;margin-right:4px;margin-bottom:4px;}
+.loc-core{background:var(--accent-gold-dim);color:var(--accent-gold);border:1px solid rgba(201,168,76,0.3);}
+.loc-ward{background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);}
+.loc-shadow{background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);}
+.loc-quarter{background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);}
+.loc-industrial{background:var(--teal-bg);color:var(--teal-text);border:1px solid rgba(58,152,152,0.3);}
+.loc-academic{background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);}
+.building-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.building-name{font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:1px;}
+.building-type{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.building-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.6;}
+.district-link{display:block;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;text-decoration:none;transition:border-color 0.15s;}
+.district-link:hover{border-color:var(--accent-gold);}
+.district-link .dl-title{font-size:14px;font-weight:700;color:var(--accent-gold-light);margin-bottom:3px;}
+.district-link .dl-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.55;}
+.district-link .dl-arrow{font-size:11px;color:var(--accent-gold);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html" class="active">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Location Reference — City Hub</div>
+  <h1>Lumencrest</h1>
+  <p class="subtitle">~87,000 people on a dying Hollostar grid. Arrival, orientation, districts, cable cars, currency, and what's legal. District detail: <a href="lumencrest-lamplight.html" style="color:var(--accent-gold);">Lamplight Ward</a> · <a href="lumencrest-shadowside.html" style="color:var(--accent-gold);">Shadowside</a></p>
+</header>
+
+<div class="page-body">
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('arrival',this)">Arrival</button>
+    <button class="nav-tab" onclick="filterSections('city',this)">City Facts</button>
+    <button class="nav-tab" onclick="filterSections('districts',this)">Districts</button>
+    <button class="nav-tab" onclick="filterSections('travel',this)">Cable Car</button>
+    <button class="nav-tab" onclick="filterSections('commerce',this)">Currency & Law</button>
+    <button class="nav-tab" onclick="filterSections('gossip',this)">Gossip</button>
+  </div>
+
+  <!-- ══ ARRIVAL ══ -->
+  <div class="section" data-cat="arrival">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">🌆</div>
+      <div style="flex:1;"><div class="section-label">Arriving in Lumencrest</div><div class="section-sub">First sight · Pauper's Gate · Copper Gate · Inside the walls</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this on the Kingroad — first sight at night</div>
+        <p>"The first thing you notice is the sky. It's not dawn — you know that, you've been watching the stars. But the horizon ahead of you glows. Not the orange of fire. Not the pink of sunrise. Something whiter, steadier, colder. A dome of pale light sitting on the edge of the world where a city should be. It takes another hour before the shapes appear inside that glow — towers, walls, the dark geometry of buildings against the brightness behind them. And then you begin to hear it. A low sound, like a chord played so deep you feel it more than hear it. Constant. Steady. The sound of the city."</p>
+      </div>
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this at Pauper's Gate (north — Kingroad arrival)</div>
+        <p>"The northern gate is busy in the way of a place that has always been busy — a functional gatehouse, a queue that moves, and immediately inside on the left, a taproom that has the look of somewhere that has been the first building travelers pass for three hundred years. Old stone gate, iron and electric light in the gatehouse bright as midday. A cable runs overhead toward the city center. Vendors cluster just inside the gate with prices that assume you don't know better. Near the interior wall, a handful of people sit with the look of not knowing where they're going next. They are quiet. Frostwell refugees, if you know what that means. You probably don't yet."</p>
+      </div>
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this at Copper Gate (south — Lamplight Ward entrance)</div>
+        <p>"The southern gate opens into the polished face of the city — four inns within sight, currency exchange booths with bright signage, and a licensed information service called the Welcome Gate with a map board and guides for hire. This is where Lumencrest wants you to arrive. The street lamps start immediately. The buildings are four stories of stone with commercial ground floors. It smells like bread from somewhere south and something sharp and metallic you can't place. If you came through the north gate first, the difference is obvious. If this is your first gate, you don't know there's another face yet. You will."</p>
+      </div>
+
+      <div class="gm-say">
+        <div class="tag">GM: Say this when they walk through any gate into the city</div>
+        <p>"The street is lit. Not by torches, not by lanterns — the light comes from glass globes on iron posts every twenty feet, steady and white-gold, casting no flicker. Above you, a cable runs between towers, and something moves along it — an enclosed box the size of a room, gliding through the air, carrying passengers who look out the windows without particular concern. The road is wide enough for six carts side by side and it is full. Coal-smoke from somewhere west. Bread from somewhere south. That metallic scent again — faint, warm, in the walls and under your feet. A Clank walks past in plain grey robes. Nobody looks at it twice. It is the middle of the night. It does not look like the middle of the night."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Entry procedure — what guards actually do</div>
+        <ul>
+          <li><strong>No papers required.</strong> Gates are open. City watch manages flow, not investigation.</li>
+          <li><strong>Clanks</strong> are directed aside for implant scan: SERVING, FREE, or FLAGGED. FLAGGED means detention.</li>
+          <li><strong>Weapons:</strong> Personal arms fine. Obvious military-scale equipment gets stopped.</li>
+          <li><strong>Pauper's Gate:</strong> Names checked against warrant registry. Goods assessed for tariffs. Honest, vague, or creative answers all pass — unless you're actually wanted.</li>
+          <li><strong>Watch questions:</strong> Where from, where staying, business in the city. Recorded. Rarely followed up.</li>
+        </ul>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Pauper's Gate Taproom — Old Pen's</div>
+        <div class="building-type">First building inside north gate · Always open</div>
+        <p>The Underground's most public-facing anchor. Everyone who enters via Pauper's Gate passes it. City watch drinks here after shift. Old Pen has maintained that arrangement for twenty years by being useful to both sides without compromising either. Full detail on <a href="lumencrest-shadowside.html" style="color:var(--accent-gold);">Shadowside page</a>.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Welcome Gate — Tomm's service</div>
+        <div class="building-type">Copper Gate · Licensed tour &amp; orientation</div>
+        <p>2 silver marks for a guided introduction to public geography. 5 silver for a full day. Tomm is the best guide on staff — he'll tell you in the first ten minutes which money exchange to use and which to avoid, costing himself the referral fee. Full detail on <a href="lumencrest-lamplight.html" style="color:var(--accent-gold);">Lamplight page</a>.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ CITY FACTS ══ -->
+  <div class="section" data-cat="city">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">📋</div>
+      <div style="flex:1;"><div class="section-label">City Facts</div><div class="section-sub">Population · crisis · what everyone knows · what nobody says</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="ref-box">
+        <div class="ref-title">At a glance</div>
+        <ul>
+          <li><strong>Population:</strong> ~87,000 city proper + ~15,000 transient workers and visitors</li>
+          <li><strong>Founded:</strong> ~1,200 years ago (0 LE — Lumencrest Era calendar starts here)</li>
+          <li><strong>Unique:</strong> Only city with Hollostar-powered electricity — the Lumen Network</li>
+          <li><strong>Government:</strong> Council of Lumens — 32 seats, three factions, gridlocked three years</li>
+          <li><strong>Crisis:</strong> The Heart is dimming. ~2.5% annual power loss. Six brownouts in the past year.</li>
+          <li><strong>Clanks:</strong> ~3,000 registered (indentured service). ~400 free. Scanned at gates.</li>
+        </ul>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">What everyone in Lumencrest knows (first week)</div>
+        <ul>
+          <li><strong>Brownouts are getting worse.</strong> Official line: "routine maintenance." Unofficial: the Network is under strain nobody wants to name.</li>
+          <li><strong>Council is gridlocked.</strong> Illuminists (technical fix), Conservators (stability), Expansionists (find another Hollostar, military if needed).</li>
+          <li><strong>Clanks are political.</strong> Indentured service vs. slavery — Ironwright Collective made it a bargaining chip.</li>
+          <li><strong>Manufactories is angry.</strong> Power rationing hit factory floors hardest. The word "strike" replaced "demonstration."</li>
+          <li><strong>Halfling Quarter feeds you.</strong> Quarter bread and beer reach every district. Don't make the Quarter unhappy.</li>
+          <li><strong>The Vault District is there.</strong> The wall, the guards, the Heart beneath. Brownouts are making people look at it.</li>
+        </ul>
+      </div>
+
+      <div class="danger-note">
+        <div class="tag">GM only — what nobody quite says out loud</div>
+        <p>The official Heart timeline isn't what researchers believe. Disappearances in Shadowside are happening — carefully, to people whose absence won't be reported. Something connected to the Green Covenant passed through recently asking about Network distribution. The Frostwell is worse than refugees are saying — the ones who arrive left before things became impossible.</p>
+      </div>
+
+      <div class="gm-note">
+        <div class="tag">Campaign clock — Day 1</div>
+        <p>Tonight the lights are on. Tomorrow mid-afternoon a distribution hub on Lamplight Ward's eastern edge explodes. Three injured. A section goes dark. Protest becomes panic. Tonight, walk through a city that still looks like it's working.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ DISTRICTS ══ -->
+  <div class="section" data-cat="districts">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">🗺️</div>
+      <div style="flex:1;"><div class="section-label">Districts Overview</div><div class="section-sub">Six districts + Vault · Power coverage · Where to send players</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="ref-box">
+        <div class="ref-title">Power coverage (outward from center)</div>
+        <ul>
+          <li><strong>Radiant Core &amp; Academic Quarter:</strong> Full, reliable</li>
+          <li><strong>Lamplight Ward &amp; Halfling Quarter:</strong> Mostly reliable — eastern Ward lamps failing</li>
+          <li><strong>Manufactories:</strong> Rationed, factory floors prioritized over housing</li>
+          <li><strong>Shadowside:</strong> None. Never had it. Candles, oil, coal.</li>
+        </ul>
+      </div>
+
+      <a href="lumencrest-lamplight.html" class="district-link">
+        <span class="location-badge loc-ward">Party home district</span>
+        <div class="dl-title">💡 Lamplight Ward — East-Center · ~20,000</div>
+        <div class="dl-desc">Commercial heart for the middle class. Merchant Square, Guildhall Quarter, Entertainment Quarter, Copper Gate welcome zone. Three cable car stops. The surface city at its most convincing — and where the cracks show first.</div>
+        <div class="dl-arrow">→ Accord Arms, Long Table, Tomm, Henris Callow, food vendors, gossip</div>
+      </a>
+
+      <a href="lumencrest-shadowside.html" class="district-link">
+        <span class="location-badge loc-shadow">North arrival</span>
+        <div class="dl-title">🌑 Shadowside — North · ~15,000</div>
+        <div class="dl-desc">Unlit, dense, self-sufficient. Pauper's Gate, Night Market, Dark Lantern, Maze Quarter. No cable car. City watch patrols minimally. The city's true underbelly above ground.</div>
+        <div class="dl-arrow">→ Old Pen, Solt, Mama Voss, Night Market, Frostwell refugees, gossip</div>
+      </a>
+
+      <div class="building-card">
+        <div class="building-name">Radiant Core</div>
+        <div class="building-type">Center · ~8,000 · Full power · Central Hub station</div>
+        <p>Seat of power. Council, estates, Accord Chamber dome visible for miles. Guards permanent. You need a reason to be here. Founder's Rest inn (5–15 gold/night) — only Core lodging.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Halfling Quarter</div>
+        <div class="building-type">Southeast · ~15,000 · Mostly reliable · 1 cable stop</div>
+        <p>Warmest part of the city. Common Green, breweries, rooftop gardens. Pipwick's Rooms (Bessa Pipwick, 7 silver, breakfast included). Everyone knows the Quarter feeds Lumencrest.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Manufactories</div>
+        <div class="building-type">West · ~25,000 · Rationed power · 2 worker-hub stations</div>
+        <p>Industrial west. Great Press factory, chimney stacks, shift rotations day and night. Ironwright Collective territory. Lampblack inn 5–8 silver. Workers angry about rationing.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Academic Quarter</div>
+        <div class="building-type">East-Center · ~5,000 · Full power · Scholar's Gate station</div>
+        <p>Luminarium campus, Archives dome, Innovation Row. Four Constants café (best conversations, open almost 24h). Scholar's Rest 1.5 gold/night.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Vault District</div>
+        <div class="building-type">Center-sub · Restricted · No public cable access</div>
+        <p>Heart's entrance. High walls, Vault Guard pairs, auto-turrets on city wall. Hollostar Dust enforcement jurisdiction. Unauthorized access extremely illegal.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Underground</div>
+        <div class="building-type">Beneath all districts · Tunnels, sewers, hidden economy</div>
+        <p>Connects to Shadowside surface more than anywhere else. Dry Chambers, Quiet Market, tunnel routes. Shadowside page covers above-ground entry points.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ CABLE CAR ══ -->
+  <div class="section" data-cat="travel">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">🚡</div>
+      <div style="flex:1;"><div class="section-label">Cable Car Guide</div><div class="section-sub">Lines · fares · first ride · orientation from above</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: First cable car ride</div>
+        <p>"The station is a covered platform eight feet above the street. You pay the attendant — two copper marks per person, any distance — and wait until the car slides in from above. Dark wood and glass, fifteen feet long, hanging from the cable. Inside it smells like warm metal and other people. Worn leather seats. Clean windows. The attendant speaks two words into a speaking tube and the car moves — smoothly, no lurch, a steady pull until you're above the rooftops at a fast walking pace. Below: the whole city. Above: cable and sky. The hum is sharper up here. Nobody in the car is impressed. One woman is asleep. A dwarf reads. A Clank stares out the window. This is how they commute."</p>
+      </div>
+
+      <table class="price-table">
+        <tr><th>Detail</th><th>Info</th></tr>
+        <tr><td>Fare</td><td>2 copper marks per journey, any distance on the line</td></tr>
+        <tr><td>Payment</td><td>At entry. Standard Accord coin. Operator flags invalid regional currency.</td></tr>
+        <tr><td>Peak frequency</td><td>Every 15–20 minutes</td></tr>
+        <tr><td>Late night</td><td>Every 30–40 minutes</td></tr>
+        <tr><td>Brownouts</td><td>Specific lines go down. South Factory Hub line most vulnerable.</td></tr>
+      </table>
+
+      <div class="ref-box">
+        <div class="ref-title">Four lines from Central Hub (Radiant Core)</div>
+        <ul>
+          <li><strong>North Line:</strong> Central Hub → North Expanse Station (Lamplight north / near Pauper's Gate) → North Factory Hub (Manufactories/Shadowside border)</li>
+          <li><strong>East Line:</strong> Central Hub → Scholar's Gate (Academic Quarter) → River Station (East Gate)</li>
+          <li><strong>South Line:</strong> Central Hub → Merchant Square → South Gate Station (Copper Gate)</li>
+          <li><strong>West Line:</strong> Central Hub → Halfling Quarter Station → Mill Quarter (Manufactories south)</li>
+        </ul>
+      </div>
+
+      <div class="gm-note">
+        <div class="tag">Orientation tip</div>
+        <p>Players will unconsciously use the cable car bell to orient — lines are the fastest way to understand where you are. From the car: Accord Chamber dome, Vault wall from above, Manufactories smoke, Halfling Quarter yeast smell even at cable height.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ CURRENCY & LAW ══ -->
+  <div class="section" data-cat="commerce">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">💰</div>
+      <div style="flex:1;"><div class="section-label">Currency, Lodging &amp; What's Legal</div><div class="section-sub">Marks · where to sleep · eat · gray areas</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="ref-box">
+        <div class="ref-title">Currency</div>
+        <ul>
+          <li><strong>Units:</strong> Copper marks, silver marks, gold marks</li>
+          <li><strong>Exchange:</strong> 10 copper = 1 silver · 10 silver = 1 gold</li>
+          <li><strong>Fair exchange:</strong> Merchant Square, two licensed Merchant Guild booths</li>
+          <li><strong>Premium trap:</strong> Copper Gate exchange booths — worse rates for first-timers. Tomm warns against these.</li>
+        </ul>
+      </div>
+
+      <div class="menu-section" style="margin-bottom:16px;">
+        <div class="menu-section-title" style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);">Where to sleep — by budget</div>
+        <table class="price-table">
+          <tr><th>Budget</th><th>Options</th></tr>
+          <tr><td>Free / crisis</td><td>Salvation Hearth emergency beds (Shadowside)</td></tr>
+          <tr><td>4–7 silver</td><td>Night's Rest (Shadowside), Lampblack (Manufactories), Pipwick's Rooms (Halfling Q., breakfast incl.)</td></tr>
+          <tr><td>1–2 gold</td><td>Traveller's Mark (Copper Gate, 1 gold), Wren House (Lamplight, 6 silver–3 gold/week)</td></tr>
+          <tr><td>2–5 gold</td><td>Accord Arms (Lamplight, party likely here), Green Hearth (Halfling Q.)</td></tr>
+          <tr><td>5+ gold</td><td>Founder's Rest (Radiant Core only)</td></tr>
+        </table>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Legal · Gray · Illegal</div>
+        <ul>
+          <li><strong>Legal:</strong> Halfling Quarter commerce. Night Market southern/central stretches (specific goods vary). Most Shadowside above-ground trade. The Pit (technically illegal, functionally tolerated).</li>
+          <li><strong>Gray:</strong> Hollow Pipe, Velvetongue, Thornbloom. Night Market substance section. Unlicensed medicine (Vael at the Stitch; Night Pharmacy back counter). Information brokering.</li>
+          <li><strong>Illegal:</strong> Red Cradle, Fade, Hollostar Dust. Unauthorized Vault access. Unlicensed weapons trade. Slavery — Clank indenture is the live political fight.</li>
+          <li><strong>Extremely illegal (Vault Guard):</strong> Hollostar Dust — serious, consistent enforcement.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ GOSSIP ══ -->
+  <div class="section" data-cat="gossip">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">💬</div>
+      <div style="flex:1;"><div class="section-label">City Gossip</div><div class="section-sub">Overheard in gates, cable cars, and squares · Truth for GM only</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gossip-card"><div class="gossip-source">Cable car</div><div class="gossip-text">"Third brownout this moon. My sister in Eastwick had to finish her ledgers by candle. The repair queue says autumn." <div class="gossip-truth">True. Eastern Lamplight lamps unreliable for weeks. Eastwick Cooperative is stockpiling quietly.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Merchant Square</div><div class="gossip-text">"Factory supply shop on the east side closed two months ago. FOR LEASE sign still up. Nobody's biting." <div class="gossip-truth">True. Manufacturing slowdown reducing Ward inventory. Aldous Wren has been to Council twice with no commitment.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Pauper's Gate vendor</div><div class="gossip-text">"More northerners every week. Quiet ones. They don't haggle — they just look lost and pay whatever you ask." <div class="gossip-truth">True. Frostwell refugees arriving in ones and twos. Conditions at source worse than they'll say.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Long Table dinner</div><div class="gossip-text">"The Illuminists still talk like the researchers will pull a miracle. The people who actually maintain the Network stopped saying that six months ago." <div class="gossip-truth">True. Craft Guild professionals know practical Network condition better than Council rhetoric.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Night Market trader</div><div class="gossip-text">"Someone's buying tunnel components again. Quiet Market stuff. Haven't seen that volume since before the last rationing push." <div class="gossip-truth">Partially true. Radical wing activity — Wren/Ash supply chain. Joss Wren moves components through Night Market.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Copper Gate innkeeper</div><div class="gossip-text">"If you're staying more than a night, change your coin at Merchant Square. The booths here count on you not knowing that." <div class="gossip-truth">True. Henris Callow and Tomm both steer visitors to fair exchange — professional honesty as strategy.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Academic Quarter whisper</div><div class="gossip-text">"Evening Broadsheet's been trying to verify the Heart timeline for weeks. The researchers won't go on record. That usually means they're scared." <div class="gossip-truth">True. Official timeline disputed in Academic Quarter. Petra Vane's classified finding unreported.</div></div></div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

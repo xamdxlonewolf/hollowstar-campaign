@@ -171,6 +171,7 @@ _Full cast organized by home district. Arc relevance and thread tags included fo
 | **Lida Birch**           | Lida's Bake; nighttime neighborhood observer      | ⚪   | —               | [[02_Lamplight_Ward_Expanded]]  |
 | **Henris Callow**        | Traveller's Mark Inn proprietor                   | ⚪   | —               | [[02_Lamplight_Ward_Expanded]]  |
 | **Tomm**                 | Welcome Gate senior guide                         | ⚪   | —               | [[02_Lamplight_Ward_Expanded]]  |
+| **Senna Wold**           | Junior Illuminist Councilor; Eastwick rep           | 🟡  | [[#HEART — Heart Failure Timeline / Classified Research\|(HEART)]] | [[01_Radiant_Core_Expanded]] |
 | **Professor Dorin Mast** | Velvetongue producer; Academic Quarter            | ⚪   | [[#THE UNSEEN GUILD\|(GUILD)]]         | [[Controlled_Substances_Trade]] |
 
 ---

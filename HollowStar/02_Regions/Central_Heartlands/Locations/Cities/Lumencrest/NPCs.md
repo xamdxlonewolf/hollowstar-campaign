@@ -142,6 +142,87 @@
 
 ## At the Gates and In the Streets
 
+### Tomm
+**Role:** Senior guide, Welcome Gate information service, Copper Gate  
+**Ancestry/Age:** Half-elf, 29  
+**Location:** The Welcome Gate, Copper Gate, most days
+
+**Appearance:** Practical footwear and clothing — comfortable at any speed. Worn official district map extensively annotated in small handwriting.
+
+**Personality:** Direct about what his service can and can't offer. In the first ten minutes tells new arrivals the Welcome Gate's currency exchange referral has a kickback and Merchant Square's licensed booths are better — costing himself the referral fee. Proved correct by repeat business.
+
+**What he knows:** Full navigable geography including informal routes and unofficial access points. Street-level social landscape — which establishments are what they appear to be. One of the best first contacts for players needing city knowledge without faction embedding.
+
+**Working with him:** Hire through Welcome Gate (2 silver intro, 5 silver full day) and ask for Tomm specifically. Honest orientation without agenda.
+
+---
+
+### Old Pen
+**Role:** Proprietor of the Pauper's Gate Taproom  
+**Ancestry/Age:** Human, appears late 60s  
+**Location:** Pauper's Gate Taproom — immediately inside north gate, left side
+
+**Appearance:** Short, wide, white-haired. Moves slowly on purpose. Face remarkable for complete neutrality — not blank, not cold, absence of unsolicited expression.
+
+**Personality:** Oldest fixture in the Underground's immediate surroundings. Survived twenty years by being useful to everyone and dangerous to no one — or being perceived that way. Truthful to city watch about which way people went; truthful to those people about who's been asking. Both sides trust her to do exactly that.
+
+**What she knows:** Everyone through Pauper's Gate twenty years — appearance and often first destination. Gate-traffic inquiries priced at 3 silver marks whether buyer is Underground or trusted watch.
+
+**Working with her:** Buy drinks. Return regularly. Week one: acknowledgment beyond courtesy. Week two: week-old intel. Week three: current information. Timeline does not accelerate for gold.
+
+---
+
+### Senna Wold
+**Role:** Junior Illuminist Councilor; representative for eastern Lamplight Ward  
+**Ancestry/Age:** Human, early 40s  
+**Location:** Council sessions; lives in Eastwick, eastern Lamplight Ward
+
+**Appearance:** Less polished than senior Councilors — dresses like someone who lives in the Ward she represents. Often looks specifically worried rather than performing concern.
+
+**Personality:** Genuinely frightened in a way her faction colleagues mask with technical confidence. Knows the eastern Ward at household level — lamp failures, repair queue, Eastwick stress. Speaks rarely in Council; when she does, it's specific and local.
+
+**What she wants:** The power crisis acknowledged as the beginning of something, not routine maintenance. Has a specific fear this is the opening phase of civic fracture.
+
+**What she knows:** Eastern Ward infrastructure reality before it reaches Council agendas. Aware of Eastwick Cooperative stockpiling through constituent contact. Suspects official Heart timeline is optimistic — hasn't gone on record.
+
+**Hook:** Party helping Eastwick or visible in Ward community may draw her out for a frank conversation no senior Councilor would permit
+
+---
+
+### Captain Isen Varr
+**Role:** City watch captain — Lamplight Ward / Shadowside border deployments  
+**Ancestry/Age:** Human, 45  
+**Location:** Border protests, Eastwick response; rarely Radiant Core
+
+**Appearance:** Command posture under strain. Uniform correct; eyes track too many moving parts at once.
+
+**Personality:** Containment over confrontation. Not corrupt — overwhelmed. Will remember faces that helped during the hub blast.
+
+**What he knows:** Protest organizers are not radicals (Tessa Morr, Docken Hale). Investigation will stall without outside leads. Vault Guard notified; not his jurisdiction.
+
+**Working with him:** Cooperate during the blast response; provide witness statements he can file. **Presence DIF 12** to avoid sweep detention if party was near hub.
+
+---
+
+### Tessa Morr
+**Role:** Protest organizer — Ironwright-adjacent, Eastwick resident  
+**Ancestry/Age:** Human, 34  
+**Location:** Lamplight Ward / Shadowside border actions; Eastwick Cooperative network
+
+**Appearance:** Work-worn hands, loud voice used to being heard over crowds. Ironwright banner not worn — carried.
+
+**Personality:** Angry and controlled. Genuinely horrified by the hub explosion — **Insight DIF 12** confirms not performance.
+
+**What she wants:** Power rationing rollback, not violence. Public distance from bombers immediately after blast.
+
+**Working with her:** Credibility with Manufactories workers and Eastwick mutual aid. Intro to Genna Cradle if party earns trust post-blast.
+
+---
+
+**See also:** [[Lumencrest_NPC_INDEX]] for full district cast.
+
+---
+
 ### The Gate Sergeant (South Gate)
 **Name:** Aldus Brenn  
 **Role:** Senior gate guard, South Gate  

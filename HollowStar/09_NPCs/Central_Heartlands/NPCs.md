@@ -79,6 +79,41 @@
 
 ---
 
+### Tomm
+**Role:** Welcome Gate senior guide — best honest orientation for new arrivals in Lumencrest  
+**Ancestry:** Half-elf, age 29  
+**Appearance:** Looks like someone who walks the city for a living. Annotated district map more accurate than the official version.  
+**Personality:** Tells the truth about exchange booths and tour kickbacks in the first ten minutes, even when it costs him money. No faction allegiance — geography and street-level literacy.  
+**Goals:** Build a reputation for honesty that outlasts referral fees  
+**What he reveals about the city:** The gap between Lumencrest's polished Copper Gate face and its actual geography — informal routes, which doors are what they claim to be  
+**Hook:** Best first hire when the party reaches the city; knows Pauper's Gate traffic patterns and tunnel mouths near North Factory Hub
+
+---
+
+### Old Pen
+**Role:** Proprietor of Pauper's Gate Taproom — gate-traffic witness for twenty years  
+**Ancestry:** Human, appears late 60s (first name unknown, possibly to her)  
+**Appearance:** Short, wide, white-haired. Moves at her own pace. Neutral expression that still communicates assessment.  
+**Personality:** Useful to city watch and Underground alike by telling both sides the truth in small, specific ways. Neither side wants her gone.  
+**Goals:** Keep the taproom running; maintain the twenty-year equilibrium  
+**What she reveals about the city:** Who comes through the north gate, when traffic is unusual, what nervous newcomers look like before anyone else names it  
+**Secret:** Saw edge of radical-wing supply meetings (e.g. Ash at taproom) without knowing identities — information unlocks through drink-and-return patience, not gold  
+**Hook:** Party tracking gate traffic or Frostwell refugee flows needs her record — earned over weeks, not bought
+
+---
+
+### Councilor Senna Wold
+**Role:** Junior Illuminist on the Council of Lumens; eastern Lamplight Ward representative  
+**Ancestry:** Human, age 41  
+**Appearance:** Worried before she speaks. Dresses like her constituents, not like Radiant Core.  
+**Personality:** The one Council member who looks frightened instead of performing calm. Lives in Eastwick; knows lamp failures and repair delays firsthand.  
+**Goals:** Force the Council to treat the crisis as structural, not maintenance  
+**Secret:** Believes the official Heart timeline is wrong and the eastern Ward is the city's early warning — she hasn't said this in session yet  
+**What she reveals about the city:** How the prosperous middle class is beginning to lose faith in the Illuminist technical solution from inside the faction's own base  
+**Hook:** Party helping Eastwick or visible in Ward community may draw her out for a frank conversation no senior Councilor would permit
+
+---
+
 ### Initiate Kael Thornroot
 **Role:** Young First Flame priest stationed in Lumencrest's growing First Flame congregation  
 **Ancestry:** Human, age 23  

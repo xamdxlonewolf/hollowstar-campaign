@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fear Spend Options — Session 2 · HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── FEAR PAGE SPECIFIC ── */
+.fear-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.fear-nav-btn{font-size:11px;padding:4px 12px;border-radius:99px;border:1px solid rgba(184,84,80,0.3);background:var(--fear-bg);color:var(--fear-text);cursor:pointer;font-family:var(--font-ui);transition:all 0.15s;text-decoration:none;display:inline-block;}
+.fear-nav-btn:hover{background:rgba(184,84,80,0.25);border-color:var(--fear);}
+
+.fear-card{background:var(--bg-card);border:2px solid rgba(184,84,80,0.4);border-radius:var(--radius-lg);padding:0;margin-bottom:2.5rem;scroll-margin-top:70px;}
+.fear-card-header{background:rgba(184,84,80,0.12);border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:14px 20px;border-bottom:1px solid rgba(184,84,80,0.3);}
+.fear-card-scene{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
+.fear-card-title{font-family:var(--font-body);font-size:18px;color:var(--text-primary);font-weight:normal;}
+.fear-card-cost{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.4);margin-top:6px;}
+.fear-card-body{padding:18px 20px;}
+
+.trigger-box{background:rgba(184,84,80,0.07);border-left:3px solid var(--fear);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;margin-bottom:14px;}
+.trigger-box .tag{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.trigger-box p{font-size:13.5px;color:var(--text-primary);line-height:1.75;font-style:italic;}
+
+.say-box{background:var(--info-bg);border-left:3px solid var(--info);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;margin-bottom:14px;}
+.say-box .tag{font-size:10px;font-weight:700;color:var(--info-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.say-box p{font-size:13.5px;color:var(--text-primary);line-height:1.75;font-style:italic;}
+
+.roll-box{background:var(--purple-bg);border:1px solid rgba(138,96,200,0.3);border-radius:var(--radius-md);padding:13px 15px;margin-bottom:14px;}
+.roll-box .tag{font-size:10px;font-weight:700;color:var(--purple-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:9px;}
+.roll-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+.roll-chip{font-size:12px;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid var(--border-med);color:var(--text-secondary);}
+.roll-chip strong{color:var(--text-primary);}
+.roll-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+.ro{border-radius:var(--radius-sm);padding:10px 12px;border:1px solid transparent;}
+.ro-fail{background:var(--fear-bg);border-color:rgba(184,84,80,0.3);}
+.ro-partial{background:var(--warn-bg);border-color:rgba(201,125,42,0.3);}
+.ro-success{background:var(--hope-bg);border-color:rgba(74,158,110,0.3);}
+.ro-label{font-size:11px;font-weight:700;margin-bottom:4px;}
+.ro-fail .ro-label{color:var(--fear-text);}
+.ro-partial .ro-label{color:var(--warn-text);}
+.ro-success .ro-label{color:var(--hope-text);}
+.ro p{font-size:12px;color:var(--text-secondary);line-height:1.5;}
+
+.consequence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.cq{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;}
+.cq-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;}
+.cq-now{color:var(--fear-text);}
+.cq-soon{color:var(--warn-text);}
+.cq-later{color:var(--info-text);}
+.cq p{font-size:12px;color:var(--text-secondary);line-height:1.55;}
+
+.gm-only-box{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-md);padding:11px 14px;margin-bottom:14px;}
+.gm-only-box .tag{font-size:10px;font-weight:700;color:var(--accent-gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.gm-only-box p,.gm-only-box li{font-size:13px;color:var(--text-primary);line-height:1.7;}
+.gm-only-box ul{padding-left:1.1rem;}
+.gm-only-box strong{color:var(--accent-gold-light);}
+
+.return-bar{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 14px;margin-top:14px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-muted);}
+.return-bar a{color:var(--accent-gold);text-decoration:none;font-weight:600;}
+.return-bar a:hover{color:var(--accent-gold-light);}
+
+.scene-divider{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin:2rem 0 1rem;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+
+@media(max-width:600px){.roll-outcomes,.consequence-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Session 2 — Fear Spend Reference</div>
+  <h1>Fear Options — Full Expansions</h1>
+  <p class="subtitle">Click any fear spend from Session 2 to land here. Each entry has what to say, any rolls, narrative outcomes, and short/medium/long consequences. When done, return to Session 2.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="fear-nav">
+    <a href="#fs-s2-a1-gate" class="fear-nav-btn">🚪 Registry Flag</a>
+    <a href="#fs-s2-a1-hum" class="fear-nav-btn">〰️ Hum Spike</a>
+    <a href="#fs-s2-a1-clank" class="fear-nav-btn">🤖 Clank Stares</a>
+    <a href="#fs-s2-a2-cable" class="fear-nav-btn">🚡 Car Shudders</a>
+    <a href="#fs-s2-a2-brownout" class="fear-nav-btn">💡 Brownout Flicker</a>
+    <a href="#fs-s2-a3-greer-spirits" class="fear-nav-btn">🌿 Greer Recognized</a>
+    <a href="#fs-s2-a3-lurielle-hum" class="fear-nav-btn">✨ Hum Sync</a>
+    <a href="#fs-s2-a3-basil-watched" class="fear-nav-btn">👁️ Basil Tailed</a>
+    <a href="#fs-s2-a4-solt" class="fear-nav-btn">🍺 Solt's Pour</a>
+    <a href="#fs-s2-a4-refugee" class="fear-nav-btn">❄️ Refugee Question</a>
+    <a href="#fs-s2-a5-chalk" class="fear-nav-btn">✏️ Covenant Chalk</a>
+    <a href="#fs-s2-a5-dawn-protest" class="fear-nav-btn">📢 Vault Named</a>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ACT 1 — PAUPER'S GATE
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🚪 Act 1 — Pauper's Gate Entry</div>
+
+  <div class="fear-card" id="fs-s2-a1-gate">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 1 — Gate Entry</div>
+      <div class="fear-card-title">The Registry Flags a Name</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>During the gate queue, before the party reaches the officer. Best when the table is relaxed — use it to remind them the city's welcome is conditional.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The line stops. Not long — thirty seconds — but long enough. Ahead of you, a Frostwell woman with a cloth bundle is asked to step aside. The officer checks a ledger, speaks quietly to a second watchman, writes something down. She goes pale, then nods, and is waved through with a look that says she knows she's being noted. The line moves again. You pass through normally. But you saw how fast the machinery engages when a name matters."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>The woman is not on a criminal warrant — she's on a <strong>relief registry mismatch</strong>. Frostwell arrivals are supposed to check in at a Council relief station within 24 hours; she didn't know. The watch logs her for follow-up, not arrest. This is bureaucracy, not malice — but it looks like malice from the queue.</p>
+      <p style="margin-top:6px;"><strong>If a PC has a warrant:</strong> swap the NPC for their situation. The fear spend buys you the beat without a surprise TPK — the officer asks them aside, verifies, and either passes them (mistaken identity, old warrant) or gives them a choice: resolve it now (fine, contact, bribe) or don't enter. Don't hard-stop the campaign without an out.</p>
+      <p style="margin-top:6px;"><strong>Basil:</strong> If the Guild runner reported the party, this is NOT when that surfaces — registry is city watch, not Guild. Save Guild awareness for the tail spend.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>The city's scale becomes administrative, not just sensory. Someone in the party may feel sympathy, suspicion, or both.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If they help the woman (carry a bag, speak for her, escort her to relief station), she remembers. Minor ally in Pauper's Gate traffic.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Frostwell registry friction becomes relevant when refugee crisis escalates. Players who saw Day 1 queue politics understand Day 20's underground deaths differently.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act1">Return to Act 1</a> — continue gate entry narration.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a1-hum">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 1 — Gate Entry</div>
+      <div class="fear-card-title">The Hum Spikes Once</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Immediately after they cross the gate threshold, or when they first touch a Network-connected fixture (lamp post, iron railing). Works best paired with Greer or Lurielle in front.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The hum you've been hearing since the ridge — constant, low — spikes. Not louder exactly. Deeper. Every electric lamp on the street flickers in the same instant, a single synchronized stutter, then steadies. A Clank three paces ahead doesn't pause. A vendor doesn't look up. You do."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Micro-fluctuation in Heart output — the same class of event that causes brownouts, at negligible scale. Network-connected infrastructure registers it everywhere at once. Locals have learned to ignore sub-threshold spikes. Newcomers haven't.</p>
+      <p style="margin-top:6px;"><strong>Lurielle:</strong> Knowledge DIF 12 — the spike's harmonic profile matches her Heart Stone notation from Session 1 (if used). Same family, different amplitude. She can write this down.</p>
+      <p style="margin-top:6px;"><strong>Greer:</strong> Instinct DIF 11 — the spirit layer flinched. Something below the city turned in its sleep. Not waking. Adjusting.</p></div>
+      <div class="roll-box"><div class="tag">Optional — Lurielle places the frequency</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Knowledge</div><div class="roll-chip"><strong>DIF:</strong> 12</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Wrongness noted. No pattern yet.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Same family as Ember Grove threshold. Different source depth.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Heart Stone + Network + Endless Eye pre-classification data — three points on a line she can't finish yet. Critical journal entry.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Wonder curdles into unease. The city is alive in a way lanterns never were.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>When brownout flicker happens on the cable car, players may connect the two — let them.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Lurielle's frequency log becomes evidence when Academic Quarter researchers discuss Heart periodicity.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act1">Return to Act 1</a> — first street scene.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a1-clank">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 1 — Gate Entry</div>
+      <div class="fear-card-title">A Clank Stops and Looks at Lurielle</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>After implant scan at the gate (if Clanks are being processed nearby) or when the first Clank passes the party on the street. Lurielle-specific.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"A Clank in a grey service robe completes the gate scan — FREE status, waved through — and walks past your group. It stops. Turns its head. Looks at Lurielle for one beat longer than navigation requires. You feel the attention like a hand on your shoulder. Then it continues, pace unchanged. Nobody else noticed."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>The Clank's sensory array picked up Hollowstar-adjacent biological resonance — same class of detection as the shard bear's pull toward Lurielle. The Clank has no context for what it sensed. Its behavior is an artifact of Luminarium-standard perception hardware, not malice or recognition.</p>
+      <p style="margin-top:6px;"><strong>If Lurielle reacts publicly:</strong> Instinct DIF 12 from nearby locals — 'first time seeing a Clank?' Pity or amusement, not alarm.</p>
+      <p style="margin-top:6px;"><strong>Clank politics beat:</strong> Greer may read the room's indifference as its own kind of horror. Optional character moment — no roll required.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Lurielle is visible to systems she didn't know were watching. Personal and uncanny.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If hum-sync fear spend is used later, players may connect Clank pause + resonance flicker.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Shard Division and Luminarium sensors will respond similarly. Lurielle is a walking instrument — dangerous and useful.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act1">Return to Act 1</a> — sensory overload continues.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ACT 3 — CABLE CAR
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🚡 Act 3 — Cable Car Orientation</div>
+
+  <div class="fear-card" id="fs-s2-a2-cable">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 3 — Cable Car</div>
+      <div class="fear-card-title">The Car Shudders Mid-Line</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Mid-ride between North Expanse and Central Hub — the highest, most exposed segment. Use when the table is comfortable and enjoying the view.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The car shudders — a lateral hitch, like the cable's tension went wrong for half a second. The mechanism in the ceiling chatters. The attendant doesn't look alarmed. He taps the speaking tube, listens, says two words you can't hear. 'Tension adjustment,' he tells the car, almost bored. 'Happens.' A dwarf by the window goes back to reading. A woman who was asleep opens one eye, closes it. You are the only people holding the handrail."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Minor cable maintenance lag — the Network hiccupped and the automated tension compensator was a fraction slow. Not dangerous on its own. Happens more often than officials admit. The attendant's calm is real; so is the dwarf's glance at the ceiling, which says <em>more than last month</em>.</p>
+      <p style="margin-top:6px;"><strong>Don't turn this into a disaster scene</strong> unless players panic and do something stupid. The fear is social: locals know something newcomers don't.</p></div>
+      <div class="roll-box"><div class="tag">Optional — Read the locals' reaction</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Instinct or Presence</div><div class="roll-chip"><strong>DIF:</strong> 12</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Attendant's reassurance lands. Maybe it's fine.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>This isn't the first time they've heard 'happens.' Frequency is increasing.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>The dwarf's glance + the asleep woman's single eye = shared public knowledge the city doesn't discuss with outsiders. Brownouts are infrastructure, not rumor.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Vertigo and vulnerability above the rooftops. Brief, controlled.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Sets up brownout flicker from the car as part of a pattern, not an isolated event.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>When the hub explodes Session 3, players who rode the cable remember: the Network was already stuttering.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act3">Return to Act 3</a> — continue orientation ride.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a2-brownout">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 3 — Cable Car</div>
+      <div class="fear-card-title">Brownout Flicker — Eastern Ward</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>From the cable car, approaching Central Hub or on the South line descent — players have elevation to see a district-wide flicker.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"From up here you watch a section of the eastern Ward go dark — not one lamp, a block, then two, streetlamps dying in a chain like someone snuffed a line of candles. Three seconds. Four. Then they come back, not all at once, a staggered relight that looks ashamed. Someone in the car swears quietly. The Clank at the window doesn't react. Nobody explains it to you."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Rationing-induced load shed on a secondary feed — the same eastern Ward infrastructure that Session 3's hub explosion will sever more permanently. The protest tomorrow is partly about this neighborhood's power priority.</p>
+      <p style="margin-top:6px;"><strong>Greer:</strong> When the lights die, the spirit layer exhales — briefly less crowded. When they return, it compresses again. She can describe both sensations if asked.</p>
+      <p style="margin-top:6px;"><strong>Basil:</strong> Notes which block went dark. If he has the schedule card, he doesn't know yet this district matters — but he will.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Visual proof the glowing city is failing in patches. Protest chalk suddenly makes sense.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Dawn protest has specific grievance players can name if they were on the car.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Session 3 explosion hits this Ward's grid. Players who saw the flicker understand the blast as continuation, not random terror.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act3">Return to Act 3</a> — cable car loop.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ACT 4 — PC SPOTLIGHTS
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">✨ Act 4 — PC Spotlights</div>
+
+  <div class="fear-card" id="fs-s2-a3-greer-spirits">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 4 — Greer Spotlight</div>
+      <div class="fear-card-title">Something in the Layer Recognizes Her</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>During Greer's spotlight moment — near the Vault wall view from cable car, Merchant Square at night, or the border walk. When she's actively reaching into the spirit layer.</p></div>
+      <div class="say-box"><div class="tag">GM Say — To Greer</div><p>"You reach for the spirit layer the way you would at the grove — and for a moment it reaches back. Not words. Recognition. Something under the Vault District turns toward you like a sleeper hearing a familiar voice in a dream. It smells, impossibly, of oak and turned earth. Then the city rushes in again — eighty thousand voices, the Network's hum, the compression — and the moment is gone. Your eyes water. Not from sadness. From proximity."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Residual spirit-memory in the Heart's dreaming layer — Goldwood's fall left echoes in anything connected to Hollostar infrastructure. Greer's druidic bond reads it as forest. It's not a spirit of a tree. It's a scar in the layer that remembers what was lost when Lumencrest grew.</p>
+      <p style="margin-top:6px;"><strong>Thorn would say:</strong> <em>"The city is not empty. It is full of what it ate."</em> He won't say this until much later unless Tara asks directly in a future session.</p>
+      <p style="margin-top:6px;"><strong>Path of Spirits:</strong> No roll required for the experience. Instinct DIF 13 to understand it's memory, not a present entity.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Greer's mission personalizes — the spiritual quiet she felt for eight years has a geography.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Colors her read on protest, refugees, and Covenant chalk — she senses desperation layered on top of dreaming.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Goldwood/Timberfall thread connects to Vault Heart. Greer becomes the party's conscience on Lumencrest's cost.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act4">Return to Act 4</a> — Greer's spotlight continues.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a3-lurielle-hum">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 4 — Lurielle Spotlight</div>
+      <div class="fear-card-title">The Hum Matches Her Pulse for One Beat</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When Lurielle is measuring, journaling, or standing near a Network node (street lamp cluster, cable station housing, Accord Arms' lit common room).</p></div>
+      <div class="say-box"><div class="tag">GM Say — To Lurielle</div><p>"Your pulse finds the hum's rhythm — or the hum finds yours. For one beat they are the same. Bioluminescence flares blue-white at your wrist and collarbone, visible through your sleeve. A Clank on the street stops mid-step. A lamplight flickers. Then your heart stutters back to its own tempo and the city pretends nothing happened. You have a data point you cannot publish."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Resonance lock — brief coupling between Lurielle's biology and the Network carrier wave. Harmless at this duration. Would not be harmless at Shard Division exposure levels. The Clank stopped because its hardware flagged an anomaly; it has no protocol for what to do next, so it resumes.</p>
+      <p style="margin-top:6px;"><strong>Embarrassment angle:</strong> Let Lurielle's player decide how public this was. Common room vs empty street changes social consequence.</p></div>
+      <div class="roll-box"><div class="tag">Optional — Greer reads what happened</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Instinct</div><div class="roll-chip"><strong>DIF:</strong> 12</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>She saw the flare. Doesn't know why.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>The city answered her. Briefly. That shouldn't be possible.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Same class of moment as the Heart Stone — Lurielle is a threshold creature. Greer can name it without fixing it.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Lurielle's arcana meets biology in public. Vulnerability and wonder.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If Solt's pour is used, his line lands harder — he knew she was listening.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Shard Division would pay enormous sums to study her safely. Unsafely too.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act4">Return to Act 4</a> — Lurielle's spotlight.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a3-basil-watched">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 4 — Basil Spotlight</div>
+      <div class="fear-card-title">Someone Matches His Pace for Three Blocks</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When Basil scouts alone or walks ahead of the party — especially if Session 1 runner escaped OR pickpocket partial/fail. Works without those branches as generic city paranoia.</p></div>
+      <div class="say-box"><div class="tag">GM Say — To Basil</div><p>"You've had a tail before. This one is good. Three blocks behind, three blocks to the side, never closer than twenty feet, never obvious — newspaper, loaf of bread, the performance of a person with errands. When you stop at a corner, they stop. When you turn, they turn one beat late, like they expected you to. They don't follow you into the inn. They don't need to. They already know where you're sleeping."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Who it is</div>
+      <p><strong>If Guild clock +1:</strong> Unseen Guild scout — Coppertown contact's Lumencrest asset. Assessing, not acting. Report: party composition, inn choice, confidence level.</p>
+      <p style="margin-top:6px;"><strong>If Caelen aware:</strong> House Vael guard-adjacent freelancer — not the guard from Emberford, but same professional class. Checking if Basil is following Caelen.</p>
+      <p style="margin-top:6px;"><strong>Default:</strong> City watch plainclothes — routine traveler profiling after gate entry. Boring and still creepy.</p></div>
+      <div class="roll-box"><div class="tag">Basil's options</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Notice:</strong> Instinct DIF 12</div><div class="roll-chip"><strong>Lose for night:</strong> Agility or Finesse DIF 14</div><div class="roll-chip"><strong>Confront:</strong> Presence DIF 13 — tail disengages, no info</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure (lose)</div><p>Tail stays. They learn his patterns. -1 to heist stealth later if uncaught.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Shakes them for tonight. They know he knows.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Clean lose. If confront success: tail was Guild scout — they learned nothing new.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Basil's professional anxiety gets real teeth. Good rogue roleplay fuel.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Party may choose Traveller's Mark over Accord Arms for discretion — retroactive or forward.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Guild awareness stage determines heist difficulty on Goldmonth 14.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act4">Return to Act 4</a> — Basil's spotlight.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ACT 4 — SOLT / REFUGEE
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🍺 Act 4 — Dark Lantern (Optional)</div>
+
+  <div class="fear-card" id="fs-s2-a4-solt">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 4 — Solt at the Dark Lantern</div>
+      <div class="fear-card-title">Solt Pours Without Being Asked</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>First drink order at the Dark Lantern — or first time Greer/Lurielle sit down. Solt reads rooms for a living.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Solt's action</div><p>"You open your mouth to order. Solt is already pouring — one cup pushed to Greer, one to Lurielle, dark and hot, nothing for Basil. He doesn't explain the omission. He looks at Greer and Lurielle each once. 'On the house. You look like you're listening to something. Don't let it listen back.' Then he's at the other end of the bar like the sentence was weather."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What Solt knows</div>
+      <p>He doesn't know their names or missions. He knows <strong>listeners</strong> — people who arrive in Shadowside already attuned to frequencies the district survives around. He's seen researchers, Covenant-adjacent travelers, and druids before. He gives them tea (if tea) or house brew to ground them. Basil gets nothing because Basil arrived closed — professional habit, not insult.</p>
+      <p style="margin-top:6px;"><strong>Basil Presence DIF 12:</strong> Can get a pour by making himself legible as a person, not a job. Solt respects that.</p>
+      <p style="margin-top:6px;"><strong>Don't make Solt omniscient.</strong> He's thirty years of pattern recognition, not a quest giver.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Shadowside has a gravity the Ward doesn't. Solt is a gatekeeper tone-setter.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>His line reframes Greer/Lurielle spotlight experiences as shared danger, not private weirdness.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Solt at +2 reputation is message relay, safe meeting space, and early warning on disappearances.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act4">Return to Act 4</a> — Dark Lantern scene.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a4-refugee">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 4 — Dark Lantern</div>
+      <div class="fear-card-title">A Frostwell Woman Asks About Work</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Mid-conversation at the Dark Lantern — creates a moral micro-beat without forcing a side quest.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"At the bar, a young woman — Frostwell build, layered clothes wrong for this climate — speaks too quietly to the room. 'Does anyone know if the Manufactories are still taking people? My brother said there was labor.' The room pretends not to hear. Solt's expression doesn't change. He wipes the bar. Waiting to see who answers, and how."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's true</div>
+      <p>Manufactories <em>are</em> hiring — exploitative shift work, dangerous floors, pays in coin that doesn't cover Ward rent. Her brother was partially right. The room's silence is self-protection: helping connects you to someone's desperation.</p>
+      <p style="margin-top:6px;"><strong>If party helps:</strong> Point her to Ironwright hiring hall (exploitative but legal) or Kess Aldman's boarding house community (safer, slower). If they ignore: she leaves. If they mock: Solt's neutrality cools — future -1 Shadowside rep.</p></div>
+      <div class="roll-box"><div class="tag">Optional — Actually useful directions</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Knowledge or Presence</div><div class="roll-chip"><strong>DIF:</strong> 11</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Vague 'try the factories.' She'll be turned away at gate.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Hiring hall name + warning about shift terms.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Kess Aldman or Ironwright contact who won't rob her. Solt notes the kindness.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Frostwell crisis at human scale. No exposition required.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Connects Pauper's Gate refugees to Manufactories anger thread.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Day 20 tunnel death hits harder if they helped someone similar tonight.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act4">Return to Act 4</a> — Dark Lantern.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ACT 5 — NIGHT / DAWN
+  ═══════════════════════════════════ -->
+  <div class="scene-divider">🌃 Act 5 — Night Texture & Session End</div>
+
+  <div class="fear-card" id="fs-s2-a5-chalk">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Act 5 — Border Walk</div>
+      <div class="fear-card-title">Fresh Chalk Under the Old Message</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When players examine the cleaned protest chalk at the Lamplight / Shadowside border during Act 5 night texture.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The workers missed a spot — or someone wrote again after they left. Under the faded WE PAID FOR THIS LIGHT, smaller and fresher: a symbol, three lines meeting in a circle. Greer — you've seen it in Covenant briefing sketches. Not a threat sigil. A survey mark. Someone mapping Network infrastructure asked questions in the wrong district and left a signature they thought only their people would read."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>Green Covenant radical-adjacent scout **Ash** (or a cell member) marked a distribution feed point during reconnaissance four days ago. Wren's cell used this data for hub target selection. The mark is operational, not propaganda.</p>
+      <p style="margin-top:6px;"><strong>Greer Instinct DIF 12:</strong> This is Thorns methodology — wrong branch, same anger. Complicated feelings.</p>
+      <p style="margin-top:6px;"><strong>Basil Knowledge DIF 13:</strong> Smuggling networks use similar marks; this one is ideological, not Guild logistics (three-dot triangle is Guild — this is different).</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Protest is not just economic — someone is planning around infrastructure.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Dawn protest feels like cover for something else — accurate intuition, even if explosion isn't tomorrow morning.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Session 3 investigation: players who photographed/sketched the mark have a lead on Covenant radical wing vs mainstream.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act5">Return to Act 5</a> — night texture walk.</div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s2-a5-dawn-protest">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Session End — Dawn Day 2</div>
+      <div class="fear-card-title">A Speaker Names the Vault District</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Session ending beat — protest reforming at dawn. Use as the final escalation before your closing line.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The call-and-response finds its rhythm. A woman on a crate — Manufactories accent, Ironwright colors pinned to her coat wrong-side-out so watch can't cite them — raises her voice. 'They ration our light while the Vault never dims!' The crowd answers. She goes further — names the Vault District aloud, not as myth, as address. 'The Heart eats and we skip meals!' The watch captain's jaw tightens. Half the crowd cheers. They don't know what they're cheering for. They know who they're cheering against."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>**Genna Cradle's** people didn't write this speech — it's organic rank-and-file anger. But Ironwright organizers have been waiting for Vault naming to go public. Theron Ashwick will call this treason by afternoon. Sevan Vael will call for calm.</p>
+      <p style="margin-top:6px;"><strong>Not violence yet.</strong> Watch is present, not aggressive. Session 3's panic comes later with the explosion.</p>
+      <p style="margin-top:6px;"><strong>Lurielle:</strong> The Vault name + hum memory = hypothesis she can't prove. Greer: spirit layer compresses when the crowd surges — collective emotion as weather.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Session ends on urgency and sound. Perfect Session 3 runway.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">Next Session</div><p>Players may attend protest afternoon — explosion three blocks away. Hub target now has emotional context.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Public Vault discourse accelerates Council gridlock breakdown — campaign Act One fracture visible.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session2.html#act-end">Return to Session End</a> — deliver final line and stop.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
