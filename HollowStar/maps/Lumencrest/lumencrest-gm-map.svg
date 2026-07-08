@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
-  <title id="title">Lumencrest  GM City Map</title>
+  <title id="title">Lumencrest  -  GM City Map</title>
   <desc id="desc">District overview of Lumencrest with GM-only underground access, lamp boundary, tunnel routes, and hidden sites.</desc>
 
   <defs>
@@ -39,7 +39,7 @@
 
   <!-- GM watermark stripe -->
   <rect x="40" y="40" width="1120" height="22" fill="#8b2020" fill-opacity="0.12"/>
-  <text x="600" y="56" text-anchor="middle" font-family="Arial" font-size="10" fill="#8b2020" font-weight="700">GM REFERENCE  CONTAINS UNDERGROUND &amp; HIDDEN SITES</text>
+  <text x="600" y="56" text-anchor="middle" font-family="Arial" font-size="10" fill="#8b2020" font-weight="700">GM REFERENCE  -  CONTAINS UNDERGROUND &amp; HIDDEN SITES</text>
 
   <path d="M 160 120 L 1040 120 Q 1080 120 1080 160 L 1080 720 Q 1080 760 1040 760 L 160 760 Q 120 760 120 720 L 120 160 Q 120 120 160 120 Z"
         fill="none" stroke="#6b5a48" stroke-width="4" stroke-linejoin="round"/>
@@ -78,7 +78,7 @@
 
   <!-- GM: Electric lamp boundary (Shadowside line) -->
   <path d="M 240 272 Q 580 285 960 272" fill="none" stroke="#e8a020" stroke-width="3" stroke-dasharray="10 6" opacity="0.9"/>
-  <text x="400" y="262" class="gm-label" fill="#b07010">² Street lamps end (Hollow Road border)</text>
+  <text x="400" y="262" class="gm-label" fill="#b07010">- Street lamps end (Hollow Road border)</text>
 
   <!-- GM: Underground club / hidden economy zone -->
   <path d="M 680 265 L 820 268 L 815 310 L 675 305 Z" fill="url(#underground-hatch)" stroke="#6a4a5a" stroke-width="1.5" stroke-dasharray="4 3"/>
@@ -111,11 +111,11 @@
     <polygon points="250,490 258,502 250,514 242,502"/><title>4. Manufactories official access (Factory Row)</title>
     <polygon points="1050,480 1058,492 1050,504 1042,492"/><title>5. River treatment / East sewer outfall</title>
   </g>
-  <text x="600" y="155" text-anchor="middle" class="gm-label">`</text>
-  <text x="690" y="212" text-anchor="middle" class="gm-label">a</text>
-  <text x="770" y="335" class="gm-label">b</text>
-  <text x="230" y="525" class="gm-label">c</text>
-  <text x="1070" y="515" class="gm-label">d</text>
+  <text x="600" y="155" text-anchor="middle" class="gm-label">(1)</text>
+  <text x="690" y="212" text-anchor="middle" class="gm-label">(2)</text>
+  <text x="770" y="335" class="gm-label">(3)</text>
+  <text x="230" y="525" class="gm-label">(4)</text>
+  <text x="1070" y="515" class="gm-label">(5)</text>
 
   <!-- Roads -->
   <g id="roads" stroke="#8b7355" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7">
@@ -177,13 +177,13 @@
 
     <path d="M 650 150 L 720 145 L 735 210 L 665 215 Z" fill="#2a2a32" fill-opacity="0.4" stroke="#1a1a22" stroke-width="1"/>
     <text x="690" y="185" text-anchor="middle" class="landmark" fill="#eee">Maze Quarter</text>
-    <text x="690" y="228" text-anchor="middle" class="gm-label" fill="#c9a0b0">Night Market · The Sump</text>
+    <text x="690" y="228" text-anchor="middle" class="gm-label" fill="#c9a0b0">Night Market - The Sump</text>
 
     <!-- GM-only sites -->
     <text x="560" y="125" class="gm-label">Pauper's Gate Taproom</text>
     <text x="800" y="310" class="gm-label">Remover's Station (near)</text>
     <text x="350" y="215" class="gm-label">Passage Route toll (Doss)</text>
-    <text x="560" y="520" class="gm-label-dark" font-size="8">Vault sewer monitors (×3)</text>
+    <text x="560" y="520" class="gm-label-dark" font-size="8">Vault sewer monitors (x3)</text>
   </g>
 
   <!-- Gates -->
@@ -199,7 +199,7 @@
   </g>
 
   <text x="600" y="88" text-anchor="middle" class="map-title">Lumencrest</text>
-  <text x="600" y="108" text-anchor="middle" class="map-subtitle">GM Reference Map  Underground &amp; Hidden Layers</text>
+  <text x="600" y="108" text-anchor="middle" class="map-subtitle">GM Reference Map  -  Underground &amp; Hidden Layers</text>
 
   <g transform="translate(1050, 780)">
     <circle r="28" fill="#efe3cf" stroke="#6b5a48" stroke-width="1.5"/>
@@ -234,9 +234,9 @@
     <text x="50" y="176" class="gm-legend">Pre-city passages</text>
 
     <text x="12" y="200" class="legend-text" font-weight="700">Sewer access key:</text>
-    <text x="12" y="214" class="gm-legend">` Pauper's Gate  a Maze cellars</text>
-    <text x="12" y="228" class="gm-legend">b Night Pharmacy  c Factory Row</text>
-    <text x="12" y="242" class="gm-legend">d River outfall</text>
+    <text x="12" y="214" class="gm-legend">(1) Pauper's Gate  (2) Maze cellars</text>
+    <text x="12" y="228" class="gm-legend">(3) Night Pharmacy  (4) Factory Row</text>
+    <text x="12" y="242" class="gm-legend">(5) River outfall</text>
   </g>
 
   <g transform="translate(60, 820)">
