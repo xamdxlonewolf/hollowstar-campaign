@@ -22,7 +22,7 @@
 .map-viewport{width:100%;height:min(78vh,820px);cursor:grab;overflow:hidden;touch-action:none;background:#1a1714;}
 .map-viewport.dragging{cursor:grabbing;}
 .map-transform{transform-origin:0 0;will-change:transform;}
-.map-image-wrap{position:relative;width:100%;max-width:1100px;margin:0 auto;line-height:0;}
+.map-image-wrap{position:relative;margin:0 auto;line-height:0;}
 .map-image-wrap img{width:100%;height:auto;display:block;user-select:none;-webkit-user-drag:none;}
 .map-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 .map-overlay .hotspot{pointer-events:all;fill:rgba(201,168,76,0);stroke:rgba(201,168,76,0);stroke-width:0.35;cursor:pointer;transition:fill 0.12s,stroke 0.12s;}
@@ -71,22 +71,21 @@ body.mode-gm .layer-toggle.gm-layer-control{display:flex;}
 <body class="mode-gm">
 
 <nav class="site-nav">
-  <div class="site-nav-brand">HollowStar GM</div>
-  <a href="index.html">Hub</a>
-  <a href="session2.html">Session 2</a>
-  <a href="lumencrest.html">Lumencrest</a>
-  <a href="lumencrest-map.html" class="active">City Map</a>
-  <a href="lumencrest-lamplight.html">Lamplight</a>
-  <a href="lumencrest-shadowside.html">Shadowside</a>
-  <a href="emberford.html">Emberford</a>
-  <a href="calendar.html">Calendar</a>
-  <a href="gmscreen.html">GM Screen</a>
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="locations.html" class="active">📍 Locations</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
 </nav>
 
 <header class="page-header">
   <div class="eyebrow">Illustrated Map + Hotspots</div>
   <h1>Lumencrest City Map</h1>
-  <p class="subtitle">Your illustrated map artwork with invisible click regions. <strong>Player</strong> / <strong>GM</strong> swaps the image. Pan, zoom, click districts for canon detail.</p>
+  <p class="subtitle">Your illustrated map artwork with invisible click regions. <strong>Player</strong> / <strong>GM</strong> swaps the image. Pan, zoom, click districts for canon detail. <a href="locations.html" style="color:var(--accent-gold);">← Locations</a></p>
 </header>
 
 <div class="page-body map-layout">
@@ -255,12 +254,33 @@ const DATA = {
     body: '', gm: '<p>Treatment / river edge access.</p>' }
 };
 
-let scale = 1, tx = 0, ty = 0, currentMode = 'gm';
+let zoom = 1, tx = 0, ty = 0, currentMode = 'gm';
+let fitWidth = 0;
+const MAX_FIT_WIDTH = 1100;
+const mapWrap = document.getElementById('map-wrap');
 const mapImg = document.getElementById('map-img');
 const mapTransform = document.getElementById('map-transform');
 const viewport = document.getElementById('viewport');
 const hotspotG = document.getElementById('hotspots');
 const pinG = document.getElementById('pins');
+
+function imageAspect() {
+  const w = mapImg.naturalWidth || 1536;
+  const h = mapImg.naturalHeight || 1024;
+  return h / w;
+}
+
+function updateFitWidth() {
+  const vpW = viewport.clientWidth;
+  const natW = mapImg.naturalWidth || 1536;
+  fitWidth = Math.min(vpW, natW, MAX_FIT_WIDTH);
+}
+
+function applyTransform() {
+  const w = fitWidth * zoom;
+  mapWrap.style.width = w + 'px';
+  mapTransform.style.transform = `translate(${tx}px, ${ty}px)`;
+}
 
 function buildOverlay() {
   hotspotG.innerHTML = HOTSPOTS.map(h =>
@@ -273,8 +293,28 @@ function buildOverlay() {
   pinG.querySelectorAll('.pin').forEach(el => el.addEventListener('click', e => { e.stopPropagation(); showDetail(el.dataset.id); }));
 }
 
-function applyTransform() {
-  mapTransform.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+function zoomMap(factor) {
+  const rect = viewport.getBoundingClientRect();
+  const cx = rect.width / 2;
+  const cy = rect.height / 2;
+  const oldW = fitWidth * zoom;
+  const oldH = oldW * imageAspect();
+  const newZoom = Math.min(3, Math.max(0.5, zoom * factor));
+  const newW = fitWidth * newZoom;
+  const newH = newW * imageAspect();
+  const fracX = oldW ? (cx - tx) / oldW : 0.5;
+  const fracY = oldH ? (cy - ty) / oldH : 0.5;
+  tx = cx - fracX * newW;
+  ty = cy - fracY * newH;
+  zoom = newZoom;
+  applyTransform();
+}
+
+function resetZoom() {
+  zoom = 1;
+  tx = 0;
+  ty = 0;
+  applyTransform();
 }
 
 function setMode(mode, btn) {
@@ -282,6 +322,10 @@ function setMode(mode, btn) {
   document.body.classList.toggle('mode-gm', mode === 'gm');
   document.querySelectorAll('.mode-toggle').forEach(b => b.classList.toggle('active', b === btn));
   const files = MAP_FILES[mode];
+  mapImg.onload = () => {
+    updateFitWidth();
+    applyTransform();
+  };
   mapImg.src = files.src;
   mapImg.removeAttribute('srcset');
   document.querySelector('label.gm-layer-control').style.display = mode === 'gm' ? 'flex' : 'none';
@@ -295,19 +339,6 @@ function toggleGmPins() {
   const show = document.getElementById('layer-gm-pins').checked;
   pinG.querySelectorAll('.gm-only').forEach(p => { p.style.display = (document.body.classList.contains('mode-gm') && show) ? 'block' : 'none'; });
 }
-
-function zoomMap(factor) {
-  const rect = viewport.getBoundingClientRect();
-  const cx = rect.width / 2;
-  const cy = rect.height / 2;
-  const newScale = Math.min(3, Math.max(0.5, scale * factor));
-  tx = cx - (cx - tx) * (newScale / scale);
-  ty = cy - (cy - ty) * (newScale / scale);
-  scale = newScale;
-  applyTransform();
-}
-
-function resetZoom() { scale = 1; tx = 0; ty = 0; applyTransform(); }
 
 function showDetail(id) {
   const d = DATA[id];
@@ -340,6 +371,14 @@ window.addEventListener('pointermove', e => {
 window.addEventListener('pointerup', () => { dragging = false; viewport.classList.remove('dragging'); });
 
 mapImg.addEventListener('error', () => document.getElementById('map-stage').classList.add('is-missing'));
+mapImg.addEventListener('load', () => {
+  updateFitWidth();
+  applyTransform();
+});
+window.addEventListener('resize', () => {
+  updateFitWidth();
+  applyTransform();
+});
 
 buildOverlay();
 setMode('gm', document.querySelector('[data-mode="gm"]'));
