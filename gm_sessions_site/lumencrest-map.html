@@ -6,10 +6,11 @@
 <title>Lumencrest City Map — HollowStar GM</title>
 <link rel="stylesheet" href="shared.css">
 <style>
-.page-body.map-layout{max-width:1320px;display:grid;grid-template-columns:1fr 320px;gap:1.25rem;align-items:start;}
+.page-body.map-layout{max-width:1320px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:1.25rem;align-items:start;}
 @media(max-width:960px){.page-body.map-layout{grid-template-columns:1fr;}}
 
-.map-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;align-items:center;}
+.map-column{min-width:0;}
+.map-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;align-items:center;width:100%;}
 .map-toolbar .nav-tab{font-size:11px;padding:6px 12px;}
 .map-toolbar .mode-toggle.active{background:rgba(201,168,76,0.25);border-color:var(--accent-gold);color:var(--accent-gold-light);}
 .layer-toggle{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;padding:4px 8px;border-radius:99px;border:1px solid var(--border);}
@@ -18,11 +19,11 @@
 .zoom-btn{width:32px;height:32px;border-radius:var(--radius-sm);border:1px solid var(--border-med);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;font-size:16px;line-height:1;}
 .zoom-btn:hover{border-color:var(--accent-gold);color:var(--accent-gold);}
 
-.map-stage{background:#0f0e0c;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
-.map-viewport{width:100%;height:min(78vh,820px);cursor:grab;overflow:hidden;touch-action:none;background:#1a1714;}
+.map-stage{background:#0f0e0c;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;width:100%;}
+.map-viewport{position:relative;width:100%;height:min(78vh,820px);cursor:grab;overflow:hidden;touch-action:none;background:#1a1714;}
 .map-viewport.dragging{cursor:grabbing;}
-.map-transform{transform-origin:0 0;will-change:transform;}
-.map-image-wrap{position:relative;margin:0 auto;line-height:0;}
+.map-transform{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform;}
+.map-image-wrap{position:relative;line-height:0;}
 .map-image-wrap img{width:100%;height:auto;display:block;user-select:none;-webkit-user-drag:none;}
 .map-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 .map-overlay .hotspot{pointer-events:all;fill:rgba(201,168,76,0);stroke:rgba(201,168,76,0);stroke-width:0.35;cursor:pointer;transition:fill 0.12s,stroke 0.12s;}
@@ -276,6 +277,13 @@ function updateFitWidth() {
   fitWidth = Math.min(vpW, natW, MAX_FIT_WIDTH);
 }
 
+function centerMap() {
+  const w = fitWidth * zoom;
+  const h = w * imageAspect();
+  tx = (viewport.clientWidth - w) / 2;
+  ty = (viewport.clientHeight - h) / 2;
+}
+
 function applyTransform() {
   const w = fitWidth * zoom;
   mapWrap.style.width = w + 'px';
@@ -312,8 +320,7 @@ function zoomMap(factor) {
 
 function resetZoom() {
   zoom = 1;
-  tx = 0;
-  ty = 0;
+  centerMap();
   applyTransform();
 }
 
@@ -324,6 +331,7 @@ function setMode(mode, btn) {
   const files = MAP_FILES[mode];
   mapImg.onload = () => {
     updateFitWidth();
+    if (zoom === 1) centerMap();
     applyTransform();
   };
   mapImg.src = files.src;
@@ -373,10 +381,12 @@ window.addEventListener('pointerup', () => { dragging = false; viewport.classLis
 mapImg.addEventListener('error', () => document.getElementById('map-stage').classList.add('is-missing'));
 mapImg.addEventListener('load', () => {
   updateFitWidth();
+  if (zoom === 1) centerMap();
   applyTransform();
 });
 window.addEventListener('resize', () => {
   updateFitWidth();
+  if (zoom === 1) centerMap();
   applyTransform();
 });
 
