@@ -4,6 +4,8 @@
 
 **SVG maps:** Player and GM city overviews live in `HollowStar/maps/Lumencrest/` (`lumencrest-player-map.svg`, `lumencrest-gm-map.svg`).
 
+**Interactive map:** `gm_sessions_site/lumencrest-map.html` — clickable districts, player/GM toggle, pan and zoom.
+
 ---
 
 ## City Layout — The Big Picture

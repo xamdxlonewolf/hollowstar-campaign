@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumencrest City Map — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-body.map-layout{max-width:1280px;display:grid;grid-template-columns:1fr 320px;gap:1.25rem;align-items:start;}
+@media(max-width:960px){.page-body.map-layout{grid-template-columns:1fr;}}
+
+.map-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;align-items:center;}
+.map-toolbar .nav-tab{font-size:11px;padding:6px 12px;}
+.map-toolbar .mode-toggle.active{background:rgba(201,168,76,0.25);border-color:var(--accent-gold);color:var(--accent-gold-light);}
+.layer-toggle{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;padding:4px 8px;border-radius:99px;border:1px solid var(--border);}
+.layer-toggle input{accent-color:var(--accent-gold);}
+.layer-toggle:hover{border-color:var(--border-med);color:var(--text-secondary);}
+.zoom-group{margin-left:auto;display:flex;gap:4px;}
+.zoom-btn{width:32px;height:32px;border-radius:var(--radius-sm);border:1px solid var(--border-med);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;font-size:16px;line-height:1;}
+.zoom-btn:hover{border-color:var(--accent-gold);color:var(--accent-gold);}
+
+.map-stage{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;position:relative;min-height:520px;}
+.map-stage::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 48% 52%,rgba(201,168,76,0.06) 0%,transparent 55%);pointer-events:none;z-index:1;}
+.map-viewport{width:100%;height:min(72vh,640px);cursor:grab;overflow:hidden;touch-action:none;}
+.map-viewport.dragging{cursor:grabbing;}
+.map-viewport svg{width:100%;height:100%;display:block;}
+
+.district{cursor:pointer;stroke-width:2;transition:filter 0.15s,opacity 0.15s;}
+.district:hover{filter:brightness(1.15);}
+.district.selected{filter:brightness(1.25);stroke-width:3;}
+.district-label{pointer-events:none;font-family:var(--font-ui);font-size:13px;font-weight:700;fill:var(--text-primary);text-anchor:middle;opacity:0.92;}
+.district-sublabel{pointer-events:none;font-family:var(--font-ui);font-size:9px;fill:var(--text-secondary);text-anchor:middle;}
+
+.road{fill:none;stroke:rgba(201,168,76,0.35);stroke-width:3;stroke-linecap:round;pointer-events:none;}
+.cable{fill:none;stroke:#c97d2a;stroke-width:2;stroke-dasharray:7 5;opacity:0.75;pointer-events:none;}
+.cable-station{fill:#c97d2a;stroke:#1a1714;stroke-width:1.5;pointer-events:none;}
+.lamp-boundary{fill:none;stroke:#e8a86a;stroke-width:2.5;stroke-dasharray:9 6;pointer-events:none;}
+.tunnel{fill:none;stroke:#8a6060;stroke-width:2;stroke-dasharray:5 5;opacity:0.55;pointer-events:none;}
+.sewer-access{fill:#b85450;stroke:#f0ead8;stroke-width:1.5;cursor:pointer;}
+.sewer-access:hover{fill:#e88884;}
+
+.landmark-pin{cursor:pointer;}
+.landmark-dot{fill:var(--accent-gold);stroke:#1a1714;stroke-width:2;transition:r 0.12s;}
+.landmark-pin:hover .landmark-dot,.landmark-pin.selected .landmark-dot{r:9;fill:var(--accent-gold-light);}
+.landmark-label{font-family:var(--font-ui);font-size:10px;font-weight:600;fill:var(--accent-gold-light);pointer-events:none;opacity:0;transition:opacity 0.15s;}
+.landmark-pin:hover .landmark-label,.landmark-pin.selected .landmark-label,.show-labels .landmark-label{opacity:1;}
+.gate-label{font-family:var(--font-ui);font-size:10px;font-weight:700;fill:var(--text-primary);text-anchor:middle;}
+
+.gm-only{display:none;}
+body.mode-gm .gm-only{display:inline;}
+body.mode-gm path.gm-only,body.mode-gm g.gm-only{display:block;}
+body.mode-gm .gm-only-inline{display:inline;}
+
+.detail-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.1rem;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto;}
+.detail-panel .eyebrow{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:6px;}
+.detail-panel h2{font-family:var(--font-body);font-size:1.35rem;color:var(--accent-gold-light);font-weight:normal;margin-bottom:4px;}
+.detail-panel .pop{font-size:11px;color:var(--text-muted);margin-bottom:12px;}
+.detail-panel p{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:10px;}
+.detail-panel ul{font-size:12.5px;color:var(--text-secondary);padding-left:1.1rem;margin-bottom:10px;}
+.detail-panel li{margin-bottom:4px;}
+.detail-panel .badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.detail-panel .gm-layer-note{display:none;font-size:11px;color:var(--fear-text);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
+body.mode-gm .detail-panel .gm-layer-note{display:block;}
+
+.legend-mini{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);}
+.legend-mini .ref-title{margin-bottom:8px;}
+.legend-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:11px;color:var(--text-muted);}
+.legend-swatch{width:22px;height:4px;border-radius:2px;flex-shrink:0;}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+.map-hint{font-size:11px;color:var(--text-muted);margin-top:8px;text-align:center;}
+.location-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;margin-right:4px;margin-bottom:4px;}
+.loc-core{background:var(--accent-gold-dim);color:var(--accent-gold);border:1px solid rgba(201,168,76,0.3);}
+.loc-ward{background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);}
+.loc-shadow{background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);}
+.loc-quarter{background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);}
+.loc-industrial{background:var(--teal-bg);color:var(--teal-text);border:1px solid rgba(58,152,152,0.3);}
+.loc-academic{background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);}
+body.mode-gm .layer-toggle.gm-layer-control{display:flex;}
+.layer-toggle.gm-layer-control{display:none;}
+</style>
+</head>
+<body class="mode-gm">
+
+<nav class="site-nav">
+  <div class="site-nav-brand">&#11088; HollowStar GM</div>
+  <a href="index.html">&#127968; Hub</a>
+  <a href="session2.html">&#128214; Session 2</a>
+  <a href="lumencrest.html">&#127961;&#65039; Lumencrest</a>
+  <a href="lumencrest-map.html" class="active">&#128506;&#65039; City Map</a>
+  <a href="lumencrest-lamplight.html">&#128161; Lamplight</a>
+  <a href="lumencrest-shadowside.html">&#127769; Shadowside</a>
+  <a href="emberford.html">&#127968; Emberford</a>
+  <a href="calendar.html">&#128197; Calendar</a>
+  <a href="gmscreen.html">&#127922; GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Interactive Reference</div>
+  <h1>Lumencrest City Map</h1>
+  <p class="subtitle">Click districts and landmarks. Pan by dragging. Toggle <strong>Player</strong> for handouts or <strong>GM</strong> for underground layers.</p>
+</header>
+
+<div class="page-body map-layout">
+
+  <div class="map-column">
+    <div class="map-toolbar">
+      <button type="button" class="nav-tab mode-toggle" data-mode="player" onclick="setMode('player',this)">Player view</button>
+      <button type="button" class="nav-tab mode-toggle active" data-mode="gm" onclick="setMode('gm',this)">GM view</button>
+      <label class="layer-toggle"><input type="checkbox" id="layer-cables" checked onchange="toggleLayer('cables')"> Cable cars</label>
+      <label class="layer-toggle"><input type="checkbox" id="layer-labels" checked onchange="toggleLayer('labels')"> Pin labels</label>
+      <label class="layer-toggle gm-layer-control"><input type="checkbox" id="layer-underground" checked onchange="toggleLayer('underground')"> Underground</label>
+      <div class="zoom-group">
+        <button type="button" class="zoom-btn" onclick="zoomMap(1.2)" title="Zoom in">+</button>
+        <button type="button" class="zoom-btn" onclick="zoomMap(0.83)" title="Zoom out">&minus;</button>
+        <button type="button" class="zoom-btn" onclick="resetZoom()" title="Reset" style="font-size:11px;width:auto;padding:0 10px;">Reset</button>
+      </div>
+    </div>
+
+    <div class="map-stage">
+      <div class="map-viewport" id="viewport">
+        <svg id="city-map" viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" aria-label="Lumencrest city map">
+          <defs>
+            <linearGradient id="river-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#2a4a5a"/>
+              <stop offset="100%" stop-color="#3a6878"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <g id="map-transform" transform="translate(0,0) scale(1)">
+            <!-- River -->
+            <path d="M 868 40 Q 920 340 868 640 L 990 640 Q 1000 340 940 40 Z" fill="url(#river-grad)" opacity="0.85"/>
+            <text x="930" y="340" fill="#78d4d4" font-size="11" font-family="Segoe UI,sans-serif" text-anchor="middle" transform="rotate(90 930 340)" opacity="0.7">Silverrun</text>
+
+            <!-- City wall hint -->
+            <ellipse cx="480" cy="350" rx="420" ry="295" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-dasharray="12 8"/>
+
+            <!-- Districts - organic paths -->
+            <path id="dist-shadowside" class="district" data-id="shadowside" fill="rgba(60,60,72,0.55)" stroke="#6a6a7a"
+              d="M 120 95 Q 280 55 480 70 Q 680 55 820 95 Q 860 140 820 195 Q 700 220 480 210 Q 260 220 140 195 Q 95 150 120 95 Z"/>
+            <path id="dist-manufactories" class="district" data-id="manufactories" fill="rgba(58,100,100,0.45)" stroke="#3a9898"
+              d="M 95 210 Q 110 340 125 480 Q 140 600 200 620 Q 280 640 360 600 Q 400 520 390 400 Q 380 280 340 220 Q 260 200 180 205 Q 120 205 95 210 Z"/>
+            <path id="dist-academic" class="district" data-id="academic" fill="rgba(74,127,181,0.35)" stroke="#4a7fb5"
+              d="M 350 225 Q 420 215 470 240 Q 500 300 490 380 Q 480 450 430 480 Q 380 470 360 400 Q 345 320 350 225 Z"/>
+            <path id="dist-lamplight" class="district" data-id="lamplight" fill="rgba(201,125,42,0.28)" stroke="#c97d2a"
+              d="M 500 230 Q 650 215 780 240 Q 850 280 840 380 Q 830 500 780 560 Q 680 590 580 570 Q 510 520 500 420 Q 495 320 500 230 Z"/>
+            <path id="dist-halfling" class="district" data-id="halfling" fill="rgba(74,158,110,0.35)" stroke="#4a9e6e"
+              d="M 520 565 Q 620 545 720 560 Q 800 580 820 620 Q 780 660 660 665 Q 540 660 500 620 Q 490 590 520 565 Z"/>
+            <ellipse id="dist-core" class="district" data-id="core" cx="455" cy="355" rx="88" ry="72" fill="rgba(201,168,76,0.35)" stroke="#c9a84c" filter="url(#glow)"/>
+            <ellipse id="dist-vault" class="district" data-id="vault" cx="455" cy="395" rx="42" ry="28" fill="rgba(139,115,85,0.5)" stroke="#8b7355" stroke-dasharray="5 3"/>
+
+            <!-- District labels -->
+            <g class="district-labels">
+              <text x="480" y="155" class="district-label">Shadowside</text>
+              <text x="480" y="170" class="district-sublabel">no power</text>
+              <text x="220" y="400" class="district-label" transform="rotate(-78 220 400)">Manufactories</text>
+              <text x="415" y="340" class="district-label" font-size="11">Academic Q.</text>
+              <text x="680" y="310" class="district-label">Lamplight Ward</text>
+              <text x="655" y="620" class="district-label">Halfling Quarter</text>
+              <text x="455" y="348" class="district-label" font-size="12">Radiant Core</text>
+              <text x="455" y="400" class="district-sublabel">Vault District</text>
+            </g>
+
+            <!-- Roads -->
+            <g id="layer-roads">
+              <path class="road" d="M 455 210 L 455 565"/>
+              <path class="road" d="M 200 380 Q 455 380 820 380"/>
+              <path class="road" d="M 200 450 Q 500 450 820 450"/>
+              <path class="road" d="M 680 210 L 680 130"/>
+              <path class="road" d="M 520 565 Q 700 600 760 630"/>
+            </g>
+
+            <!-- Cable cars -->
+            <g id="layer-cables">
+              <path class="cable" d="M 760 380 L 680 380 L 455 355 L 415 330 L 220 420"/>
+              <path class="cable" d="M 720 540 L 680 380 L 600 600 L 540 640"/>
+              <path class="cable" d="M 220 500 L 220 420 L 280 180"/>
+              <path class="cable" d="M 800 300 L 415 330 L 900 360"/>
+              <circle class="cable-station" cx="455" cy="355" r="5"/>
+              <circle class="cable-station" cx="680" cy="380" r="4"/>
+              <circle class="cable-station" cx="760" cy="380" r="4"/>
+              <circle class="cable-station" cx="415" cy="330" r="4"/>
+              <circle class="cable-station" cx="220" cy="420" r="4"/>
+              <circle class="cable-station" cx="220" cy="500" r="4"/>
+              <circle class="cable-station" cx="280" cy="180" r="4"/>
+              <circle class="cable-station" cx="720" cy="540" r="4"/>
+              <circle class="cable-station" cx="600" cy="600" r="4"/>
+              <circle class="cable-station" cx="540" cy="640" r="4"/>
+              <circle class="cable-station" cx="800" cy="300" r="4"/>
+              <circle class="cable-station" cx="900" cy="360" r="4"/>
+            </g>
+
+            <!-- GM underground -->
+            <g id="layer-underground" class="gm-only">
+              <path class="lamp-boundary" d="M 150 208 Q 480 225 820 208"/>
+              <path class="tunnel" d="M 280 180 Q 350 300 220 420 Q 240 520 220 500"/>
+              <path class="tunnel" d="M 690 200 Q 720 260 748 290"/>
+              <path class="tunnel" d="M 748 290 Q 580 340 415 330"/>
+              <ellipse cx="735" cy="285" rx="32" ry="20" fill="rgba(138,96,200,0.12)" stroke="#8a60c8" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="735" y="318" fill="#c4a0f0" font-size="9" text-anchor="middle" font-family="Segoe UI,sans-serif">Dry Chambers</text>
+              <g class="sewer-access" data-id="sewer-1" transform="translate(480,108)"><polygon points="0,-8 7,0 0,8 -7,0"/><title>(1) Pauper's Gate shaft</title></g>
+              <g class="sewer-access" data-id="sewer-2" transform="translate(690,175)"><polygon points="0,-7 6,0 0,7 -6,0"/></g>
+              <g class="sewer-access" data-id="sewer-3" transform="translate(748,305)"><polygon points="0,-7 6,0 0,7 -6,0"/></g>
+              <g class="sewer-access" data-id="sewer-4" transform="translate(230,455)"><polygon points="0,-7 6,0 0,7 -6,0"/></g>
+              <g class="sewer-access" data-id="sewer-5" transform="translate(880,400)"><polygon points="0,-7 6,0 0,7 -6,0"/></g>
+              <path class="tunnel" d="M 560 500 Q 500 560 430 620" opacity="0.4"/>
+              <path class="tunnel" d="M 650 190 Q 600 320 455 395" opacity="0.35"/>
+            </g>
+
+            <!-- Landmarks -->
+            <g id="landmarks">
+              <g class="landmark-pin" data-id="accord-chamber" transform="translate(455,325)">
+                <circle class="landmark-dot" r="6"/><text class="landmark-label" x="12" y="4">Accord Chamber</text>
+              </g>
+              <g class="landmark-pin" data-id="vault-gate" transform="translate(455,395)">
+                <circle class="landmark-dot" r="5"/><text class="landmark-label" x="12" y="4">Vault Gate</text>
+              </g>
+              <g class="landmark-pin" data-id="luminarium" transform="translate(400,310)">
+                <circle class="landmark-dot" r="5"/><text class="landmark-label" x="12" y="4">Luminarium</text>
+              </g>
+              <g class="landmark-pin" data-id="merchant-square" transform="translate(680,380)">
+                <circle class="landmark-dot" r="6"/><text class="landmark-label" x="12" y="4">Merchant Square</text>
+              </g>
+              <g class="landmark-pin" data-id="great-press" transform="translate(240,420)">
+                <circle class="landmark-dot" r="5"/><text class="landmark-label" x="-80" y="4">Great Press</text>
+              </g>
+              <g class="landmark-pin" data-id="common-green" transform="translate(650,615)">
+                <circle class="landmark-dot" r="5"/><text class="landmark-label" x="12" y="4">Common Green</text>
+              </g>
+              <g class="landmark-pin" data-id="maze-quarter" transform="translate(690,165)">
+                <circle class="landmark-dot" r="5"/><text class="landmark-label" x="12" y="4">Maze Quarter</text>
+              </g>
+              <g class="landmark-pin gm-only" data-id="pit" transform="translate(240,440)">
+                <circle class="landmark-dot" r="4" fill="#b85450"/><text class="landmark-label" x="12" y="4" fill="#e88884">The Pit (below)</text>
+              </g>
+              <g class="landmark-pin gm-only" data-id="old-pen" transform="translate(500,125)">
+                <circle class="landmark-dot" r="4" fill="#b85450"/><text class="landmark-label" x="12" y="4" fill="#e88884">Pauper's Gate Taproom</text>
+              </g>
+            </g>
+
+            <!-- Gates -->
+            <g id="gates">
+              <rect x="430" y="78" width="100" height="14" rx="3" fill="rgba(107,90,72,0.9)" stroke="rgba(255,255,255,0.2)"/>
+              <text x="480" y="72" class="gate-label">Pauper's Gate (N)</text>
+              <rect x="720" y="648" width="90" height="14" rx="3" fill="rgba(107,90,72,0.9)" stroke="rgba(255,255,255,0.2)"/>
+              <text x="765" y="678" class="gate-label">Copper Gate (S)</text>
+              <rect x="88" y="370" width="14" height="70" rx="3" fill="rgba(107,90,72,0.9)" stroke="rgba(255,255,255,0.2)"/>
+              <text x="70" y="410" class="gate-label" transform="rotate(-90 70 410)">West</text>
+              <rect x="848" y="350" width="14" height="60" rx="3" fill="rgba(107,90,72,0.9)" stroke="rgba(255,255,255,0.2)"/>
+              <text x="875" y="385" class="gate-label" font-size="9">East Gate</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <p class="map-hint">Drag to pan. Click any district or gold pin for details. Not to scale.</p>
+  </div>
+
+  <aside class="detail-panel" id="detail-panel">
+    <div class="eyebrow">Selected</div>
+    <h2 id="detail-title">Lumencrest</h2>
+    <div class="pop" id="detail-pop">~87,000 residents</div>
+    <div class="badge-row" id="detail-badges"></div>
+    <div id="detail-body">
+      <p>Click a district or landmark on the map. Use <strong>Player view</strong> before showing players the screen; switch to <strong>GM view</strong> for lamp boundary, sewers, and hidden sites.</p>
+      <p>The city spreads outward from the Radiant Core in a rough oval. Wealth and power decrease toward the edges, except Shadowside to the north, which never received the Lumen Network.</p>
+    </div>
+    <div class="gm-layer-note" id="gm-note">GM layers visible: lamp boundary, sewer access (1-5), tunnel routes, Dry Chambers.</div>
+
+    <div class="legend-mini">
+      <div class="ref-title">Map key</div>
+      <div class="legend-row"><span class="legend-swatch" style="background:#c97d2a"></span> Cable car line</div>
+      <div class="legend-row"><span class="legend-swatch" style="background:rgba(201,168,76,0.5)"></span> Major road</div>
+      <div class="legend-row"><span class="legend-dot" style="background:var(--accent-gold)"></span> Landmark</div>
+      <div class="legend-row gm-only"><span class="legend-swatch" style="background:#e8a86a;border:1px dashed #e8a86a;height:2px"></span> Where lamps end</div>
+      <div class="legend-row gm-only"><span class="legend-dot" style="background:#b85450"></span> Sewer access</div>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+const DATA = {
+  shadowside: {
+    title: 'Shadowside', pop: 'North - ~15,000', badges: [['loc-shadow','No power'],['loc-shadow','Night Market']],
+    body: '<p>The unlit district. Dense streets, candles and oil lamps. Pauper\'s Gate is the busiest northern entry. The Maze Quarter is nearly impossible without local knowledge.</p><ul><li><strong>Landmarks:</strong> Night Market, Maze Quarter, Pauper\'s Square</li><li><strong>Mood:</strong> Darkly amused by the brownouts</li><li><strong>Watch:</strong> Minimal patrols after dark</li></ul>',
+    gm: '<p><strong>GM:</strong> Underground club economy surfaces here. Sewer access (1)(2) in Maze cellars. Passage Route toll near north factory border. Old Pen\'s Taproom at Pauper\'s Gate.</p>'
+  },
+  manufactories: {
+    title: 'The Manufactories', pop: 'West - ~25,000', badges: [['loc-industrial','Rationed power'],['loc-industrial','Labor unrest']],
+    body: '<p>Industrial west - chimney stacks, shift rotations, Great Press factory. Power rationing prioritizes factory floors over worker housing.</p><ul><li><strong>Economy:</strong> Weapons, textiles, powered machinery</li><li><strong>Mood:</strong> Angry - strike talk replacing demonstrations</li><li><strong>Inn:</strong> Lampblack 5-8 silver</li></ul>',
+    gm: '<p><strong>GM:</strong> The Pit fighting arena beneath Factory Row warehouse. Sewer access (4) on Factory Row. Tunnel route to Shadowside.</p>'
+  },
+  academic: {
+    title: 'Academic Quarter', pop: 'East-center - ~5,000', badges: [['loc-academic','Full power'],['loc-academic','Luminarium']],
+    body: '<p>Scholar\'s Gate station. Luminarium campus, Archives dome, Innovation Row workshops. Competitive, merit-focused culture.</p><ul><li><strong>Inn:</strong> Scholar\'s Rest 1.5 gold</li><li><strong>Cafe:</strong> Four Constants - open almost 24h</li></ul>',
+    gm: '<p><strong>GM:</strong> The Meridian club behind Innovation Row - radical Heart research discussed under surveillance.</p>'
+  },
+  core: {
+    title: 'Radiant Core', pop: 'Center - ~8,000', badges: [['loc-core','Full power'],['loc-core','Council seat']],
+    body: '<p>Seat of power. Accord Chamber dome visible for miles. Central Hub cable station. Checkpoints - you need business, invitation, or money that reads as belonging.</p><ul><li><strong>Inn:</strong> Founder\'s Rest 5-15 gold (only Core lodging)</li><li><strong>Power:</strong> Never brownouts - resented elsewhere</li></ul>',
+    gm: ''
+  },
+  vault: {
+    title: 'Vault District', pop: 'Restricted - ~1,000 authorized', badges: [['loc-core','Vault Guard'],['loc-core','No public access']],
+    body: '<p>Heart entrance underground. High walls, paired patrols, hardened redundant power. Unauthorized access is extremely illegal; Hollostar Dust enforcement uses Vault Guard jurisdiction.</p>',
+    gm: '<p><strong>GM:</strong> Three known sewer monitor points on outer perimeter. Pre-city passages may connect below - unmapped.</p>'
+  },
+  lamplight: {
+    title: 'Lamplight Ward', pop: 'East - ~20,000', badges: [['loc-ward','Party district'],['loc-ward','Mostly reliable power']],
+    body: '<p>Commercial heart for the middle class. Merchant Square fountain, Guildhalls, Copper Gate welcome zone. Amber street lamps - first to dim on brownouts.</p><ul><li><strong>Inn:</strong> Accord Arms 2-5 gold</li><li><strong>Page:</strong> <a href="lumencrest-lamplight.html" style="color:var(--accent-gold)">Full Lamplight reference</a></li></ul>',
+    gm: '<p><strong>GM:</strong> Night Pharmacy trapdoor (3) behind shop - Tessiel Wane officially knows nothing. Velvet Room access via theatre loading bay.</p>'
+  },
+  halfling: {
+    title: 'Halfling Quarter', pop: 'Southeast - ~15,000', badges: [['loc-quarter','Mostly reliable'],['loc-quarter','Feeds the city']],
+    body: '<p>Lower rooflines, rooftop gardens, brewing and baking smells. Common Green and brewery towers. Culturally untouchable - the city eats what the Quarter makes.</p><ul><li><strong>Inn:</strong> Pipwick\'s Rooms 7 silver, breakfast included</li></ul>',
+    gm: ''
+  },
+  'accord-chamber': { title: 'Accord Chamber', pop: 'Radiant Core landmark', badges: [['loc-core','Council hall']],
+    body: '<p>Domed meeting hall with four towers at cardinal points, lit from within at night. Where Council of Lumens convenes - designed for a confident city now arguing while lights flicker.</p>', gm: '' },
+  'vault-gate': { title: 'Vault Gate', pop: 'Vault District entrance', badges: [['loc-core','Restricted']],
+    body: '<p>Massive reinforced door in a low stone entrance structure. Leads to underground complex housing the Heart of Lumencrest.</p>', gm: '' },
+  luminarium: { title: 'Luminarium', pop: 'Academic Quarter', badges: [['loc-academic','Premier academy']],
+    body: '<p>Main campus with electric clock tower (400 years, almost never wrong). Archives dome to the south. Illuminist stronghold.</p>', gm: '<p><strong>GM:</strong> Classified Heart research programs run from here.</p>' },
+  'merchant-square': { title: 'Merchant Square', pop: 'Lamplight Ward', badges: [['loc-ward','Commercial hub']],
+    body: '<p>Open plaza with electrically pumped fountain. Highest-traffic shops and Guildhall complex. Fair licensed currency exchange.</p>', gm: '' },
+  'great-press': { title: 'The Great Press', pop: 'Manufactories', badges: [['loc-industrial','Largest factory']],
+    body: '<p>Three stories, full city block. Powered printing and manufacturing. Tallest chimney in the district.</p>', gm: '' },
+  'common-green': { title: 'Common Green', pop: 'Halfling Quarter', badges: [['loc-quarter','Community heart']],
+    body: '<p>Park with permanent market pavilion. Copperkettle and Brum brewery towers behind it. Festival and gathering space.</p>', gm: '' },
+  'maze-quarter': { title: 'Maze Quarter', pop: 'Shadowside', badges: [['loc-shadow','Hard to navigate']],
+    body: '<p>Tightest section of Shadowside. Streets narrow into passages; buildings lean together. Local knowledge essential.</p>', gm: '<p><strong>GM:</strong> The Sump, Silver Thread house, major sewer cellar access (2).</p>' },
+  pit: { title: 'The Pit', pop: 'GM - beneath Manufactories', badges: [['loc-industrial','Fight arena']],
+    body: '', gm: '<p>Underground fighting arena ~40ft across, ~200 spectators. Access via Factory Row warehouse or sewer branch from Shadowside. Run by Davan Wreck.</p>' },
+  'old-pen': { title: "Pauper's Gate Taproom", pop: 'GM - Old Pen', badges: [['loc-shadow','Underground anchor']],
+    body: '', gm: '<p>First building inside north gate. Twenty years of gate traffic memory. Watch drinks here after shift.</p>' },
+  'sewer-1': { title: "Sewer access (1)", pop: "Pauper's Gate", badges: [['loc-shadow','Main shaft']],
+    body: '', gm: '<p>Official maintenance shaft near Pauper\'s Gate. High traffic from northern arrivals.</p>' },
+  'sewer-2': { title: 'Sewer access (2)', pop: 'Maze Quarter cellars', badges: [['loc-shadow','Informal']],
+    body: '', gm: '<p>Maze Quarter cellar network entry. Used by Underground regulars.</p>' },
+  'sewer-3': { title: 'Sewer access (3)', pop: 'Lamplight / Shadowside border', badges: [['loc-ward','Trapdoor']],
+    body: '', gm: '<p>Behind Night Pharmacy - three sewer mains converge ~40ft down. Tessiel Wane officially unaware.</p>' },
+  'sewer-4': { title: 'Sewer access (4)', pop: 'Factory Row', badges: [['loc-industrial','Official']],
+    body: '', gm: '<p>Manufactories maintained access for Network maintenance crews.</p>' },
+  'sewer-5': { title: 'Sewer access (5)', pop: 'East / river outfall', badges: [['loc-academic','Treatment']],
+    body: '', gm: '<p>River edge sewer outfall and treatment infrastructure access.</p>' }
+};
+
+let scale = 1, tx = 0, ty = 0;
+const transformG = document.getElementById('map-transform');
+const viewport = document.getElementById('viewport');
+
+function applyTransform() {
+  transformG.setAttribute('transform', `translate(${tx},${ty}) scale(${scale})`);
+}
+
+function setMode(mode, btn) {
+  document.body.classList.toggle('mode-gm', mode === 'gm');
+  document.querySelectorAll('.mode-toggle').forEach(b => b.classList.toggle('active', b === btn));
+  const ug = document.getElementById('layer-underground');
+  const ugLabel = document.querySelector('label.gm-layer-control');
+  if (ugLabel) ugLabel.style.display = mode === 'gm' ? 'flex' : 'none';
+  if (mode === 'player' && ug) { ug.style.display = 'none'; document.getElementById('layer-underground').checked = false; }
+  else if (ug) { ug.style.display = ''; document.getElementById('layer-underground').checked = true; }
+}
+
+function toggleLayer(name) {
+  const map = { cables: 'layer-cables', underground: 'layer-underground' };
+  const el = document.getElementById(map[name]);
+  if (el) el.style.display = document.getElementById('layer-' + name).checked ? '' : 'none';
+  if (name === 'labels') {
+    document.getElementById('landmarks').classList.toggle('show-labels', document.getElementById('layer-labels').checked);
+  }
+}
+
+function zoomMap(factor) {
+  scale = Math.min(2.5, Math.max(0.6, scale * factor));
+  applyTransform();
+}
+
+function resetZoom() { scale = 1; tx = 0; ty = 0; applyTransform(); }
+
+function showDetail(id) {
+  const d = DATA[id];
+  if (!d) return;
+  document.querySelectorAll('.district.selected,.landmark-pin.selected').forEach(e => e.classList.remove('selected'));
+  const el = document.querySelector(`[data-id="${id}"]`);
+  if (el) el.classList.add('selected');
+
+  document.getElementById('detail-title').textContent = d.title;
+  document.getElementById('detail-pop').textContent = d.pop;
+  const badges = document.getElementById('detail-badges');
+  badges.innerHTML = (d.badges || []).map(([cls, text]) =>
+    `<span class="location-badge ${cls}">${text}</span>`).join('');
+  let html = d.body || '';
+  if (document.body.classList.contains('mode-gm') && d.gm) html += d.gm;
+  document.getElementById('detail-body').innerHTML = html || '<p class="gm-layer-note" style="display:block">GM-only location. Switch to GM view.</p>';
+}
+
+document.querySelectorAll('.district').forEach(p => {
+  p.addEventListener('click', () => showDetail(p.dataset.id));
+});
+document.querySelectorAll('.landmark-pin,.sewer-access').forEach(p => {
+  p.addEventListener('click', e => { e.stopPropagation(); showDetail(p.dataset.id); });
+});
+
+// Pan
+let dragging = false, startX, startY, startTx, startTy;
+viewport.addEventListener('pointerdown', e => {
+  if (e.target.closest('.district,.landmark-pin,.sewer-access')) return;
+  dragging = true;
+  viewport.classList.add('dragging');
+  startX = e.clientX; startY = e.clientY;
+  startTx = tx; startTy = ty;
+  viewport.setAttribute('pointer-events', 'all');
+});
+window.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  tx = startTx + (e.clientX - startX);
+  ty = startTy + (e.clientY - startY);
+  applyTransform();
+});
+window.addEventListener('pointerup', () => { dragging = false; viewport.classList.remove('dragging'); });
+
+document.getElementById('landmarks').classList.add('show-labels');
+setMode('gm', document.querySelector('[data-mode="gm"]'));
+</script>
+</body>
+</html>

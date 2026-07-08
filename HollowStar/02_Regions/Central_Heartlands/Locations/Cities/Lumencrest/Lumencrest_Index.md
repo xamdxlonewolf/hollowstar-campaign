@@ -19,6 +19,7 @@ This folder contains everything you need to run Lumencrest at the table. Each fi
 | [[Districts_Overview]] | All districts at a glance with spatial layout — use for map reference |
 | `maps/Lumencrest/lumencrest-player-map.svg` | Player-facing city overview (districts, landmarks, cable cars) |
 | `maps/Lumencrest/lumencrest-gm-map.svg` | GM map — adds lamp boundary, sewer access, tunnels, hidden sites |
+| `gm_sessions_site/lumencrest-map.html` | Interactive map — click districts, player/GM toggle, pan/zoom |
 | [[01_Radiant_Core]] | The seat of power — Council, elite estates, the Vault entrance |
 | [[02_Lamplight_Ward]] | The prosperous middle class — shops, guilds, best inns |
 | [[03_Halfling_Quarter]] | The Quarter — community, breweries, the warmest part of the city |
