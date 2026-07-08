@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
-  <title id="title">Lumencrest  Player City Map</title>
+  <title id="title">Lumencrest  -  Player City Map</title>
   <desc id="desc">District overview of Lumencrest with major landmarks, gates, roads, and cable car lines. Player-safe reference.</desc>
 
   <defs>
@@ -189,7 +189,7 @@
 
   <!-- Title block -->
   <text x="600" y="78" text-anchor="middle" class="map-title">Lumencrest</text>
-  <text x="600" y="98" text-anchor="middle" class="map-subtitle">City of Light  Player Reference Map · ~87,000 residents</text>
+  <text x="600" y="98" text-anchor="middle" class="map-subtitle">City of Light  -  Player Reference Map - ~87,000 residents</text>
 
   <!-- Compass -->
   <g transform="translate(1050, 780)">
