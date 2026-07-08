@@ -9,6 +9,10 @@ Prep notes for each played session. These are the **source documents** for build
 3. **Build session site** — Convert finalized notes to `gm_sessions_site/sessionN.html` (+ location/fear pages as needed).
 4. **Sync canon** — Push new facts back into `02_Regions/`, `09_NPCs/`, clocks, and faction trackers.
 
+## GM Bible (Sessions 2–3)
+
+Full table prep with secrets, factions, NPCs, and Fear appendix: **`08_GM_Notes/GM_Bible_Sessions_2_3.pdf`** (regenerate via `scripts/build_gm_bible_sessions_2_3.py`).
+
 ## Sessions
 
 | Session | File | Status | In-world |
