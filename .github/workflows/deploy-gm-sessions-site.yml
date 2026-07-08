@@ -1,3 +1,9 @@
+# Publishes gm_sessions_site/ to GitHub Pages.
+#
+# One-time repo setup (required before first deploy):
+#   Settings → Pages → Build and deployment → Source → GitHub Actions
+# Then re-run this workflow from the Actions tab.
+
 name: Deploy GM Sessions Site
 
 on:
@@ -27,9 +33,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
