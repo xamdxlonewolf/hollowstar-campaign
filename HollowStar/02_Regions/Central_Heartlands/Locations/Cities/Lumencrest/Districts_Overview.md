@@ -2,6 +2,8 @@
 
 *This file is the map reference. Use it to orient players spatially and to describe the city from above or from elevated vantage points like cable cars or rooftops. Each district has a position, character summary, and map notes for Wonderdraft or AI generation.*
 
+**SVG maps:** Player and GM city overviews live in `HollowStar/maps/Lumencrest/` (`lumencrest-player-map.svg`, `lumencrest-gm-map.svg`).
+
 ---
 
 ## City Layout — The Big Picture
