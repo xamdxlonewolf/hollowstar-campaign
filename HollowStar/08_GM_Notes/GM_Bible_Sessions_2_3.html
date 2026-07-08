@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HollowStar GM Bible — Sessions 2 & 3</title>
+<style>
+@page {
+  size: letter;
+  margin: 0.75in 0.85in;
+  @bottom-center {
+    content: counter(page);
+    font-size: 9pt;
+    color: #666;
+  }
+}
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1a1a1a;
+}
+h1 { font-size: 22pt; margin: 0 0 0.25em; page-break-after: avoid; }
+h2 {
+  font-size: 15pt; margin: 1.4em 0 0.4em;
+  border-bottom: 2px solid #8b6914;
+  padding-bottom: 0.15em;
+  page-break-after: avoid;
+}
+h3 { font-size: 12pt; margin: 1em 0 0.35em; page-break-after: avoid; }
+h4 { font-size: 10.5pt; margin: 0.8em 0 0.25em; color: #333; page-break-after: avoid; }
+p { margin: 0.35em 0 0.6em; }
+ul, ol { margin: 0.3em 0 0.7em 1.2em; }
+li { margin: 0.15em 0; }
+table { border-collapse: collapse; width: 100%; margin: 0.5em 0 1em; font-size: 9.5pt; }
+th, td { border: 1px solid #ccc; padding: 4px 6px; vertical-align: top; }
+th { background: #f3efe4; text-align: left; }
+.cover {
+  page-break-after: always;
+  text-align: center;
+  padding-top: 2.5in;
+}
+.cover .subtitle { font-size: 13pt; color: #555; margin-top: 0.5em; }
+.cover .meta { margin-top: 2em; font-size: 10pt; color: #666; }
+.toc { page-break-after: always; }
+.toc ul { list-style: none; padding-left: 0; }
+.toc li { margin: 0.35em 0; }
+.toc a { color: inherit; text-decoration: none; }
+blockquote {
+  margin: 0.5em 0 0.8em;
+  padding: 0.5em 0.75em;
+  border-left: 3px solid #8b6914;
+  background: #faf8f2;
+  font-style: italic;
+}
+.gm-secret {
+  background: #fff8e8;
+  border: 1px solid #d4b84a;
+  padding: 0.5em 0.75em;
+  margin: 0.5em 0 0.8em;
+  border-radius: 3px;
+}
+.gm-secret strong { color: #7a5c00; }
+.fear-card {
+  border: 1px solid #c9a0a0;
+  margin: 0.6em 0 1em;
+  padding: 0.5em 0.65em;
+  page-break-inside: avoid;
+}
+.fear-card h4 { margin-top: 0; color: #8b3030; }
+.label { font-size: 8.5pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; color: #666; }
+.npc-block { margin: 0.6em 0 1em; padding-bottom: 0.4em; border-bottom: 1px dotted #ddd; }
+.npc-block h4 { margin-bottom: 0.1em; }
+.page-break { page-break-before: always; }
+.small { font-size: 9pt; color: #555; }
+hr { border: none; border-top: 1px solid #ddd; margin: 1.2em 0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>HollowStar GM Bible</h1>
+  <p class="subtitle">Sessions 2 & 3 — Lumencrest Arrival & The Hub Explosion</p>
+  <p class="meta">700 AR · Gold Month 8 · Daggerheart<br>
+  Party: Greer · Lurielle · Basil<br>
+  GM Only — Contains secrets</p>
+</div>
+
+<div class="toc">
+<h2>Contents</h2>
+<ul>
+<li>1. Party & PC Threads</li>
+<li>2. World Context, Clocks & Secrets</li>
+<li>3. Lumencrest Primer</li>
+<li>4. Session 2 — Lumencrest Arrival</li>
+<li>5. Session 2 — Fear Spend Appendix</li>
+<li>6. Session 3 — The Hub Explosion</li>
+<li>7. Session 3 — Fear Spend Appendix</li>
+<li>8. NPC Reference</li>
+</ul>
+</div>
+
+
+<h2 id="party">Party & PC Threads</h2>
+<p><strong>Party:</strong> Greer (Faun Druid, 60) · Lurielle (Faerie/Ribbet Wizard, 16) · Basil (Half-Katari/Emberkin Rogue)</p>
+<p><strong>Session 1 completed.</strong> You enter Lumencrest on Gold Month 8, Day 1. Session 2 is wonder before pressure. Session 3 is the fracture.</p>
+
+<h3>Greer — Faun Druid (Tara)</h3>
+<ul>
+<li>Sent by <strong>Thorn Oakwise</strong> from Ember Grove to watch House Vael and read the land/spirits in Lumencrest.</li>
+<li>Path of Spirits druid; Green Covenant adjacent. Spirits in the city feel thin, crowded, overwhelmed — not absent.</li>
+<li>Session 2 spotlight: land read (Instinct DIF 13); spirits "drinking through pipes"; Speakers' Corner fringe hears logging/Covenant frustration.</li>
+<li>Session 3: protest anger is <em>legitimate</em>; bombers are NOT the organizers. Blast pain in the land; spirits recoil east pre-blast.</li>
+</ul>
+
+<h3>Lurielle — Wizard (16, Endless Eye)</h3>
+<ul>
+<li>Researching Hollowstars; classified Endless Eye docs were reclassified before she left — she noticed.</li>
+<li>The Network hum is a frequency she can read. Knowledge/Instinct DIF 14 for patterned periodicity (not random brownout).</li>
+<li>Session 3: hum stutters before blast; ceramic capacitor residue; archives appointment Day 4 (Hen Brask).</li>
+<li>Clanks may pause near her (Hollowstar-adjacent resonance). Dangerous and useful long-term.</li>
+</ul>
+
+<h3>Basil Silverhand — Rogue</h3>
+<ul>
+<li>Youngest Silverhand; proving himself vs. firstborn Sage. Target: House Vael diplomatic pouch, Radiant Core, Gold Month 14 handoff.</li>
+<li>Cover to party: Katya is his "ex." Truth: professional assassin tracking him from Session 1 training job.</li>
+<li>Session 2: heat check (Perception DIF 13 on him); Guild sigil chalk rumor; Silver Thread tail possible.</li>
+<li>Session 3: chaos = opportunity + witnesses; exit routes and watch movement; Guild chalk on Ash token is logistics not authorship.</li>
+</ul>
+
+<h3>Session 1 Branch Carryover</h3>
+<table>
+<thead><tr><th>Branch</th><th>Effect in Sessions 2–3</th></tr></thead>
+<tbody>
+<tr><td>Guild scout escaped Session 1</td><td>Sergeant Maret at Pauper's Gate has rough description; extra questions; Insight DIF 13 connects Greer to Ember Grove.</td></tr>
+<tr><td>Basil pickpocket success</td><td>Letter/schedule safe; Vael schedule may match Guild sigil chalk (Investigation DIF 13).</td></tr>
+<tr><td>Caelen knows Basil (partial pickpocket / fs-pp-exit)</td><td>Vael-clothed courier double-take at gate; Perception DIF 14 (Basil) to notice. Marten Halwick may mention Vael pin in common room.</td></tr>
+<tr><td>Runner did NOT escape</td><td>Gate entry unremarkable unless other flags active.</td></tr>
+</tbody>
+</table>
+
+
+<h2 id="world">World Context — Clocks & Factions</h2>
+<p><strong>In-world date:</strong> 700 AR, Gold Month 8. Lumencrest is cracking while the Fourth Fall approaches (Stage 3 — daytime visible).</p>
+
+<h3>Active Countdown Clocks (Sessions 2–3)</h3>
+<table>
+<thead><tr><th>Clock</th><th>Stage</th><th>What players feel</th></tr></thead>
+<tbody>
+<tr><td>Fourth Fall</td><td>3/6</td><td>Star visible in daylight; fear spreading; factions mobilizing.</td></tr>
+<tr><td>Lumencrest Heart</td><td>3/5</td><td>20% production loss; brownouts; Council paralyzed; labor unrest.</td></tr>
+<tr><td>Green Covenant / Lumencrest</td><td>3/5</td><td>Thorn escalation; cold standoff; radical wing operating independently.</td></tr>
+<tr><td>Northern Refugee Crisis</td><td>2/4</td><td>Frostwell refugees at Pauper's Gate; relief registry friction.</td></tr>
+</tbody>
+</table>
+
+<h3>Lumencrest Council (Gridlocked)</h3>
+<ul>
+<li><strong>Illuminists</strong> (Chair Mira Ashton): aggressive research; unauthorized Vault experiments running.</li>
+<li><strong>Conservators</strong> (Sevan Vael public face): stability, caution — Vael family playing long game.</li>
+<li><strong>Expansionists</strong> (Theron Ashwick): military solution; seize Endless Eye; use crises to vote.</li>
+</ul>
+
+<h3>Factions in Play These Sessions</h3>
+<table>
+<thead><tr><th>Faction</th><th>State</th><th>Sessions 2–3 relevance</th></tr></thead>
+<tbody>
+<tr><td>Green Covenant (mainstream)</td><td>Cold standoff with Lumencrest; Maren managing Thorns</td><td>Protest grievances legitimate. Radical wing (~40) bombing hubs — Maren doesn't know.</td></tr>
+<tr><td>Green Covenant (radical / Thorns)</td><td>Wren's cell in Lumencrest 6 months</td><td>Hub blast Session 3. Wren calculating; Ash troubled. Thornwall in Heartgrove funds intel.</td></tr>
+<tr><td>House Vael</td><td>Patient power play</td><td>Sevan moderate voice; Lyra runs darker ops (Shard Division) without father's full knowledge.</td></tr>
+<tr><td>Unseen Guild</td><td>Standard ops + Shard Division</td><td>Mira Voss; Basil tail possible; Brinne's "wrong boots" asker may be capacity intel.</td></tr>
+<tr><td>Ironwright Collective</td><td>Labor anger</td><td>Protest banners; rationing focus; Genna Cradle linked to Brinne.</td></tr>
+<tr><td>City Watch</td><td>Overwhelmed, competent at street level</td><td>Containment not hostility at protest; investigation stalls after blast.</td></tr>
+</tbody>
+</table>
+
+<h2 id="secrets">GM Secrets — The Truth Behind Sessions 2–3</h2>
+
+<div class="gm-secret">
+<strong>Who bombed the hub:</strong> Green Covenant radical wing, operational leader <strong>Wren</strong> (elf, 134). Targeted secondary Eastwick feed hub — residential hurt before commercial priority. Architecture-aware ceramic capacitor device. ~40 members in secret cells. Grievances are real; civilian casualties accepted in their framework.
+</div>
+
+<div class="gm-secret">
+<strong>Wren</strong> — calm, methodical, has not personally witnessed consequences until now. On distant roofline north during blast. Not at site. Already planning next move if objective met (secondary hub down ✓).
+</div>
+
+<div class="gm-secret">
+<strong>Ash</strong> (human, 29) — Wren's second. Rooftop observer two blocks south. Saw pre-blast figure at hub door. Left early — maintenance worker still inside. Troubled, potentially reachable with honest approach. Cornered line: <em>"I didn't know they'd still be inside."</em> Day 12: meets supplier at Pauper's Gate Taproom.
+</div>
+
+<div class="gm-secret">
+<strong>Protest organizers (Tessa Morr, Docken Hale)</strong> — NOT connected to bombers. Wren timed blast mid-afternoon to avoid protest linkage. City will conflate them anyway.
+</div>
+
+<div class="gm-secret">
+<strong>Theron Ashwick</strong> — uses deliberate blast to push military authorization. Has curated Heart timeline from Lyra Vael. Speaks to Sevan twice Day 3 Council. Not wrong that it was terrorism — wrong about who and why publicly.
+</div>
+
+<div class="gm-secret">
+<strong>House Vael / Lyra</strong> — Shard Division kidnapping refugees for Hollostar shard experiments. Lyra funding; Mira Voss operating. Separate from hub bomb but same villain ecosystem. Theron and Sevan are different faces of House strategy.
+</div>
+
+<div class="gm-secret">
+<strong>Watch investigation</strong> — 23 interviews Day 2, zero productive leads in official file. Deprioritized Day 5 without player push. Vault Guard logged event; did not deploy (jurisdiction).
+</div>
+
+<h3>What NOT to reveal yet</h3>
+<ul>
+<li>Do not name Wren or Green Covenant to players unless earned through investigation.</li>
+<li>Ash gives one true line if cornered — not a full confession.</li>
+<li>End Session 3 on Council announcement — Day 3 session is Session 4.</li>
+</ul>
+
+
+<h2 id="lumencrest">Lumencrest Primer</h2>
+<table>
+<thead><tr><th>District</th><th>Session use</th></tr></thead>
+<tbody>
+<tr><td>Pauper's Gate</td><td>Default entry; Old Pen's Taproom; Frostwell refugees; North Expanse cable terminus.</td></tr>
+<tr><td>Lamplight Ward</td><td>Accord Arms (Merchant Square); protest border; Eastwick eastern edge.</td></tr>
+<tr><td>Eastwick</td><td>Brinne's Cooperative; Lida's Bake; Wire Road hub; goes dark Session 3.</td></tr>
+<tr><td>Shadowside</td><td>Dark Lantern (Solt); lamps thin; border chalk.</td></tr>
+<tr><td>Copper Gate</td><td>Traveller's Mark (Henris Callow); welcome zone.</td></tr>
+<tr><td>Entertainment Quarter</td><td>Copperstring — loses power mid-set Session 3.</td></tr>
+<tr><td>Halfling Quarter</td><td>Ora Finch / Mending Room — 25 min from hub.</td></tr>
+<tr><td>Radiant Core</td><td>Basil scouts; heavily watched; Vael presence.</td></tr>
+<tr><td>Vault District</td><td>Glow on horizon; speaker may name it Session 2 dawn.</td></tr>
+</tbody>
+</table>
+
+<h3>Key Locations Session 2–3</h3>
+<ul>
+<li><strong>Wire Road & Ninth Lamp</strong> — alley junction; secondary hub; protest 3 blocks west.</li>
+<li><strong>Lamplight / Shadowside border</strong> — chalk: <em>WE PAID FOR THIS LIGHT</em>.</li>
+<li><strong>North Expanse Station → Central Hub</strong> — cable car orientation; 2 copper/person.</li>
+<li><strong>Accord Chamber</strong> — Emergency Council Day 3 AM, gallery opens 9.</li>
+</ul>
+
+<h3>Costs & DC Quick Reference</h3>
+<table>
+<thead><tr><th>Item</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Gate vague answers</td><td>Presence DIF 12 · false identity Deception DIF 14</td></tr>
+<tr><td>Cable car</td><td>2 copper/person</td></tr>
+<tr><td>Traveller's Mark</td><td>1 gold/night (Henris Callow)</td></tr>
+<tr><td>Accord Arms</td><td>2–5 gold/night (Marten Halwick)</td></tr>
+<tr><td>Wren House (Eastwick)</td><td>6 silver/night</td></tr>
+<tr><td>Hub blast time</td><td>~2:47pm Day 2</td></tr>
+<tr><td>Forensics window</td><td>15 min before watch seals site</td></tr>
+</tbody>
+</table>
+
+
+<div class="page-break"></div>
+<h2 id="session2">Session 2 — Lumencrest Arrival</h2>
+<p><strong>Date:</strong> Gold Month 8, Day 1 · <strong>Runtime:</strong> 3–4 hours · <strong>Goal:</strong> Wonder before pressure. End on dawn Day 2 protest chalk — do NOT run explosion.</p>
+<blockquote>Plateau ending: Fresh chalk <em>WE PAID FOR THIS LIGHT</em>. Someone says: "They said we'd have light if we paid." Stop.</blockquote>
+<h3>Session 2 — Lumencrest Arrival</h3>
+<p><strong>Status:</strong> SYNCED  </p>
+<p><strong>In-World Date:</strong> Gold Month 8, Day 1 in Lumencrest, 700 AR  </p>
+<p><strong>Location(s):</strong> Kingroad plateau → Pauper's Gate (default) → Lamplight Ward / optional Shadowside  </p>
+<p><strong>Estimated Runtime:</strong> 3–4 hours  </p>
+<p><strong>Party:</strong> Greer (Faun Druid), Lurielle (Faerie/Ribbet Wizard, 16), Basil (Half-Katari/Emberkin Rogue)</p>
+
+<div class="page-break"></div>
+<h2 id="fear2">Session 2 — Fear Spend Appendix</h2>
+<p>Full expansions from fear_options_session2.html. One Fear per gate scene unless table is comfortable.</p>
+<div class="fear-card"><h4>The Registry Flags a Name <span class="small">(Act 1 — Gate Entry · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> During the gate queue, before the party reaches the officer. Best when the table is relaxed — use it to remind them the city's welcome is conditional.</p>
+<p><span class="label">GM Say</span> "The line stops. Not long — thirty seconds — but long enough. Ahead of you, a Frostwell woman with a cloth bundle is asked to step aside. The officer checks a ledger, speaks quietly to a second watchman, writes something down. She goes pale, then nods, and is waved through with a look that says she knows she's being noted. The line moves again. You pass through normally. But you saw how fast the machinery engages when a name matters."</p>
+<p><span class="label">GM Info — What's actually happening</span> The woman is not on a criminal warrant — she's on a relief registry mismatch . Frostwell arrivals are supposed to check in at a Council relief station within 24 hours; she didn't know. The watch logs her for follow-up, not arrest. This is bureaucracy, not malice — but it looks like malice from the queue. If a PC has a warrant: swap the NPC for their situation. The fear spend buys you the beat without a surprise TPK — the officer asks them aside, verifies, and either passes them (mistaken identity, old warrant) or gives them a choice: resolve it now (fine, contact, bribe) or don't enter. Don't hard-stop the campaign without an out. Basil: If the Guild runner reported the party, this is NOT when that surfaces — registry is city watch, not Guild. Save Guild awareness for the tail spend.</p>
+</div>
+<div class="fear-card"><h4>The Hum Spikes Once <span class="small">(Act 1 — Gate Entry · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> Immediately after they cross the gate threshold, or when they first touch a Network-connected fixture (lamp post, iron railing). Works best paired with Greer or Lurielle in front.</p>
+<p><span class="label">GM Say</span> "The hum you've been hearing since the ridge — constant, low — spikes. Not louder exactly. Deeper. Every electric lamp on the street flickers in the same instant, a single synchronized stutter, then steadies. A Clank three paces ahead doesn't pause. A vendor doesn't look up. You do."</p>
+<p><span class="label">GM Info — What's actually happening</span> Micro-fluctuation in Heart output — the same class of event that causes brownouts, at negligible scale. Network-connected infrastructure registers it everywhere at once. Locals have learned to ignore sub-threshold spikes. Newcomers haven't. Lurielle: Knowledge DIF 12 — the spike's harmonic profile matches her Heart Stone notation from Session 1 (if used). Same family, different amplitude. She can write this down. Greer: Instinct DIF 11 — the spirit layer flinched. Something below the city turned in its sleep. Not waking. Adjusting.</p>
+<p><span class="label">Optional — Lurielle places the frequency</span> Stat:Knowledge · DIF:12</p>
+<p class="small"><strong>Failure:</strong> Wrongness noted. No pattern yet.</p>
+<p class="small"><strong>Partial:</strong> Same family as Ember Grove threshold. Different source depth.</p>
+<p class="small"><strong>Success:</strong> Heart Stone + Network + Endless Eye pre-classification data — three points on a line she can't finish yet. Critical journal entry.</p>
+</div>
+<div class="fear-card"><h4>A Clank Stops and Looks at Lurielle <span class="small">(Act 1 — Gate Entry · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> After implant scan at the gate (if Clanks are being processed nearby) or when the first Clank passes the party on the street. Lurielle-specific.</p>
+<p><span class="label">GM Say</span> "A Clank in a grey service robe completes the gate scan — FREE status, waved through — and walks past your group. It stops. Turns its head. Looks at Lurielle for one beat longer than navigation requires. You feel the attention like a hand on your shoulder. Then it continues, pace unchanged. Nobody else noticed."</p>
+<p><span class="label">GM Info — What's actually happening</span> The Clank's sensory array picked up Hollowstar-adjacent biological resonance — same class of detection as the shard bear's pull toward Lurielle. The Clank has no context for what it sensed. Its behavior is an artifact of Luminarium-standard perception hardware, not malice or recognition. If Lurielle reacts publicly: Instinct DIF 12 from nearby locals — 'first time seeing a Clank?' Pity or amusement, not alarm. Clank politics beat: Greer may read the room's indifference as its own kind of horror. Optional character moment — no roll required.</p>
+</div>
+<div class="fear-card"><h4>The Car Shudders Mid-Line <span class="small">(Act 3 — Cable Car · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> Mid-ride between North Expanse and Central Hub — the highest, most exposed segment. Use when the table is comfortable and enjoying the view.</p>
+<p><span class="label">GM Say</span> "The car shudders — a lateral hitch, like the cable's tension went wrong for half a second. The mechanism in the ceiling chatters. The attendant doesn't look alarmed. He taps the speaking tube, listens, says two words you can't hear. 'Tension adjustment,' he tells the car, almost bored. 'Happens.' A dwarf by the window goes back to reading. A woman who was asleep opens one eye, closes it. You are the only people holding the handrail."</p>
+<p><span class="label">GM Info — What's actually happening</span> Minor cable maintenance lag — the Network hiccupped and the automated tension compensator was a fraction slow. Not dangerous on its own. Happens more often than officials admit. The attendant's calm is real; so is the dwarf's glance at the ceiling, which says more than last month . Don't turn this into a disaster scene unless players panic and do something stupid. The fear is social: locals know something newcomers don't.</p>
+<p><span class="label">Optional — Read the locals' reaction</span> Stat:Instinct or Presence · DIF:12</p>
+<p class="small"><strong>Failure:</strong> Attendant's reassurance lands. Maybe it's fine.</p>
+<p class="small"><strong>Partial:</strong> This isn't the first time they've heard 'happens.' Frequency is increasing.</p>
+<p class="small"><strong>Success:</strong> The dwarf's glance + the asleep woman's single eye = shared public knowledge the city doesn't discuss with outsiders. Brownouts are infrastructure, not rumor.</p>
+</div>
+<div class="fear-card"><h4>Brownout Flicker — Eastern Ward <span class="small">(Act 3 — Cable Car · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> From the cable car, approaching Central Hub or on the South line descent — players have elevation to see a district-wide flicker.</p>
+<p><span class="label">GM Say</span> "From up here you watch a section of the eastern Ward go dark — not one lamp, a block, then two, streetlamps dying in a chain like someone snuffed a line of candles. Three seconds. Four. Then they come back, not all at once, a staggered relight that looks ashamed. Someone in the car swears quietly. The Clank at the window doesn't react. Nobody explains it to you."</p>
+<p><span class="label">GM Info — What's actually happening</span> Rationing-induced load shed on a secondary feed — the same eastern Ward infrastructure that Session 3's hub explosion will sever more permanently. The protest tomorrow is partly about this neighborhood's power priority. Greer: When the lights die, the spirit layer exhales — briefly less crowded. When they return, it compresses again. She can describe both sensations if asked. Basil: Notes which block went dark. If he has the schedule card, he doesn't know yet this district matters — but he will.</p>
+</div>
+<div class="fear-card"><h4>Something in the Layer Recognizes Her <span class="small">(Act 4 — Greer Spotlight · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> During Greer's spotlight moment — near the Vault wall view from cable car, Merchant Square at night, or the border walk. When she's actively reaching into the spirit layer.</p>
+<p><span class="label">GM Say — To Greer</span> "You reach for the spirit layer the way you would at the grove — and for a moment it reaches back. Not words. Recognition. Something under the Vault District turns toward you like a sleeper hearing a familiar voice in a dream. It smells, impossibly, of oak and turned earth. Then the city rushes in again — eighty thousand voices, the Network's hum, the compression — and the moment is gone. Your eyes water. Not from sadness. From proximity."</p>
+<p><span class="label">GM Info — What's actually happening</span> Residual spirit-memory in the Heart's dreaming layer — Goldwood's fall left echoes in anything connected to Hollostar infrastructure. Greer's druidic bond reads it as forest. It's not a spirit of a tree. It's a scar in the layer that remembers what was lost when Lumencrest grew. Thorn would say: "The city is not empty. It is full of what it ate." He won't say this until much later unless Tara asks directly in a future session. Path of Spirits: No roll required for the experience. Instinct DIF 13 to understand it's memory, not a present entity.</p>
+</div>
+<div class="fear-card"><h4>The Hum Matches Her Pulse for One Beat <span class="small">(Act 4 — Lurielle Spotlight · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> When Lurielle is measuring, journaling, or standing near a Network node (street lamp cluster, cable station housing, Accord Arms' lit common room).</p>
+<p><span class="label">GM Say — To Lurielle</span> "Your pulse finds the hum's rhythm — or the hum finds yours. For one beat they are the same. Bioluminescence flares blue-white at your wrist and collarbone, visible through your sleeve. A Clank on the street stops mid-step. A lamplight flickers. Then your heart stutters back to its own tempo and the city pretends nothing happened. You have a data point you cannot publish."</p>
+<p><span class="label">GM Info — What's actually happening</span> Resonance lock — brief coupling between Lurielle's biology and the Network carrier wave. Harmless at this duration. Would not be harmless at Shard Division exposure levels. The Clank stopped because its hardware flagged an anomaly; it has no protocol for what to do next, so it resumes. Embarrassment angle: Let Lurielle's player decide how public this was. Common room vs empty street changes social consequence.</p>
+<p><span class="label">Optional — Greer reads what happened</span> Stat:Instinct · DIF:12</p>
+<p class="small"><strong>Failure:</strong> She saw the flare. Doesn't know why.</p>
+<p class="small"><strong>Partial:</strong> The city answered her. Briefly. That shouldn't be possible.</p>
+<p class="small"><strong>Success:</strong> Same class of moment as the Heart Stone — Lurielle is a threshold creature. Greer can name it without fixing it.</p>
+</div>
+<div class="fear-card"><h4>Someone Matches His Pace for Three Blocks <span class="small">(Act 4 — Basil Spotlight · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> When Basil scouts alone or walks ahead of the party — especially if Session 1 runner escaped OR pickpocket partial/fail. Works without those branches as generic city paranoia.</p>
+<p><span class="label">GM Say — To Basil</span> "You've had a tail before. This one is good. Three blocks behind, three blocks to the side, never closer than twenty feet, never obvious — newspaper, loaf of bread, the performance of a person with errands. When you stop at a corner, they stop. When you turn, they turn one beat late, like they expected you to. They don't follow you into the inn. They don't need to. They already know where you're sleeping."</p>
+<p><span class="label">GM Info — Who it is</span> If Guild clock +1: Unseen Guild scout — Coppertown contact's Lumencrest asset. Assessing, not acting. Report: party composition, inn choice, confidence level. If Caelen aware: House Vael guard-adjacent freelancer — not the guard from Emberford, but same professional class. Checking if Basil is following Caelen. Default: City watch plainclothes — routine traveler profiling after gate entry. Boring and still creepy.</p>
+<p><span class="label">Basil's options</span> Notice:Instinct DIF 12 · Lose for night:Agility or Finesse DIF 14 · Confront:Presence DIF 13 — tail disengages, no info</p>
+<p class="small"><strong>Failure (lose):</strong> Tail stays. They learn his patterns. -1 to heist stealth later if uncaught.</p>
+<p class="small"><strong>Partial:</strong> Shakes them for tonight. They know he knows.</p>
+<p class="small"><strong>Success:</strong> Clean lose. If confront success: tail was Guild scout — they learned nothing new.</p>
+</div>
+<div class="fear-card"><h4>Solt Pours Without Being Asked <span class="small">(Act 4 — Solt at the Dark Lantern · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> First drink order at the Dark Lantern — or first time Greer/Lurielle sit down. Solt reads rooms for a living.</p>
+<p><span class="label">GM Say — Solt's action</span> "You open your mouth to order. Solt is already pouring — one cup pushed to Greer, one to Lurielle, dark and hot, nothing for Basil. He doesn't explain the omission. He looks at Greer and Lurielle each once. 'On the house. You look like you're listening to something. Don't let it listen back.' Then he's at the other end of the bar like the sentence was weather."</p>
+<p><span class="label">GM Info — What Solt knows</span> He doesn't know their names or missions. He knows listeners — people who arrive in Shadowside already attuned to frequencies the district survives around. He's seen researchers, Covenant-adjacent travelers, and druids before. He gives them tea (if tea) or house brew to ground them. Basil gets nothing because Basil arrived closed — professional habit, not insult. Basil Presence DIF 12: Can get a pour by making himself legible as a person, not a job. Solt respects that. Don't make Solt omniscient. He's thirty years of pattern recognition, not a quest giver.</p>
+</div>
+<div class="fear-card"><h4>A Frostwell Woman Asks About Work <span class="small">(Act 4 — Dark Lantern · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> Mid-conversation at the Dark Lantern — creates a moral micro-beat without forcing a side quest.</p>
+<p><span class="label">GM Say</span> "At the bar, a young woman — Frostwell build, layered clothes wrong for this climate — speaks too quietly to the room. 'Does anyone know if the Manufactories are still taking people? My brother said there was labor.' The room pretends not to hear. Solt's expression doesn't change. He wipes the bar. Waiting to see who answers, and how."</p>
+<p><span class="label">GM Info — What's true</span> Manufactories are hiring — exploitative shift work, dangerous floors, pays in coin that doesn't cover Ward rent. Her brother was partially right. The room's silence is self-protection: helping connects you to someone's desperation. If party helps: Point her to Ironwright hiring hall (exploitative but legal) or Kess Aldman's boarding house community (safer, slower). If they ignore: she leaves. If they mock: Solt's neutrality cools — future -1 Shadowside rep.</p>
+<p><span class="label">Optional — Actually useful directions</span> Stat:Knowledge or Presence · DIF:11</p>
+<p class="small"><strong>Failure:</strong> Vague 'try the factories.' She'll be turned away at gate.</p>
+<p class="small"><strong>Partial:</strong> Hiring hall name + warning about shift terms.</p>
+<p class="small"><strong>Success:</strong> Kess Aldman or Ironwright contact who won't rob her. Solt notes the kindness.</p>
+</div>
+<div class="fear-card"><h4>Fresh Chalk Under the Old Message <span class="small">(Act 5 — Border Walk · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> When players examine the cleaned protest chalk at the Lamplight / Shadowside border during Act 5 night texture.</p>
+<p><span class="label">GM Say</span> "The workers missed a spot — or someone wrote again after they left. Under the faded WE PAID FOR THIS LIGHT, smaller and fresher: a symbol, three lines meeting in a circle. Greer — you've seen it in Covenant briefing sketches. Not a threat sigil. A survey mark. Someone mapping Network infrastructure asked questions in the wrong district and left a signature they thought only their people would read."</p>
+<p><span class="label">GM Info — What's actually happening</span> Green Covenant radical-adjacent scout **Ash** (or a cell member) marked a distribution feed point during reconnaissance four days ago. Wren's cell used this data for hub target selection. The mark is operational, not propaganda. Greer Instinct DIF 12: This is Thorns methodology — wrong branch, same anger. Complicated feelings. Basil Knowledge DIF 13: Smuggling networks use similar marks; this one is ideological, not Guild logistics (three-dot triangle is Guild — this is different).</p>
+</div>
+<div class="fear-card"><h4>A Speaker Names the Vault District <span class="small">(Session End — Dawn Day 2 · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> Session ending beat — protest reforming at dawn. Use as the final escalation before your closing line.</p>
+<p><span class="label">GM Say</span> "The call-and-response finds its rhythm. A woman on a crate — Manufactories accent, Ironwright colors pinned to her coat wrong-side-out so watch can't cite them — raises her voice. 'They ration our light while the Vault never dims!' The crowd answers. She goes further — names the Vault District aloud, not as myth, as address. 'The Heart eats and we skip meals!' The watch captain's jaw tightens. Half the crowd cheers. They don't know what they're cheering for. They know who they're cheering against."</p>
+<p><span class="label">GM Info — What's actually happening</span> **Genna Cradle's** people didn't write this speech — it's organic rank-and-file anger. But Ironwright organizers have been waiting for Vault naming to go public. Theron Ashwick will call this treason by afternoon. Sevan Vael will call for calm. Not violence yet. Watch is present, not aggressive. Session 3's panic comes later with the explosion. Lurielle: The Vault name + hum memory = hypothesis she can't prove. Greer: spirit layer compresses when the crowd surges — collective emotion as weather.</p>
+</div>
+
+<div class="page-break"></div>
+<h2 id="session3">Session 3 — The Hub Explosion</h2>
+<p><strong>Date:</strong> Gold Month 8, Day 2 · <strong>Blast:</strong> ~2:47pm · <strong>Runtime:</strong> 3–4 hours</p>
+<p><strong>Goal:</strong> Protest pressure → targeted hub blast → chaos forks → Council clock. Situation encounter, not default combat. Wren and Ash NOT at site.</p>
+<blockquote>Plateau ending: Emergency Council tomorrow morning. Forensic hook: architecture-aware sabotage. Stop on Council clock + dark Eastwick.</blockquote>
+<h3>Session 3 — The Hub Explosion</h3>
+<p><strong>Status:</strong> SYNCED  </p>
+<p><strong>In-World Date:</strong> Gold Month 8, Day 2 in Lumencrest, 700 AR  </p>
+<p><strong>Location(s):</strong> Eastwick / Lamplight Ward eastern edge → Entertainment Quarter (Copperstring) → city fallout  </p>
+<p><strong>Estimated Runtime:</strong> 3–4 hours  </p>
+<p><strong>Party:</strong> Greer (Faun Druid), Lurielle (Faerie/Ribbet Wizard, 16), Basil (Half-Katari/Emberkin Rogue)</p>
+
+<div class="page-break"></div>
+<h2 id="fear3">Session 3 — Fear Spend Appendix</h2>
+<div class="fear-card"><h4>The Protest Crowd Surges Early <span class="small">(Morning — Border Protest · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> During the mid-morning protest assembly, before speakers have the crowd's full attention. Use when players are observing or lightly involved — not if they're deep in a Brinne scene (save Brinne fear for that).</p>
+<p><span class="label">GM Say — Read aloud</span> "Someone at the front shoves someone back. It's not a fight — it's a mistake that becomes momentum. Fifty people push forward before the organizers can shout hold. City watch stiffens, batons visible but not raised. Chalk dust kicks up from the pavement where yesterday's slogans were scrubbed. The crowd is one surge away from becoming something the watch can't pretend is a demonstration."</p>
+<p><span class="label">GM Info — What's actually happening</span> The surge is not Green Covenant orchestration. It's organic frustration + one agent provocateur (unaffiliated petty criminal paid 2 silver to shove). The radical wing wants distance from today's blast — Wren's cell planned for mid-afternoon precisely to avoid protest linkage. This Fear spend foreshadows how easily the city will conflate the two.</p>
+<p><span class="label">Roll — Calm or redirect the surge</span> Stat:Presence or Strength · DIF:13</p>
+<p class="small"><strong>Failure:</strong> Surge breaks the line. Three arrests, minor injuries. Watch remembers the party if they were visible. Protest organizers blame outside agitators — partially true (Fear spend was agitation).</p>
+<p class="small"><strong>Partial:</strong> Surge stalls at the line. One arrest. Tension high; speakers regain control after 5 minutes. Players marked as capable by organizers.</p>
+<p class="small"><strong>Success:</strong> They help organizers push the surge back. Speaker thanks them by name. +1 civic trust with legitimate protest wing — useful when Council blames protestors tonight.</p>
+</div>
+<div class="fear-card"><h4>Brinne Closes the Cooperative Door <span class="small">(Morning — Eastwick Cooperative · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> When players ask Brinne about the stockpile, the larder, or emergency preparations — especially if they failed a trust roll or asked with entitlement.</p>
+<p><span class="label">GM Say — Brinne's line</span> "Brinne's hand is on the basement door. She doesn't raise her voice. 'You're not the first strangers asking about our stores today. I'm not rude because I'm busy — I'm careful because I have to be. You can help with the candles or you can leave.' The lock turns. The volunteers pretend not to notice how tense the room just got."</p>
+<p><span class="label">GM Info — Who asked before them</span> A man in Merchant Guild livery (not Guild officially — borrowed coat) asked about "community storage capacity" an hour ago. He was taking notes. Brinne didn't like him. He is Shard Division-adjacent intelligence gathering capacity data — not connected to the bomb. Players who press Instinct DIF 13 notice she glanced toward Wire Road when she said strangers — east, toward the hub, not the border. To recover trust: Help load candles without asking questions for 10 minutes. Presence DIF 11 apology with specific offer. Success reopens the conversation; she mentions the Guild-coat man if they earned it.</p>
+</div>
+<div class="fear-card"><h4>Ash on the Rooftop <span class="small">(Pre-Blast — Two Blocks from Hub · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> Mid-afternoon, as players move through Eastwick toward the hub or Entertainment Quarter. Best if they're not expecting it — reward players who look up (Instinct DIF 11 notices automatically without Fear).</p>
+<p><span class="label">GM Say</span> "Two blocks ahead, slate roof — someone is lying flat against the ridge line, watching the hub access door. Young. Dark hair. Not protest gear — plain clothes, traveler's boots. He sees you see him. He doesn't wave. He rolls off the far side of the roof and is gone before you can shout."</p>
+<p><span class="label">GM Info — Ash</span> Wren's second. Observer, not bomber. He was supposed to confirm the maintenance window was clear — it wasn't. His early departure is guilt, not professionalism. If players connect pre-blast Ash to post-blast alley glimpse, they've built the investigation thread without a name.</p>
+<p><span class="label">Optional — Immediate pursuit (before blast)</span> Agility DIF 13to reach the alley</p>
+<p class="small"><strong>Failure:</strong> Empty alley. Boot scrape on wet stone. The hum still holds — you have 90 seconds before the blast. Pursuit cost positioning.</p>
+<p class="small"><strong>Partial:</strong> Glimpse hood from stairwell. Can't close distance. Then the crack — blast interrupts chase.</p>
+<p class="small"><strong>Success:</strong> See his face for one second. Scared, not triumphant. He mouths something — not to you, to himself — then the hub detonates. You'll remember the face when you see it again.</p>
+</div>
+<div class="fear-card"><h4>The Hum Stops for One Heartbeat <span class="small">(Pre-Blast — Network Texture · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> 30–90 seconds before the explosion. Only Lurielle and Greer are guaranteed to feel it; other Resonant characters too. Use as final warning — then blast.</p>
+<p><span class="label">GM Say — Lurielle version</span> "The hum under the city — the sound that's always there — cuts out. Not fades. Stops. One heartbeat of absolute silence in the Network layer. Your bioluminescence flickers without permission. Then the hum returns, wrong pitch, like a voice cleared its throat. Three seconds later: the crack."</p>
+<p><span class="label">GM Say — Greer version</span> "The spirit web in a city is thin — you've felt that since you arrived. For one breath it goes thinner. Not dead — withdrawn. Like something technical just flinched before being struck. Your skin prickles. Then the hub breaks and the web screams."</p>
+<p><span class="label">GM Info — What's happening</span> The detonator handshake with the hub's coupling layer creates a micro-interrupt — a pre-failure pulse. Lurielle's Endless Eye heritage recognizes the frequency. Knowledge DIF 13: she can note it matches her reclassified journal data. This is Hollostar-adjacent resonance in civic infrastructure — Tier 1 secret texture, not explanation.</p>
+</div>
+<div class="fear-card"><h4>Secondary Collapse <span class="small">(Blast — Immediate Aftermath · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> 5–15 seconds after the initial detonation, while players are orienting. Anyone within 30 feet of the hub facade.</p>
+<p><span class="label">GM Say</span> "The hub building coughs smoke — and the conduit housing on the street side groans. Bolts shear. A sheet of brick-facing and cable-tray drops toward the alley where you are standing. Not the whole building. Just enough to kill someone who doesn't move."</p>
+<p><span class="label">Roll — Avoid collapse</span> Stat:Agility or Dexterity · DIF:13</p>
+<p class="small"><strong>Failure:</strong> 2d6 physical damage. Buried partially — Strength DIF 12 ally or watch to extract. Witness route blocked by rubble.</p>
+<p class="small"><strong>Partial:</strong> 1d6 damage. Clear but shaken. Boot print evidence under rubble — Finesse DIF 14 to recover before watch arrives.</p>
+<p class="small"><strong>Success:</strong> Clear. You see the coupling damage pattern before the watch tapes the scene — directional, intentional.</p>
+</div>
+<div class="fear-card"><h4>Lurielle's Resonance Spike <span class="small">(Blast — Resonance · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> At detonation if Lurielle is within 200 feet. Can combine with hum-stop for devastating personal continuity. Her arm glows blue-white visible in the sudden dark.</p>
+<p><span class="label">GM Say</span> "Lurielle — the blast doesn't just hit your ears. It hits your blood . Bioluminescence erupts along your forearms, visible to everyone in the dark street. You taste copper. The frequency is in your journal — the one you copied before they reclassified the paper — and it is here , in a street explosion, humming in your bones for three seconds before it fades. People are staring. The dark makes you impossible to ignore."</p>
+<p><span class="label">Roll — Process or hide the spike</span> Knowledge DIF 13identify frequency · Presence DIF 12play it off</p>
+<p class="small"><strong>Failure:</strong> Crowd panic around her — "Network witch" shouted once. Watch sweep harder when it arrives. +1 Fear attention on Lurielle.</p>
+<p class="small"><strong>Partial:</strong> She notes the frequency match; one witness saw. Carr logs "resonant individual" if swept.</p>
+<p class="small"><strong>Success:</strong> Full identification — coupling-layer handshake, same family as Endless Eye pre-class data. She has words for the investigation. Crowd distracted by injuries.</p>
+</div>
+<div class="fear-card"><h4>Greer Reads the Blast Pattern <span class="small">(Blast — Forensics · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> When Greer reaches the hub site or surveys from adjacent street. Fear spend grants clarity even on failed roll — the information is traumatic, not optional.</p>
+<p><span class="label">GM Say</span> "Greer — you've seen fire in forests. Controlled burn. Wildfire. Spite-fire. This is none of those. The damage speaks a vocabulary you don't like: couplings first, housing second, fuel never. Someone shaped this explosion the way a logger chooses which tree falls so the cabin isn't hit. They knew this building. They chose what died."</p>
+<p><span class="label">GM Info — Green Covenant context</span> Greer may suspect ecological radicalism. Instinct DIF 12: the blast has no Green Covenant spiritual signature — no offering, no grove-pattern. This is political infrastructure sabotage wearing green possible blame. Thorn would say: watch who benefits from the wound.</p>
+<p><span class="label">Roll — Instinct to articulate</span> Instinct DIF 14</p>
+<p class="small"><strong>Failure:</strong> She feels it in her gut but can't explain. "Wrong. Calculated." Enough for party; not enough for watch.</p>
+<p class="small"><strong>Partial:</strong> Secondary hub, not main — deliberate limiter. Someone wanted Eastwick dark, not city dead.</p>
+<p class="small"><strong>Success:</strong> Full read: architecture knowledge, feed-map intent, non-standard incendiary. She can brief Carr or Brinne in terms they'll act on. Investigation seed planted.</p>
+</div>
+<div class="fear-card"><h4>Panic Stampede from the Protest <span class="small">(Blast — Protest Wave · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> When players are between protest and hub, or in Eastwick streets as the crowd flees east. Three blocks of screaming humanity.</p>
+<p><span class="label">GM Say</span> "The protest becomes a river — hundreds of people running from the sound, not toward it. Some think the watch fired. Some think the hub was the start of something worse. You're in the channel where the street narrows. Bodies. Heat. Someone goes down."</p>
+<p><span class="label">Roll — Survive and act</span> Agility or Strength DIF 12stay upright</p>
+<p class="small"><strong>Failure:</strong> Knocked down. 1d6 trample. Watch later finds you in pile — swept automatically. Child Jex lost in crowd (side quest hook).</p>
+<p class="small"><strong>Partial:</strong> Stay up. See someone down — Presence DIF 11 to halt one wave; save a stranger OR pursue hub.</p>
+<p class="small"><strong>Success:</strong> Pull one person clear (elderly Marta Henwick — witness!). She owes them a true sentence about the access door.</p>
+</div>
+<div class="fear-card"><h4>Toma Vess Worsens <span class="small">(Blast — Medical Pressure · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> If players delay at scene &gt;5 minutes without stabilizing Toma, or if they chose pursuit first. Clock pressure — not punishment for wrong choice.</p>
+<p><span class="label">GM Say</span> "The man who wasn't getting up — Toma — his breathing changes. Shallow. The leg wound darkens. Pella Morr screams for anyone who knows medicine. You have maybe four minutes before four becomes none."</p>
+<p><span class="label">GM Info — Toma</span> Maintenance adjacency worker — not inside hub, hit by shrapnel. If he lives and players befriend him: he heard the access panel scrape 40 seconds before blast. Complements Marta Henwick's visual. Doesn't know Ash's name.</p>
+<p><span class="label">Roll — Emergency stabilization</span> Knowledge DIF 13orInstinct DIF 14 · Assist:1 Hope +1d6</p>
+<p class="small"><strong>Failure:</strong> Toma dies in the street. Ora Finch later confirms he could have lived. Guilt hook. Watch notes death count: 1.</p>
+<p class="small"><strong>Partial:</strong> Living but critical — must reach Brinne corner or Mending Room in 8 minutes. Sprint scene.</p>
+<p class="small"><strong>Success:</strong> Stable for transport. Brinne/Ora path opens. Toma survives canon — may testify later (weak voice, specific memory of door opening).</p>
+</div>
+<div class="fear-card"><h4>Ash Glimpsed in the Alley <span class="small">(Blast — Witness Window · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> 2–5 minutes post-blast, if players pursue or if pre-blast Ash was spotted. Entertainment Quarter alley rising toward roofs.</p>
+<p><span class="label">GM Say</span> "Movement — hood down now, dark hair, running without the roof's advantage. He looks back once. Not predator eyes. Not soldier eyes. The eyes of someone who miscalculated. Then he cuts through a wash-line gap you almost miss."</p>
+<p><span class="label">Pursuit chain</span> Agility DIF 12keep pace · Finesse DIF 14rooftop follow</p>
+<p class="small"><strong>Failure:</strong> Gone. Token on ground — chalk nub with Guild eye scratch, not Covenant. False lead or logistics red herring.</p>
+<p class="small"><strong>Partial:</strong> See face match pre-blast. He drops token. Watch cordon blocks forward — choose sweep or chase.</p>
+<p class="small"><strong>Success:</strong> Corner him in dead-end. Presence DIF 15 for one line:"I didn't know they'd still be inside."Then he scales a wall you can't follow. Face locked.</p>
+</div>
+<div class="fear-card"><h4>Darkness Spreads Block by Block <span class="small">(Blast — Power Cascade · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> 30–60 seconds after initial blackout. Emphasize the feed map was chosen — not all-or-nothing failure.</p>
+<p><span class="label">GM Say</span> "The dark doesn't stop where the hub stopped. It walks — block by block, east through Eastwick, a swallowing of streetlamps like someone blowing out candles in order. Two blocks south, the Copperstring's emergency exit light dies mid-flash. Three blocks west, the protest zone stays lit — you can see the boundary where the city's priority map says who matters. Someone built this failure to look like an accident and function like a message."</p>
+<p><span class="label">GM Info — Feed map</span> Secondary hub failure cascades along intentional coupling paths. Knowledge DIF 13: repair crews will later prioritize commercial Entertainment Quarter feeds over Eastwick residential (Brinne's Day 9 complaint). The bombers knew this too — maximum civic insult.</p>
+</div>
+<div class="fear-card"><h4>Cordon Closes on the Party <span class="small">(Player Fork — Watch Response · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> 15–30 minutes post-blast. Players still in hub radius when Sergeant Pel Carr's sweep begins. Especially if Lurielle glowed, Basil was seen near access panel, or they ran from protest stampede into cordon.</p>
+<p><span class="label">GM Say — Carr's approach</span> "Tape and boots. A sergeant with ink-stain fingers and the expression of a man who expected a protest shift and got an architecture fire. 'You. All of you. Inside the tape. Names, now. Where you were when it cracked. This is form-filling, not hanging — but I need answers before my captain invents them for you.'"</p>
+<p><span class="label">GM Info — Investigation foil</span> Carr's file goes to a captain who deprioritizes by Day 5. Carr personally keeps Marta Henwick-type witnesses off the record if they refuse — he doesn't know they exist unless players bring them. Advantage if players helped injured: Carr heard about carriers on relay.</p>
+<p><span class="label">Social navigation</span> Presence DIF 13credible account · Knowledge DIF 12technical witness · Deception DIF 15Basil cover</p>
+<p class="small"><strong>Failure:</strong> Detained 2 hours ward station. Miss pursuit. Logged "persons of interest." Released without charge — for now.</p>
+<p class="small"><strong>Partial:</strong> 20-minute street questioning. Exhausted. Carr neutral. Can still help injured if Toma not dead yet — barely.</p>
+<p class="small"><strong>Success:</strong> "Cooperative civilian" note. Carr shares unofficial count: three injured, watch has no suspect. Offers contact if they remember anything oddbeforethe sound.</p>
+</div>
+<div class="fear-card"><h4>Theron's Statement Finds the Party <span class="small">(Evening — Political Layer · 😨 1 Fear)</span></h4>
+<p><span class="label">What triggers this</span> Evening in Eastwick — dark streets, candlelight. Broadsheet crier OR neighbor with printed sheet. Use when players are recovering, not while triaging.</p>
+<p><span class="label">GM Say — Crier + crowd reaction</span> "A crier at Wire Road: 'Council statement — Expansionist response —' and a man two doors down shouts: 'Told you the protest would bring this.' A woman shouts back: 'The hub's three blocks from the border — you think a march blows couplings?' The street holds its breath. Someone looks at you because you're strangers and strangers get blamed when the city is scared."</p>
+<p><span class="label">GM Info — Theron's play</span> He's not lying about deliberate attack. He's channeling fear into military vote. Day 3 Council: he speaks to Vael twice — moving him toward expansion, not investigation. Players in gallery Session 4 will see this live.</p>
+<p><span class="label">Roll — De-escalate or counter</span> Presence DIF 13calm street · Knowledge DIF 12cite forensics</p>
+<p class="small"><strong>Failure:</strong> Shoving match. Watch patrol diverts. Brinne's goodwill tested if players escalated.</p>
+<p class="small"><strong>Partial:</strong> Argument stalls. Theron's framing spreads anyway. One neighbor sides with players quietly.</p>
+<p class="small"><strong>Success:</strong> Greer/Lurielle technical counter lands — "couplings, not crowds." Small crowd shift. Lida hears; gossip network favors party.</p>
+</div>
+
+<div class="page-break"></div>
+
+<h2 id="npcs">NPC Reference — Sessions 2 & 3</h2>
+
+<h3>Session 2 NPCs</h3>
+<div class="npc-block"><h4>Old Pen — Pauper's Gate Taproom</h4>
+<p>Short sentences; twenty-year neutrality. <em>"Drink first. Questions cost extra."</em> Logs gate traffic; 3 silver buys gossip about "wrong boots" asking about northern feed lines.</p></div>
+
+<div class="npc-block"><h4>Sergeant Maret — City Watch, Pauper's Gate</h4>
+<p>By-the-book, tired. Has scout description if Session 1 branch active. Insight DIF 13 connects Greer to Ember Grove.</p></div>
+
+<div class="npc-block"><h4>Marten Halwick — Accord Arms</h4>
+<p>Excellent innkeeper; common room intelligence hub. 2–5 gold/night. May mention Vael pin if Caelen branch active (Presence DIF 12).</p></div>
+
+<div class="npc-block"><h4>Henris Callow — Traveller's Mark</h4>
+<p>Reassuring, efficient; free ward map. Assesses complicated arrivals; won't report to watch.</p></div>
+
+<div class="npc-block"><h4>Pella Marr — Cable car attendant</h4>
+<p>Bored professional. <em>"Two coppers. Hold the rail."</em></p></div>
+
+<div class="npc-block"><h4>Mama Voss — Night Market cart</h4>
+<p>Presence DIF 11 for "weather report." Points to absent substance vendors or half-elf asking about feed hubs (Ash rumor).</p></div>
+
+<div class="npc-block"><h4>Solt — Dark Lantern, Shadowside</h4>
+<p>Flat, unhurried. Friend Derrin missing three days. Presence DIF 12 for sympathy → pours tea, says nothing more.</p></div>
+
+<div class="npc-block"><h4>Bram Kettlemarch — Speakers' Corner</h4>
+<p>Evening voice; legitimate grievance, not radical.</p></div>
+
+<h3>Session 3 NPCs</h3>
+<div class="npc-block"><h4>Brinne Halloway — Eastwick Cooperative chair, human 46</h4>
+<p>Quietly fierce; lists not speeches. Candle/oil stockpile; expected grid failure not violence. Presence DIF 12 for trust. Pop-up triage if party helped morning.</p>
+<div class="gm-secret"><strong>GM:</strong> Files Charter complaint Day 3 about repair priority. Not connected to bombers. Linked to Genna Cradle (Ironwright).</div></div>
+
+<div class="npc-block"><h4>Lida Birch — Lida's Bake, human 55</h4>
+<p>4am warmth; gossip hub. Watch asked organizers to keep protest peaceful. Free bread for helpers after blast.</p></div>
+
+<div class="npc-block"><h4>Tessa Morr & Docken Hale — Protest organizers</h4>
+<p>~200 people; rationing rollback demand. <em>"We paid. We marched. We did not ask for this."</em> Genuine horror at blast (Insight DIF 12).</p></div>
+
+<div class="npc-block"><h4>Captain Isen Varr — City watch, human 45</h4>
+<p>Command voice, overwhelmed. <em>"You want to help? Get names."</em> Sends runner to Accord Chamber. Emergency Council announcement evening.</p></div>
+
+<div class="npc-block"><h4>Sergeant Pel Carr — Watch sweep, human 40s</h4>
+<p>Tired competence. Presence DIF 13 credible account; helpful witness detail marks party cooperative.</p></div>
+
+<div class="npc-block"><h4>Ora Finch — Mending Room, halfling 67</h4>
+<p><em>"Someone meant this junction. This wasn't rage. This was a diagram."</em> Insight DIF 14 reads deliberate sabotage. Medicine path for serious injuries.</p></div>
+
+<div class="npc-block"><h4>Ash — Wren's second, human ~29</h4>
+<p>Rooftop witness; flees if spotted. Chase: Agility/Instinct DIF 14; cornered Presence DIF 15 → <em>"They weren't running like guilty. They were running like done."</em></p>
+<div class="gm-secret"><strong>GM:</strong> Not the bomber. Guild chalk token if dropped is logistics. Day 12 supplier meet at Old Pen's.</div></div>
+
+<div class="npc-block"><h4>Injured civilians</h4>
+<p><strong>Edda/Toma Venn</strong> — serious, conduit shrapnel. <strong>Peten Strauss</strong> — leg laceration. <strong>Mira Jol</strong> — bruised, walking.</p></div>
+
+<div class="npc-block"><h4>Theron Ashwick — Expansionist Councilor</h4>
+<p>Public statement within 4 hours. Frames terrorism → military expansion. Ready for crisis — was prepared for something like this.</p></div>
+
+<div class="npc-block"><h4>Wren — GM only, elf 134</h4>
+<p>Operational leader; distant roofline north during blast. Calculating next move. Do not introduce on-screen unless players earned investigation trail.</p></div>
+
+
+<p class="small" style="margin-top:2em;">Generated from HollowStar vault + gm_sessions_site. Interactive reference: gm_sessions_site/session2.html, session3.html, fear_options_session2.html, fear_options_session3.html, lumencrest.html</p>
+
+</body>
+</html>
