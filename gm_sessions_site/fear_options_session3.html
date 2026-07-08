@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fear Spend Options — Session 3 · HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── FEAR PAGE SPECIFIC ── */
+.fear-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.fear-nav-btn{font-size:11px;padding:4px 12px;border-radius:99px;border:1px solid rgba(184,84,80,0.3);background:var(--fear-bg);color:var(--fear-text);cursor:pointer;font-family:var(--font-ui);transition:all 0.15s;text-decoration:none;display:inline-block;}
+.fear-nav-btn:hover{background:rgba(184,84,80,0.25);border-color:var(--fear);}
+
+.fear-card{background:var(--bg-card);border:2px solid rgba(184,84,80,0.4);border-radius:var(--radius-lg);padding:0;margin-bottom:2.5rem;scroll-margin-top:70px;}
+.fear-card-header{background:rgba(184,84,80,0.12);border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:14px 20px;border-bottom:1px solid rgba(184,84,80,0.3);}
+.fear-card-scene{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
+.fear-card-title{font-family:var(--font-body);font-size:18px;color:var(--text-primary);font-weight:normal;}
+.fear-card-cost{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.4);margin-top:6px;}
+.fear-card-body{padding:18px 20px;}
+
+.trigger-box{background:rgba(184,84,80,0.07);border-left:3px solid var(--fear);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;margin-bottom:14px;}
+.trigger-box .tag{font-size:10px;font-weight:700;color:var(--fear-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.trigger-box p{font-size:13.5px;color:var(--text-primary);line-height:1.75;font-style:italic;}
+
+.say-box{background:var(--info-bg);border-left:3px solid var(--info);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;margin-bottom:14px;}
+.say-box .tag{font-size:10px;font-weight:700;color:var(--info-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.say-box p{font-size:13.5px;color:var(--text-primary);line-height:1.75;font-style:italic;}
+
+.roll-box{background:var(--purple-bg);border:1px solid rgba(138,96,200,0.3);border-radius:var(--radius-md);padding:13px 15px;margin-bottom:14px;}
+.roll-box .tag{font-size:10px;font-weight:700;color:var(--purple-text);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:9px;}
+.roll-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+.roll-chip{font-size:12px;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid var(--border-med);color:var(--text-secondary);}
+.roll-chip strong{color:var(--text-primary);}
+.roll-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+.ro{border-radius:var(--radius-sm);padding:10px 12px;border:1px solid transparent;}
+.ro-fail{background:var(--fear-bg);border-color:rgba(184,84,80,0.3);}
+.ro-partial{background:var(--warn-bg);border-color:rgba(201,125,42,0.3);}
+.ro-success{background:var(--hope-bg);border-color:rgba(74,158,110,0.3);}
+.ro-label{font-size:11px;font-weight:700;margin-bottom:4px;}
+.ro-fail .ro-label{color:var(--fear-text);}
+.ro-partial .ro-label{color:var(--warn-text);}
+.ro-success .ro-label{color:var(--hope-text);}
+.ro p{font-size:12px;color:var(--text-secondary);line-height:1.5;}
+
+.consequence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.cq{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;}
+.cq-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;}
+.cq-now{color:var(--fear-text);}
+.cq-soon{color:var(--warn-text);}
+.cq-later{color:var(--info-text);}
+.cq p{font-size:12px;color:var(--text-secondary);line-height:1.55;}
+
+.gm-only-box{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-md);padding:11px 14px;margin-bottom:14px;}
+.gm-only-box .tag{font-size:10px;font-weight:700;color:var(--accent-gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.gm-only-box p,.gm-only-box li{font-size:13px;color:var(--text-primary);line-height:1.7;}
+.gm-only-box ul{padding-left:1.1rem;}
+.gm-only-box strong{color:var(--accent-gold-light);}
+
+.return-bar{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 14px;margin-top:14px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-muted);}
+.return-bar a{color:var(--accent-gold);text-decoration:none;font-weight:600;}
+.return-bar a:hover{color:var(--accent-gold-light);}
+
+.scene-divider{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin:2rem 0 1rem;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+
+@media(max-width:600px){.roll-outcomes,.consequence-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Session 3 — Fear Spend Reference</div>
+  <h1>Fear Options — The Hub Explosion</h1>
+  <p class="subtitle">Full expansions for every Fear window in Session 3. Each card: trigger, GM say, rolls, outcomes, consequences. Return links anchor to session sections.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="fear-nav">
+    <a href="#fs-s3-morn-crowd" class="fear-nav-btn">📢 Crowd Surge</a>
+    <a href="#fs-s3-morn-brigne" class="fear-nav-btn">🕯️ Brinne Closes Door</a>
+    <a href="#fs-s3-pre-ash" class="fear-nav-btn">👁️ Ash Rooftop</a>
+    <a href="#fs-s3-hum-stops" class="fear-nav-btn">🔇 Hum Stops</a>
+    <a href="#fs-s3-blast" class="fear-nav-btn">💥 Secondary Collapse</a>
+    <a href="#fs-s3-lurielle-resonance" class="fear-nav-btn">✨ Lurielle Resonance</a>
+    <a href="#fs-s3-greer-pattern" class="fear-nav-btn">🌿 Greer Reads Pattern</a>
+    <a href="#fs-s3-panic" class="fear-nav-btn">😱 Protest Panic</a>
+    <a href="#fs-s3-injured" class="fear-nav-btn">🩸 Toma Worsens</a>
+    <a href="#fs-s3-ash-glimpse" class="fear-nav-btn">🏃 Ash in Alley</a>
+    <a href="#fs-s3-watch-sweep" class="fear-nav-btn">🛡️ Watch Sweep</a>
+    <a href="#fs-s3-theron-statement" class="fear-nav-btn">📜 Theron Statement</a>
+    <a href="#fs-s3-dark-spreads" class="fear-nav-btn">🌑 Darkness Spreads</a>
+  </div>
+
+  <!-- ═══ MORNING ═══ -->
+  <div class="scene-divider">📢 Act 1 — Morning Protest & Eastwick</div>
+
+  <div class="fear-card" id="fs-s3-morn-crowd">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Morning — Border Protest</div>
+      <div class="fear-card-title">The Protest Crowd Surges Early</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>During the mid-morning protest assembly, before speakers have the crowd's full attention. Use when players are observing or lightly involved — not if they're deep in a Brinne scene (save Brinne fear for that).</p></div>
+      <div class="say-box"><div class="tag">GM Say — Read aloud</div><p>"Someone at the front shoves someone back. It's not a fight — it's a mistake that becomes momentum. Fifty people push forward before the organizers can shout hold. City watch stiffens, batons visible but not raised. Chalk dust kicks up from the pavement where yesterday's slogans were scrubbed. The crowd is one surge away from becoming something the watch can't pretend is a demonstration."</p></div>
+      <div class="roll-box"><div class="tag">Roll — Calm or redirect the surge</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Presence or Strength</div><div class="roll-chip"><strong>DIF:</strong> 13</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Surge breaks the line. Three arrests, minor injuries. Watch remembers the party if they were visible. Protest organizers blame outside agitators — partially true (Fear spend was agitation).</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Surge stalls at the line. One arrest. Tension high; speakers regain control after 5 minutes. Players marked as capable by organizers.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>They help organizers push the surge back. Speaker thanks them by name. +1 civic trust with legitimate protest wing — useful when Council blames protestors tonight.</p></div>
+        </div>
+      </div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's actually happening</div>
+      <p>The surge is not Green Covenant orchestration. It's organic frustration + one agent provocateur (unaffiliated petty criminal paid 2 silver to shove). The radical wing wants distance from today's blast — Wren's cell planned for mid-afternoon precisely to avoid protest linkage. This Fear spend foreshadows how easily the city will conflate the two.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Watch on edge. Any player near the front is sweaty and visible. Good tension before the real blast.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>After the hub explosion, NPCs will say "the protest crowd surged this morning" as proof of escalation — players who calmed the surge can counter that narrative.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Legitimate protest organizers become a faction contact if treated fairly. They publicly condemn the blast — players who know them get early access to that statement.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#morning">Return to Morning Protest</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-morn-brigne">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Morning — Eastwick Cooperative</div>
+      <div class="fear-card-title">Brinne Closes the Cooperative Door</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When players ask Brinne about the stockpile, the larder, or emergency preparations — especially if they failed a trust roll or asked with entitlement.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Brinne's line</div><p>"Brinne's hand is on the basement door. She doesn't raise her voice. 'You're not the first strangers asking about our stores today. I'm not rude because I'm busy — I'm careful because I have to be. You can help with the candles or you can leave.' The lock turns. The volunteers pretend not to notice how tense the room just got."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Who asked before them</div>
+      <p>A man in Merchant Guild livery (not Guild officially — borrowed coat) asked about "community storage capacity" an hour ago. He was taking notes. Brinne didn't like him. He is Shard Division-adjacent intelligence gathering capacity data — not connected to the bomb. Players who press Instinct DIF 13 notice she glanced toward Wire Road when she said <em>strangers</em> — east, toward the hub, not the border.</p>
+      <p style="margin-top:6px;"><strong>To recover trust:</strong> Help load candles without asking questions for 10 minutes. Presence DIF 11 apology with specific offer. Success reopens the conversation; she mentions the Guild-coat man if they earned it.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Players feel the Cooperative's vulnerability. Brinne is an ally they have to earn — not a vending machine for prepper intel.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If they earn trust later, her pop-up triage after the blast is available. If not, they find another path to help injured.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Brinne becomes a major mutual-aid contact for Act One. Early mistrust costs access to Eastwick's underground supply network.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#morning">Return to Morning — Brinne scene</a></div>
+    </div>
+  </div>
+
+  <!-- ═══ PRE-BLAST ═══ -->
+  <div class="scene-divider">⚡ Act 2 — Pre-Blast</div>
+
+  <div class="fear-card" id="fs-s3-pre-ash">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Pre-Blast — Two Blocks from Hub</div>
+      <div class="fear-card-title">Ash on the Rooftop</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Mid-afternoon, as players move through Eastwick toward the hub or Entertainment Quarter. Best if they're not expecting it — reward players who look up (Instinct DIF 11 notices automatically without Fear).</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Two blocks ahead, slate roof — someone is lying flat against the ridge line, watching the hub access door. Young. Dark hair. Not protest gear — plain clothes, traveler's boots. He sees you see him. He doesn't wave. He rolls off the far side of the roof and is gone before you can shout."</p></div>
+      <div class="roll-box"><div class="tag">Optional — Immediate pursuit (before blast)</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Agility DIF 13</strong> to reach the alley</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Empty alley. Boot scrape on wet stone. The hum still holds — you have 90 seconds before the blast. Pursuit cost positioning.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Glimpse hood from stairwell. Can't close distance. Then the crack — blast interrupts chase.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>See his face for one second. Scared, not triumphant. He mouths something — not to you, to himself — then the hub detonates. You'll remember the face when you see it again.</p></div>
+        </div>
+      </div>
+      <div class="gm-only-box"><div class="tag">GM Info — Ash</div>
+      <p>Wren's second. Observer, not bomber. He was supposed to confirm the maintenance window was clear — it wasn't. His early departure is guilt, not professionalism. If players connect pre-blast Ash to post-blast alley glimpse, they've built the investigation thread without a name.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Foreshadowing. Unease. Someone knew the hub mattered before it broke.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Post-blast pursuit has a face. Ash glimpse fear links the scenes.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Ash is the reachable radical. Players who ID him early can approach him in Act One Beat 6 — confrontation, negotiation, or leverage.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#pre-blast">Return to Pre-Blast</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-hum-stops">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Pre-Blast — Network Texture</div>
+      <div class="fear-card-title">The Hum Stops for One Heartbeat</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>30–90 seconds before the explosion. Only Lurielle and Greer are guaranteed to feel it; other Resonant characters too. Use as final warning — then blast.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Lurielle version</div><p>"The hum under the city — the sound that's always there — cuts out. Not fades. <em>Stops.</em> One heartbeat of absolute silence in the Network layer. Your bioluminescence flickers without permission. Then the hum returns, wrong pitch, like a voice cleared its throat. Three seconds later: the crack."</p></div>
+      <div class="say-box"><div class="tag">GM Say — Greer version</div><p>"The spirit web in a city is thin — you've felt that since you arrived. For one breath it goes thinner. Not dead — withdrawn. Like something technical just flinched before being struck. Your skin prickles. Then the hub breaks and the web screams."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — What's happening</div>
+      <p>The detonator handshake with the hub's coupling layer creates a micro-interrupt — a pre-failure pulse. Lurielle's Endless Eye heritage recognizes the frequency. Knowledge DIF 13: she can note it matches her reclassified journal data. This is Hollostar-adjacent resonance in civic infrastructure — Tier 1 secret texture, not explanation.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Players who felt it have 1–3 seconds of dread before the blast. Powerful timing.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Lurielle can connect hum-stop to resonance spike during blast — same frequency signature.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Proof the bombers used Network-aware tools, not crude fire. Investigation points to technical actors — eventually Tern Ashe / Green Covenant radical wing.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#pre-blast">Return to Pre-Blast</a></div>
+    </div>
+  </div>
+
+  <!-- ═══ BLAST ═══ -->
+  <div class="scene-divider">💥 Act 3 — The Explosion</div>
+
+  <div class="fear-card" id="fs-s3-blast">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Immediate Aftermath</div>
+      <div class="fear-card-title">Secondary Collapse</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>5–15 seconds after the initial detonation, while players are orienting. Anyone within 30 feet of the hub facade.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The hub building coughs smoke — and the conduit housing on the street side groans. Bolts shear. A sheet of brick-facing and cable-tray drops toward the alley where you are standing. Not the whole building. Just enough to kill someone who doesn't move."</p></div>
+      <div class="roll-box"><div class="tag">Roll — Avoid collapse</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Stat:</strong> Agility or Dexterity</div><div class="roll-chip"><strong>DIF:</strong> 13</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>2d6 physical damage. Buried partially — Strength DIF 12 ally or watch to extract. Witness route blocked by rubble.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>1d6 damage. Clear but shaken. Boot print evidence under rubble — Finesse DIF 14 to recover before watch arrives.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Clear. You see the coupling damage pattern before the watch tapes the scene — directional, intentional.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Physical danger in a situation scene. Forces movement decision — in or out of rubble zone.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Blocked alley pushes pursuit route toward Entertainment Quarter rooftops — Ash's escape path.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Injuries here make Ora Finch path urgent. Carr remembers if they were in cordon zone injured vs helping.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-lurielle-resonance">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Resonance</div>
+      <div class="fear-card-title">Lurielle's Resonance Spike</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>At detonation if Lurielle is within 200 feet. Can combine with hum-stop for devastating personal continuity. Her arm glows blue-white visible in the sudden dark.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Lurielle — the blast doesn't just hit your ears. It hits your <em>blood</em>. Bioluminescence erupts along your forearms, visible to everyone in the dark street. You taste copper. The frequency is in your journal — the one you copied before they reclassified the paper — and it is <em>here</em>, in a street explosion, humming in your bones for three seconds before it fades. People are staring. The dark makes you impossible to ignore."</p></div>
+      <div class="roll-box"><div class="tag">Roll — Process or hide the spike</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Knowledge DIF 13</strong> identify frequency</div><div class="roll-chip"><strong>Presence DIF 12</strong> play it off</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Crowd panic around her — "Network witch" shouted once. Watch sweep harder when it arrives. +1 Fear attention on Lurielle.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>She notes the frequency match; one witness saw. Carr logs "resonant individual" if swept.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Full identification — coupling-layer handshake, same family as Endless Eye pre-class data. She has words for the investigation. Crowd distracted by injuries.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Lurielle is exposed as unusual. Roleplay opportunity — embarrassment, terror, scientific excitement fighting each other.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Technical witness credibility with Carr or Brinne if she shares coupling theory calmly.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Vault Guard / Research Board may hear about resonant witness. Lurielle as living sensor becomes plot asset and liability.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-greer-pattern">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Forensics</div>
+      <div class="fear-card-title">Greer Reads the Blast Pattern</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When Greer reaches the hub site or surveys from adjacent street. Fear spend grants clarity even on failed roll — the information is traumatic, not optional.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Greer — you've seen fire in forests. Controlled burn. Wildfire. Spite-fire. This is none of those. The damage speaks a vocabulary you don't like: <em>couplings first, housing second, fuel never.</em> Someone shaped this explosion the way a logger chooses which tree falls so the cabin isn't hit. They knew this building. They chose what died."</p></div>
+      <div class="roll-box"><div class="tag">Roll — Instinct to articulate</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Instinct DIF 14</strong></div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>She feels it in her gut but can't explain. "Wrong. Calculated." Enough for party; not enough for watch.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Secondary hub, not main — deliberate limiter. Someone wanted Eastwick dark, not city dead.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Full read: architecture knowledge, feed-map intent, non-standard incendiary. She can brief Carr or Brinne in terms they'll act on. Investigation seed planted.</p></div>
+        </div>
+      </div>
+      <div class="gm-only-box"><div class="tag">GM Info — Green Covenant context</div>
+      <p>Greer may suspect ecological radicalism. Instinct DIF 12: the blast has no Green Covenant spiritual signature — no offering, no grove-pattern. This is political infrastructure sabotage wearing green possible blame. Thorn would say: <em>watch who benefits from the wound.</em></p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Greer becomes party's moral compass on investigation — not random terror.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Counters Theron statement's "protest escalation" narrative if she speaks publicly.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>When Green Covenant mainstream is blamed, Greer's read distinguishes radical wing from Thorns philosophy — crucial for her character arc.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-panic">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Protest Wave</div>
+      <div class="fear-card-title">Panic Stampede from the Protest</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>When players are between protest and hub, or in Eastwick streets as the crowd flees east. Three blocks of screaming humanity.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The protest becomes a river — hundreds of people running from the sound, not toward it. Some think the watch fired. Some think the hub was the start of something worse. You're in the channel where the street narrows. Bodies. Heat. Someone goes down."</p></div>
+      <div class="roll-box"><div class="tag">Roll — Survive and act</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Agility or Strength DIF 12</strong> stay upright</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Knocked down. 1d6 trample. Watch later finds you in pile — swept automatically. Child Jex lost in crowd (side quest hook).</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Stay up. See someone down — Presence DIF 11 to halt one wave; save a stranger OR pursue hub.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Pull one person clear (elderly Marta Henwick — witness!). She owes them a true sentence about the access door.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Chaos forces priority: people vs evidence vs safety.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Marta Henwick witness unlocked on success. Jex lost on failure — find child for Lida/Brinne goodwill.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Players who save strangers in stampede build Eastwick reputation before faction cards arrive.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-injured">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Medical Pressure</div>
+      <div class="fear-card-title">Toma Vess Worsens</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>If players delay at scene &gt;5 minutes without stabilizing Toma, or if they chose pursuit first. Clock pressure — not punishment for wrong choice.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The man who wasn't getting up — Toma — his breathing changes. Shallow. The leg wound darkens. Pella Morr screams for anyone who knows medicine. You have maybe four minutes before four becomes none."</p></div>
+      <div class="roll-box"><div class="tag">Roll — Emergency stabilization</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Knowledge DIF 13</strong> or <strong>Instinct DIF 14</strong></div><div class="roll-chip"><strong>Assist:</strong> 1 Hope +1d6</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Toma dies in the street. Ora Finch later confirms he could have lived. Guilt hook. Watch notes death count: 1.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Living but critical — must reach Brinne corner or Mending Room in 8 minutes. Sprint scene.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Stable for transport. Brinne/Ora path opens. Toma survives canon — may testify later (weak voice, specific memory of door opening).</p></div>
+        </div>
+      </div>
+      <div class="gm-only-box"><div class="tag">GM Info — Toma</div>
+      <p>Maintenance adjacency worker — not inside hub, hit by shrapnel. If he lives and players befriend him: he heard the access panel scrape 40 seconds before blast. Complements Marta Henwick's visual. Doesn't know Ash's name.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Forces heal path NOW. Other forks wait.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Alive Toma = investigation asset. Dead Toma = moral weight, Ash's guilt mirrored on players if they ignored him.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Toma at Ora's = Halfling Quarter connection. His testimony contradicts "protest mob" theories.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a> · <a href="session3.html#forks">Player Forks — Help Injured</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-ash-glimpse">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Witness Window</div>
+      <div class="fear-card-title">Ash Glimpsed in the Alley</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>2–5 minutes post-blast, if players pursue or if pre-blast Ash was spotted. Entertainment Quarter alley rising toward roofs.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"Movement — hood down now, dark hair, running without the roof's advantage. He looks back once. Not predator eyes. Not soldier eyes. The eyes of someone who miscalculated. Then he cuts through a wash-line gap you almost miss."</p></div>
+      <div class="roll-box"><div class="tag">Pursuit chain</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Agility DIF 12</strong> keep pace</div><div class="roll-chip"><strong>Finesse DIF 14</strong> rooftop follow</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Gone. Token on ground — chalk nub with Guild eye scratch, not Covenant. False lead or logistics red herring.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>See face match pre-blast. He drops token. Watch cordon blocks forward — choose sweep or chase.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Corner him in dead-end. Presence DIF 15 for one line: <em>"I didn't know they'd still be inside."</em> Then he scales a wall you can't follow. Face locked.</p></div>
+        </div>
+      </div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Investigation thread with a face. Emotional complication — he's not a monster silhouette.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>If swept before sharing info, Carr gets partial description only.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Ash turn arc. Day 12 Pauper's Gate meeting — players who ID him can stake out.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a> · <a href="session3.html#forks">Pursuit Fork</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-dark-spreads">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Blast — Power Cascade</div>
+      <div class="fear-card-title">Darkness Spreads Block by Block</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>30–60 seconds after initial blackout. Emphasize the feed map was chosen — not all-or-nothing failure.</p></div>
+      <div class="say-box"><div class="tag">GM Say</div><p>"The dark doesn't stop where the hub stopped. It walks — block by block, east through Eastwick, a swallowing of streetlamps like someone blowing out candles in order. Two blocks south, the Copperstring's emergency exit light dies mid-flash. Three blocks west, the protest zone <em>stays lit</em> — you can see the boundary where the city's priority map says who matters. Someone built this failure to look like an accident and function like a message."</p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Feed map</div>
+      <p>Secondary hub failure cascades along intentional coupling paths. Knowledge DIF 13: repair crews will later prioritize commercial Entertainment Quarter feeds over Eastwick residential (Brinne's Day 9 complaint). The bombers knew this too — maximum civic insult.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Visual horror. Radiant Core glow on horizon unchanged — class politics made literal.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Brinne's candles become plot-critical. Lida's oven heat draws a line. Copperstring patrons spill into dark streets.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Speakers' Corner Day 3 — Bram Kettlemarch: "when power goes out in one part of the city, other parts don't notice." Players lived this.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#blast">Return to The Explosion</a></div>
+    </div>
+  </div>
+
+  <!-- ═══ FORKS & EVENING ═══ -->
+  <div class="scene-divider">🔀 Act 4–5 — Forks & Evening</div>
+
+  <div class="fear-card" id="fs-s3-watch-sweep">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Player Fork — Watch Response</div>
+      <div class="fear-card-title">Cordon Closes on the Party</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>15–30 minutes post-blast. Players still in hub radius when Sergeant Pel Carr's sweep begins. Especially if Lurielle glowed, Basil was seen near access panel, or they ran from protest stampede into cordon.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Carr's approach</div><p>"Tape and boots. A sergeant with ink-stain fingers and the expression of a man who expected a protest shift and got an architecture fire. 'You. All of you. Inside the tape. Names, now. Where you were when it cracked. This is form-filling, not hanging — but I need answers before my captain invents them for you.'"</p></div>
+      <div class="roll-box"><div class="tag">Social navigation</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Presence DIF 13</strong> credible account</div><div class="roll-chip"><strong>Knowledge DIF 12</strong> technical witness</div><div class="roll-chip"><strong>Deception DIF 15</strong> Basil cover</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Detained 2 hours ward station. Miss pursuit. Logged "persons of interest." Released without charge — for now.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>20-minute street questioning. Exhausted. Carr neutral. Can still help injured if Toma not dead yet — barely.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>"Cooperative civilian" note. Carr shares unofficial count: three injured, watch has no suspect. Offers contact if they remember anything odd <em>before</em> the sound.</p></div>
+        </div>
+      </div>
+      <div class="gm-only-box"><div class="tag">GM Info — Investigation foil</div>
+      <p>Carr's file goes to a captain who deprioritizes by Day 5. Carr personally keeps Marta Henwick-type witnesses off the record if they refuse — he doesn't know they exist unless players bring them. Advantage if players helped injured: Carr heard about carriers on relay.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Official attention vs investigation time. Meaningful fork tension.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Evening: they hear investigation has zero leads — they may BE the leads Carr lacks.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Carr as recurring watch contact — rare honest officer. Or bureaucratic obstacle if they burned him.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#forks">Return to Player Forks</a></div>
+    </div>
+  </div>
+
+  <div class="fear-card" id="fs-s3-theron-statement">
+    <div class="fear-card-header">
+      <div class="fear-card-scene">Evening — Political Layer</div>
+      <div class="fear-card-title">Theron's Statement Finds the Party</div>
+      <div class="fear-card-cost">😨 1 Fear</div>
+    </div>
+    <div class="fear-card-body">
+      <div class="trigger-box"><div class="tag">What triggers this</div><p>Evening in Eastwick — dark streets, candlelight. Broadsheet crier OR neighbor with printed sheet. Use when players are recovering, not while triaging.</p></div>
+      <div class="say-box"><div class="tag">GM Say — Crier + crowd reaction</div><p>"A crier at Wire Road: 'Council statement — Expansionist response —' and a man two doors down shouts: 'Told you the protest would bring this.' A woman shouts back: 'The hub's three blocks from the border — you think a march blows couplings?' The street holds its breath. Someone looks at you because you're strangers and strangers get blamed when the city is scared."</p></div>
+      <div class="roll-box"><div class="tag">Roll — De-escalate or counter</div>
+        <div class="roll-row"><div class="roll-chip"><strong>Presence DIF 13</strong> calm street</div><div class="roll-chip"><strong>Knowledge DIF 12</strong> cite forensics</div></div>
+        <div class="roll-outcomes">
+          <div class="ro ro-fail"><div class="ro-label">Failure</div><p>Shoving match. Watch patrol diverts. Brinne's goodwill tested if players escalated.</p></div>
+          <div class="ro ro-partial"><div class="ro-label">Partial</div><p>Argument stalls. Theron's framing spreads anyway. One neighbor sides with players quietly.</p></div>
+          <div class="ro ro-success"><div class="ro-label">Success</div><p>Greer/Lurielle technical counter lands — "couplings, not crowds." Small crowd shift. Lida hears; gossip network favors party.</p></div>
+        </div>
+      </div>
+      <div class="handout" style="margin-bottom:14px;"><div class="handout-title">Theron Ashwick — full statement text</div>
+      <p><em>"Today's attack on Lumencrest's Lumen infrastructure was not an accident. It was an act of anti-civilization terrorism — a deliberate strike against the Network that sustains eighty thousand lives… I call on the Council to convene in emergency session and to authorize the protective measures this city has too long deferred."</em></p></div>
+      <div class="gm-only-box"><div class="tag">GM Info — Theron's play</div>
+      <p>He's not lying about deliberate attack. He's channeling fear into military vote. Day 3 Council: he speaks to Vael twice — moving him toward expansion, not investigation. Players in gallery Session 4 will see this live.</p></div>
+      <div class="consequence-grid">
+        <div class="cq"><div class="cq-label cq-now">Right Now</div><p>Politics enters the neighborhood where the lights are out. Personal stakes.</p></div>
+        <div class="cq"><div class="cq-label cq-soon">This Session</div><p>Plateau: Emergency Council announced — Theron's win partially achieved before session ends.</p></div>
+        <div class="cq"><div class="cq-label cq-later">Long Term</div><p>Expansionist vote thread. Players may oppose Theron without knowing full Heart timeline yet.</p></div>
+      </div>
+      <div class="return-bar">📖 <a href="session3.html#evening">Return to Evening Fallout</a></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

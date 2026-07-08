@@ -9,11 +9,20 @@ Prep notes for each played session. These are the **source documents** for build
 3. **Build session site** — Convert finalized notes to `gm_sessions_site/sessionN.html` (+ location/fear pages as needed).
 4. **Sync canon** — Push new facts back into `02_Regions/`, `09_NPCs/`, clocks, and faction trackers.
 
+## Sessions
+
+| Session | File | Status | In-world |
+|---------|------|--------|----------|
+| 1 — Ember Grove | `Session_01_Ember_Grove.md` | SYNCED | Gold Month 8 — grove, Emberford, road |
+| 2 — Lumencrest Arrival | `Session_02_Lumencrest_Arrival.md` | SYNCED | Gold Month 8, Day 1 in Lumencrest |
+| 3 — The Hub Explosion | `Session_03_The_Hub_Explosion.md` | SYNCED | Gold Month 8, Day 2 — mid-afternoon blast |
+
 ## Naming
 
 ```
-Session_01_Ember_Grove.md   ← Session 1 (synced from gm_sessions_site)
+Session_01_Ember_Grove.md
 Session_02_Lumencrest_Arrival.md
+Session_03_The_Hub_Explosion.md
 ```
 
 ## What belongs here vs elsewhere

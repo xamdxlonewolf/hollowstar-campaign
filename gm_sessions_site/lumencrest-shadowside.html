@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadowside — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.room-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.room-name{font-size:13px;font-weight:700;color:var(--accent-gold-light);margin-bottom:2px;}
+.room-price{font-size:12px;color:var(--accent-gold);float:right;font-weight:700;}
+.room-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-top:4px;}
+.menu-section{margin-bottom:16px;}
+.menu-section-title{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.building-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:9px;}
+.building-name{font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:1px;}
+.building-type{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.building-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.6;}
+.building-card .npc-voice{margin-top:7px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html" class="active">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Lumencrest — Shadowside</div>
+  <h1>Shadowside &amp; Pauper's Gate</h1>
+  <p class="subtitle">Unlit, dense, self-sufficient — the north face and Kingroad arrival. <a href="lumencrest.html" style="color:var(--accent-gold);">← City hub</a> · <a href="lumencrest-lamplight.html" style="color:var(--accent-gold);">Lamplight Ward →</a></p>
+</header>
+
+<div class="page-body">
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('arrival',this)">Arrival</button>
+    <button class="nav-tab" onclick="filterSections('locations',this)">Locations</button>
+    <button class="nav-tab" onclick="filterSections('market',this)">Night Market</button>
+    <button class="nav-tab" onclick="filterSections('npcs',this)">NPCs</button>
+    <button class="nav-tab" onclick="filterSections('gossip',this)">Gossip</button>
+  </div>
+
+  <!-- ══ ARRIVAL ══ -->
+  <div class="section" data-cat="arrival">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--fear-bg);color:var(--fear-text);">🚪</div>
+      <div style="flex:1;"><div class="section-label">Pauper's Gate &amp; Running Shadowside</div><div class="section-sub">North arrival · day/night rhythm · watch presence</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say">
+        <div class="tag">GM: Pauper's Gate — walking through</div>
+        <p>"The northern gate is the busiest in the city — end of the Kingroad, Frostwell refugees in ones and twos that add up. City watch, not Vault Guard. They check names against a warrant registry and assess goods for tariffs. They ask where you're from, where you're staying, what's your business. They write it down. The line moves faster than you expected. On the left immediately inside: a taproom that's been the first building travelers pass for three hundred years. Overhead, the cable car's northern terminus — North Expanse Station — with the line running south toward the center. Vendors catch you at your most disoriented. Their prices are bad. A handful of people sit against the interior wall with the look of not knowing where they're going next."</p>
+      </div>
+
+      <div class="gm-say">
+        <div class="tag">GM: Entering Shadowside proper from the gate</div>
+        <p>"The street lamps ended somewhere behind you. Here the buildings lean toward each other overhead, blocking light into semi-covered passages. Oil lamps and candles in windows — islands of amber with real shadow between. It smells like coal smoke, cooking fat, and fifteen thousand people living close without electric heat. During the day it's dense and functional — carts crawl, traders work from window sills and folding tables. After dark the Night Market arrives on the main thoroughfare as if it was always there and the daytime market was the temporary thing. People move through dark with the ease of those who read a street by smell. You slow down. They don't."</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">District facts</div>
+        <ul>
+          <li><strong>Population:</strong> ~15,000 · North · No Lumen Network power — never had it</li>
+          <li><strong>Cable car:</strong> No service. North Expanse Station is on Lamplight Ward's northern edge, not inside Shadowside.</li>
+          <li><strong>Watch:</strong> Two officers on main thoroughfare, rotation past Pauper's Gate. Maze Quarter effectively unpatrolled.</li>
+          <li><strong>Brownouts:</strong> Non-event here. Candles keep burning. Dry satisfaction among long-term residents — nobody says it to outsiders.</li>
+          <li><strong>Hollow Road border:</strong> South into Lamplight — street lamps end at an identifiable line. Feels like crossing a border.</li>
+        </ul>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Frostwell refugees at Pauper's Gate</div>
+        <ul>
+          <li>Arriving for months in ones and twos — quiet, often don't know where they're going next</li>
+          <li>The ones who left chose to leave <em>before</em> things became impossible — which tells you about conditions at source</li>
+          <li>Salvation Hearth (eastern edge) provides meals and emergency beds — no documentation required</li>
+          <li>Some referred onward to Halfling Quarter lodging (Bessa Pipwick) through priest networks</li>
+          <li>Gate vendors overcharge them. Mama Voss charges everyone the same — which is its own statement</li>
+        </ul>
+      </div>
+
+      <div class="danger-note">
+        <div class="tag">GM only — disappearances</div>
+        <p>Not many. Careful. People whose absence won't be reported. Communities communicate through Solt's careful mentions, Night Market gaps, who isn't where they should be. Old Pen saw movement. Solt sees people passing through. Part of the radical-wing investigation layer.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ LOCATIONS ══ -->
+  <div class="section" data-cat="locations">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">🍺</div>
+      <div style="flex:1;"><div class="section-label">Old Pen's · Dark Lantern · Lampblack · Salvation Hearth</div><div class="section-sub">Taverns · beds · border bar</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <!-- OLD PEN -->
+      <div class="gm-say">
+        <div class="tag">GM: Old Pen's Taproom — first drink</div>
+        <p>"Immediately inside Pauper's Gate on the left. Low ceiling, old stone, the smell of a place that has been a tavern longer than anyone living has been alive. Behind the bar: a woman short and wide and white-haired, moving at her own pace because she's learned everything gets done at her pace. She looks at you with complete neutrality — not blank, not cold, just the absence of unsolicited expression. You know she's decided something about you. She won't tell you what."</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Pauper's Gate Taproom — Old Pen's</div>
+        <div class="building-type">First building inside north gate · Watch drinks here after shift</div>
+        <p>Sees everyone who enters via Pauper's Gate. Watch doesn't patrol inside because the contingent drinks here — Old Pen useful to both sides in small specific ways for twenty years. News of who came through the gate yesterday, if you're someone she's decided to talk to.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Ale (functional)</td><td>3 copper / cup</td></tr>
+          <tr><td>Spirits</td><td>2 copper / measure</td></tr>
+          <tr><td>Roasted meat skewers, bread, cheese board</td><td>2–4 copper</td></tr>
+          <tr><td>Gate traffic information</td><td>Reciprocal usefulness — not gold</td></tr>
+        </table>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Old Pen</div>
+        <div class="npc-role">Proprietor, Pauper's Gate Taproom · Human · appears late 60s · Nobody knows her first name</div>
+        <div class="npc-voice">🎭 Voice: Moves slowly on purpose. Complete neutrality in expression — you'll know she's decided something and she won't say what. Few words. Doesn't rush for anyone. Prices gate-traffic inquiries at 3 silver whether the buyer is Underground or trusted watch.</div>
+        <p>Twenty years of everyone through Pauper's Gate — what they looked like, where many went first. Talks to watch about which way people went (truthfully). Talks to those people about who's been asking (also truthfully). Both sides trust her to do exactly that.</p>
+        <div class="npc-secret">GM only: Saw unusual movement near gate — radical-wing supply contact (Day 12: Ash nervous at taproom meeting). Doesn't know who he is; not a regular. Information timeline: week of regular drinks before acknowledgment, two weeks before week-old intel, three before current.</div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- DARK LANTERN -->
+      <div class="gm-say">
+        <div class="tag">GM: The Dark Lantern</div>
+        <p>"Main thoroughfare. A lantern painted on the exterior wall in black, faded to a suggestion. Low ceiling, timber and stone, oil lamps maintained but not extravagant. Mismatched tables, benches worn smooth. Behind the bar: Solt. If you need to find someone in this district, you start here. If you need someone to find you, you sit here and order something. The curtained back section — five copper per person — is private in the sense that staff won't repeat what they hear."</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Dark Lantern</div>
+        <div class="building-type">Social center · Main thoroughfare · Above-ground Underground anchor</div>
+        <p>Everyone with district business passes through weekly. Back section: heavy canvas curtain, 5 copper/person surcharge, Solt brings drinks but doesn't linger.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>House ale (mediocre, cold, reliable)</td><td>2 copper / cup</td></tr>
+          <tr><td>Spirits (rotating, Night Market sourced)</td><td>4–6 copper</td></tr>
+          <tr><td>Solt's house brew (regulars only, when he decides)</td><td>What he thinks you should pay</td></tr>
+          <tr><td>Tea</td><td>1 copper — "most honest drink"</td></tr>
+          <tr><td>Thick stew + bread (weekly rotation)</td><td>3 copper</td></tr>
+          <tr><td>Salted meat &amp; bread</td><td>2 copper</td></tr>
+          <tr><td>Back section privacy</td><td>5 copper / person</td></tr>
+        </table>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Solt</div>
+        <div class="npc-role">Proprietor, Dark Lantern · Ribbet · ~70 · Behind the bar every day</div>
+        <div class="npc-voice">🎭 Voice: Economy of motion — forty years behind a bar. Has opinions about everything, keeps them all. Professional courtesy to city watch and fugitives within twenty minutes of each other. Doesn't sell information — provides context to established regulars as hospitality. Tea orders get a slight nod of respect.</div>
+        <p>Thirty years maintaining absolute neutrality. Served Vault Guard and Free Hand couriers same hour, told neither. More than anyone knows what moves through Shadowside — distinction between selling (gets you targeted) and hospitality context (safe).</p>
+        <div class="npc-secret">GM only: Hasn't taken a day away in eleven years. Quietly hostile to anyone who might destabilize Underground arrangements — visible in who gets less attention. Saw edge of Ash's Pauper's Gate meeting; mentioned carefully to one regular who asked about nervous newcomers.</div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- OTHER LOCATIONS -->
+      <div class="building-card">
+        <div class="building-name">Mama Voss's Cart</div>
+        <div class="building-type">Night Market center · Same spot day &amp; night · 23 years</div>
+        <p>Best street food in Shadowside — some of the best in Lumencrest. Charges the same for everyone. One night off per week — which night varies, unannounced.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Spiced meat skewers (×3) — signature</td><td>2 copper</td></tr>
+          <tr><td>Flatbread, oil &amp; roasted garlic</td><td>1 copper</td></tr>
+          <tr><td>Vegetable stew (cup)</td><td>2 copper</td></tr>
+          <tr><td>Rice, dried fruit &amp; spice (when available)</td><td>2 copper — sells out in under an hour</td></tr>
+        </table>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Mama Voss</div>
+        <div class="npc-role">Cart operator · Human · 58 · Night Market thoroughfare center</div>
+        <div class="npc-voice">🎭 Voice: Brusque during service — long line, things to cook. Warm when not mid-rush. Dry flat humor when genuinely amused. Coal-smoke on hands and forearms. Apron more repair than original fabric.</div>
+        <p>Twenty-three years same stretch — notices who's new, nervous, meeting who they claim not to know. Doesn't sell information; mentions observations like weather remarks if she likes you. Best resource for "which part of the market, which kind of person, which time of night."</p>
+        <div class="npc-secret">GM only: Not anyone's actual mother — name preceded her ~15 years, she adopted it. Feeds poorest regulars extra flatbread without acknowledging it. Noticed Frostwell refugees buying only the 1-copper item — tracks who's in real trouble.</div>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Lampblack</div>
+        <div class="building-type">Side street mid-district · Black smear on doorpost</div>
+        <p>Straightforward drinking and boarding — no deals in main room. Manufactories workers after shift. Seven rooms upstairs, 5 silver/night, working locks, changed linens.</p>
+        <table class="price-table" style="margin-top:10px;">
+          <tr><th>Item</th><th>Price</th></tr>
+          <tr><td>Ale</td><td>2 copper</td></tr>
+          <tr><td>Local whiskey</td><td>3 copper</td></tr>
+          <tr><td>Halfling-generous plates (Pell, cook)</td><td>3–4 copper</td></tr>
+          <tr><td>Private room</td><td>5 silver / night</td></tr>
+        </table>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Salvation Hearth</div>
+        <div class="building-type">Eastern edge · Lamplight border · First Flame (Unified Ember) · Door never locked</div>
+        <p>Two meals daily — morning and evening, no documentation. Sister Avri: healing mornings, refers beyond capacity to Vael at the Stitch. Ten emergency beds, clean, free, generous need assessment. Player resource if genuinely in crisis.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Hollow Road Crossing — Border Bar</div>
+        <div class="building-type">Lenne Cross · Shadowside side of lamp-line · 12 years</div>
+        <p>Where Lamplight and Shadowside meet in one room. Ward ale on tap (3 copper). Better kitchen than most Shadowside — meat pies 4–6 copper. Accurate safe navigation advice for Ward visitors who tip.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Night's Rest</div>
+        <div class="building-type">Budget lodging · 4–6 silver · No questions asked</div>
+        <p>Overflow refers to Lampblack reciprocally. Lowest reliable bed in Shadowside above Salvation Hearth's free beds.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Free Clank Cooperative</div>
+        <div class="building-type">Maze Quarter west · "COOPERATIVE WORKSHOP AND RESALE"</div>
+        <p>Repair shop surface; upper floor meeting/sleep for Clanks in transit. Manager Kael (free Clank, 8 years post-service). Repaired goods 50–70% new price — excellent work. Watch swings past mornings; documentation always in order.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Threadbare</div>
+        <div class="building-type">Main thoroughfare · Daytime only · Sable Mors</div>
+        <p>Clothing and equipment to not look like you came from somewhere else. Second-hand cleaned and assessed. Lockpicks sold as "tradesman's tools." Repairs 3–6 silver, hold well.</p>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">The Smoke Den</div>
+        <div class="building-type">Maze Quarter basement · Blue cloth above door · Renn Aldous</div>
+        <p>Consume on site only. Hollow Pipe 2 copper (legal-gray). The Red 8 copper. Dreamsmoke 1 silver — regulars only, proprietor denies if he doesn't know you.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ NIGHT MARKET ══ -->
+  <div class="section" data-cat="market">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">🌙</div>
+      <div style="flex:1;"><div class="section-label">Night Market</div><div class="section-sub">Layout · sections · rules · Quiet Market contact</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="ref-box">
+        <div class="ref-title">Operations</div>
+        <ul>
+          <li><strong>Location:</strong> Main north-south thoroughfare, Pauper's Gate to Lamplight border — ~400 feet</li>
+          <li><strong>Hours:</strong> Traders appear ~1 hour after dark; full operation ~2 hours after sunset until 2–3 hours before dawn</li>
+          <li><strong>Organization:</strong> None by authority — habit of regular traders claiming same patches for years</li>
+          <li><strong>Children present:</strong> Families live on this street — kids run errands at night. Not exclusively adult.</li>
+        </ul>
+      </div>
+
+      <table class="price-table">
+        <tr><th>Section</th><th>What's sold</th></tr>
+        <tr><td>Southern (near Lamplight)</td><td>Salvage, second-hand clothing/tools, food, candles/lamp oil/coal — cheapest in city</td></tr>
+        <tr><td>Central</td><td>Undocumented imports, gray herbs/alchemical prep, live animals, unlicensed minor arcane, off-books locksmiths</td></tr>
+        <tr><td>Northern / Maze mouth</td><td>Information sold like goods, high-value Quiet Market overflow, Joss Wren contact point</td></tr>
+      </table>
+
+      <div class="ref-box">
+        <div class="ref-title">Unspoken rules</div>
+        <ul>
+          <li><strong>No violence</strong> on thoroughfare — traders police collectively</li>
+          <li><strong>No city watch</strong> — locals pass word ahead; market doesn't scatter, just stops being obviously what it is</li>
+          <li><strong>Reputation</strong> is the only recourse for bad information sellers</li>
+        </ul>
+      </div>
+
+      <div class="building-card">
+        <div class="building-name">Quiet Market — Joss Wren contact</div>
+        <div class="building-type">Mobile high-end market · Vetting via northern thoroughfare spot</div>
+        <p>Shard fragments, restricted alchemicals, significant information, quality stolen goods. Joss Wren (human, 35) near Maze Quarter eastern wall on arrangement nights — 1–2×/week, irregular. Vets: not watch, something worth bringing. First access with escort. Two wrong calls in three years — both caught early.</p>
+      </div>
+
+      <div class="ref-box">
+        <div class="ref-title">Maze Quarter navigation</div>
+        <ul>
+          <li>Without guide: DC 13 Instinct every 10 minutes or go wrong way without knowing</li>
+          <li>With guide: automatic. Week daily experience: no rolls.</li>
+          <li><strong>The Arch:</strong> Covered passage — neutral dispute meeting point</li>
+          <li><strong>Forgotten Well:</strong> Center — working well predating city pumps. Critical during blackouts.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ NPCs (additional brief) ══ -->
+  <div class="section" data-cat="npcs">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--teal-bg);color:var(--teal-text);">👥</div>
+      <div style="flex:1;"><div class="section-label">Other Shadowside NPCs</div><div class="section-sub">Kael · Brother Carwell · Lenne Cross · Orin Marsh</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="npc-card">
+        <div class="npc-name">Kael</div>
+        <div class="npc-role">Free Clank Cooperative manager · Clank · 42 years old · Service completed 8 years ago</div>
+        <div class="npc-voice">🎭 Voice: Measured, precise, warm with Clanks who arrive needing help. Cautious with organics until intentions proven. Self-repaired wrist — visible color mismatch.</div>
+        <p>~200 Clanks through in six years — who reached safety, who didn't. Free Hand coordination without formal membership. Best mechanic on Clank construction outside Luminarium research.</p>
+        <div class="npc-secret">GM only: Chose to stay in Lumencrest for the Cooperative — unusual for escaped/free Clanks. Upper floor conversations require Clank identity or known escort.</div>
+      </div>
+      <div class="npc-card">
+        <div class="npc-name">Brother Carwell</div>
+        <div class="npc-role">Lead priest, Salvation Hearth · Human · 61</div>
+        <div class="npc-voice">🎭 Voice: Tall, thin, white beard, always doing something with his hands. Kind without soft. Specific contained anger about Council treatment of Shadowside — managed through work.</div>
+        <p>Twenty-two years — sees ground-level crisis data no official has. Won't share systematically; will signal when players help people he cares about.</p>
+        <div class="npc-secret">GM only: Sister Avri (healer, mornings) more likely to give direct answers about medical situations. Both won't cooperate with watch investigations — accepted as district arrangement.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ GOSSIP ══ -->
+  <div class="section" data-cat="gossip">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">💬</div>
+      <div style="flex:1;"><div class="section-label">Shadowside Gossip</div><div class="section-sub">Dark Lantern · Night Market · Pauper's Gate · Maze</div></div>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gossip-card"><div class="gossip-source">Dark Lantern regular</div><div class="gossip-text">"Brownout last week — whole city went amber and anxious. We lit another candle and kept eating. My grandmother would have said I told you so. I didn't say it. I thought it very loud." <div class="gossip-truth">True. Shadowside's dry satisfaction during brownouts — never said to outsiders.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Night Market trader</div><div class="gossip-text">"Watch sweep coming tomorrow — maybe. Third cart on the thoroughfare has a cousin in the rotation. Market won't scatter. It never does." <div class="gossip-truth">True. Locals pass watch presence down the street. Market stops being obviously illegal until they pass.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Pauper's Gate wall</div><div class="gossip-text">"Frostwell boy came through yesterday. Wouldn't eat at the vendor — waited in line for Mama Voss like he knew. Maybe someone told him. Maybe he could smell it." <div class="gossip-truth">True. Refugees slowly learning district geography through word of mouth.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Solt, careful</div><div class="gossip-text">"Nervous kid met someone at Old Pen's last week. Not a regular. Looked like he was doing a job he hadn't done before." <div class="gossip-truth">True. Day 12 timeline — Ash meeting radical supply contact. Old Pen didn't know who he was.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Maze Quarter passage</div><div class="gossip-text">"Someone's been asking about tunnel components. Not Garwick's type — too careful. Quiet Market type, maybe, but without the coin for Quiet Market." <div class="gossip-truth">Partially true. Investigation-adjacent — components moving through Night Market toward radical cell activity.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Cooperative workshop</div><div class="gossip-text">"Two more Clanks came through last night. FLAGGED scans, no implants showing — someone good did that work. Remover's busy." <div class="gossip-truth">True. Free Hand pipeline active. Implant removal expensive, painful — available through Cooperative contacts.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Mama Voss, flat</div><div class="gossip-text">"Line's longer since the northerners started coming. They buy the flatbread. They don't talk. I don't ask. I cook." <div class="gossip-truth">True. Frostwell refugees on 1-copper item — Mama Voss notices real trouble without naming it.</div></div></div>
+
+      <div class="gossip-card"><div class="gossip-source">Border Bar, Ward visitor</div><div class="gossip-text">"Lenne says don't go into the Maze without a guide. Don't buy 'cheap Dust' from anyone who approaches you. Don't assume the dark means nobody's watching." <div class="gossip-truth">All true. Lenne's safe navigation advice is accurate and deliberately non-incriminating.</div></div></div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

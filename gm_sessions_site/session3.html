@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 3 — The Hub Explosion · HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html" class="active">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
+  <a href="emberford.html">🏘️ Emberford</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">GM Reference & Script — Session 3</div>
+  <h1>The Hub Explosion — Day 2</h1>
+  <p class="subtitle">Gold Month 8, Day 2 in Lumencrest, 700 AR. A larger protest at the Ward border. Then the lights go out three blocks away — and the city learns it is not stable.</p>
+  <div class="party-chips">
+    <span class="party-chip">🌿 Greer — Faun Druid (Tara)</span>
+    <span class="party-chip">✨ Lurielle — Faerie/Ribbet Wizard</span>
+    <span class="party-chip">🗡️ Basil — Rogue</span>
+  </div>
+  <div class="session-meta">
+    <div class="meta-item">⏱ <strong>3–4 hours</strong></div>
+    <div class="meta-item">📅 <strong>Gold Month 8, Day 2 · 700 AR</strong></div>
+    <div class="meta-item">📍 <strong>Lamplight Ward — Eastwick · Border · Hub Site</strong></div>
+  </div>
+</header>
+
+<div class="page-body">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="filterSections('all',this)">All</button>
+    <button class="nav-tab" onclick="filterSections('morning',this)">Morning</button>
+    <button class="nav-tab" onclick="filterSections('blast',this)">Blast</button>
+    <button class="nav-tab" onclick="filterSections('forks',this)">Player Forks</button>
+    <button class="nav-tab" onclick="filterSections('npc',this)">NPCs</button>
+    <button class="nav-tab" onclick="filterSections('ref',this)">Reference</button>
+  </div>
+
+  <!-- ══ OVERVIEW ══ -->
+  <div class="section" data-cat="ref">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--accent-gold-dim);color:var(--accent-gold);">🗺️</div>
+      <span class="section-label">Session Overview & Flow</span>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">Read First</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-badge tb-1">~60 min</div><div class="timeline-text"><strong>Act 1 — Morning at the Border.</strong> Larger protest than yesterday. Chalk mostly scrubbed. Brinne Halloway organizing in Eastwick; Lida's Bake line. <em>Goal: ground the civic tension before the blast recontextualizes everything.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-2">~15 min</div><div class="timeline-text"><strong>Act 2 — Pre-Blast Texture.</strong> Hum of the Network. Optional Ash rooftop glimpse. Players position themselves. <em>Goal: let them choose where they are when it happens.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-4">~45 min</div><div class="timeline-text"><strong>Act 3 — The Explosion.</strong> Secondary feed hub detonates. Eastwick + Copperstring dark. Three injured (one serious). Panic. <em>Goal: situation, not combat — unless they chase into trouble.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-3">~60 min</div><div class="timeline-text"><strong>Act 4 — Player Forks.</strong> Help injured (Ora Finch / Mending Room) · pursue witness trail · caught in watch sweep. <em>Goal: their first real Lumencrest choice defines reputation.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-2">~30 min</div><div class="timeline-text"><strong>Act 5 — Evening Fallout.</strong> Watch investigation stalls. Theron Ashwick statement. Wren calculating; Ash troubled. <em>Goal: political layer lands while bodies are still being counted.</em></div></div>
+        <div class="timeline-item"><div class="timeline-badge tb-5">~10 min</div><div class="timeline-text"><strong>Session End — The Plateau.</strong> Emergency Council session announced for Day 3 morning. The blast was calculated, not random. <em>Goal: end on institutional response + unanswered who.</em></div></div>
+      </div>
+      <div class="danger-note"><div class="tag">GM Warning — This Is Not a Combat Session</div><p>The hub explosion is a <strong>situation encounter</strong>. City watch, panic, injured civilians, and a darkness that spreads block by block. Combat is possible if players pursue aggressively or resist a sweep — default mode is chaos management and observation. Wren and Ash are <em>not</em> at the site. Save named antagonist confrontation for later.</p></div>
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p><strong>If you're behind:</strong> compress the morning protest to 20 minutes — one Brinne beat, one chalk read, move to mid-afternoon. The blast and player fork are non-negotiable. The Theron statement can be a handout if you're out of time.</p></div>
+    </div>
+  </div>
+
+  <!-- ══ ACT 1 — MORNING PROTEST ══ -->
+  <div class="section" id="morning" data-cat="morning">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--hope-bg);color:var(--hope-text);">📢</div>
+      <div style="flex:1;"><div class="section-label">Act 1 — Morning Protest & Eastwick</div><div class="section-sub">Lamplight / Shadowside border · Brinne · Lida's line · chalk remnants</div></div>
+      <span class="section-pill" style="background:var(--hope-bg);color:var(--hope-text);border:1px solid rgba(74,158,110,0.3);">~60 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Opening narration (Day 2 morning)</div>
+      <p>"Gold Month, eighth day — your second morning in Lumencrest. Yesterday's protest at the Lamplight Ward / Shadowside border left marks: chalk on brick, mostly scrubbed now, but not entirely. City workers were here at dawn with brushes and solvent. You can still read fragments if you know what you're looking for. <em>WE PAID FOR THIS LIGHT.</em> <em>OUR GRID TOO.</em> A third line is gone entirely — scraped clean — but the ghost of it remains in the stone's lighter patch."</p>
+      <p style="margin-top:10px;">"The border itself is a street width of contested pavement — Shadowside's Maze Quarter bleeding into Lamplight's commercial east. Morning traffic moves around where the demonstration will reform. City watch is already positioning: not armored, not relaxed. Twelve officers visible from where you stand, with more in the side streets. They've done this before. Yesterday was tense. Today is supposed to be louder."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Where were the players last session?</div>
+      <p>Session 2 ended wherever they settled — Wren House, Accord Arms, Copper Gate, wandering Eastwick. <strong>Default opening:</strong> they're in or near Eastwick having breakfast, or walking the Wire Road toward the border out of curiosity. Ask each player one sentence: <em>where are you this morning and what drew you to this part of the Ward?</em> Whatever they say is true. If they're nowhere near the border, the explosion still reaches them — the hum stops, the lights die, the sound carries.</p></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Eastwick — Brinne & the Cooperative —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Brinne Halloway at the Cooperative hall</div>
+      <p>"Four blocks east of the border, in Eastwick — the residential neighborhood on the Ward's eastern edge — the Eastwick Cooperative's meeting hall is already busy. Not protest-busy. <em>Organizing</em>-busy. A human woman in practical grey, forties, carrying a clipboard and a ring of keys that sounds like work: <strong>Brinne Halloway</strong>, chair of the Cooperative. She's directing two volunteers loading crates — candles, lamp oil, spare wicks — into a handcart. She does not make speeches. She makes lists."</p></div>
+
+      <div class="npc-say"><div class="tag">Brinne Halloway — if players approach</div>
+      <p>"If you're here to watch the border, eat first. If you're here to help, tell me what you can carry. If you're here to ask questions —" <em>she looks up, assesses them in one pass</em> "— ask something specific. I don't have time for vague."</p>
+      <div class="note">She will not explain the stockpile unless they earn it (Presence DIF 12 genuine offer of help, or Instinct DIF 13 reading that she expects the lights to fail). If they help load the cart: she tells them the Cooperative has been preparing for 'the next phase' for six months. She does not say explosion. She says <em>unreliability</em>.</div></div>
+
+      <div class="ref-box"><div class="ref-title">Brinne — social rolls</div>
+      <ul>
+        <li><strong>Offer real help (loading, running messages):</strong> no roll — she gives them a task and watches how they do it.</li>
+        <li><strong>Presence DIF 12</strong> — convince her they're serious, not tourists. <em>Success:</em> she mentions the shared larder and that Eastwick has been on reduced feed for two weeks. <em>Partial:</em> task assignment, no intel. <em>Fail:</em> polite dismissal — "Border's that way."</li>
+        <li><strong>Instinct DIF 13</strong> — read her preparation level. <em>Success:</em> this woman expects the grid to fail today, not eventually. <em>Partial:</em> she's scared and hiding it well. <em>Fail:</em> just a busy community organizer.</li>
+      </ul></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Lida's Bake — the morning line —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Lida's Bake, Wire Road corner</div>
+      <p>"Lida's Bake has been open since 3am. The ovens are electric — Network-fed — and the line at 8am goes around the corner anyway, because the rolls are that good and the coffee is the strongest in the Ward. <strong>Lida Birch</strong> moves behind the counter with the unhurried precision of someone who has fed this neighborhood at dawn for twenty-three years. Flour on her apron. A pot of coffee that never quite empties. The line is half regulars, half people who heard there's organizing at the Cooperative and want to be fed before they find out what that means."</p></div>
+
+      <div class="npc-say"><div class="tag">Lida Birch — to anyone in line</div>
+      <p>"Two rolls and coffee is three copper. If you're going to the border, eat first. Loud people with empty stomachs make bad decisions."</p>
+      <div class="note">She knows Brinne's schedule, the protest organizers by face, and which city watch sergeant is actually fair. She will share gossip freely (no roll) to anyone who buys coffee and doesn't perform entitlement.</div></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Morning</div>
+      <ul>
+        <li><a href="fear_options_session3.html#fs-s3-morn-crowd"><strong>The protest crowd surges early</strong></a> — before organizers are ready, fifty people push past the watch line. Chalk dust in the air. Someone throws something. Not a riot — a shove that becomes a wave.</li>
+        <li><a href="fear_options_session3.html#fs-s3-morn-brigne"><strong>Brinne closes the Cooperative door</strong></a> — mid-conversation, she locks the larder and says: "You're not the first strangers asking about our stores today." Someone else has been asking questions.</li>
+      </ul>
+      <div class="fear-note">Morning fears are pressure tools. One at most before the blast. Save economy for panic and sweep scenes.</div></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— The border protest reforms —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Mid-morning, protest assembles</div>
+      <p>"By mid-morning the border fills. Larger than yesterday — someone counted two hundred, someone else says three. Organized: hand-painted signs, a woman with a list calling names for the speaker rotation, a man keeping water buckets filled. The demands are the same as yesterday, louder: end Shadowside rationing, publish the feed map, stop treating the eastern Ward like a secondary circuit. City watch holds the line. Nobody has drawn steel. The mood is angry and disciplined — the dangerous combination."</p></div>
+
+      <div class="npc-say"><div class="tag">Protest speaker (unnamed organizer — not radical wing)</div>
+      <p>"We paid for this light! Our taxes, our labor, our grid — and when the Network stutters, whose homes go dark first? Not the Vault District. Not the Radiant Core. Ours. We are not asking for charity. We are asking for the contract the city already signed with us!"</p>
+      <div class="note">The crowd responds. Greer feels the spiritual texture of collective frustration — not evil, not possessed, just human pressure made audible. Lurielle notices two Network junction boxes on the corner humming at slightly different pitches. Basil notices pickpockets working the crowd's edges and a watch sergeant who sees them and looks away — someone's being paid to look elsewhere.</div></div>
+
+      <div class="ref-box"><div class="ref-title">Optional morning investigation — border scene</div>
+      <ul>
+        <li><strong>Knowledge DIF 12</strong> (Lurielle likely): read the chalk remnants — protest slogans plus one line scrubbed extra hard: <em>THE HUBS ARE NOT EQUAL</em>. Someone knew technical vocabulary.</li>
+        <li><strong>Instinct DIF 11</strong> (Greer): the crowd's anger has no Green Covenant spiritual signature — this is civic, not druidic radicalism.</li>
+        <li><strong>Finesse DIF 13</strong> (Basil): tail the pickpocket crew — they fold into a side street and meet a man who takes a paper, doesn't pay, leaves. Guild-adjacent logistics, not today's bomber.</li>
+      </ul></div>
+
+      <div class="tip-box"><span class="tip-icon">📢</span><p>Let the morning breathe 30–45 minutes if the table is engaged. If they're restless, time-skip to mid-afternoon with: <em>"The protest holds. You eat. You walk. The hum under the city stays steady — until it doesn't."</em></p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ PRE-BLAST ══ -->
+  <div class="section" id="pre-blast" data-cat="blast">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--warn-bg);color:var(--warn-text);">⚡</div>
+      <div style="flex:1;"><div class="section-label">Act 2 — Pre-Blast · Mid-Afternoon</div><div class="section-sub">The hum · Ash on a rooftop · positioning players</div></div>
+      <span class="section-pill" style="background:var(--warn-bg);color:var(--warn-text);border:1px solid rgba(201,125,42,0.3);">~15 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Mid-afternoon transition</div>
+      <p>"Mid-afternoon. The protest is still running — voices hoarse now, watch rotation changed, sun past its peak. Three blocks east of the crowd, where Eastwick's residential streets meet the Network infrastructure, the world still sounds like Lumencrest: the cable-hum under everything, tram bells, the Copperstring's sound check bleeding from the Entertainment Quarter. Normal. Except to anyone who's learned to listen — the hum has a texture today. Slightly strained. Like a voice holding a note too long."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Position the party</div>
+      <p>Ask: <em>Where are you when mid-afternoon hits?</em> Common answers: still at the border, at Lida's, walking Wire Road toward the hub, in the Copperstring, helping Brinne deliver candles toward Eastwick's eastern blocks. <strong>The hub is three blocks from the protest</strong> — close enough that the crowd hears the blast. Players at the border are in the panic wave. Players in Eastwick are in the dark when the lights die. Players at the hub are in the danger zone.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Pre-Blast</div>
+      <ul>
+        <li><a href="fear_options_session3.html#fs-s3-pre-ash"><strong>Ash on the rooftop</strong></a> — two blocks from the hub, a young man on a slate roof, watching the access door. He sees the party look up. He leaves. Fast. No chase yet — just the image.</li>
+        <li><a href="fear_options_session3.html#fs-s3-hum-stops"><strong>The hum stops for one heartbeat</strong></a> — citywide, imperceptible to most. Lurielle and Greer feel it. One second of absolute Network silence. Then it returns. Wrong pitch.</li>
+      </ul></div>
+
+      <div class="ref-box"><div class="ref-title">Hub location — GM map (verbal)</div>
+      <ul>
+        <li><strong>Protest:</strong> Lamplight / Shadowside border, western edge of today's action.</li>
+        <li><strong>Hub:</strong> Eastwick neighborhood, eastern Lamplight Ward — a brick utility structure, secondary feed node, NOT the main distribution spine.</li>
+        <li><strong>Feeds:</strong> Eastwick residential grid + partial Entertainment Quarter (Copperstring block).</li>
+        <li><strong>Distance:</strong> Hub ↔ protest ≈ 3 blocks. Hub ↔ Copperstring ≈ 2 blocks. Hub ↔ Brinne's Cooperative ≈ 4 blocks.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ THE BLAST ══ -->
+  <div class="section" id="blast" data-cat="blast">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--fear-bg);color:var(--fear-text);">💥</div>
+      <div style="flex:1;"><div class="section-label">Act 3 — The Explosion</div><div class="section-sub">Targeted detonation · darkness spreads · three injured · panic</div></div>
+      <span class="section-pill" style="background:var(--fear-bg);color:var(--fear-text);border:1px solid rgba(184,84,80,0.3);">~45 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — The explosion (read aloud, then stop)</div>
+      <p>"It is not a fireball. It is a <em>crack</em> — sharp, architectural, the sound of something technical being severed. The hub building on the eastern block buckles inward. No mushroom cloud. Oily smoke and the smell of scorched conduit. The Lumen Network's hum — the sound you've stopped noticing because it's always there — <strong>stops</strong> in a ring around you. Streetlamps die. Shop signs go black. The Copperstring's sound check cuts mid-note, two blocks away, like someone closed a fist around the music."</p>
+      <p style="margin-top:10px;">"Three blocks west, the protest crowd screams. Not one sound — a hundred decisions at once. Some people run toward the blast. Some run away. City watch breaks formation. Someone is shouting for medics. Someone else is shouting about terrorism. The light is gone in Eastwick. Afternoon becomes dusk becomes a darkness that has weight."</p></div>
+
+      <div class="danger-note"><div class="tag">Injuries — canon headcount</div>
+      <p><strong>Three injured in the immediate hub area.</strong> (1) <strong>Toma Vess</strong> — maintenance adjacency worker, serious: shrapnel, leg, unconscious. (2) <strong>Pella Morr</strong> — street vendor, moderate: burns, mobile, shock. (3) <strong>Child (name: Jex Aldeth, 12)</strong> — minor: cut glass, crying, looking for their cousin who was at the hub fence. Do not kill civilians for shock value. The serious case is real but stable if helped within 10 minutes.</p></div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spends — Blast & Immediate Aftermath</div>
+      <ul>
+        <li><a href="fear_options_session3.html#fs-s3-blast"><strong>Secondary collapse</strong></a> — conduit housing falls toward the street. Dexterity DIF 13 or take 2d6 damage. Blocks a witness route.</li>
+        <li><a href="fear_options_session3.html#fs-s3-lurielle-resonance"><strong>Lurielle's resonance spike</strong></a> — bioluminescence flares visible in the dark; she tastes copper; the blast frequency matches pre-classification data in her notes.</li>
+        <li><a href="fear_options_session3.html#fs-s3-greer-pattern"><strong>Greer reads the blast pattern</strong></a> — Instinct DIF 14 or Fear-forced clarity: this was shaped to kill infrastructure, not people. Someone knew the hub's architecture.</li>
+        <li><a href="fear_options_session3.html#fs-s3-panic"><strong>Panic stampede from the protest</strong></a> — crowd surges into Eastwick streets. Strength/Agility DIF 12 to stay upright. Someone trampled if ignored.</li>
+        <li><a href="fear_options_session3.html#fs-s3-injured"><strong>Toma Vess worsens</strong></a> — the serious case starts bleeding faster. Help now or lose them.</li>
+        <li><a href="fear_options_session3.html#fs-s3-dark-spreads"><strong>Darkness spreads block by block</strong></a> — the failure cascades slower than expected, like a deliberate drain. Eastwick fully dark; Copperstring flickers; border still lit. Someone chose this feed map.</li>
+      </ul>
+      <div class="fear-note">Blast scene: 2–3 Fear spends max. Each should change a decision, not just deal damage.</div></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Forensics in the chaos —</div>
+
+      <div class="ref-box"><div class="ref-title">What perceptive players can learn (rolls or auto if adjacent)</div>
+      <ul>
+        <li><strong>Knowledge DIF 14</strong> (Lurielle): non-standard incendiary — the burn pattern is directional, aimed at junction couplings, not fuel storage. Custom work.</li>
+        <li><strong>Instinct DIF 13</strong> (Greer): the hub was chosen for <em>secondary</em> status — maximum neighborhood disruption, minimum citywide cascade. Calculated.</li>
+        <li><strong>Finesse DIF 14</strong> (Basil): fresh scrape marks on the hub's access panel. Tool marks not city maintenance standard. Partial boot print on the ledge — small feet, running stance, departed <em>toward</em> the Entertainment Quarter.</li>
+        <li><strong>Anyone at scene, Instinct DIF 12:</strong> one witness — elderly woman (Marta Henwick) who saw "a young man leave the door" but will not tell watch (distrusts uniforms). Will tell someone who helps the injured.</li>
+      </ul></div>
+
+      <div class="outcome-grid">
+        <div class="outcome-card outcome-fail"><div class="oc-label">No Investigation</div><div class="oc-desc">They survive the scene but learn only "explosion bad." Watch fills the gap with rumors. Still valid — urgency comes from darkness and injuries.</div></div>
+        <div class="outcome-card outcome-partial"><div class="oc-label">Partial Read</div><div class="oc-desc">Targeted hub, custom incendiary, witness description. Enough to know it wasn't random protest violence. Not enough to name Wren's cell.</div></div>
+        <div class="outcome-card outcome-success"><div class="oc-label">Strong Read</div><div class="oc-desc">Architecture knowledge + witness + tool marks → trail toward Entertainment Quarter / rooftop observer. Ash glimpse connects if they saw him pre-blast. Investigation thread opens Session 4.</div></div>
+      </div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spend — Witness Window</div>
+      <ul>
+        <li><a href="fear_options_session3.html#fs-s3-ash-glimpse"><strong>Ash glimpsed in the alley</strong></a> — leaving the blast radius, hood half-down, looking back once. Not the bomber — the watcher. Chase DCs apply.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ PLAYER FORKS ══ -->
+  <div class="section" id="forks" data-cat="forks">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--teal-bg);color:var(--teal-text);">🔀</div>
+      <div style="flex:1;"><div class="section-label">Act 4 — Player Forks</div><div class="section-sub">Help injured · pursue witness · watch sweep — full DC grids</div></div>
+      <span class="section-pill" style="background:var(--teal-bg);color:var(--teal-text);border:1px solid rgba(58,152,152,0.3);">~60 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-note"><div class="tag">GM Info — Fork structure</div>
+      <p>Players may split. Run in scene order of urgency — injured first if anyone's dying, then sweep pressure, then pursuit. They can hit <strong>multiple forks</strong> if fast: stabilize Toma → get swept → released → pursue alley trail before dusk. Reputation tags: <em>helpers</em>, <em>persons of interest</em>, <em>chasers</em>.</p></div>
+
+      <div class="path-grid">
+        <div class="path-card path-grove">
+          <div class="path-label">🩹 Help the Injured</div>
+          <p>Stabilize at scene → carry to Mending Room (Halfling Quarter) or pop-up aid station Brinne organizes. Ora Finch path. Establishes <strong>community trust</strong>.</p>
+          <div class="path-tag">Ora Finch · Brinne · Mending Room</div>
+        </div>
+        <div class="path-card path-road">
+          <div class="path-label">🏃 Pursue the Witness Trail</div>
+          <p>Boot prints, Marta Henwick's sighting, Ash glimpse. Chase through Entertainment Quarter toward rooftops. Establishes <strong>investigation thread</strong>.</p>
+          <div class="path-tag">Agility/Finesse · Instinct</div>
+        </div>
+      </div>
+      <div class="path-grid" style="margin-top:0;">
+        <div class="path-card" style="border-color:rgba(184,84,80,0.3);">
+          <div class="path-label" style="color:var(--fear-text);">🛡️ Caught in Watch Sweep</div>
+          <p>City watch cordons hub radius. Everyone in the ring gets questioned. Presence/Knowledge to navigate. Failure = detained 2 hours or fine. Establishes <strong>official attention</strong>.</p>
+          <div class="path-tag">Presence DIF 13 · Knowledge DIF 12</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Fork A: Help the Injured —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Scene pressure</div>
+      <p>"The hub is still smoking. In the dark, people shout names. Toma Vess is not getting up. Pella Morr is trying to. Jex is bleeding from the forehead and won't let go of your sleeve if you're nearby. City watch hasn't reached this alley yet — you have maybe four minutes before the cordon closes and decisions get made for you."</p></div>
+
+      <div class="ref-box"><div class="ref-title">Stabilization rolls — at scene</div>
+      <ul>
+        <li><strong>Knowledge DIF 12</strong> (anyone with medical training) or <strong>Instinct DIF 13</strong> (Greer): stabilize Toma — stop bleeding. <em>Success:</em> he'll live the hour. <em>Partial:</em> needs carrying within 10 min. <em>Fail:</em> Fear spend Toma worsens.</li>
+        <li><strong>Presence DIF 11:</strong> calm Jex / crowd. <em>Fail:</em> Jex panics, draws watch attention to party.</li>
+        <li><strong>Carry to aid:</strong> Mending Room is 25 minutes at pace through dark streets — OR Brinne's volunteers set a lamp-lit corner 8 minutes away if party helped her morning.</li>
+      </ul></div>
+
+      <div class="npc-say"><div class="tag">Brinne Halloway — if party helped Cooperative this morning</div>
+      <p>"Third left, then the lit door. I have people. Bring them here — not the watch station."</p>
+      <div class="note">Her pop-up aid station has two volunteers, clean cloth, lamp oil light. Not a hospital — a triage corner. She sends serious cases toward the Halfling Quarter with an escort who knows the route.</div></div>
+
+      <div class="npc-card">
+        <div class="npc-name">Ora Finch — Mending Room</div>
+        <div class="npc-role">Halfling healer · 67 · The Mending Room, Halfling Quarter</div>
+        <div class="npc-voice">🎭 Still, unhurried, specific attention. Gentle without being soft. "Tell me what happened after I know what hurts."</div>
+        <p>If Toma reaches her before sundown, she stabilizes him fully. She asks no politics first — only symptoms. Second question: <em>"Was anyone trying to help when you arrived?"</em> If the party brought him: +1 Halfling Quarter goodwill, Brinne hears their names by evening.</p>
+        <div class="npc-secret">GM only: Ora has seen three Network-exposure injury patterns this month. Toma's burns are not Network exposure — they're incendiary. She will say so if asked directly. She does not connect it to Green Covenant; she connects it to <em>someone who knew couplings</em>.</div>
+      </div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Fork B: Pursue the Witness Trail —</div>
+
+      <div class="gm-say"><div class="tag">GM Say — Trail head</div>
+      <p>"The boot print leads off the hub ledge toward the Entertainment Quarter — smaller stride, running, not city boots. Marta Henwick points with a shaking hand: 'Young man. Dark hair. Out the access door before the sound.' She's gone before you can ask her name. The alley climbs toward music district roofs. Somewhere above, a slate tile shifts."</p></div>
+
+      <div class="ref-box"><div class="ref-title">Pursuit chain</div>
+      <ul>
+        <li><strong>Agility DIF 12</strong> — keep pace through crowd. <em>Fail:</em> lose visual, Instinct DIF 13 to reacquire.</li>
+        <li><strong>Finesse DIF 14</strong> — rooftop chase (Basil's specialty). Three rounds of rolls. <em>2 successes:</em> see Ash's face clearly. <em>1:</em> hooded figure drops a token (Guild-marked chalk, not Covenant). <em>0:</em> gone; watch cordon blocks route.</li>
+        <li><strong>Instinct DIF 13</strong> (Greer): the runner is scared, not triumphant. Watching, not celebrating.</li>
+      </ul></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Ash escape</div>
+      <p>Ash does not fight. If cornered: <strong>Presence DIF 15</strong> to get a word before he bolts — he says one true thing: <em>"I didn't know they'd still be inside."</em> Then he's gone. This is foreshadowing, not confession. Do not reveal Wren. Do not confirm Green Covenant by name.</p></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Fork C: Watch Sweep —</div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spend — Watch Sweep</div>
+      <ul>
+        <li><a href="fear_options_session3.html#fs-s3-watch-sweep"><strong>Cordon closes on the party</strong></a> — Sergeant Pel Carr (human, 40s, tired) flags them in the hub radius. "You. All of you. Names."</li>
+      </ul></div>
+
+      <div class="npc-say"><div class="tag">Sergeant Pel Carr — initial questioning</div>
+      <p>"Explosion radius. I need names, where you were standing, and whether you saw the access door open. This is not optional. This is not an accusation. Yet."</p>
+      <div class="note">Carr is competent, not cruel. Protest management experience. He's filling forms because command wants forms.</div></div>
+
+      <div class="outcome-grid">
+        <div class="outcome-card outcome-fail"><div class="oc-label">Fail — Presence/Knowledge</div><div class="oc-desc">Detained 2 hours in a ward station. Miss pursuit window. Released without charges but logged as "present at hub incident." Basil's fine if he has a cover story; worse if he's visibly Guild.</div></div>
+        <div class="outcome-card outcome-partial"><div class="oc-label">Partial</div><div class="oc-desc">Questioned on street, 20 minutes. Carr remembers their faces. They can still pursue or help injured afterward — exhausted.</div></div>
+        <div class="outcome-card outcome-success"><div class="oc-label">Success</div><div class="oc-desc">Clear accounts + helpful detail (witness description) → Carr marks them "cooperative civilian." Future watch interactions slightly easier. Carr says: <em>"If you think of anything else — anything odd before the sound — find me."</em></div></div>
+      </div>
+
+      <div class="ref-box"><div class="ref-title">Sweep social DCs</div>
+      <ul>
+        <li><strong>Presence DIF 13</strong> — calm, credible account. Advantage if they helped injured first (Carr heard about helpers on his relay).</li>
+        <li><strong>Knowledge DIF 12</strong> — technical witness detail (coupling damage direction) marks them as useful, not suspicious.</li>
+        <li><strong>Deception DIF 15</strong> (Basil hiding identity): partial success = Carr suspicious but no proof. Fail = searched, 5gp "processing fee" or confiscation of one suspicious item.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ EVENING ══ -->
+  <div class="section" id="evening" data-cat="morning">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">🌆</div>
+      <div style="flex:1;"><div class="section-label">Act 5 — Evening Fallout</div><div class="section-sub">Watch investigation stalls · Theron statement · Wren & Ash offscreen</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">~30 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Dusk in Eastwick</div>
+      <p>"Evening, and Eastwick is still dark. Candles in windows — Brinne's stockpile, Lida's oven still warm from stored heat, neighbors sharing lamp oil. The Copperstring is closed mid-set. Someone two districts over is posting about the music that stopped. City watch has taped the hub site and posted two guards who don't know what they're guarding. The investigation, according to everyone who would know, has <em>nothing</em>."</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — Watch investigation (background)</div>
+      <p>23 interviews by end of day. Zero productive leads in the official file. Witnesses who distrust watch (Marta Henwick type) stay silent. Protest organizers publicly condemn the blast — they lose moral high ground if they're blamed. The Vault Guard noted the event in operations log; they did not deploy. This is city watch jurisdiction, and city watch is overwhelmed.</p></div>
+
+      <div class="npc-say"><div class="tag">Lida Birch — evening at the bakery</div>
+      <p>"Line's still long. Dark makes people hungry. Brinne sent word — if you're the ones who carried Toma, your bread's free tonight. Don't make a thing of it."</p>
+      <div class="note">Gossip hub: Theron's statement already circulating on printed broadsheets. Someone says Expansionists will use this. Someone else says Green Covenant. Lida doesn't speculate — she listens.</div></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Theron Ashwick's public statement —</div>
+
+      <div class="fear-box"><div class="fear-box-title">😨 Fear Spend — Political Aftershock</div>
+      <ul>
+        <li><a href="fear_options_session3.html#fs-s3-theron-statement"><strong>Theron's statement finds the party</strong></a> — broadsheet + crier at Wire Road. Expansionist framing lands hard. A neighbor blames protestors. Fight or de-escalate.</li>
+      </ul></div>
+
+      <div class="handout"><div class="handout-title">Broadsheets — Theron Ashwick (read or hand out)</div>
+      <p><em>"Today's attack on Lumencrest's Lumen infrastructure was not an accident. It was an act of anti-civilization terrorism — a deliberate strike against the Network that sustains eighty thousand lives. Those who believe that disruption of the common good is a legitimate form of political speech have now shown us the cost of that belief. The Expansionist faction has long argued that our city requires the capacity to defend its essential systems. Today's events demonstrate why. I call on the Council to convene in emergency session and to authorize the protective measures this city has too long deferred."</em> — Theron Ashwick, Senior Councilor, Radiant Core</p></div>
+
+      <div class="gm-note"><div class="tag">GM Info — What Theron is doing</div>
+      <p>He's not wrong that the blast was deliberate. He is using it to advance the military vote. Sevan Vael will call for calm tomorrow. Mira Ashton will argue for investigation over expansion. The party doesn't need to meet these people yet — but the city is arguing around them while they eat cold bread in the dark.</p></div>
+
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">— Offscreen: Wren & Ash —</div>
+
+      <div class="gm-note"><div class="tag">GM Info — Radical wing reaction (not onscreen unless players tracked Ash)</div>
+      <p><strong>Wren</strong> (Green Covenant radical leader, not present): calculating whether the operation achieved its objective. Secondary hub down ✓. Civilian injuries — acceptable cost in her framework. Political backlash — expected. She is already planning the next move. <strong>Ash</strong> (her second): troubled. He watched from the rooftop. He left when the blast came early — maintenance worker still inside. If players saw him: he's rattled. If Ash approached later (unlikely same night): he'd be unreachable. Session 4+ thread.</p></div>
+
+      <div class="ref-box"><div class="ref-title">Evening character beats — say one at a time</div>
+      <ul>
+        <li><span class="player-tag tag-druid">🌿 Greer</span> — The blast pattern was surgical. Someone hated the grid more than the people — or hated the people enough to accept them as cost. Thorn would say: <em>watch what grows in the wound.</em></li>
+        <li><span class="player-tag tag-wizard">✨ Lurielle</span> — The resonance spike matched her journal notes. The Endless Eye's frequency language, here, in a street explosion. The city is connected to something she was told was theoretical.</li>
+        <li><span class="player-tag tag-rogue">🗡️ Basil</span> — Chaos is opportunity. Also chaos is witnesses. He noticed who profited from the sweep distraction — pickpockets, yes, but also someone photographing the hub wreckage from a safe window. Guild? Council? File it.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ NPCs ══ -->
+  <div class="section" data-cat="npc">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">👤</div>
+      <div style="flex:1;"><div class="section-label">NPCs — Session 3 Profiles</div><div class="section-sub">Brinne · Lida · Ora · Ash (glimpse) · Carr · Theron (statement)</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">Reference</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="npc-card">
+        <div class="npc-name">Brinne Halloway</div>
+        <div class="npc-role">Eastwick Cooperative chair · Human · 46 · She/her</div>
+        <div class="npc-voice">🎭 Quietly fierce. Lists, not speeches. "Ask something specific." Assesses capability by what people do, not what they promise.</div>
+        <p>Running the most accurate picture of Eastwick's emergency preparedness in the city. Mutual aid stockpile in the Cooperative basement. In contact with Genna Cradle (Ironwright) twice this month. Will trust players who carry injured or load candle crates without performance.</p>
+        <div class="npc-secret">GM only: She expected grid failure but not violence. The explosion accelerates her timeline — by Day 3 she's filing a Charter complaint about repair priority. Not connected to the bombers.</div>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Lida Birch</div>
+        <div class="npc-role">Lida's Bake proprietor · Human · 55 · She/her</div>
+        <div class="npc-voice">🎭 Unhurried, flour-dusted, strongest coffee in the Ward. Knows the neighborhood at 4am. Doesn't judge; listens.</div>
+        <p>Social hub for Eastwick's night-and-dawn crowd. End of Cooperative meetings. Free bread for helpers tonight. Accurate gossip, no faction allegiance.</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Ora Finch</div>
+        <div class="npc-role">Mending Room healer · Halfling · 67 · She/her</div>
+        <div class="npc-voice">🎭 Still presence. "Tell me what hurts." Refers beyond her limits without embarrassment.</div>
+        <p>Best medical outcome for serious injuries if reached before sundown. Sees pattern injuries from Manufactories, Network exposure, substance crisis — Toma's burns are different. Will describe incendiary coupling damage if asked.</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Ash (second name unknown to public)</div>
+        <div class="npc-role">Wren's second · Green Covenant radical wing · Human · early 20s · He/him</div>
+        <div class="npc-voice">🎭 Young, scared under competence. Watches when he should run. One true line if cornered: "I didn't know they'd still be inside."</div>
+        <p>Rooftop observer, two blocks from hub. Leaves quickly if spotted. Not the bomber — the cell's eyes. Troubled by injuries. Potential turn later; not today.</p>
+        <div class="npc-secret">GM only: Ash will meet a material supplier at Pauper's Gate Taproom on Day 12 (timeline). Players who ID him now can connect threads in Session 5+.</div>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Sergeant Pel Carr</div>
+        <div class="npc-role">City watch · Lamplight Ward detail · Human · 40s · He/him</div>
+        <div class="npc-voice">🎭 Tired competence. Form-filling professionalism. Not a villain — a man with 200 angry civilians and one pen.</div>
+        <p>Runs the hub cordon sweep. Responds to helpful witnesses. Investigation goes nowhere above his pay grade. Remember cooperative civilians.</p>
+      </div>
+
+      <div class="npc-card">
+        <div class="npc-name">Theron Ashwick</div>
+        <div class="npc-role">Senior Councilor · Expansionist leader · Human · 50s · He/him</div>
+        <div class="npc-voice">🎭 Public voice: measured grave authority. Private (later): vote architect. Statement is polished same-day response — he was ready for something like this.</div>
+        <p>Not at the scene. Statement within 4 hours. Uses blast to argue Vault Guard expansion and military readiness. Speaks to Sevan Vael twice at Day 3 Council — moving him toward something that isn't investigation.</p>
+        <div class="npc-secret">GM only: Theron has a curated Heart timeline from Lyra Vael. He believes expansion is survival. He's not performing concern — he's performing inevitability.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ MAP & FORENSICS REF ══ -->
+  <div class="section" data-cat="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">📍</div>
+      <div style="flex:1;"><div class="section-label">Map & Forensics Reference</div><div class="section-sub">Eastwick hub · secondary feed · incendiary profile</div></div>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">GM Reference</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="ref-box"><div class="ref-title">Geography — verbal map</div>
+      <ul>
+        <li><strong>Eastwick:</strong> Eastern residential neighborhood, Lamplight Ward. Working families, Cooperative hall, Lida's Bake on Wire Road.</li>
+        <li><strong>Hub site:</strong> Brick utility structure, alley-access, secondary feed node — splits to Eastwick grid + Entertainment Quarter branch.</li>
+        <li><strong>NOT hit:</strong> Main distribution spine, Vault District feeds, Radiant Core primary nodes.</li>
+        <li><strong>Protest:</strong> 3 blocks west (Lamplight/Shadowside border). Hears blast; panic flows east into Eastwick streets.</li>
+        <li><strong>Copperstring:</strong> Entertainment Quarter, ~2 blocks from hub — loses power mid sound-check.</li>
+        <li><strong>Mending Room:</strong> Halfling Quarter — 25 min walk from hub; 15 min if cutting through alleys with a guide.</li>
+      </ul></div>
+
+      <div class="ref-box"><div class="ref-title">Forensics — what investigators learn</div>
+      <ul>
+        <li><strong>Device:</strong> Non-standard incendiary, directional, aimed at coupling architecture — not max yield.</li>
+        <li><strong>Knowledge required:</strong> Hub-specific layout. Insider schematics or long observation. Not amateur.</li>
+        <li><strong>Intent profile:</strong> Disrupt eastern Ward + symbolic Entertainment Quarter hit. Calculated, not random terror.</li>
+        <li><strong>NOT present in evidence:</strong> Green Covenant sigils, protest leaflets, Guild marks on device (Guild chalk on Ash's dropped token is logistics, not authorship).</li>
+        <li><strong>Watch conclusion (official):</strong> "Deliberate sabotage. Unknown actor." File deprioritized by Day 5 without player push.</li>
+      </ul></div>
+
+      <div class="ref-box"><div class="ref-title">Power failure cascade — evening state</div>
+      <ul>
+        <li>Eastwick: fully dark overnight.</li>
+        <li>Copperstring block: dark; adjacent Entertainment Quarter strips flicker.</li>
+        <li>Border/protest zone: still lit (different feed).</li>
+        <li>Radiant Core / Vault: unaffected — visible glow on horizon, cruel contrast.</li>
+        <li>Day 9 (canon): repair restores ~70% — commercial prioritized over residential per Brinne's later complaint.</li>
+      </ul></div>
+
+    </div>
+  </div>
+
+  <!-- ══ SESSION END ══ -->
+  <div class="section" data-cat="morning">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--info-bg);color:var(--info-text);">🏛️</div>
+      <div style="flex:1;"><div class="section-label">Session End — The Plateau</div><div class="section-sub">Emergency Council announced · calculated blast · lights still out</div></div>
+      <span class="section-pill" style="background:var(--info-bg);color:var(--info-text);border:1px solid rgba(74,127,181,0.3);">~10 min</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body open">
+
+      <div class="gm-say"><div class="tag">GM Say — Final beat (read slowly)</div>
+      <p>"Word comes after dark — not from the watch, from a crier running Wire Road with a fresh broadsheet. <em>Emergency Council session. Tomorrow morning. Accord Chamber gallery open to the public.</em> The city will perform its response while Eastwick eats by candlelight. You have names now — Toma, Brinne, maybe Ash's hood, maybe Sergeant Carr's tired eyes. You have questions the Council won't answer tomorrow. You have the taste of copper in the air where the hum died."</p>
+      <p style="margin-top:10px;">"Someone knew that hub. Someone chose secondary over catastrophic. Someone watched from a roof and ran. The protest didn't do this — but the protest and the blast will be chained together anyway. That's politics. You're standing in the dark between them."</p></div>
+
+      <div class="handout"><div class="handout-title">Plateau — what is now true</div>
+      <p>• Eastwick + Copperstring section: dark. • Three injured; one serious if unattended. • Watch investigation: going nowhere without players. • Theron Ashwick: framing terrorism → military expansion. • Emergency Council: Day 3 morning. • The blast was <strong>calculated</strong> — architecture knowledge, feed map intent, non-standard incendiary. • Wren calculating; Ash troubled. • Session 4 hook: gallery, investigation, Brinne's complaint, Ash trail.</p></div>
+
+      <div class="gm-say"><div class="tag">GM Say — Stop here</div>
+      <p>"The candles gutter. Somewhere the Network hums on — just not here. We'll pick up in the morning, when the city puts on its public face."</p></div>
+
+      <div class="tip-box"><span class="tip-icon" style="color:var(--accent-gold);">💡</span><p>End on the announcement, not the Council session itself. Day 3 emergency session is Session 4's opening or first act. Let them sit with the dark.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ QUICK REF ══ -->
+  <div class="quick-ref">
+    <div class="quick-ref-title">⚡ GM Cheat Sheet — Session 3</div>
+    <div class="stat-grid">
+      <div class="stat-item"><strong>Date:</strong> Gold Month 8, Day 2 in Lumencrest</div>
+      <div class="stat-item"><strong>Time:</strong> Blast mid-afternoon</div>
+      <div class="stat-item"><strong>Hub:</strong> Eastwick secondary feed (not main node)</div>
+      <div class="stat-item"><strong>Distance:</strong> Hub ↔ protest = 3 blocks</div>
+      <div class="stat-item"><strong>Injured:</strong> 3 (Toma serious · Pella moderate · Jex minor)</div>
+      <div class="stat-item"><strong>Dark:</strong> Eastwick + Copperstring section</div>
+      <div class="stat-item"><strong>Brinne:</strong> Cooperative chair · candle stockpile</div>
+      <div class="stat-item"><strong>Lida:</strong> 3cp coffee+rolls · gossip hub</div>
+      <div class="stat-item"><strong>Ora Finch:</strong> Mending Room · Halfling Quarter</div>
+      <div class="stat-item"><strong>Ash:</strong> Rooftop 2 blocks · leaves fast</div>
+      <div class="stat-item"><strong>Stabilize Toma:</strong> Knowledge DIF 12 / Instinct DIF 13</div>
+      <div class="stat-item"><strong>Watch sweep:</strong> Presence DIF 13 · Carr</div>
+      <div class="stat-item"><strong>Pursuit:</strong> Agility DIF 12 · Finesse DIF 14 rooftops</div>
+      <div class="stat-item"><strong>Forensics:</strong> Knowledge DIF 14 custom incendiary</div>
+      <div class="stat-item"><strong>Next:</strong> Emergency Council Day 3 AM</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSection(h){const o=h.classList.contains('open');h.classList.toggle('open',!o);h.nextElementSibling.classList.toggle('open',!o);}
+function filterSections(cat,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>{
+    if(cat==='all'||s.dataset.cat===cat)s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+}
+</script>
+</body>
+</html>

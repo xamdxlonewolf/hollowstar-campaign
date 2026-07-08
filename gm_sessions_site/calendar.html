@@ -68,6 +68,11 @@ textarea.day-note:focus{outline:none;border-color:var(--accent-gold);}
   <div class="site-nav-brand">⭐ HollowStar GM</div>
   <a href="index.html">🏠 Hub</a>
   <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="lumencrest.html">🏙️ Lumencrest</a>
+  <a href="lumencrest-lamplight.html">💡 Lamplight</a>
+  <a href="lumencrest-shadowside.html">🌑 Shadowside</a>
   <a href="emberford.html">🏘️ Emberford</a>
   <a href="calendar.html" class="active">📅 Calendar</a>
   <a href="notes.html">📝 Notes</a>
@@ -332,9 +337,14 @@ function showPanel(name, btn){
 loadData();
 renderCalendar();
 renderSessions();
-// Pre-mark session 1
+// Pre-mark sessions
 const s1key = dateKey(700,8,8);
-if(!state.sessions[s1key]){ state.sessions[s1key]='Session 1'; saveData(); renderCalendar(); renderSessions(); }
+if(!state.sessions[s1key]){ state.sessions[s1key]='Session 1'; }
+const s2key = dateKey(700,8,10);
+if(!state.sessions[s2key]){ state.sessions[s2key]='Session 2'; }
+const s3key = dateKey(700,8,11);
+if(!state.sessions[s3key]){ state.sessions[s3key]='Session 3'; }
+saveData(); renderCalendar(); renderSessions();
 </script>
 </body>
 </html>
