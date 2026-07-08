@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locations — HollowStar GM</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:2rem;}
+.loc-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;transition:border-color 0.2s;}
+.loc-card:hover{border-color:var(--border-med);}
+.loc-card.lumencrest{border-top:3px solid var(--hope);}
+.loc-card.emberford{border-top:3px solid var(--warn);}
+.loc-card .card-icon{font-size:28px;margin-bottom:12px;}
+.loc-card .card-title{font-family:var(--font-body);font-size:17px;color:var(--accent-gold-light);margin-bottom:5px;}
+.loc-card.lumencrest .card-title{color:var(--hope-text);}
+.loc-card.emberford .card-title{color:var(--warn-text);}
+.loc-card .card-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;}
+.loc-card .card-tags{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap;}
+.loc-card .card-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text-muted);}
+.loc-links{display:flex;flex-direction:column;gap:6px;}
+.loc-link{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);text-decoration:none;padding:9px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-secondary);transition:all 0.15s;}
+.loc-link:hover{border-color:var(--accent-gold);color:var(--accent-gold-light);background:rgba(201,168,76,0.06);}
+.loc-link .loc-link-icon{font-size:15px;flex-shrink:0;}
+.loc-status{font-size:11px;color:var(--hope-text);margin-top:12px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-brand">⭐ HollowStar GM</div>
+  <a href="index.html">🏠 Hub</a>
+  <a href="session1.html">📖 Session 1</a>
+  <a href="session2.html">📖 Session 2</a>
+  <a href="session3.html">📖 Session 3</a>
+  <a href="locations.html" class="active">📍 Locations</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="notes.html">📝 Notes</a>
+  <a href="gmscreen.html">🎲 GM Screen</a>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Location Reference</div>
+  <h1>Where the Story Happens</h1>
+  <p class="subtitle">Pick a location for player-askable detail — inns, NPCs, districts, maps, and gossip. Each card lists every page available for that place.</p>
+</header>
+
+<div class="page-body">
+
+  <div class="hub-grid">
+
+    <div class="loc-card lumencrest">
+      <div class="card-icon">🏙️</div>
+      <div class="card-title">Lumencrest</div>
+      <div class="card-desc">The electrified city at the heart of the arc. Arrival, districts, cable cars, currency, and an interactive illustrated map with player/GM layers.</div>
+      <div class="card-tags">
+        <span class="card-tag">~87,000 residents</span>
+        <span class="card-tag">Lamplight Ward</span>
+        <span class="card-tag">Shadowside</span>
+        <span class="card-tag">Cable Car</span>
+      </div>
+      <div class="loc-links">
+        <a href="lumencrest.html" class="loc-link"><span class="loc-link-icon">🏙️</span> Lumencrest — city overview &amp; arrival</a>
+        <a href="lumencrest-map.html" class="loc-link"><span class="loc-link-icon">🗺️</span> City Map — illustrated map with hotspots</a>
+        <a href="lumencrest-lamplight.html" class="loc-link"><span class="loc-link-icon">💡</span> Lamplight Ward — inns, NPCs, gossip</a>
+        <a href="lumencrest-shadowside.html" class="loc-link"><span class="loc-link-icon">🌑</span> Shadowside — night market, maze quarter</a>
+      </div>
+      <div class="loc-status">● 4 pages ready</div>
+    </div>
+
+    <div class="loc-card emberford">
+      <div class="card-icon">🏘️</div>
+      <div class="card-title">Emberford &amp; Ember Grove</div>
+      <div class="card-desc">Starting town and sacred grove. Town layout, inn rooms &amp; prices, food &amp; drink menu, local gossip, shops, NPCs, and full grove descriptions.</div>
+      <div class="card-tags">
+        <span class="card-tag">The Emberflow Arms</span>
+        <span class="card-tag">Shops &amp; NPCs</span>
+        <span class="card-tag">Grove Lore</span>
+      </div>
+      <div class="loc-links">
+        <a href="emberford.html" class="loc-link"><span class="loc-link-icon">🏘️</span> Emberford &amp; Ember Grove</a>
+      </div>
+      <div class="loc-status">● 1 page ready</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.site-nav a').forEach(a => {
+  if(a.href === window.location.href) a.classList.add('active');
+  else a.classList.remove('active');
+});
+</script>
+</body>
+</html>
