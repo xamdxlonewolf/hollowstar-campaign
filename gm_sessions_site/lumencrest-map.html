@@ -22,7 +22,7 @@
 .map-viewport{width:100%;height:min(78vh,820px);cursor:grab;overflow:hidden;touch-action:none;background:#1a1714;}
 .map-viewport.dragging{cursor:grabbing;}
 .map-transform{transform-origin:0 0;will-change:transform;}
-.map-image-wrap{position:relative;width:900px;max-width:none;margin:0 auto;line-height:0;}
+.map-image-wrap{position:relative;width:100%;max-width:1100px;margin:0 auto;line-height:0;}
 .map-image-wrap img{width:100%;height:auto;display:block;user-select:none;-webkit-user-drag:none;}
 .map-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 .map-overlay .hotspot{pointer-events:all;fill:rgba(201,168,76,0);stroke:rgba(201,168,76,0);stroke-width:0.35;cursor:pointer;transition:fill 0.12s,stroke 0.12s;}
@@ -108,10 +108,8 @@ body.mode-gm .layer-toggle.gm-layer-control{display:flex;}
       <div class="map-viewport" id="viewport">
         <div class="map-transform" id="map-transform">
           <div class="map-image-wrap" id="map-wrap">
-            <img id="map-img" alt="Lumencrest city map" width="2000" height="2000"
-              src="assets/maps/lumencrest-gm.jpg"
-              srcset="assets/maps/lumencrest-gm.jpg 1x, assets/maps/lumencrest-gm@2x.jpg 2x"
-              sizes="900px">
+            <img id="map-img" alt="Lumencrest city map" width="1536" height="1024"
+              src="assets/maps/lumencrest-gm.png">
             <!-- Hotspots use viewBox 0 0 100 100 (percent of image). Tune in HOTSPOTS below if clicks feel off. -->
             <svg class="map-overlay" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
               <g id="hotspots"></g>
@@ -121,7 +119,7 @@ body.mode-gm .layer-toggle.gm-layer-control{display:flex;}
         </div>
       </div>
       <div class="map-missing" id="map-missing">
-        <p>Map image not found. Add <code>assets/maps/lumencrest-player.jpg</code> and <code>lumencrest-gm.jpg</code> (plus optional <code>@2x</code> retina copies).</p>
+        <p>Map image not found. Add <code>assets/maps/lumencrest-player.png</code> and <code>lumencrest-gm.png</code>.</p>
       </div>
     </div>
     <p class="map-hint">Drag empty space to pan. Click a district or gold pin for lore. Enable <em>Show click regions</em> to calibrate hotspot alignment.</p>
@@ -133,7 +131,7 @@ body.mode-gm .layer-toggle.gm-layer-control{display:flex;}
     <div class="pop" id="detail-pop">~87,000 residents</div>
     <div class="badge-row" id="detail-badges"></div>
     <div id="detail-body">
-      <p>Illustrated map with click regions aligned to a circular layout. Toggle <strong>Show click regions</strong> if hotspots need tuning after you swap in final art.</p>
+      <p>Click districts on the illustrated map for canon detail. Enable <strong>Show click regions</strong> to verify hotspot alignment.</p>
     </div>
     <div class="gm-layer-note">GM map shows underground paths drawn on your artwork. GM pins mark sewer access and hidden sites.</div>
     <div class="legend-mini">
@@ -146,89 +144,77 @@ body.mode-gm .layer-toggle.gm-layer-control{display:flex;}
 </div>
 
 <script>
-/* District polygons tuned for circular walled map, viewBox 0-100. Adjust if your art drifts. */
+/* Hotspots: viewBox 0-100, tuned for 1536x1024 landscape art (city left, Silverrun right). */
 const HOTSPOTS = [
-  { id: 'core', label: 'Radiant Core', points: '44,44 56,44 56,56 44,56', note: 'Solar Citadel / Inner City on art' },
-  { id: 'vault', label: 'Vault District', points: '47,52 53,52 53,57 47,57' },
-  { id: 'shadowside', label: 'Shadowside', points: '50,50 34,24 50,16 66,24' },
-  { id: 'academic', label: 'Academic Quarter', points: '50,50 66,24 78,34 64,40' },
-  { id: 'lamplight', label: 'Lamplight Ward', points: '50,50 64,40 82,44 76,58 58,52' },
-  { id: 'halfling', label: 'Halfling Quarter', points: '50,50 76,58 70,76 52,72 48,58' },
-  { id: 'manufactories', label: 'Manufactories', points: '50,50 22,38 16,52 28,66 44,54' },
-  { id: 'warrens', label: 'Warrens (Shadowside edge)', points: '50,50 28,66 34,80 48,72' },
-  { id: 'ironworks', label: 'Ironworks (south)', points: '50,50 48,72 50,82 52,72' },
-  { id: 'gate-north', label: "Pauper's Gate", points: '46,10 54,10 54,15 46,15' },
-  { id: 'gate-south', label: 'Copper Gate', points: '46,84 54,84 54,89 46,89' },
-  { id: 'gate-west', label: 'West Gate', points: '9,46 14,46 14,54 9,54' },
-  { id: 'gate-east', label: 'East Gate', points: '86,46 91,46 91,54 86,54' }
+  { id: 'core', label: 'Radiant Core', points: '35,40 45,40 45,52 35,52' },
+  { id: 'shadowside', label: 'Shadowside', points: '40,50 27,22 40,15 53,22' },
+  { id: 'academic', label: 'Academic Quarter', points: '40,50 53,22 65,32 54,40' },
+  { id: 'lamplight', label: 'Lamplight Ward', points: '40,50 54,40 66,44 62,56 50,52' },
+  { id: 'halfling', label: 'Halfling Quarter', points: '40,50 62,56 55,72 43,68' },
+  { id: 'vault', label: 'Vault District', points: '40,50 43,68 40,78 37,68' },
+  { id: 'manufactories', label: 'The Manufactories', points: '40,50 17,44 11,50 17,62 33,54' },
+  { id: 'gate-north', label: "Pauper's Gate", points: '37,12 43,12 43,17 37,17' },
+  { id: 'gate-south', label: 'Copper Gate', points: '37,80 43,80 43,85 37,85' },
+  { id: 'gate-west', label: 'West Gate', points: '10,47 15,47 15,53 10,53' },
+  { id: 'gate-east', label: 'East Gate', points: '62,47 67,47 67,53 62,53' }
 ];
 
 const PINS = [
-  { id: 'accord-chamber', x: 50, y: 46, gm: false },
-  { id: 'vault-gate', x: 50, y: 54, gm: false },
-  { id: 'luminarium', x: 40, y: 36, gm: false },
-  { id: 'merchant-square', x: 70, y: 44, gm: false },
-  { id: 'great-press', x: 24, y: 48, gm: false },
-  { id: 'common-green', x: 66, y: 70, gm: false },
-  { id: 'maze-quarter', x: 58, y: 22, gm: false },
-  { id: 'old-pen', x: 50, y: 13, gm: true },
-  { id: 'pit', x: 26, y: 52, gm: true },
-  { id: 'sewer-1', x: 50, y: 12, gm: true },
-  { id: 'sewer-2', x: 58, y: 22, gm: true },
-  { id: 'sewer-3', x: 64, y: 42, gm: true },
-  { id: 'sewer-4', x: 22, y: 48, gm: true },
-  { id: 'sewer-5', x: 88, y: 46, gm: true }
+  { id: 'accord-chamber', x: 40, y: 45, gm: false },
+  { id: 'luminarium', x: 52, y: 32, gm: false },
+  { id: 'merchant-square', x: 58, y: 48, gm: false },
+  { id: 'common-green', x: 54, y: 66, gm: false },
+  { id: 'great-press', x: 22, y: 50, gm: false },
+  { id: 'vault-gate', x: 40, y: 70, gm: false },
+  { id: 'maze-quarter', x: 48, y: 24, gm: false },
+  { id: 'old-pen', x: 40, y: 14, gm: true },
+  { id: 'pit', x: 24, y: 54, gm: true },
+  { id: 'sewer-1', x: 40, y: 13, gm: true },
+  { id: 'sewer-2', x: 50, y: 24, gm: true },
+  { id: 'sewer-3', x: 56, y: 44, gm: true },
+  { id: 'sewer-4', x: 20, y: 50, gm: true },
+  { id: 'sewer-5', x: 64, y: 50, gm: true }
 ];
 
 const MAP_FILES = {
-  player: { src: 'assets/maps/lumencrest-player.jpg', srcset: 'assets/maps/lumencrest-player.jpg 1x, assets/maps/lumencrest-player@2x.jpg 2x' },
-  gm: { src: 'assets/maps/lumencrest-gm.jpg', srcset: 'assets/maps/lumencrest-gm.jpg 1x, assets/maps/lumencrest-gm@2x.jpg 2x' }
+  player: { src: 'assets/maps/lumencrest-player.png' },
+  gm: { src: 'assets/maps/lumencrest-gm.png' }
 };
 
 const DATA = {
   shadowside: {
     title: 'Shadowside', pop: 'North - ~15,000', badges: [['loc-shadow','No power'],['loc-shadow','Night Market']],
-    body: '<p>The unlit district. On your map: top/north dark wedge. Pauper\'s Gate at north wall. Maze Quarter inside.</p><ul><li><strong>Canon:</strong> Night Market, candles only, minimal watch</li><li><strong>Art labels:</strong> Shadowside, Warrens, Dragon\'s Nest (rename if revising art)</li></ul>',
-    gm: '<p><strong>GM:</strong> Sewer (1)(2). Old Pen\'s Taproom at north gate. Underground clubs at Lamplight border.</p>'
+    body: '<p>Dark northern wedge on the map. Pauper\'s Gate at the north wall. Night Market, Maze Quarter inside.</p>',
+    gm: '<p><strong>GM:</strong> Sewer access (1)(2) marked on GM map. Old Pen\'s Taproom at north gate.</p>'
   },
   manufactories: {
     title: 'The Manufactories', pop: 'West - ~25,000', badges: [['loc-industrial','Rationed'],['loc-industrial','Unrest']],
-    body: '<p>Industrial west + south foundries. Great Press chimney. Art may say Ironworks, Iron District, Manufactories.</p>',
-    gm: '<p><strong>GM:</strong> The Pit below Factory Row. Sewer (4). Tunnel to Shadowside.</p>'
+    body: '<p>Western industrial wedge. Great Press chimneys. Power rationed; factory floors prioritized over housing.</p>',
+    gm: '<p><strong>GM:</strong> The Pit below Factory Row. Sewer (4). Tunnel routes on GM map.</p>'
   },
   academic: {
     title: 'Academic Quarter', pop: '~5,000', badges: [['loc-academic','Luminarium']],
-    body: '<p>Scholar\'s Quarter on art. Luminarium campus, Archives dome, Innovation Row.</p>',
-    gm: '<p><strong>GM:</strong> The Meridian club behind Innovation Row.</p>'
+    body: '<p>Northeast wedge. Luminarium campus labeled on map. Innovation Row, Archives.</p>',
+    gm: '<p><strong>GM:</strong> Dry Chambers and underground clubs marked in Academic Quarter on GM map. The Meridian behind Innovation Row.</p>'
   },
   core: {
     title: 'Radiant Core', pop: 'Center - ~8,000', badges: [['loc-core','Council'],['loc-core','Full power']],
-    body: '<p>Solar Citadel / Inner City on art = Accord Chamber and Council estates. Never brownouts.</p>',
+    body: '<p>Central hub. Accord Chamber dome. Cable car lines radiate outward. Never brownouts.</p>',
     gm: ''
   },
   vault: {
     title: 'Vault District', pop: 'Restricted', badges: [['loc-core','Vault Guard']],
-    body: '<p>Heart entrance below center. Vault Gate on south side of core ring.</p>',
-    gm: '<p><strong>GM:</strong> Three monitored sewer connections on perimeter.</p>'
+    body: '<p>Southern fortified wedge. Heart entrance underground. Labeled restricted on map.</p>',
+    gm: '<p><strong>GM:</strong> Sewer monitors on outer perimeter. Pre-city passages may connect below.</p>'
   },
   lamplight: {
     title: 'Lamplight Ward', pop: 'East - ~20,000', badges: [['loc-ward','Merchant Square']],
-    body: '<p>Merchant\'s Ward / Luminous Market on art. Commercial middle class. <a href="lumencrest-lamplight.html" style="color:var(--accent-gold)">District page</a></p>',
-    gm: '<p><strong>GM:</strong> Night Pharmacy trapdoor (3). Velvet Room via theatre loading bay.</p>'
+    body: '<p>Eastern electrified wedge. Merchant Square. <a href="lumencrest-lamplight.html" style="color:var(--accent-gold)">District page</a></p>',
+    gm: '<p><strong>GM:</strong> Sewer (3) at Shadowside border. Lamp boundary noted on GM map.</p>'
   },
   halfling: {
-    title: 'Halfling Quarter', pop: 'Southeast - ~15,000', badges: [['loc-quarter','Feeds city']],
-    body: '<p>Humble Quarter / Harbor District on art maps here. Common Green, breweries, lower rooflines.</p>',
-    gm: ''
-  },
-  warrens: {
-    title: 'The Warrens', pop: 'Southwest Shadowside edge', badges: [['loc-shadow','Dark quarter']],
-    body: '<p>Dense dark quarter on art - treat as Shadowside extension for play. Same mood: unlit, self-sufficient.</p>',
-    gm: '<p><strong>GM:</strong> Tunnel access to Manufactories and Underground.</p>'
-  },
-  ironworks: {
-    title: 'The Ironworks', pop: 'South Manufactories', badges: [['loc-industrial','Factories']],
-    body: '<p>Southern industrial gate area. Part of Manufactories district - workers\' housing and forges near Copper Gate approach.</p>',
+    title: 'Halfling Quarter', pop: 'Southeast - ~15,000', badges: [['loc-quarter','Common Green']],
+    body: '<p>Southeast wedge. Common Green and breweries. Feeds the whole city.</p>',
     gm: ''
   },
   'gate-north': { title: "Pauper's Gate", pop: 'North gate', badges: [['loc-shadow','Kingroad']],
@@ -297,7 +283,7 @@ function setMode(mode, btn) {
   document.querySelectorAll('.mode-toggle').forEach(b => b.classList.toggle('active', b === btn));
   const files = MAP_FILES[mode];
   mapImg.src = files.src;
-  mapImg.srcset = files.srcset;
+  mapImg.removeAttribute('srcset');
   document.querySelector('label.gm-layer-control').style.display = mode === 'gm' ? 'flex' : 'none';
 }
 
