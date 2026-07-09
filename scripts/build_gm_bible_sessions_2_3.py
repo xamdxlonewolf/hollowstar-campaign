@@ -217,7 +217,7 @@ def cover_and_toc() -> str:
 <div class="cover">
   <div class="kicker">HollowStar Campaign</div>
   <h1>Lights Over Lumencrest</h1>
-  <p class="subtitle">An Opening Adventure Module for Sessions 1-3<br>with full preparation for Sessions 2 and 3</p>
+  <p class="subtitle">An Opening Adventure Module Through Session 3<br>with full preparation for Sessions 2 and 3</p>
   <p class="meta">GM Only. Contains secrets, faction truth, NPC motives, and future hooks.<br>Gold Month 8, 700 AR · Daggerheart · Greer, Lurielle, Basil</p>
 </div>
 
@@ -243,6 +243,7 @@ def introduction() -> str:
 {p("This document is meant to be read like an adventure module rather than used as a checklist. The purpose is not to lock the table into a single path. The purpose is to give the Game Master a deep enough grasp of what is happening in Lumencrest that, when the players move sideways, the world can answer with confidence.")}
 {p("The first version of this material was a bible in the narrow sense: a dense reference that collected scenes, secrets, and mechanics. This version is a campaign book. It explains why each scene matters, what the city is doing before the players touch it, what NPCs want when they speak, and which truths should remain below the surface until the party earns them. It still contains the practical material needed to run the sessions, but the practical material is embedded in context so that it is easier to absorb before the table.")}
 {p("The book begins with Session 1 because that session gives emotional shape to everything that follows. Ember Grove is the wound that sends the party west. It introduces House Vael, Green Covenant pressure, Basil's heist, Lurielle's research, and Greer's obligation to listen to what the land is saying. Sessions 2 and 3 are the main focus. They are where Lumencrest becomes real and then immediately reveals that its order is brittle.")}
+{sidebar("Current scope", "This volume intentionally stops at Session 3 because that is the prepared material right now. It includes Session 1 as the prologue and fully supports Sessions 2 and 3. As future sessions are planned, add them as new chapters after Session 3 rather than rewriting this book around table outcomes.")}
 {sidebar("Using this over time", "Treat this as the first volume of a growing adventure module. It should not be rewritten after every player choice. If the party changes an outcome, mark it in your table notes and keep the book as the prepared baseline. Later volumes can describe what the world would have done, what it did at your table, and what changed because of the party.")}
 """
 
@@ -463,6 +464,8 @@ def build_markdown_summary() -> str:
     return """# Lights Over Lumencrest — Opening Adventure Module
 
 **GM Only** — Prose-first adventure module covering the Ember Grove prologue and the Lumencrest arrival/explosion sessions.
+
+This volume intentionally goes **through Session 3 only** because that is the currently planned material. Future planned sessions should be appended as new chapters over time.
 
 | File | Purpose |
 |------|---------|

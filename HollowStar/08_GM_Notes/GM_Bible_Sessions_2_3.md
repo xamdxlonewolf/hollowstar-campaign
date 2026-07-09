@@ -2,6 +2,8 @@
 
 **GM Only** — Prose-first adventure module covering the Ember Grove prologue and the Lumencrest arrival/explosion sessions.
 
+This volume intentionally goes **through Session 3 only** because that is the currently planned material. Future planned sessions should be appended as new chapters over time.
+
 | File | Purpose |
 |------|---------|
 | `GM_Bible_Sessions_2_3.pdf` | Primary print/tablet reading copy |
