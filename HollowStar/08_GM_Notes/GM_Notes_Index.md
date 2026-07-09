@@ -15,7 +15,7 @@ Everything in this section is for the GM only. Players should not read these fil
 | **[[08_GM_Notes/Secrets_and_Revelations|Secrets & Revelations]]** | Master list of every secret in the vault, tiered by impact, with pacing guide |
 | **[[08_GM_Notes/Daggerheart Integration|Daggerheart Integration]]** | Hope/Fear, Stress, Countdown Clocks, Community mechanics — quick reference |
 | **[[08_GM_Notes/Session Prep|Session Prep]]** | Before/during/after session checklist — quick reference |
-| **[[08_GM_Notes/GM_Bible_Sessions_2_3|GM Bible — Sessions 2 & 3]]** | Full printable prep: acts, secrets, factions, NPCs, Fear appendix (PDF + HTML) |
+| **[[08_GM_Notes/GM_Bible_Sessions_2_3|Lights Over Lumencrest — Opening Adventure Module]]** | Prose-first PDF/HTML sourcebook for Session 1 context and full Sessions 2–3 prep: Lumencrest, factions, secrets, NPCs, and table appendix |
 
 ---
 
