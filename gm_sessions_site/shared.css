@@ -298,8 +298,15 @@ body.hs-session-shell .nav-tabs{top:auto;position:relative;background:transparen
 
 .hs-clocks-wrap{flex:1;min-width:200px;}
 .hs-clocks-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;}
-.hs-clocks{display:flex;flex-wrap:wrap;gap:8px;}
-.hs-clock-item{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:7px 9px;min-width:140px;flex:1;max-width:220px;}
+.hs-clocks-row{
+  display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;
+  max-width:100%;vertical-align:top;
+}
+.hs-clocks{display:contents;}
+.hs-clock-item{
+  background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:7px 9px;flex:0 0 auto;width:160px;max-width:160px;
+}
 .hs-clock-head{display:flex;align-items:center;gap:4px;margin-bottom:5px;}
 .hs-clock-name{flex:1;background:transparent;border:none;color:var(--text-secondary);font-size:11px;font-weight:700;font-family:var(--font-ui);min-width:0;}
 .hs-clock-name:focus{outline:none;color:var(--accent-gold-light);}
@@ -318,16 +325,17 @@ body.hs-session-shell .nav-tabs{top:auto;position:relative;background:transparen
   -webkit-appearance:none;-moz-appearance:none;appearance:none;
 }
 .hs-clock-add{
-  margin-top:6px;font-size:11px;font-weight:600;font-family:var(--font-ui);
+  margin-top:0;flex:0 0 auto;align-self:center;font-size:11px;font-weight:600;font-family:var(--font-ui);
   padding:3px 10px;border-radius:99px;border:1px solid var(--border-med);background:transparent;
   color:var(--text-muted);cursor:pointer;transition:all 0.15s;
 }
 .hs-clock-add:hover{border-color:var(--accent-gold);color:var(--accent-gold);}
+.hs-clock-add:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px;}
 
 @media(min-width:1200px){
   .hs-instrument-inner{align-items:center;}
-  .hs-clocks{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;}
-  .hs-clock-item{flex:0 0 auto;min-width:150px;max-width:180px;}
+  .hs-clocks-row{flex-wrap:nowrap;}
+  .hs-clock-item{width:150px;max-width:150px;}
 }
 
 /* Peek panel */

@@ -803,8 +803,10 @@
         '</div>' +
         '<div class="hs-clocks-wrap">' +
           '<div class="hs-clocks-label">Clocks</div>' +
-          '<div class="hs-clocks" data-hs-clocks></div>' +
-          '<button type="button" class="hs-clock-add" data-hs-add-clock>+ Clock</button>' +
+          '<div class="hs-clocks-row">' +
+            '<div class="hs-clocks" data-hs-clocks></div>' +
+            '<button type="button" class="hs-clock-add" data-hs-add-clock>+ Clock</button>' +
+          '</div>' +
         '</div>' +
       '</div>';
 
