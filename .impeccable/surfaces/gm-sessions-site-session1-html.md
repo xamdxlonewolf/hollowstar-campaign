@@ -17,7 +17,7 @@ GM mid-session (or prep) on one monitor. Keep Hope/Fear/clocks live; open Fear s
 Peek-panel session shell (seed 621b81b6). Inherit Candlelit GM Desk — no new visual world.
 
 ## Memorable moment
-Bump Fear mid-act without losing scroll; open a location mention or combat glyph into a peek; clocks stay in the instrument strip.
+Bump Fear mid-act without losing scroll; click an NPC name in the script into a right peek (session card + optional location fuller); open a location mention or combat glyph into a peek; clocks stay in the instrument strip.
 
 ## Constraints
 Static HTML/CSS/JS, offline + GitHub Pages, no CDN. Hub not required in session chrome. Session focus via compact dropdown (scales; search later).

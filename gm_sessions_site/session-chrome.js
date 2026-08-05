@@ -1,6 +1,6 @@
 /*!
  * HollowStar GM — stay-in-session chrome
- * Peek-panel shell: session stays mounted; Fear / location / calendar / combat peeks;
+ * Peek-panel shell: session stays mounted; Fear / location / calendar / combat / NPC peeks;
  * always-on Hope·Fear·clocks; session focus dropdown. Candlelit GM Desk.
  */
 (function () {
@@ -82,6 +82,15 @@
 
   var FEAR_RE = /^fear_options(_session\d+)?\.html/i;
   var CALENDAR_FILE = 'calendar.html';
+
+  /* Session NPC id → optional location-bible deeper profile */
+  var NPC_FULLER = {
+    brinne: { file: 'lumencrest-lamplight.html', hash: 'hs-npc-brinne', label: 'Brinne Halloway' },
+    lida: { file: 'lumencrest-lamplight.html', hash: 'hs-npc-lida', label: 'Lida Birch' },
+    henris: { file: 'lumencrest-lamplight.html', hash: 'hs-npc-henris', label: 'Henris Callow' },
+    joss: { file: 'lumencrest-lamplight.html', hash: 'hs-npc-joss', label: 'Joss Aldeth' },
+    solt: { file: 'lumencrest-shadowside.html', hash: 'hs-npc-solt', label: 'Solt' }
+  };
 
   var tokens = { hope: 0, fear: 0 };
   var clocks = [];
@@ -328,6 +337,16 @@
     }
   }
 
+  function flashNpcTarget(el) {
+    if (!el) return;
+    el.classList.remove('hs-npc-flash');
+    void el.offsetWidth;
+    el.classList.add('hs-npc-flash');
+    window.setTimeout(function () {
+      el.classList.remove('hs-npc-flash');
+    }, 1400);
+  }
+
   function restoreScroll() {
     var file = pageFile();
     var hash = (location.hash || '').replace(/^#/, '');
@@ -335,7 +354,10 @@
       ensureSectionOpenForId(hash);
       requestAnimationFrame(function () {
         var el = document.getElementById(hash);
-        if (el) el.scrollIntoView({ block: 'start' });
+        if (el) {
+          el.scrollIntoView({ block: 'start' });
+          if (/^hs-npc-/.test(hash) || el.hasAttribute('data-hs-npc-card')) flashNpcTarget(el);
+        }
       });
       return;
     }
@@ -1027,6 +1049,61 @@
     });
   }
 
+  function findNpcCard(id) {
+    if (!id) return null;
+    return document.querySelector('[data-hs-npc-card="' + id + '"]') ||
+      document.getElementById('hs-npc-' + id);
+  }
+
+  function npcDisplayName(id, card) {
+    if (card) {
+      var nameEl = card.querySelector('.npc-name');
+      if (nameEl) return nameEl.textContent.replace(/\s+/g, ' ').trim();
+    }
+    var fuller = NPC_FULLER[id];
+    if (fuller && fuller.label) return fuller.label;
+    return id;
+  }
+
+  function openNpcFuller(id, title) {
+    var fuller = NPC_FULLER[id];
+    if (!fuller) return;
+    openIframePeek('npc', (title || fuller.label) + ' — location', withPeek(fuller.file, fuller.hash));
+  }
+
+  function openNpcPeek(id) {
+    if (!id) return;
+    var card = findNpcCard(id);
+    var fuller = NPC_FULLER[id];
+    var title = npcDisplayName(id, card);
+
+    if (!card && fuller) {
+      openNpcFuller(id, title);
+      return;
+    }
+    if (!card) return;
+
+    openPeekPanel('npc', title, function (body, tools) {
+      if (fuller) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'hs-npc-fuller-btn';
+        btn.textContent = 'Fuller profile';
+        btn.addEventListener('click', function () {
+          openNpcFuller(id, title);
+        });
+        tools.appendChild(btn);
+      }
+
+      var wrap = document.createElement('div');
+      wrap.className = 'hs-npc-peek-body';
+      var clone = card.cloneNode(true);
+      clone.removeAttribute('id');
+      wrap.appendChild(clone);
+      body.appendChild(wrap);
+    });
+  }
+
   function openCombatPeek(seed) {
     if (seed && seed.foes && seed.foes.length) {
       if (!combat.foes.length || confirm('Load encounter roster into the combat tracker?')) {
@@ -1451,6 +1528,17 @@
       e.preventDefault();
       openCombatPeek(parseSeed(glyph));
     });
+
+    document.addEventListener('click', function (e) {
+      if (!isSessionPage() || isEmbed()) return;
+      var mention = e.target.closest('[data-hs-npc]');
+      if (!mention) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var id = mention.getAttribute('data-hs-npc');
+      if (!id) return;
+      e.preventDefault();
+      openNpcPeek(id);
+    }, true);
   }
 
   function enhanceCombatHeaders() {
@@ -1613,6 +1701,7 @@
     openLocation: openLocationPeek,
     openCalendar: openCalendarPeek,
     openCombat: openCombatPeek,
+    openNpc: openNpcPeek,
     openNotes: openNotesDock,
     closeNotes: closeNotesDock,
     toggleNotes: toggleNotesDock,

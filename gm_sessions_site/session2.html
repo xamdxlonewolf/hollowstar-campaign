@@ -38,6 +38,7 @@
     <button class="nav-tab" onclick="filterSections('open',this)">Opening</button>
     <button class="nav-tab" onclick="filterSections('city',this)">City</button>
     <button class="nav-tab" onclick="filterSections('spotlight',this)">Spotlights</button>
+    <button class="nav-tab" onclick="filterSections('npc',this)">NPCs</button>
     <button class="nav-tab" onclick="filterSections('ref',this)">Reference</button>
   </div>
 
@@ -65,7 +66,7 @@
         <li><strong>Failed attempt</strong> — Guard blocked it. Caelen knows someone tried. No letter. His exit look at Basil was pointed.</li>
         <li><strong>Didn't attempt</strong> — Basil has only public council knowledge. Heist timing must be gathered in-city.</li>
       </ul></div>
-      <div class="ref-box"><div class="ref-title">👤 Caelen Vael — Awareness</div>
+      <div class="ref-box"><div class="ref-title">👤 <a href="#hs-npc-caelen" class="hs-npc-mention" data-hs-npc="caelen">Caelen Vael</a> — Awareness</div>
       <ul>
         <li><strong>Caelen on the road route</strong> — If party also took the road, they may have passed him. He does not interact unless forced. His guard notes their direction at the Lumencrest fork.</li>
         <li><strong>Caelen's exit look</strong> — He clocked Basil as "not from here." In Lumencrest, if Basil operates visibly, Caelen may connect face to activity (not family name yet).</li>
@@ -172,7 +173,7 @@
           <div class="path-label">🏨 Traveller's Mark — Copper Gate</div>
           <p><strong>South gate welcome zone.</strong> Twenty rooms, clean, professional. <strong>1 gold</strong> per night. Less glamorous than the Accord, more anonymous.</p>
           <p style="margin-top:8px;"><strong>Why pick it:</strong> Basil's preference for low profile. Henris Callow assesses newcomers in one conversation — won't report complications to watch, will quietly orient useful people. Good if the party wants distance from political noise.</p>
-          <div class="path-tag">Proprietor: Henris Callow</div>
+          <div class="path-tag">Proprietor: <a href="#hs-npc-henris" class="hs-npc-mention" data-hs-npc="henris">Henris Callow</a></div>
         </div>
       </div>
 
@@ -184,9 +185,9 @@
       <div class="note">He doesn't ask unnecessary questions. He records names. He will not discuss other guests. If Basil asks about 'important visitors this week,' Presence DIF 12 gets: <em>"House colors in the Core always, this time of year. Vael pin in the common room yesterday — young man, traveling light."</em> Only if pickpocket failed or Caelen already passed through.</div></div>
 
       <div class="gm-say"><div class="tag">GM Say — Traveller's Mark arrival</div>
-      <p>"Copper Gate feels like a city designed to greet you — currency exchange booths, a Welcome Gate information desk, four inns in a cluster. The Traveller's Mark is the respectable one: not grand, not shabby, the kind of place that understands its job is to make strangers functional by morning. Henris Callow meets you at the desk himself. He looks at the three of you the way a man looks at a puzzle he's solved before."</p></div>
+      <p>"Copper Gate feels like a city designed to greet you — currency exchange booths, a Welcome Gate information desk, four inns in a cluster. The Traveller's Mark is the respectable one: not grand, not shabby, the kind of place that understands its job is to make strangers functional by morning. <a href="#hs-npc-henris" class="hs-npc-mention" data-hs-npc="henris">Henris Callow</a> meets you at the desk himself. He looks at the three of you the way a man looks at a puzzle he's solved before."</p></div>
 
-      <div class="npc-say"><div class="tag">Henris Callow — Traveller's Mark proprietor</div>
+      <div class="npc-say"><div class="tag"><a href="#hs-npc-henris" class="hs-npc-mention" data-hs-npc="henris">Henris Callow</a> — Traveller's Mark proprietor</div>
       <p>"One gold each. Breakfast included — porridge, bread, nothing to write home about. If you need the Ward proper, walk north twenty minutes or take the cable from South Gate Station — two copper, saves you getting lost."</p>
       <div class="note">If anyone seems nervous about the city: he slides a folded ward map across the desk. Free. <em>"Merchant Square if you need anything real. Shadowside if you need anything else. Don't confuse the two on your first night."</em></div></div>
 
@@ -306,7 +307,7 @@
       <div class="gm-say"><div class="tag">GM Say — Entering Shadowside</div>
       <p>"South and down, the lamps thin out. The amber gives way to oil and coal-brazier light, then to real dark between islands of warmth. The Dark Lantern's sign is a lantern painted black — easy to miss if you don't know. Inside: low ceiling, mismatched tables, a bar of solid old timber, and a Ribbet behind it who's been here thirty years and treats the city watch like weather."</p></div>
 
-      <div class="npc-say"><div class="tag">Solt — First contact</div>
+      <div class="npc-say"><div class="tag"><a href="#hs-npc-solt" class="hs-npc-mention" data-hs-npc="solt">Solt</a> — First contact</div>
       <p>"Drinks are on the board. Food if the kitchen's awake. You want privacy, the back's five copper each and I don't hear what I don't hear."</p>
       <div class="note">Voice: flat, unhurried, every sentence costs him something he'll never explain. He assesses newcomers in one exchange. He does not answer direct questions about specific people.</div></div>
 
@@ -347,6 +348,43 @@
       <div class="fear-note">Use sparingly. Act 5 is observation. Fear here escalates unease, not action.</div></div>
 
       <div class="tip-box"><span class="tip-icon">🌙</span><p>Let the party split chores if they want — one shops, one journals, one scouts the Core approach from a distance. Reconvene at the inn or on the border walk toward dawn.</p></div>
+
+    </div>
+  </div>
+
+  <!-- ══ NPCs ══ -->
+  <div class="section" data-cat="npc">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:var(--purple-bg);color:var(--purple-text);">👤</div>
+      <div style="flex:1;"><div class="section-label">NPCs — Session 2 Profiles</div><div class="section-sub">Henris · Solt · Caelen (awareness) · click names in script for peek</div></div>
+      <span class="section-pill" style="background:var(--purple-bg);color:var(--purple-text);border:1px solid rgba(138,96,200,0.3);">Reference</span>
+      <span class="section-chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="npc-card" id="hs-npc-henris" data-hs-npc-card="henris">
+        <div class="npc-name">Henris Callow</div>
+        <div class="npc-role">Proprietor, Traveller's Mark · Copper Gate · Human · 52</div>
+        <div class="npc-voice">🎭 Immediately reassuring — unthreatening, professionally welcoming. Orients strangers without making the assessment visible.</div>
+        <p>Session beat: meets the party at the desk. Assesses newcomers in one conversation. Will not report complications to watch; quietly orients useful people. Good low-profile lodging choice for Basil.</p>
+        <div class="npc-secret">GM only: Fuller Ward profile on the Lamplight location page (Fuller profile in peek).</div>
+      </div>
+
+      <div class="npc-card" id="hs-npc-solt" data-hs-npc-card="solt">
+        <div class="npc-name">Solt</div>
+        <div class="npc-role">Proprietor, Dark Lantern · Ribbet · ~70 · Shadowside</div>
+        <div class="npc-voice">🎭 Flat, unhurried. Every sentence costs him something he'll never explain. Assesses newcomers in one exchange. Does not answer direct questions about specific people.</div>
+        <p>Optional Act 4 beat. Privacy back room: five copper each. Treats city watch like weather. Pattern recognition, not a quest giver.</p>
+        <div class="npc-secret">GM only: Fuller Shadowside profile available via Fuller profile in peek.</div>
+      </div>
+
+      <div class="npc-card" id="hs-npc-caelen" data-hs-npc-card="caelen">
+        <div class="npc-name">Caelen Vael</div>
+        <div class="npc-role">House Vael · Session 1 carryover · awareness tracker</div>
+        <div class="npc-voice">🎭 Polished, careful. Not interacting unless forced on the road. His guard notes their direction at the Lumencrest fork.</div>
+        <p>On the road route if party took the road. Exit look from Session 1 may matter if Basil operates visibly. Assessment card may be in the satchel if pickpocket succeeded.</p>
+        <div class="npc-secret">GM only: Full Session 1 profile lives on session1.html — use Focus → Session 1 if you need the long voice notes mid-prep.</div>
+      </div>
 
     </div>
   </div>
