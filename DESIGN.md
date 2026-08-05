@@ -36,10 +36,10 @@ colors:
 typography:
   display:
     fontFamily: "Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)"
+    fontSize: "clamp(1.45rem, 3vw, 2.1rem)"
     fontWeight: 400
     lineHeight: 1.2
-    letterSpacing: "0.02em"
+    letterSpacing: "0.015em"
   title:
     fontFamily: "Georgia, 'Times New Roman', serif"
     fontSize: "15px"
@@ -50,7 +50,7 @@ typography:
     fontFamily: "Segoe UI, system-ui, -apple-system, sans-serif"
     fontSize: "13.5px"
     fontWeight: 400
-    lineHeight: 1.75
+    lineHeight: 1.7
     letterSpacing: "normal"
   label:
     fontFamily: "Segoe UI, system-ui, -apple-system, sans-serif"
@@ -58,6 +58,12 @@ typography:
     fontWeight: 700
     lineHeight: 1.4
     letterSpacing: "0.1em"
+  ui-compact:
+    fontFamily: "Segoe UI, system-ui, -apple-system, sans-serif"
+    fontSize: "12px"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "normal"
 rounded:
   sm: "6px"
   md: "10px"
@@ -147,7 +153,7 @@ A warm dark desk palette: inkwood grounds, parchment type, one gold authority ac
 - **Border Soft / Med** (`rgba(255,255,255,0.1)` / `0.18`): Hairline structure without heavy chrome.
 
 ### Named Rules
-**The Scarce Gold Rule.** Candlewick Gold is authority, not fill. Prefer muted neutrals and semantic rails; gold appears on brand, focus, active state, and true emphasis.
+**The Scarce Gold Rule.** Candlewick Gold is authority, not fill. Prefer muted neutrals and semantic rails; gold appears on brand wordmark, Focus/active controls, and true emphasis — not page titles, eyebrows, or header rules.
 
 **The Callout Color Rule.** Left-rail and box colors encode content type (GM say = info, Fear = ember, Hope = grove, warn = amber, NPC = violet). Never reuse Ember Fear red for decoration or generic alerts that are not Fear/danger/secret.
 
@@ -160,7 +166,7 @@ A warm dark desk palette: inkwood grounds, parchment type, one gold authority ac
 **Character:** Scholarly serif for names and page titles; quiet system sans for the dense operational body the GM actually scans mid-scene.
 
 ### Hierarchy
-- **Display** (normal/400, `clamp(1.6rem, 3.5vw, 2.5rem)`, ~1.2): Page `h1` in the header — Candlewick Gold Light.
+- **Display** (normal/400, `clamp(1.45rem, 3vw, 2.1rem)`, ~1.2): Page `h1` in the header — parchment primary (gold reserved for brand + Focus/active).
 - **Title** (normal/400, ~15–18px): NPC names, fear-card titles, stat-block names — Georgia + gold or Fear text.
 - **Body** (400, 12.5–13.5px, 1.65–1.75): Script paragraphs, callout copy, list items. Italics reserved for spoken/narrated lines.
 - **Label** (700, 10–11px, ~0.08–0.2em, uppercase): Eyebrows, callout tags, section pills, quick-ref titles.
