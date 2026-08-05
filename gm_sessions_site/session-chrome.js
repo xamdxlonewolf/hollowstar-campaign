@@ -6,6 +6,12 @@
 (function () {
   'use strict';
 
+  /* Apply saved type scale as early as this deferred script can */
+  try {
+    var _ts = localStorage.getItem('hs-type-scale');
+    if (_ts) document.documentElement.style.setProperty('--type-scale', _ts);
+  } catch (e) {}
+
   var STORAGE = {
     tokens: 'hs-tokens',
     clocks: 'hs-clocks',
@@ -15,8 +21,14 @@
     scrollPrefix: 'hs-scroll:',
     resume: 'hs-session-resume',
     notes: 'hollowstar-notes',
-    notesDock: 'hs-notes-dock-open'
+    notesDock: 'hs-notes-dock-open',
+    typeScale: 'hs-type-scale',
+    clocksOpen: 'hs-clocks-open'
   };
+
+  var TYPE_SCALE_MIN = 0.9;
+  var TYPE_SCALE_MAX = 1.35;
+  var TYPE_SCALE_DEFAULT = 1;
 
   var TOOLKIT_LEAVE = {
     'index.html': 1,
@@ -702,11 +714,90 @@
     if (isSessionPage()) {
       Array.prototype.slice.call(nav.querySelectorAll('a')).forEach(function (a) {
         var href = (a.getAttribute('href') || '').split('?')[0].split('#')[0].toLowerCase();
-        if (href === 'index.html' || href === 'locations.html' || href === 'calendar.html' || href === 'gmscreen.html' || href === 'notes.html') {
+        if (href === 'index.html') {
+          a.classList.add('hs-nav-hub');
+          a.textContent = 'Hub';
+        } else if (href === 'locations.html' || href === 'calendar.html' || href === 'gmscreen.html' || href === 'notes.html') {
           a.classList.add('hs-nav-secondary');
         }
       });
     }
+  }
+
+  /* ── Type scale (localStorage) ── */
+  function clampTypeScale(n) {
+    if (isNaN(n)) return TYPE_SCALE_DEFAULT;
+    return Math.min(TYPE_SCALE_MAX, Math.max(TYPE_SCALE_MIN, n));
+  }
+
+  function applyTypeScale(scale, opts) {
+    var s = clampTypeScale(scale);
+    var syncUi = !opts || opts.syncUi !== false;
+    document.documentElement.style.setProperty('--type-scale', String(s));
+    if (!syncUi) return s;
+    document.querySelectorAll('[data-hs-type-range]').forEach(function (el) {
+      if (document.activeElement === el) return;
+      el.value = String(s);
+    });
+    document.querySelectorAll('[data-hs-type-value]').forEach(function (el) {
+      el.textContent = Math.round(s * 100) + '%';
+    });
+    return s;
+  }
+
+  function readStoredTypeScale() {
+    try {
+      var stored = localStorage.getItem(STORAGE.typeScale);
+      if (stored == null || stored === '') return TYPE_SCALE_DEFAULT;
+      return clampTypeScale(parseFloat(stored));
+    } catch (e) {
+      return TYPE_SCALE_DEFAULT;
+    }
+  }
+
+  function loadTypeScale() {
+    applyTypeScale(readStoredTypeScale());
+  }
+
+  function saveTypeScale(scale) {
+    var s = clampTypeScale(scale);
+    try { localStorage.setItem(STORAGE.typeScale, String(s)); } catch (e) {
+      showStorageWarning();
+    }
+    return applyTypeScale(s);
+  }
+
+  function buildTypeScaleControl() {
+    var wrap = document.createElement('div');
+    wrap.className = 'hs-type-scale';
+    wrap.setAttribute('data-hs-type-scale', '');
+    var initial = readStoredTypeScale();
+    wrap.innerHTML =
+      '<span class="hs-type-scale-label" id="hs-type-label">Type</span>' +
+      '<input type="range" min="0.9" max="1.35" step="0.05" value="' + initial + '" data-hs-type-range aria-labelledby="hs-type-label" aria-valuetext="Type size">' +
+      '<span class="hs-type-scale-value" data-hs-type-value>' + Math.round(initial * 100) + '%</span>';
+    var range = wrap.querySelector('[data-hs-type-range]');
+    range.addEventListener('input', function () {
+      var s = applyTypeScale(parseFloat(range.value), { syncUi: false });
+      var label = wrap.querySelector('[data-hs-type-value]');
+      if (label) label.textContent = Math.round(s * 100) + '%';
+      range.setAttribute('aria-valuetext', Math.round(s * 100) + ' percent');
+      try { localStorage.setItem(STORAGE.typeScale, String(s)); } catch (e) {}
+    });
+    range.addEventListener('change', function () {
+      saveTypeScale(parseFloat(range.value));
+    });
+    return wrap;
+  }
+
+  function mountTypeScale() {
+    if (isEmbed()) return;
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    if (!nav.querySelector('[data-hs-type-scale]')) {
+      nav.appendChild(buildTypeScaleControl());
+    }
+    loadTypeScale();
   }
 
   /* ── Instrument strip ── */
@@ -805,9 +896,24 @@
     document.querySelectorAll('[data-hs-clocks]').forEach(renderClocksInto);
   }
 
+  function clocksPreferOpen() {
+    try { return sessionStorage.getItem(STORAGE.clocksOpen) === '1'; } catch (e) { return false; }
+  }
+
+  function setClocksExpanded(strip, open) {
+    if (!strip) return;
+    strip.classList.toggle('hs-clocks-collapsed', !open);
+    var toggle = strip.querySelector('[data-hs-clocks-toggle]');
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.textContent = open ? 'Clocks ▴' : 'Clocks ▾';
+    }
+    try { sessionStorage.setItem(STORAGE.clocksOpen, open ? '1' : '0'); } catch (e) {}
+  }
+
   function buildInstrumentStrip() {
     var strip = document.createElement('div');
-    strip.className = 'hs-instrument-strip';
+    strip.className = 'hs-instrument-strip hs-clocks-collapsed';
     strip.setAttribute('data-hs-instrument', '');
     strip.innerHTML =
       '<div class="hs-instrument-inner">' +
@@ -823,8 +929,8 @@
           '<span class="hs-token-count" data-hs-token="fear">0</span>' +
           '<button type="button" class="hs-token-btn" data-hs-delta="fear:1" aria-label="Increase Fear">+</button>' +
         '</div>' +
+        '<button type="button" class="hs-clocks-toggle" data-hs-clocks-toggle aria-expanded="false">Clocks ▾</button>' +
         '<div class="hs-clocks-wrap">' +
-          '<div class="hs-clocks-label">Clocks</div>' +
           '<div class="hs-clocks-row">' +
             '<div class="hs-clocks" data-hs-clocks></div>' +
             '<button type="button" class="hs-clock-add" data-hs-add-clock>+ Clock</button>' +
@@ -833,6 +939,11 @@
       '</div>';
 
     strip.addEventListener('click', function (e) {
+      var toggle = e.target.closest('[data-hs-clocks-toggle]');
+      if (toggle) {
+        setClocksExpanded(strip, strip.classList.contains('hs-clocks-collapsed'));
+        return;
+      }
       var btn = e.target.closest('[data-hs-delta]');
       if (btn) {
         var parts = btn.getAttribute('data-hs-delta').split(':');
@@ -843,8 +954,11 @@
         clocks.push({ id: Date.now(), name: 'New Clock', segments: 6, filled: 0 });
         saveClocks();
         renderAllClocks();
+        setClocksExpanded(strip, true);
       }
     });
+
+    if (clocksPreferOpen()) setClocksExpanded(strip, true);
 
     return strip;
   }
@@ -1422,21 +1536,32 @@
     openIframePeek('notes-full', 'Notes toolkit', withPeek('notes.html'));
   }
 
-  /* ── Session toolbar (peek triggers) ── */
+  /* ── Session toolbar (peek triggers) — Run · Lore · Notes ── */
   function buildSessionToolbar() {
     var bar = document.createElement('div');
     bar.className = 'hs-session-toolbar';
     bar.setAttribute('data-hs-session-toolbar', '');
     bar.innerHTML =
-      '<button type="button" class="hs-tool-btn notes" data-hs-peek="notes" aria-pressed="false">Notes</button>' +
-      '<button type="button" class="hs-tool-btn fear" data-hs-peek="fear">Fear</button>' +
-      '<button type="button" class="hs-tool-btn loc" data-hs-peek="location">Locations</button>' +
-      '<button type="button" class="hs-tool-btn cal" data-hs-peek="calendar">Calendar</button>' +
-      '<button type="button" class="hs-tool-btn combat" data-hs-peek="combat">Combat</button>';
+      '<div class="hs-tool-group" data-hs-tool-group="run" role="group" aria-label="Run tools">' +
+        '<span class="hs-tool-group-label">Run</span>' +
+        '<button type="button" class="hs-tool-btn fear" data-hs-peek="fear">Fear</button>' +
+        '<button type="button" class="hs-tool-btn combat" data-hs-peek="combat">Combat</button>' +
+      '</div>' +
+      '<details class="hs-tool-more">' +
+        '<summary>Lore</summary>' +
+        '<div class="hs-tool-more-panel" role="group" aria-label="Lore tools">' +
+          '<button type="button" class="hs-tool-btn loc" data-hs-peek="location">Locations</button>' +
+          '<button type="button" class="hs-tool-btn cal" data-hs-peek="calendar">Calendar</button>' +
+          '<a class="hs-tool-leave" href="gmscreen.html">GM Screen</a>' +
+        '</div>' +
+      '</details>' +
+      '<button type="button" class="hs-tool-btn notes" data-hs-peek="notes" aria-pressed="false">Notes</button>';
     bar.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-hs-peek]');
       if (!btn) return;
       var kind = btn.getAttribute('data-hs-peek');
+      var more = bar.querySelector('.hs-tool-more');
+      if (more) more.open = false;
       if (kind === 'notes') toggleNotesDock();
       else if (kind === 'fear') openFearPeek();
       else if (kind === 'location') openLocationPeek();
@@ -1444,6 +1569,34 @@
       else if (kind === 'combat') openCombatPeek();
     });
     return bar;
+  }
+
+  function compactSessionFilters() {
+    if (!isSessionPage() || isEmbed()) return;
+    var tabs = document.querySelector('.page-body > .nav-tabs, .page-body .nav-tabs');
+    if (!tabs || tabs.dataset.hsCompact === '1') return;
+    var buttons = Array.prototype.filter.call(tabs.children, function (el) {
+      return el.classList && el.classList.contains('nav-tab');
+    });
+    if (buttons.length <= 4) return;
+    tabs.dataset.hsCompact = '1';
+    var rest = buttons.slice(4);
+    var details = document.createElement('details');
+    details.className = 'hs-filter-more';
+    var summary = document.createElement('summary');
+    summary.className = 'nav-tab';
+    summary.textContent = 'More';
+    details.appendChild(summary);
+    var panel = document.createElement('div');
+    panel.className = 'hs-filter-more-panel';
+    rest.forEach(function (b) { panel.appendChild(b); });
+    details.appendChild(panel);
+    tabs.appendChild(details);
+    tabs.addEventListener('click', function (e) {
+      var tab = e.target.closest('.nav-tab');
+      if (!tab || tab.tagName === 'SUMMARY') return;
+      if (details.contains(tab)) details.open = false;
+    });
   }
 
   function mountSessionChrome() {
@@ -1669,14 +1822,17 @@
       return;
     }
 
+    loadTypeScale();
     loadTokens();
     loadClocks();
     loadCombat();
     rewriteNav();
     mountSessionChrome();
+    mountTypeScale();
     mountToolkitInstrument();
     enhanceCombatHeaders();
     enhanceSectionHeaders();
+    compactSessionFilters();
     wireLeaveResume();
     mountResumeBar();
     applySessionDisclosure();

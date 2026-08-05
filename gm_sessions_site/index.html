@@ -17,19 +17,35 @@
 .hub-card.notes::before{background:var(--purple);}
 .hub-card .card-icon{font-size:28px;margin-bottom:12px;}
 .hub-card .card-title{font-family:var(--font-body);font-size:18px;color:var(--text-primary);margin-bottom:5px;}
-.hub-card.location .card-title{color:var(--hope-text);}
-.hub-card.calendar .card-title{color:var(--info-text);}
-.hub-card.notes .card-title{color:var(--purple-text);}
-.hub-card .card-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6;}
+.hub-card .card-desc{font-size:calc(13px * var(--type-scale, 1));color:var(--text-secondary);line-height:1.6;}
 .hub-card .card-tags{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
 .hub-card .card-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--text-muted);}
 .hub-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;margin-top:10px;}
 .hub-status.ready{color:var(--hope-text);}
 .hub-status.soon{color:var(--warn-text);}
-.campaign-banner{background:linear-gradient(120deg,rgba(201,168,76,0.08),rgba(74,127,181,0.06));border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
-.banner-item{font-size:12.5px;color:var(--text-secondary);}
-.banner-item strong{color:var(--accent-gold-light);}
+.hub-card.gmscreen::before{background:var(--border-med);}
+.campaign-banner{background:linear-gradient(120deg,rgba(201,168,76,0.08),rgba(74,127,181,0.06));border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:1.1rem 1.35rem;margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;}
+.banner-item{font-size:calc(12.5px * var(--type-scale, 1));color:var(--text-secondary);}
+.banner-item strong{color:var(--text-primary);font-weight:600;}
 .banner-item span{display:block;font-size:11px;color:var(--text-muted);margin-top:1px;}
+.hub-focus-panel{margin-top:1.75rem;padding:1.35rem 1.4rem;background:var(--bg-card);border:1px solid rgba(201,168,76,0.28);border-radius:var(--radius-lg);position:relative;overflow:hidden;}
+.hub-focus-panel::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(201,168,76,0.07) 0%,transparent 55%);pointer-events:none;}
+.hub-focus-title{font-family:var(--font-body);font-size:clamp(1.25rem,2.5vw,1.65rem);color:var(--text-primary);margin-bottom:6px;position:relative;}
+.hub-focus-desc{font-size:calc(13.5px * var(--type-scale, 1));color:var(--text-secondary);line-height:1.6;max-width:52ch;margin-bottom:1rem;position:relative;}
+.hub-session-list{display:flex;flex-direction:column;gap:8px;position:relative;}
+.hub-session-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--bg-secondary);text-decoration:none;color:inherit;transition:border-color 0.15s,transform 0.15s;}
+.hub-session-row:hover{border-color:var(--accent-gold);transform:translateY(-1px);}
+.hub-session-row .hs-num{font-family:var(--font-body);font-size:15px;color:var(--accent-gold-light);min-width:1.5rem;}
+.hub-session-row .hs-copy{flex:1;min-width:0;}
+.hub-session-row .hs-name{font-family:var(--font-body);font-size:15px;color:var(--text-primary);}
+.hub-session-row .hs-blurb{font-size:12px;color:var(--text-muted);margin-top:2px;line-height:1.45;}
+.hub-session-row .hs-go{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent-gold-light);white-space:nowrap;}
+.hub-section-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin:2rem 0 0.75rem;}
+.hub-grid.toolkit{margin-top:0;}
+.hub-party{margin-top:2rem;padding:1rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);}
+.hub-party-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.hub-party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;}
+.hub-party-grid > div{font-size:calc(12.5px * var(--type-scale, 1));color:var(--text-secondary);}
 </style>
 </head>
 <body>
@@ -44,9 +60,8 @@
 </nav>
 
 <header class="page-header">
-  <div class="eyebrow">GM Toolkit — HollowStar Campaign</div>
-  <h1>The World Awaits</h1>
-  <p class="subtitle">Pick a session Focus and run. Toolkit pages are one click away — resume always brings you back to where you left the script. Works offline.</p>
+  <h1>HollowStar GM</h1>
+  <p class="subtitle">Set Focus, open the script, keep the toolkit at hand. Offline-ready table reference for the Lumencrest arc.</p>
 </header>
 
 <div class="page-body">
@@ -54,112 +69,77 @@
   <div class="campaign-banner">
     <div class="banner-item"><strong>Campaign</strong><span>HollowStar — Lumencrest Arc</span></div>
     <div class="banner-item"><strong>System</strong><span>Daggerheart</span></div>
-    <div class="banner-item"><strong>Current Session</strong><span>Sessions 2–3 — Lumencrest Arrival & Hub Explosion</span></div>
-    <div class="banner-item"><strong>In-World Date</strong><span>Gold Month 8, Days 1–2 in Lumencrest — see Calendar</span></div>
+    <div class="banner-item"><strong>Arc focus</strong><span>Sessions 2–3 — arrival through hub explosion</span></div>
+    <div class="banner-item"><strong>In-world</strong><span>Gold Month 8, Days 1–2 · Calendar</span></div>
     <div class="banner-item"><strong>Party</strong><span>Greer · Lurielle · Basil</span></div>
   </div>
 
-  <div class="hub-grid">
+  <section class="hub-focus-panel" aria-labelledby="hub-focus-heading">
+    <h2 class="hub-focus-title" id="hub-focus-heading">Choose the session you are running</h2>
+    <p class="hub-focus-desc">Focus mounts the script and keeps Fear, locations, calendar, and combat as peeks. Use the Focus control in the nav anytime — this list is the same set.</p>
+    <div class="hub-session-list">
+      <a href="session1.html" class="hub-session-row">
+        <span class="hs-num">1</span>
+        <span class="hs-copy">
+          <span class="hs-name">Ember Grove</span>
+          <span class="hs-blurb">Council, travel encounter, plateau ending · ~3–4 hr</span>
+        </span>
+        <span class="hs-go">Open →</span>
+      </a>
+      <a href="session2.html" class="hub-session-row">
+        <span class="hs-num">2</span>
+        <span class="hs-copy">
+          <span class="hs-name">Lumencrest Arrival</span>
+          <span class="hs-blurb">Pauper’s Gate, hum, cable car, Day 2 chalk · 12 Fear spends</span>
+        </span>
+        <span class="hs-go">Open →</span>
+      </a>
+      <a href="session3.html" class="hub-session-row">
+        <span class="hs-num">3</span>
+        <span class="hs-copy">
+          <span class="hs-name">The Hub Explosion</span>
+          <span class="hs-blurb">Protest, blast, three forks, Emergency Council · 13 Fear spends</span>
+        </span>
+        <span class="hs-go">Open →</span>
+      </a>
+    </div>
+  </section>
 
-    <a href="session1.html" class="hub-card session">
-      <div class="card-icon">📖</div>
-      <div class="card-title">Session 1 — Ember Grove</div>
-      <div class="card-desc">Fully scripted council meeting with dialogue, tone cues, NPC intros. Travel encounters, Fear spends, Daggerheart combat primer, and the plateau ending.</div>
-      <div class="card-tags">
-        <span class="card-tag">~3–4 hours</span>
-        <span class="card-tag">Council Meeting</span>
-        <span class="card-tag">House Vael</span>
-        <span class="card-tag">Travel Encounter</span>
-      </div>
-      <div class="hub-status ready">● Ready to run</div>
-    </a>
-
-    <a href="session2.html" class="hub-card session">
-      <div class="card-icon">📖</div>
-      <div class="card-title">Session 2 — Lumencrest Arrival</div>
-      <div class="card-desc">Day 1 in the city: Pauper's Gate, the hum, cable car orientation, PC spotlights, and dawn on Day 2 with protest chalk returning. Twelve Fear spends.</div>
-      <div class="card-tags">
-        <span class="card-tag">~3–4 hours</span>
-        <span class="card-tag">First Night</span>
-        <span class="card-tag">Cable Car</span>
-        <span class="card-tag">Session 1 Branches</span>
-      </div>
-      <div class="hub-status ready">● Ready to run</div>
-    </a>
-
-    <a href="session3.html" class="hub-card session">
-      <div class="card-icon">📖</div>
-      <div class="card-title">Session 3 — The Hub Explosion</div>
-      <div class="card-desc">Day 2: border protest builds, targeted Lumen Network blast, three response forks, evening fallout, Emergency Council announced. Thirteen Fear spends.</div>
-      <div class="card-tags">
-        <span class="card-tag">~3–4 hours</span>
-        <span class="card-tag">Hub Explosion</span>
-        <span class="card-tag">Green Covenant</span>
-        <span class="card-tag">Investigation</span>
-      </div>
-      <div class="hub-status ready">● Ready to run</div>
-    </a>
+  <div class="hub-section-label">Toolkit</div>
+  <div class="hub-grid toolkit">
 
     <a href="locations.html" class="hub-card location">
-      <div class="card-icon">📍</div>
       <div class="card-title">Locations</div>
-      <div class="card-desc">Lumencrest and Emberford reference pages — city overview, interactive map, district guides, inns, NPCs, menus, and gossip. Pick a location, then drill into its pages.</div>
-      <div class="card-tags">
-        <span class="card-tag">Lumencrest</span>
-        <span class="card-tag">City Map</span>
-        <span class="card-tag">Emberford</span>
-        <span class="card-tag">Districts</span>
-      </div>
+      <div class="card-desc">Lumencrest and Emberford — map, districts, inns, NPCs, gossip.</div>
       <div class="hub-status ready">● Ready</div>
     </a>
 
     <a href="calendar.html" class="hub-card calendar">
-      <div class="card-icon">📅</div>
       <div class="card-title">Campaign Calendar</div>
-      <div class="card-desc">Interactive Accord Reckoning calendar with Spirit Moon tracking, session date markers, day notes, and both calendar systems explained.</div>
-      <div class="card-tags">
-        <span class="card-tag">Accord Reckoning</span>
-        <span class="card-tag">Spirit Moons</span>
-        <span class="card-tag">Session Tracker</span>
-        <span class="card-tag">Day Notes</span>
-      </div>
+      <div class="card-desc">Accord Reckoning, Spirit Moons, session markers, day notes.</div>
       <div class="hub-status ready">● Ready</div>
     </a>
 
     <a href="notes.html" class="hub-card notes">
-      <div class="card-icon">📝</div>
       <div class="card-title">GM Notes</div>
-      <div class="card-desc">Persistent session notes, player decisions tracker, threads to follow up, and NPC relationship web. All saved in your browser.</div>
-      <div class="card-tags">
-        <span class="card-tag">Session Notes</span>
-        <span class="card-tag">Decisions</span>
-        <span class="card-tag">Active Threads</span>
-      </div>
+      <div class="card-desc">Session notes, decisions, threads — saved in this browser.</div>
       <div class="hub-status ready">● Ready</div>
     </a>
 
-
-    <a href="gmscreen.html" class="hub-card" style="border-color:rgba(184,84,80,0.2);">
-      <div class="card-icon">🎲</div>
-      <div class="card-title" style="color:var(--fear-text);">GM Screen</div>
-      <div class="card-desc">Full Daggerheart rules reference, live Hope/Fear token tracker, interactive countdown clocks, all roll results, conditions, and HollowStar-specific GM guidance.</div>
-      <div class="card-tags">
-        <span class="card-tag">Rules Reference</span>
-        <span class="card-tag">Token Tracker</span>
-        <span class="card-tag">Countdown Clocks</span>
-        <span class="card-tag">Hope &amp; Fear</span>
-      </div>
-      <div class="hub-status ready" style="color:var(--fear-text);">● Ready</div>
+    <a href="gmscreen.html" class="hub-card gmscreen">
+      <div class="card-title">GM Screen</div>
+      <div class="card-desc">Daggerheart rules, Hope/Fear, clocks, HollowStar guidance.</div>
+      <div class="hub-status ready">● Ready</div>
     </a>
 
   </div>
 
-  <div style="margin-top:2rem;padding:1rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);">
-    <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Party Quick Reference</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;">
-      <div style="font-size:12.5px;color:var(--text-secondary);"><span class="player-tag tag-druid">🌿 Greer</span> — Faun Druid · Tara's character · 60 years old · sent by Thorn to watch House Vael · Path of Spirits · Green Covenant adjacent</div>
-      <div style="font-size:12.5px;color:var(--text-secondary);"><span class="player-tag tag-wizard">✨ Lurielle</span> — Faerie/Ribbet Wizard · 16 years old · from the Endless Eye · researching Hollowstars · classified docs were reclassified before she left</div>
-      <div style="font-size:12.5px;color:var(--text-secondary);"><span class="player-tag tag-rogue">🗡️ Basil</span> — Half-Katari/Emberkin Rogue · youngest Silverhand · heisting House Vael's diplomatic pouch · "Katya is my ex" (she's actually an assassin)</div>
+  <div class="hub-party">
+    <div class="hub-party-label">Party Quick Reference</div>
+    <div class="hub-party-grid">
+      <div><span class="player-tag tag-druid">Greer</span> — Faun Druid · Tara · Path of Spirits · Green Covenant adjacent</div>
+      <div><span class="player-tag tag-wizard">Lurielle</span> — Faerie/Ribbet Wizard · Endless Eye · Hollowstar research</div>
+      <div><span class="player-tag tag-rogue">Basil</span> — Half-Katari/Emberkin Rogue · Silverhand · Vael pouch heist</div>
     </div>
   </div>
 

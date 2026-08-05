@@ -48,7 +48,7 @@ typography:
     letterSpacing: "normal"
   body:
     fontFamily: "Segoe UI, system-ui, -apple-system, sans-serif"
-    fontSize: "13.5px"
+    fontSize: "15px"
     fontWeight: 400
     lineHeight: 1.7
     letterSpacing: "normal"
@@ -168,7 +168,7 @@ A warm dark desk palette: inkwood grounds, parchment type, one gold authority ac
 ### Hierarchy
 - **Display** (normal/400, `clamp(1.45rem, 3vw, 2.1rem)`, ~1.2): Page `h1` in the header — parchment primary (gold reserved for brand + Focus/active).
 - **Title** (normal/400, ~15–18px): NPC names, fear-card titles, stat-block names — Georgia + gold or Fear text.
-- **Body** (400, 12.5–13.5px, 1.65–1.75): Script paragraphs, callout copy, list items. Italics reserved for spoken/narrated lines.
+- **Body** (400, 14–15.5px, 1.65–1.75): Script paragraphs, callout copy, list items. Spoken/narrated lines (`gm-say` / `npc-say`) sit at the top of this range. Italics reserved for spoken/narrated lines. A Type slider (`--type-scale`, `localStorage` key `hs-type-scale`) multiplies the reading ramp at the table.
 - **Label** (700, 10–11px, ~0.08–0.2em, uppercase): Eyebrows, callout tags, section pills, quick-ref titles.
 
 ### Named Rules
