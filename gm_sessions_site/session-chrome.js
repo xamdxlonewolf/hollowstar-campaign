@@ -286,7 +286,8 @@
     SESSIONS.forEach(function (s) {
       var opt = document.createElement('option');
       opt.value = s.file;
-      opt.textContent = s.short + ' — ' + s.label.replace(/^Session \d+ — /, '');
+      var nick = s.label.replace(/^Session \d+ — /, '');
+      opt.textContent = s.id + ' · ' + nick;
       if (s.file === activeFile) opt.selected = true;
       sel.appendChild(opt);
     });
