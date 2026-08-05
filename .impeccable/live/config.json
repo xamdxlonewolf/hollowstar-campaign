@@ -1,0 +1,6 @@
+{
+  "files": ["gm_sessions_site/**/*.html"],
+  "insertBefore": "</body>",
+  "commentSyntax": "html",
+  "cspChecked": true
+}

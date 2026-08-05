@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,13 +6,18 @@
 <title>Session 1 — Ember Grove · HollowStar GM</title>
 <link rel="stylesheet" href="shared.css">
 </head>
-<body>
+<body data-hs-session="1">
+<!--
+THESIS: Mid-session Operate chrome — script stays home; toolkit peeks in.
+OWN-WORLD: Candlelit GM Desk (inkwood, parchment, scarce gold, Hope/Fear rails).
+STORY: GM runs the act with Hope·Fear·clocks always visible; Fear/location/calendar/combat open as peeks.
+FIRST VIEWPORT: Sticky nav + session focus + peek tools; instrument strip; session script below.
+FORM: Peek-panel session shell (confirmed brief) · seed 621b81b6 · inherit, not redesign.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+-->
 <nav class="site-nav">
   <div class="site-nav-brand">⭐ HollowStar GM</div>
   <a href="index.html">🏠 Hub</a>
-  <a href="session1.html" class="active">📖 Session 1</a>
-  <a href="session2.html">📖 Session 2</a>
-  <a href="session3.html">📖 Session 3</a>
   <a href="locations.html">📍 Locations</a>
   <a href="calendar.html">📅 Calendar</a>
   <a href="notes.html">📝 Notes</a>
@@ -31,7 +36,7 @@
   <div class="session-meta">
     <div class="meta-item">⏱ <strong>3–4 hours</strong></div>
     <div class="meta-item">📅 <strong>Gold Month 8, 700 AR</strong></div>
-    <div class="meta-item">📍 <strong>Emberford → Road to Lumencrest</strong></div>
+    <div class="meta-item">📍 <strong><a href="emberford.html" class="hs-loc-link">Emberford</a> → Road to <a href="lumencrest.html" class="hs-loc-link">Lumencrest</a></strong></div>
   </div>
 </header>
 
@@ -580,5 +585,6 @@ function filterSections(cat,btn){
   });
 }
 </script>
+<script src="session-chrome.js"></script>
 </body>
 </html>

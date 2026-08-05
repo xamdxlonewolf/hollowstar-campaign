@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-05T03:50:00.000Z",
+  "title": "Design System: HollowStar GM Toolkit",
+  "extensions": {
+    "colorMeta": {
+      "candlewick-gold": {
+        "role": "primary",
+        "displayName": "Candlewick Gold",
+        "canonical": "#c9a84c",
+        "tonalRamp": ["#7a5e1f", "#9a782c", "#b8943d", "#c9a84c", "#d4b85e", "#e0c872", "#e8c86a", "#f3e3a8"]
+      },
+      "inkwood": {
+        "role": "neutral",
+        "displayName": "Inkwood",
+        "canonical": "#1a1714",
+        "tonalRamp": ["#0d0b09", "#13110e", "#1a1714", "#242018", "#2a251e", "#2d2920", "#3a342c", "#4a4338"]
+      },
+      "parchment": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "canonical": "#f0ead8",
+        "tonalRamp": ["#7a7060", "#a89f8a", "#c4bba6", "#d8d0bc", "#e4ddcb", "#f0ead8", "#f5f1e6", "#faf8f2"]
+      },
+      "grove-hope": {
+        "role": "secondary",
+        "displayName": "Grove Hope",
+        "canonical": "#4a9e6e",
+        "tonalRamp": ["#1f4a32", "#2d6b48", "#3a855a", "#4a9e6e", "#5fb884", "#7dd4a0", "#a3e4bc", "#d0f0dc"]
+      },
+      "ember-fear": {
+        "role": "secondary",
+        "displayName": "Ember Fear",
+        "canonical": "#b85450",
+        "tonalRamp": ["#5c2422", "#7a322f", "#9a423e", "#b85450", "#d06a66", "#e88884", "#f0b0ad", "#f8d8d6"]
+      },
+      "lamp-info": {
+        "role": "tertiary",
+        "displayName": "Lamp Info",
+        "canonical": "#4a7fb5",
+        "tonalRamp": ["#1f3a54", "#2d5578", "#3a6a96", "#4a7fb5", "#5f96c8", "#7aafdf", "#a3c9eb", "#d0e4f5"]
+      },
+      "violet-npc": {
+        "role": "tertiary",
+        "displayName": "Violet NPC",
+        "canonical": "#8a60c8",
+        "tonalRamp": ["#3d2860", "#573d8a", "#6e4ea8", "#8a60c8", "#a07ad8", "#c4a0f0", "#d9c2f5", "#efe6fb"]
+      },
+      "amber-warn": {
+        "role": "tertiary",
+        "displayName": "Amber Warn",
+        "canonical": "#c97d2a",
+        "tonalRamp": ["#5c3812", "#7a4c18", "#a06422", "#c97d2a", "#d99448", "#e8a86a", "#f0c49a", "#f8e2c8"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page h1 in the centered header — Georgia, Candlewick Gold Light." },
+      "title": { "displayName": "Title", "purpose": "NPC names, fear-card titles, stat-block names." },
+      "body": { "displayName": "Body", "purpose": "Operational session copy and callout paragraphs." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked tags, eyebrows, pills, quick-ref titles." }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-interactive",
+        "value": "all 0.15s",
+        "purpose": "Default hover/active transition for nav, tabs, tokens."
+      },
+      {
+        "name": "soft-lift",
+        "value": "transform 0.2s; translateY(-2px)",
+        "purpose": "Optional hover lift on interactive cards/controls only."
+      },
+      {
+        "name": "chevron-open",
+        "value": "transform 0.2s; rotate(180deg)",
+        "purpose": "Section chevron when open."
+      }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "600px" },
+      { "name": "gm-screen", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Filter Tab",
+      "kind": "button",
+      "refersTo": "nav-tab",
+      "description": "In-page category filter pill; gold when active.",
+      "html": "<button class=\"ds-nav-tab\">All</button><button class=\"ds-nav-tab ds-nav-tab-active\">Combat</button>",
+      "css": ".ds-nav-tab { font-size: 12px; padding: 5px 13px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: #a89f8a; cursor: pointer; font-family: Segoe UI, system-ui, sans-serif; transition: all 0.15s; } .ds-nav-tab:hover { border-color: #c9a84c; color: #c9a84c; } .ds-nav-tab:focus-visible { outline: 2px solid #c9a84c; outline-offset: 2px; } .ds-nav-tab-active { background: rgba(201,168,76,0.15); border-color: #c9a84c; color: #e8c86a; font-weight: 500; }"
+    },
+    {
+      "name": "Party Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Quiet meta chip for party members and stats.",
+      "html": "<span class=\"ds-chip\">Greer</span><span class=\"ds-chip\">Lurielle</span>",
+      "css": ".ds-chip { display: inline-flex; font-size: 12px; padding: 3px 12px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.18); background: #2d2920; color: #a89f8a; font-family: Segoe UI, system-ui, sans-serif; } .ds-chip:hover { border-color: rgba(255,255,255,0.28); color: #f0ead8; }"
+    },
+    {
+      "name": "Section Card",
+      "kind": "card",
+      "refersTo": "card-section",
+      "description": "Collapsible section header surface at rest.",
+      "html": "<div class=\"ds-section-header\"><span class=\"ds-section-label\">Act 1 — Arrival</span><span class=\"ds-section-chevron\">▾</span></div>",
+      "css": ".ds-section-header { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-radius: 10px; background: #2a251e; border: 1px solid rgba(255,255,255,0.1); color: #f0ead8; transition: border-color 0.15s, transform 0.2s; } .ds-section-header:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); } .ds-section-label { font-size: 14px; font-weight: 600; font-family: Segoe UI, system-ui, sans-serif; flex: 1; } .ds-section-chevron { color: #7a7060; font-size: 16px; }"
+    },
+    {
+      "name": "GM Say Callout",
+      "kind": "custom",
+      "refersTo": "callout-gm-say",
+      "description": "Narration rail — Lamp Info left edge, italic spoken text.",
+      "html": "<div class=\"ds-gm-say\"><div class=\"ds-tag\">GM Say</div><p>The cable car lurches; the hum of the city rises under your feet.</p></div>",
+      "css": ".ds-gm-say { background: rgba(74,127,181,0.15); border-left: 3px solid #4a7fb5; border-radius: 0 6px 6px 0; padding: 11px 15px; } .ds-tag { font-size: 10px; font-weight: 700; color: #7aafdf; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; font-family: Segoe UI, system-ui, sans-serif; } .ds-gm-say p { font-size: 13.5px; color: #f0ead8; line-height: 1.75; font-style: italic; margin: 0; font-family: Segoe UI, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Fear Box",
+      "kind": "custom",
+      "refersTo": "fear-box",
+      "description": "Enclosed Fear spend list — Ember Fear border and title.",
+      "html": "<div class=\"ds-fear-box\"><div class=\"ds-fear-title\">Fear Spends</div><ul><li><strong>1 Fear:</strong> A watch whistle cuts the crowd.</li></ul></div>",
+      "css": ".ds-fear-box { background: rgba(184,84,80,0.1); border: 1px solid rgba(184,84,80,0.4); border-radius: 10px; padding: 13px 15px; } .ds-fear-title { font-size: 11px; font-weight: 700; color: #e88884; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 9px; font-family: Segoe UI, system-ui, sans-serif; } .ds-fear-box ul { padding-left: 1.1rem; margin: 0; } .ds-fear-box li { font-size: 13px; color: #f0ead8; line-height: 1.9; font-family: Segoe UI, system-ui, sans-serif; } .ds-fear-box strong { color: #e88884; }"
+    },
+    {
+      "name": "Site Nav",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "Sticky Inkwood nav with gold brand and active underline.",
+      "html": "<nav class=\"ds-site-nav\"><div class=\"ds-brand\">HollowStar GM</div><a href=\"#\" class=\"ds-nav-link ds-nav-link-active\">Hub</a><a href=\"#\" class=\"ds-nav-link\">Locations</a></nav>",
+      "css": ".ds-site-nav { background: #13110e; border-bottom: 1px solid rgba(201,168,76,0.3); padding: 0 1.5rem; display: flex; align-items: center; gap: 0; } .ds-brand { font-family: Georgia, 'Times New Roman', serif; color: #c9a84c; font-size: 13px; padding: 10px 16px 10px 0; border-right: 1px solid rgba(255,255,255,0.1); margin-right: 8px; white-space: nowrap; } .ds-nav-link { font-size: 12px; color: #7a7060; text-decoration: none; padding: 12px 14px; border-bottom: 2px solid transparent; transition: all 0.15s; font-family: Segoe UI, system-ui, sans-serif; } .ds-nav-link:hover { color: #a89f8a; background: rgba(255,255,255,0.03); } .ds-nav-link:focus-visible { outline: 2px solid #c9a84c; outline-offset: -2px; } .ds-nav-link-active { color: #e8c86a; border-bottom-color: #c9a84c; }"
+    },
+    {
+      "name": "NPC Card",
+      "kind": "card",
+      "refersTo": "card-section",
+      "description": "Reference card with Georgia name and optional secret footer.",
+      "html": "<div class=\"ds-npc-card\"><div class=\"ds-npc-name\">Thorn Oakwise</div><div class=\"ds-npc-role\">Grove Speaker</div><p>Calm, measured, protective of the grove.</p><div class=\"ds-npc-secret\">Secret: Knows the party was watched on the road.</div></div>",
+      "css": ".ds-npc-card { background: #2d2920; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 13px 15px; } .ds-npc-name { font-family: Georgia, 'Times New Roman', serif; font-size: 15px; color: #e8c86a; margin-bottom: 2px; } .ds-npc-role { font-size: 11px; color: #7a7060; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 7px; font-family: Segoe UI, system-ui, sans-serif; } .ds-npc-card p { font-size: 13px; color: #a89f8a; line-height: 1.65; margin: 0; font-family: Segoe UI, system-ui, sans-serif; } .ds-npc-secret { font-size: 12px; color: #e88884; font-style: italic; margin-top: 7px; padding-top: 7px; border-top: 1px solid rgba(255,255,255,0.1); font-family: Segoe UI, system-ui, sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Candlelit GM Desk",
+    "overview": "This is a late-night prep table brought to the browser: warm lamp light on dark wood, parchment text, and dense reference sheets you can scan without breaking the flow of play. The mood is warm, scholarly, and tavern-quiet — utility dressed in candlelight, never spectacle. Gold marks authority and campaign identity; Hope and Fear carry mechanical meaning; everything else stays subordinate so the GM can read the room and the script at once.\n\nDepth is tonal and bordered at rest. Interactive elements may take a soft lift on hover, but the surface never becomes a glowing dashboard. Neon and pastel palettes are rejected; saturation belongs to semantic callouts, not decoration.",
+    "keyCharacteristics": [
+      "Warm parchment-on-inkwood dark UI with Candlewick Gold as scarce authority",
+      "Georgia for names and titles; system UI for scannable body and labels",
+      "Semantic left-rail callouts (GM say, NPC, Hope, Fear, warn)",
+      "Flat tonal layering; soft hover lift only on interactive controls",
+      "Dense, collapsible session content inside a narrow reading column (~900px)"
+    ],
+    "rules": [
+      { "name": "The Scarce Gold Rule", "body": "Candlewick Gold is authority, not fill. Prefer muted neutrals and semantic rails; gold appears on brand, focus, active state, and true emphasis.", "section": "colors" },
+      { "name": "The Callout Color Rule", "body": "Left-rail and box colors encode content type (GM say = info, Fear = ember, Hope = grove, warn = amber, NPC = violet). Never reuse Ember Fear red for decoration or generic alerts that are not Fear/danger/secret.", "section": "colors" },
+      { "name": "The Spoken Italic Rule", "body": "Player-facing or spoken lines (gm-say, npc-say, handouts) set in italic body; GM logistics stay roman so the eye knows what is sayable vs. private.", "section": "typography" },
+      { "name": "The Soft Lift Rule", "body": "Elevation is a response to interaction (hover/active), not a resting property of containers. Resting cards stay tonal and bordered.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Candlewick Gold scarce — brand, active focus, true emphasis.",
+      "Do encode content type with callout colors (info / violet / hope / warn / fear).",
+      "Do use Georgia for titles and names; system UI for operational body.",
+      "Do prefer tonal nesting + borders; soft lift only on interactive hover.",
+      "Do design for a dense 900px reading column and sticky nav under table pressure."
+    ],
+    "donts": [
+      "Don't use neon, pastel, or purple-glow \"AI dark mode\" aesthetics.",
+      "Don't paint Fear red onto decorative chrome or non-Fear UI.",
+      "Don't add resting drop shadows or glowing focus halos as the default language.",
+      "Don't list every session as a peer nav link as the library grows — use a compact focus selector.",
+      "Don't introduce external webfonts/CDNs that break offline or GitHub Pages simplicity."
+    ]
+  }
+}
